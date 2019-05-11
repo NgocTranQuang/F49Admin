@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.AlexanderShniperson:AndroidMvvm:1.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd52c9dbb9895bcd1268f0c2d50fd8c4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/fd52c9dbb9895bcd1268f0c2d50fd8c4/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.AlexanderShniperson/AndroidMvvm/1.0/caa9ca1337f1a0fabf27caaaad206235a96e376/AndroidMvvm-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
