@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#50b748</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#ff9a00</color>
 
     <color name="colorRed">#d30202</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="color_start_bg_action_button">#f2ab00</color>
+    <color name="color_end_bg_action_button">#ff6d00</color>
+    <color name="ripple_effect">#64d2d2d2</color>
+    <color name="color_checkbox">#a1a1a0</color>
+    <color name="color_forgot_password">#0096e4</color>
+    <color name="color_indicator_unSelected">#dddddd</color>
+    <color name="bg_screen">#efefef</color>
+    <color name="color_line_divider_light">#e8e8e8</color>
 
+
+    <color name="toolbar_start_color">#0e5991</color>
+    <color name="toolbar_center_color">#117da3</color>
+    <color name="toolbar_end_color">#18bfc5</color>
+    <color name="phone_color">#919191</color>
+    <color name="color_btn_cancel">#f1f1f1</color>
 </resources>

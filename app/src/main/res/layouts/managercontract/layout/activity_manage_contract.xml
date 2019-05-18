@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header"
+                android:stateListAnimator="@animator/toolbar_elevated"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    style="@style/CommonToolbar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+
+
+            <android.support.design.widget.TabLayout
+                    app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                    android:id="@+id/tbLayout"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    app:tabSelectedTextColor="@color/colorAccent"
+                    android:layout_height="wrap_content">
+
+            </android.support.design.widget.TabLayout>
+
+
+        <View
+                android:layout_height="3dp"
+                style="@style/LineBig"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_height="match_parent">
+
+            <android.support.design.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <Spinner
+                        android:id="@+id/spContract"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_128">
+
+                </Spinner>
+            </android.support.design.card.MaterialCardView>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/btnFilter"
+                        style="@style/TextViewLeftInfoCamdo"
+                        android:drawableEnd="@android:drawable/arrow_down_float"
+                        android:text="@string/list_contract"/>
+            </LinearLayout>
+
+            <View
+                    style="@style/LineBig"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvContract"
+                    android:layout_width="match_parent"
+                    android:overScrollMode="never"
+                    android:background="@color/color_line_divider_light"
+                    android:layout_marginTop="@dimen/toolbar_half_padding_horizontal"
+                    android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

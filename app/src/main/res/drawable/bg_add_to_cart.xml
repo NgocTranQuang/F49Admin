@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke
+            android:width="@dimen/height_line_size"
+            android:color="#ffdca7" />
+
+    <solid android:color="#fff4e4" />
+
+    <!--<padding-->
+    <!--android:bottom="@dimen/margrinTop_default"-->
+    <!--android:left="@dimen/margrinTop_default"-->
+    <!--android:right="@dimen/margrinTop_default"-->
+    <!--android:top="@dimen/margrinTop_default" />-->
+
+    <corners android:radius="@dimen/btn_radius" />
+</shape>

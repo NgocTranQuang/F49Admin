@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:background="@color/colorWhite"
+                android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                    android:id="@+id/rlHeader"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:clipToPadding="false"
+                    android:layout_height="@dimen/dp_600">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+
+                    <ImageView
+                            android:id="@+id/img"
+                            android:layout_width="match_parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_loading"
+                            android:layout_height="@dimen/dp_500"/>
+
+
+                </RelativeLayout>
+
+                <ImageView
+                        android:layout_width="@dimen/dp_340"
+                        android:layout_alignParentBottom="true"
+                        android:src="@drawable/ic_home_dogiadung"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="@dimen/dp_340"/>
+
+            </RelativeLayout>
+
+            <android.support.design.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    app:cardCornerRadius="@dimen/activity_horizontal_margin"
+                    android:elevation="@dimen/activity_horizontal_margin"
+                    android:shadowColor="@color/colorAccent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:weightSum="10"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                style="@style/TextViewLeftProfile"
+                                android:text="Họ và tên"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                android:text="Trần QUang Ngọc"
+                                />
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:weightSum="10"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                style="@style/TextViewLeftProfile"
+                                android:text="Ngày sinh"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                android:text="11/3/1991"
+                                />
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:weightSum="10"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                style="@style/TextViewLeftProfile"
+                                android:text="Chức vụ"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                android:text="Chuyên viên kế toán"
+                                />
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:weightSum="10"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                style="@style/TextViewLeftProfile"
+                                android:text="Email"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                android:text="nguyenvana@gmail.com"
+                                />
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:weightSum="10"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                style="@style/TextViewLeftProfile"
+                                android:text="Phòng"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                android:text="Kế toán"
+                                />
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:weightSum="10"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                style="@style/TextViewLeftProfile"
+                                android:text="Cửa hàng"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                android:text="f49"
+                                />
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:weightSum="10"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                style="@style/TextViewLeftProfile"
+                                android:text="Phân quyền"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                android:text="QUản lý"
+                                />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:id="@+id/btnStoreList"
+                        style="@style/TextViewSettingProfile"
+                        android:text="@string/store_default"
+                        android:drawableStart="@drawable/ic_home_black_24dp"
+                        />
+
+                <View
+                        style="@style/Line"/>
+
+                <TextView
+                        android:id="@+id/btnChangePassWord"
+                        style="@style/TextViewSettingProfile"
+                        android:text="@string/change_pass_word"
+                        android:drawableStart="@drawable/ic_home_black_24dp"
+                        />
+
+                <View
+                        style="@style/Line"/>
+
+                <TextView
+                        android:visibility="gone"
+                        style="@style/TextViewSettingProfile"
+                        android:text="@string/config"
+                        android:drawableStart="@drawable/ic_home_black_24dp"
+                        />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</layout>

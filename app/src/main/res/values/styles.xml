@@ -1,12 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
     </style>
+
     <style name="ProgressDialogDim" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:alertDialogStyle">@style/CustomAlertDialogStyle</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -26,5 +29,159 @@
         <item name="android:topBright">@android:color/transparent</item>
         <item name="android:topDark">@android:color/transparent</item>
     </style>
+
+    <!--Splash screen theme-->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="CardViewBuyNow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_height">@dimen/dp_120</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/color_line_divider_light</item>
+    </style>
+
+    <style name="TextViewLeftProfile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/dp_48</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingTop">@dimen/toolbar_half_padding_horizontal</item>
+        <item name="android:paddingBottom">@dimen/toolbar_half_padding_horizontal</item>
+
+    </style>
+
+    <style name="TextViewRightProfile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">7</item>
+        <item name="android:textSize">@dimen/dp_48</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:paddingTop">@dimen/toolbar_half_padding_horizontal</item>
+        <item name="android:paddingBottom">@dimen/toolbar_half_padding_horizontal</item>
+
+    </style>
+
+    <style name="TextViewSettingProfile">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp_48</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:paddingTop">@dimen/toolbar_half_padding_horizontal</item>
+        <item name="android:paddingBottom">@dimen/toolbar_half_padding_horizontal</item>
+        <item name="android:paddingStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingEnd">@dimen/activity_horizontal_margin</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">@dimen/activity_horizontal_margin</item>
+        <item name="android:drawableEnd">@drawable/ic_home_black_24dp</item>
+    </style>
+
+    <style name="TextviewPhone">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/dp_30</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/phone_color</item>
+    </style>
+
+    <style name="TextviewValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/dp_20</item>
+        <item name="android:textSize">@dimen/dp_36</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/phone_color</item>
+        <item name="android:drawablePadding">@dimen/dp_10</item>
+        <item name="android:gravity">center_vertical</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="CommonToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingStart">@dimen/toolbar_half_padding_horizontal</item>
+        <item name="android:contentInsetStart">0dp</item>
+        <item name="android:contentInsetEnd">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+    <style name="LineBig" parent="Line">
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="TextViewLeftInfoCamdo" parent="TextViewLeftProfile">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">#555555</item>
+
+    </style>
+
+    <style name="TextViewRightInfoCamdo" parent="TextViewRightProfile">
+        <item name="android:fontFamily">@font/roboto_light</item>
+
+
+    </style>
+
+    <style name="LnHorizontalWeightSum">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:weightSum">10</item>
+        <item name="android:orientation">horizontal</item>
+
+
+    </style>
+
+    <style name="LnTab">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
+
+    <style name="TextTab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingTop">@dimen/toolbar_half_padding_horizontal</item>
+        <item name="android:paddingBottom">@dimen/toolbar_half_padding_horizontal</item>
+        <item name="android:textSize">@dimen/dp_40</item>
+
+    </style>
+
+    <style name="LineTab" parent="Line">
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">@color/colorAccent</item>
+
+    </style>
+
+    <style name="EditTextWithConer" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_136</item>
+        <item name="android:paddingStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingEnd">@dimen/activity_horizontal_margin</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:background">@drawable/bg_edt_coner</item>
+    </style>
+
 
 </resources>

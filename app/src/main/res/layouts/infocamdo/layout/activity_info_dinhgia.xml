@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="item"
+                type="com.app.f49.model.dinhgia.InfoDinhGiaDTO"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header"
+                android:stateListAnimator="@animator/toolbar_elevated"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    style="@style/CommonToolbar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent">
+
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/title"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.title}"/>
+                </LinearLayout>
+
+                <View
+                        style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/ho_ten"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.fullName}"/>
+                </LinearLayout>
+
+                <View
+                        style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/phone"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.phoneNumber}"/>
+                </LinearLayout>
+
+                <View
+                        style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/hinh_anh"/>
+
+                    <ImageView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:imageUrl="@{item.imageURL}"/>
+                </LinearLayout>
+
+                <View
+                        style="@style/Line"/>
+
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/date_register"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:date="@{item.dateRegister}"/>
+                </LinearLayout>
+
+                <View
+                        style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/xu_ly"/>
+
+                    <CheckBox
+                            android:button="@drawable/custom_checkbox"
+                            android:checked="@{item.isXyLy}"
+                            style="@style/TextViewRightInfoCamdo"/>
+                </LinearLayout>
+
+                <View
+                        style="@style/Line"/>
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+
+</layout>
