@@ -14,6 +14,21 @@ class ProfileFragment : BaseMvvmFragment<FragmentProfileBinding, ProfileViewMode
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         eventClickListenr()
+        setData()
+        observer()
+    }
+
+    private fun observer() {
+        viewModel?.userProfileDTO?.observe(this, android.arch.lifecycle.Observer {
+            it?.let {
+                viewBinding?.item = it
+            }
+        })
+    }
+
+    private fun setData() {
+        viewModel?.getProfile()
+
     }
 
     private fun eventClickListenr() {

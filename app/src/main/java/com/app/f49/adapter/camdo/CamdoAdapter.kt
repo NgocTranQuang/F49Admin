@@ -58,7 +58,7 @@ class CamdoAdapter(var items: MutableList<CamdoDTO>, var typeHeader: Int) : Recy
             items[position].stt = "${position + 1}"
             binding.item = items[position]
             binding.root.setOnSingleClickListener {
-                InfoCamdoActivity.start(itemView.context)
+                InfoCamdoActivity.start(itemView.context,items[position])
             }
             binding.executePendingBindings()
         }
@@ -69,7 +69,7 @@ class CamdoAdapter(var items: MutableList<CamdoDTO>, var typeHeader: Int) : Recy
             items[position].stt = "${position + 1}"
             binding.item = items[position]
             binding.root.setOnSingleClickListener {
-                InfoDinhGiaActivity.start(itemView.context)
+                InfoDinhGiaActivity.start(itemView.context,items[position])
             }
             binding.executePendingBindings()
         }
@@ -80,7 +80,7 @@ class CamdoAdapter(var items: MutableList<CamdoDTO>, var typeHeader: Int) : Recy
             items[position].stt = "${position + 1}"
             binding.item = items[position]
             binding.root.setOnSingleClickListener {
-                InfoDoGiaDungActivity.start(itemView.context)
+                InfoDoGiaDungActivity.start(itemView.context,items[position])
             }
             binding.executePendingBindings()
         }

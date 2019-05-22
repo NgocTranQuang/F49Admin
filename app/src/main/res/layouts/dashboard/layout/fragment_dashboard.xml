@@ -31,14 +31,8 @@
                         android:layout_width="match_parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/bg_loading"
+                        android:src="@drawable/bg_header"
                         android:layout_height="@dimen/dp_730"/>
-
-                <!--<View-->
-                <!--app:layout_constraintTop_toBottomOf="@+id/rlHeader"-->
-                <!--android:background="@drawable/bg_shadow_bottom"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="@dimen/toolbar_half_padding_horizontal"/>-->
 
 
             </LinearLayout>
@@ -93,6 +87,7 @@
                             android:layout_height="wrap_content">
 
                         <android.support.constraint.ConstraintLayout
+                                android:id="@+id/btnCamdo"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -111,7 +106,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     android:layout_width="wrap_content"
                                     android:orientation="vertical"
-                                    android:layout_margin="@dimen/toolbar_half_padding_horizontal"
+                                    android:layout_margin="@dimen/dp_10"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     android:gravity="center"
@@ -147,6 +142,7 @@
                             android:layout_height="wrap_content">
 
                         <android.support.constraint.ConstraintLayout
+                                android:id="@+id/btnDinhGia"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -165,7 +161,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     android:layout_width="wrap_content"
                                     android:orientation="vertical"
-                                    android:layout_margin="@dimen/toolbar_half_padding_horizontal"
+                                    android:layout_margin="@dimen/dp_10"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     android:gravity="center"
@@ -200,6 +196,7 @@
                             android:layout_height="wrap_content">
 
                         <android.support.constraint.ConstraintLayout
+                                android:id="@+id/btnDoGiaDung"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
 
@@ -218,7 +215,7 @@
                                     app:layout_constraintEnd_toEndOf="parent"
                                     android:layout_width="wrap_content"
                                     android:orientation="vertical"
-                                    android:layout_margin="@dimen/toolbar_half_padding_horizontal"
+                                    android:layout_margin="@dimen/dp_10"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     android:gravity="center"
@@ -251,7 +248,8 @@
                         android:layout_width="match_parent"
                         app:cardCornerRadius="@dimen/card_elevation"
                         android:layout_marginTop="@dimen/activity_horizontal_margin"
-                        app:cardBackgroundColor="@color/colorWhite"
+                        android:clipToPadding="true"
+                        app:cardPreventCornerOverlap="true"
                         android:layout_height="match_parent">
 
                     <RelativeLayout
@@ -259,21 +257,72 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                        <android.support.v4.view.ViewPager
-                                android:id="@+id/vpager"
-                                android:layout_above="@+id/line"
-                                android:layout_alignParentTop="true"
-                                app:layout_constraintBottom_toTopOf="@+id/line"
-                                android:clipToPadding="false"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                        </android.support.v4.view.ViewPager>
-
-                        <View
-                                android:id="@+id/line"
+                        <RelativeLayout
                                 android:layout_above="@+id/pageIndicatorView"
+                                android:layout_width="match_parent"
                                 android:layout_marginBottom="@dimen/toolbar_half_padding_horizontal"
-                                style="@style/Line"/>
+                                android:layout_height="wrap_content">
+
+                            <android.support.v4.view.ViewPager
+                                    android:id="@+id/vpager"
+                                    android:layout_alignParentTop="true"
+                                    android:clipToPadding="false"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:overScrollMode="never"
+                                    android:background="@color/color_line_divider_light"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+                            </android.support.v4.view.ViewPager>
+
+                            <com.facebook.shimmer.ShimmerFrameLayout
+                                    android:id="@+id/shimmer"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal"
+                                        android:weightSum="2">
+
+                                    <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_marginEnd="@dimen/height_line_size"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical">
+
+                                        <include layout="@layout/row_playholder_dashboard"/>
+
+                                        <include layout="@layout/row_playholder_dashboard"/>
+
+                                        <include layout="@layout/row_playholder_dashboard"/>
+
+                                        <include layout="@layout/row_playholder_dashboard"/>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:orientation="vertical">
+
+                                        <include layout="@layout/row_playholder_dashboard"/>
+
+                                        <include layout="@layout/row_playholder_dashboard"/>
+
+                                        <include layout="@layout/row_playholder_dashboard"/>
+
+                                        <include layout="@layout/row_playholder_dashboard"/>
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </com.facebook.shimmer.ShimmerFrameLayout>
+                        </RelativeLayout>
 
                         <com.rd.PageIndicatorView
                                 android:id="@+id/pageIndicatorView"

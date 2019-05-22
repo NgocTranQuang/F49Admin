@@ -8,20 +8,21 @@ import java.util.*
 class PreferenceUtils(context: Context) {
 
     companion object {
-        const val KEY_LANGUAGE = "vn.com.ttc.ecommerce.utils.prefs.KEY_LANGUAGE"
-        const val KEY_LANGUAGE_ID = "vn.com.ttc.ecommerce.utils.prefs.KEY_LANGUAGE_ID"
+        const val KEY_LANGUAGE = "vn.f49.app.utils.prefs.KEY_LANGUAGE"
+        const val KEY_LANGUAGE_ID = "vn.f49.app.utils.prefs.KEY_LANGUAGE_ID"
 
         /**
          * Login response
          */
-        const val KEY_TOKEN = "vn.com.ttc.ecommerce.prefs.KEY_TOKEN"
-        const val KEY_FULL_NAME = "vn.com.ttc.ecommerce.prefs.KEY_FULL_NAME"
-        const val KEY_AVATAR = "vn.com.ttc.ecommerce.prefs.KEY_AVATAR"
-        const val KEY_GENDER = "vn.com.ttc.ecommerce.prefs.KEY_GENDER"
-        const val KEY_EMAIL = "vn.com.ttc.ecommerce.prefs.KEY_EMAIL"
-        const val KEY_PHONE_NUMBER = "vn.com.ttc.ecommerce.prefs.KEY_PHONE_NUMBER"
+        const val KEY_TOKEN = "vn.f49.app.prefs.KEY_TOKEN"
+        const val KEY_FULL_NAME = "vn.f49.app.prefs.KEY_FULL_NAME"
+        const val KEY_AVATAR = "vn.f49.app.prefs.KEY_AVATAR"
+        const val KEY_GENDER = "vn.f49.app.prefs.KEY_GENDER"
+        const val KEY_EMAIL = "vn.f49.app.prefs.KEY_EMAIL"
+        const val KEY_REMEMBER_LOGIN = "vn.f49.app.prefs.KEY_REMEMBER_LOGIN"
+        const val KEY_PHONE_NUMBER = "vn.f49.app.prefs.KEY_PHONE_NUMBER"
 
-        const val KEY_NOTIFICATION_LIST = "vn.com.ttc.ecommerce.utils.prefs.KEY_NOTIFICATION_LIST"
+        const val KEY_NOTIFICATION_LIST = "vn.f49.app.utils.prefs.KEY_NOTIFICATION_LIST"
         private val TAG = "PreferenceUtil"
         private var instance: PreferenceUtils? = null
 

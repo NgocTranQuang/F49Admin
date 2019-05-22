@@ -109,7 +109,7 @@
 
                     <TextView
                             style="@style/TextViewRightInfoCamdo"
-                            android:date="@{item.dateRegister}"/>
+                            android:text="@{item.dateRegister}"/>
                 </LinearLayout>
 
                 <View

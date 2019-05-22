@@ -9,12 +9,10 @@ import com.app.f49.utils.PreferenceUtils
 import net.orionlab.androidmvvm.MvvmAndroidViewModel
 import vn.com.ttc.ecommerce.service.ApiService
 import vn.com.ttc.ecommerce.service.ServiceRepository
-
 import java.io.IOException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
-import java.util.*
 
 abstract class BaseMvvmAndroidViewModel<N : BaseNavigator>(app: Application) : MvvmAndroidViewModel(app) {
     protected val mContext = (app as F49Application).getConfigLocale(app.baseContext)
@@ -44,6 +42,10 @@ abstract class BaseMvvmAndroidViewModel<N : BaseNavigator>(app: Application) : M
         mNavigator?.showErrorDialogWithoutRetry(t.message)
     }
 
+    protected fun showDialogError(message: String) {
+        hideLoading()
+        mNavigator?.showErrorDialog(message)
+    }
 
     protected fun handleServiceExceptionWithoutDismissDialog(t: Throwable) {
         t.printStackTrace()

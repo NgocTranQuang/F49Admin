@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="item"
+                type="com.app.f49.model.infocontract.InfoContractDTO"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header"
+                android:stateListAnimator="@animator/toolbar_elevated"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    style="@style/CommonToolbar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:overScrollMode="never"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/number_of_contract"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.numberContract}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/name_customer"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.fullName}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/phone"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.phoneNumber}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/du_no"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.duNo}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/expriedDate"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:date="@{item.expiredDate}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/plusMin"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.plusMin}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/lai"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.interest}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/fee"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.fee}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/total"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.total}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/nhac_no"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.nhacNo}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/appointDate"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:date="@{item.appointmentDate}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/content"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.content}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/do_de_lai"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.doDeLai}"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

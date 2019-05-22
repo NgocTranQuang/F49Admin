@@ -1,23 +1,33 @@
 package vn.com.ttc.ecommerce.service
 
+import com.app.f49.model.BaseResponse
+import com.app.f49.model.dinhgia.CamdoDTO
+import com.app.f49.model.home.ItemHomeDTO
+import com.app.f49.model.login.LoginDTO
+import com.app.f49.model.profile.UserProfileDTO
+import com.app.f49.model.status.StatusDTO
+import com.app.f49.model.store.StoreDTO
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface ApiService {
     companion object {
-        const val API_ACCOUNT = "customer/"
-        const val API_CATEGORY = "category/"
-        const val API_DASHBOARD = "dashboard/"
+        const val USERPROFILE = "api/UserProfile"
+        const val API_DASHBOARD = "api/Dashboard/"
+        const val API_HOPDONGCAMDO = "api/HopDong/"
+        const val API_TIENICH = "api/TienIch/"
+        const val API_TOPMENU = "api/TopMenu/"
+        const val API_LOGIN = "token"
     }
 
-//    /**
-//     * Login
-//     */
-//    @POST(API_ACCOUNT + "DangNhap")
-//    fun login(@Body request: LoginRequest): Observable<LoginResponse>
-//
+    /**
+     * Login
+     */
+    @FormUrlEncoded
+    @POST(API_LOGIN)
+    fun login(@Field("grant_type") grant_type: String, @Field("username") username: String, @Field("password") password: String): Observable<LoginDTO>
+
 //    /**
 //     * Register
 //     */
@@ -39,33 +49,42 @@ interface ApiService {
 //    @POST(API_CATEGORY + "LayMenuLeft")
 //    fun getLeftMenuList(): Observable<LeftMenuListResponse>
 //
-//    /**
-//     * Dashboard
-//     */
-//    @POST(API_DASHBOARD + "LayTopKhuyenMaiHot")
-//    fun getDashboardBanner(): Observable<BaseResponse<ArrayList<BannerData>>>
-//
-//    @POST(API_DASHBOARD + "LayDanhSachTopic")
-//    fun getDashboardHeaderMenu(): Observable<BaseResponse<ArrayList<MenuHeaderData>>>
-//
-//    @POST(API_DASHBOARD + "LayDuLieuDashboard")
-//    fun getDashboardSectionData(@Body request: HomeSectionRequest): Observable<BaseResponse<HomeSectionData>>
-//
-//    /**
-//     * User Profile
-//     */
-//
-//    @POST(API_ACCOUNT + "GetCustomerProfile")
-//    fun getProfile(@Body rq: GetUserProfileRequest): Observable<BaseResponse<GetUserProfileResponseDTO>>
+    /**
+     * Dashboard
+     */
+    @GET(API_DASHBOARD + "GetDashBoard")
+    fun getDashboard(@Query("idCuaHang") idStore: Int): Observable<BaseResponse<MutableList<ItemHomeDTO>>>
+
+    @GET(API_DASHBOARD + "GetCuaHang")
+    fun getAllStore(): Observable<BaseResponse<MutableList<StoreDTO>>>
+
+    @GET(API_TIENICH + "GetTienIch")
+    fun getTienIch(@Query("idCuaHang") idStore: Int): Observable<BaseResponse<MutableList<ItemHomeDTO>>>
+
+    /**
+     * User Profile
+     */
+
+    @GET(USERPROFILE)
+    fun getProfile(): Observable<BaseResponse<MutableList<UserProfileDTO>>>
 //
 //    @POST(API_ACCOUNT + "UpdateCustomerProfile")
 //    fun updateProfile(@Body rq: UpdateProfileRequest): Observable<BaseResponse<GetUserProfileResponseDTO>>
 //
 //
-//    /**
-//     * Get category
-//     */
-//
-//    @POST(API_CATEGORY + "LayDanhMucSanPham")
-//    fun getListCategory(@Body rq: GetCategoryRequestDTO): Observable<BaseResponse<MutableList<CategoryResponseDTO>>>
+    /**
+     * Get topmenu
+     */
+
+    @GET(API_TOPMENU + "GetTrangThai")
+    fun getStatus(): Observable<BaseResponse<MutableList<StatusDTO>>>
+
+    @GET(API_TOPMENU + "GetListCamDO")
+    fun getListCamDo(@Query("trangThai") idStore: String): Observable<BaseResponse<MutableList<CamdoDTO>>>
+
+    @GET(API_TOPMENU + "GetListDinhGia")
+    fun getListDinhGia(@Query("trangThai") idStore: String): Observable<BaseResponse<MutableList<CamdoDTO>>>
+
+    @GET(API_TOPMENU + "GetListDoGiaDung")
+    fun getListDoGiaDung(@Query("trangThai") idStore: String): Observable<BaseResponse<MutableList<CamdoDTO>>>
 }

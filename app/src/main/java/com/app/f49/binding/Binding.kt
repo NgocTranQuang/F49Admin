@@ -18,6 +18,10 @@ fun setCircleImageUrl(view: ImageView, url: String?) {
 @BindingAdapter("android:imageUrl")
 fun ImageView.binImageUrl(url: String?) {
     url?.let {
+//        val circularProgressDrawable = CircularProgressDrawable(context)
+//        circularProgressDrawable.strokeWidth = 5f
+//        circularProgressDrawable.centerRadius = 30f
+//        circularProgressDrawable.start()
         GlideApp.with(this).load(url).into(this)
     }
 }

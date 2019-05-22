@@ -4,14 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
-import com.app.f49.Base
 import com.app.f49.R
 import com.app.f49.adapter.contract.ContractAdapter
 import com.app.f49.bottomsheet.ContractBottomSheet
 import com.app.f49.databinding.ActivityManageContractBinding
 import com.app.f49.model.managercontract.ManagerContractDTO
 import extension.init
-import extension.setList
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_manage_contract.*
 import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
@@ -53,7 +51,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     }
 
     private fun initSpiner() {
-        spContract.setList(Base.LIST_STRING_DEFAULT)
+//        spContract.setList(Base.LIST_STRING_DEFAULT)
     }
 
     private fun initRV() {

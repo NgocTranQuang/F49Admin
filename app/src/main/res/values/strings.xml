@@ -61,5 +61,18 @@
     <string name="old_pasword">Mật khẩu cũ</string>
     <string name="new_password">Mật khẩu mới</string>
     <string name="confirm_password">Xác nhận lại mật khẩu mới</string>
+    <string name="number_of_contract">Số hợp đồng</string>
+    <string name="name_customer">Tên KH</string>
+    <string name="expriedDate">Ngày đến hạn</string>
+    <string name="lai">Lãi</string>
+    <string name="fee">Phí</string>
+    <string name="total">Tổng</string>
+    <string name="nhac_no">Nhắc nợ</string>
+    <string name="appointDate">Ngày hẹn</string>
+    <string name="content">Nội dung</string>
+    <string name="do_de_lai">Đồ để lại</string>
+    <string name="info_contract">Thông tin hợp đồng cầm đồ</string>
+    <string name="quan_ly_thu_chi">Quản lý thu chi</string>
+    <string name="provide_account">Xin vui lòng nhập email và password.</string>
 
 </resources>

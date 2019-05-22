@@ -4,9 +4,11 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.ViewDataBinding
 import android.os.Bundle
+import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.app.f49.MainViewModel
 import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
 import vn.com.ttc.ecommerce.base.BaseNavigator
 import java.lang.reflect.ParameterizedType
@@ -79,5 +81,9 @@ open class BaseMvvmFragment<A : ViewDataBinding, B : BaseMvvmAndroidViewModel<N>
 
     open fun refreshData() {
         // Implement in children class
+    }
+
+    fun getMainViewModel(): MainViewModel {
+        return ViewModelProviders.of(activity as FragmentActivity).get(MainViewModel::class.java)
     }
 }

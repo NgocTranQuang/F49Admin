@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:name=".F49Application"
             android:allowBackup="true"
@@ -25,7 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"/>
-        <activity android:name=".activity.login.LoginActivity"/>
+        <activity
+                android:name=".activity.login.LoginActivity"
+                android:noHistory="true"/>
         <activity android:name=".activity.camdo.CamdoActivity"/>
         <activity android:name=".activity.infocamdo.InfoDoGiaDungActivity"/>
         <activity android:name=".activity.infocamdo.InfoDinhGiaActivity"/>
@@ -33,6 +36,8 @@
         <activity android:name=".activity.managerContract.ContractActivity"/>
         <activity android:name=".activity.liststore.ListStoreActivity"/>
         <activity android:name=".activity.changepassword.ChangePasswordActivity"/>
+        <activity android:name=".activity.infoContract.InfoContractActivity"/>
+        <activity android:name=".activity.quanlythuchi.QuanLyThuChiActivity"/>
 
         <meta-data
                 android:name="preloaded_fonts"

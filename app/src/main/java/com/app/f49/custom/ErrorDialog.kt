@@ -1,15 +1,8 @@
 package vn.com.ttc.ecommerce.custom
 
-import android.app.Activity
-import android.databinding.DataBindingUtil
-import android.graphics.drawable.Drawable
-import android.support.v7.app.AlertDialog
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
-import com.app.f49.R
-import android.content.DialogInterface
 import android.content.Context
+import android.support.v7.app.AlertDialog
+import com.app.f49.R
 
 
 class ErrorDialog(private val mActivity: Context) {
@@ -31,7 +24,7 @@ class ErrorDialog(private val mActivity: Context) {
 
 //        builder1.setNegativeButton(
 //            mActivity.getString(R.string.no)
-//        ) { dialog, id -> dialog.cancel() }
+//        ) { dialog, functionKey -> dialog.cancel() }
 
         val alert11 = builder1.create()
         return alert11

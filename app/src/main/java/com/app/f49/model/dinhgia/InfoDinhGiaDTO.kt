@@ -1,11 +1,9 @@
 package com.app.f49.model.dinhgia
 
-import java.util.*
-
 open class BaseCamdo {
     var title: String? = null
     var phoneNumber: String? = null
-    var dateRegister: Date? = null
+    var dateRegister: String? = null
     var isXyLy: Boolean? = false
 
 

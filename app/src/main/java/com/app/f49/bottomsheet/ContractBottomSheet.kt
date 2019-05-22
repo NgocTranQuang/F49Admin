@@ -6,10 +6,7 @@ import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.app.f49.Base
 import com.app.f49.R
-import extension.setList
-import kotlinx.android.synthetic.main.bottomsheet_contract.*
 
 class ContractBottomSheet : BottomSheetDialogFragment() {
 
@@ -32,7 +29,7 @@ class ContractBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initSpiner() {
-        spPerson.setList(Base.LIST_STRING_DEFAULT)
-        spStatus.setList(Base.LIST_STRING_DEFAULT)
+//        spPerson.setList(Base.LIST_STRING_DEFAULT)
+//        spStatus.setList(Base.LIST_STRING_DEFAULT)
     }
 }

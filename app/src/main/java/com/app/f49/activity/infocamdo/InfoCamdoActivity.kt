@@ -6,16 +6,18 @@ import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.app.f49.R
 import com.app.f49.databinding.ActivityInfoCamdoBinding
+import com.app.f49.model.dinhgia.CamdoDTO
 import com.app.f49.model.dinhgia.InfoCamdoDTO
 import kotlinx.android.synthetic.main.activity_info_camdo.*
 import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
 import vn.com.ttc.ecommerce.base.BaseNavigator
-import java.util.*
 
 class InfoCamdoActivity : BaseMvvmActivity<ActivityInfoCamdoBinding, InfoDoGiaDungViewModel, BaseNavigator>() {
     companion object {
-        fun start(context: Context) {
-            context.startActivity(Intent(context, InfoCamdoActivity::class.java))
+        fun start(context: Context, camdoDTO: CamdoDTO) {
+            var intent = Intent(context, InfoCamdoActivity::class.java)
+            intent.putExtra(InfoDinhGiaActivity.KEY_DATA, camdoDTO)
+            context.startActivity(intent)
         }
     }
 
@@ -29,16 +31,23 @@ class InfoCamdoActivity : BaseMvvmActivity<ActivityInfoCamdoBinding, InfoDoGiaDu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var infoCamdo = InfoCamdoDTO().apply {
-            title = "Nguye hoang anh"
-            money = "30,000,000 vnd"
-            phoneNumber = "009099343"
-            nhanHieu = "toyota"
-            describe = "laoi xe con moi"
-            dateRegister = Date()
-            isXyLy = true
+        getData()
+    }
+
+    private fun getData() {
+        var camdoDTO = intent?.getSerializableExtra(InfoDinhGiaActivity.KEY_DATA) as? CamdoDTO
+        camdoDTO?.let { camdoDTO ->
+            var infoDinhGia = InfoCamdoDTO().apply {
+                title = camdoDTO.name
+                money = camdoDTO.balance
+                phoneNumber = camdoDTO.phoneNumber
+                nhanHieu = camdoDTO.brand
+                describe = camdoDTO.description
+                dateRegister = camdoDTO.date
+                isXyLy = camdoDTO.active
+            }
+            mViewBinding?.item = infoDinhGia
         }
-        mViewBinding?.item = infoCamdo
     }
 
     override fun getTitleToolbar(): String? {

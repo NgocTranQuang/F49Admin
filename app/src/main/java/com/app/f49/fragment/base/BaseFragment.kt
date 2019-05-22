@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.utils.GeneralUtils
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
+import vn.com.ttc.ecommerce.activity.base.BaseActivity
 import vn.com.ttc.ecommerce.base.BaseNavigator
 import vn.com.ttc.ecommerce.custom.CustomProgressDialog
 
@@ -38,7 +38,7 @@ open class BaseFragment : Fragment(), BaseNavigator {
     }
 
     override fun showErrorDialog(message: String?) {
-        (activity as BaseMvvmActivity<*, *, *>).showErrorDialog(message)
+        (activity as BaseActivity).showErrorDialog(message)
     }
 
     override fun showErrorDialogWithoutRetry(message: String?) {
@@ -46,15 +46,15 @@ open class BaseFragment : Fragment(), BaseNavigator {
     }
 
     override fun showSuccessView() {
-        (activity as BaseMvvmActivity<*, *, *>).showSuccessView()
+        (activity as BaseActivity).showSuccessView()
     }
 
     override fun showToastErrorMsg(msg: String) {
-        (activity as BaseMvvmActivity<*, *, *>).showToastErrorMsg(msg)
+        (activity as BaseActivity).showToastErrorMsg(msg)
     }
 
     override fun showToastNoticeMsg(msg: String) {
-        (activity as BaseMvvmActivity<*, *, *>).showToastNoticeMsg(msg)
+        (activity as BaseActivity).showToastNoticeMsg(msg)
     }
 
     override fun hideKeyboard() {

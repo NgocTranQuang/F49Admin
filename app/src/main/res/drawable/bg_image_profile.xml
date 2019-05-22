@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<stroke-->
+            <!--android:width="@dimen/height_line_size"-->
+            <!--android:color="@color/colorPrimary"/>-->
+
+    <solid android:color="@color/color_image_profile"/>
+
+    <padding
+            android:left="@dimen/dp_20"
+            android:right="@dimen/dp_20"
+            android:bottom="@dimen/dp_20"
+            android:top="@dimen/dp_20"/>
+
+    <corners android:radius="@dimen/dp_185"/>
+</shape>

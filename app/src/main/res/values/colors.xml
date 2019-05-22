@@ -21,4 +21,7 @@
     <color name="toolbar_end_color">#18bfc5</color>
     <color name="phone_color">#919191</color>
     <color name="color_btn_cancel">#f1f1f1</color>
+    <color name="color_image_profile">#8dd088</color>
+    <color name="bg_play_holder">#c8c8c8</color>
+
 </resources>

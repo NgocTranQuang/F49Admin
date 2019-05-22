@@ -18,8 +18,8 @@ class ServiceRepository {
         const val HEADER_DEVICE_ID = "DeviceId"
         const val HEADER_DEVICE_NAME = "DeviceName"
         const val HEADER_LANGUAGE_ID = "LanguageId"
-        const val HEADER_TOKEN = "Token"
-        private var BASE_URL = "http://ecom.ttcgroup.vn/api/"
+        const val HEADER_TOKEN = "Authorization"
+        private var BASE_URL = "http://apif49.itpsolution.net/"
         private const val CONNECT_TIMEOUT: Long = 20000
         private const val READ_TIMEOUT: Long = 20000
         private var retrofit: Retrofit? = null
@@ -84,6 +84,10 @@ class ServiceRepository {
                         HEADER_TOKEN,
                         PreferenceUtils.getString(context, PreferenceUtils.KEY_TOKEN, Constants.EMPTY_STRING)
                     )
+//                    .header(
+//                        HEADER_TOKEN,
+//                        "bearer lXRD7wJ92QrzB7a5m06dgeGOm2qkkg0ImLTSZP-M0UfN3n-caoFz0qr3OJHLAi_l2roGMgzdTYunzV-R8kI4PtHC5sLyAbI85V1NzdtKf9mMGDn-9tGGHmqVc-7QdPn94xBcXeZeL8vy8cKsBYlLssJc1jbxz5rv0OhmEJAlEg_oCihf5PVjUyHX7ElGgw2FhaFWALpUHoNNRjx5VHmaAwq8CLYZYzkYcwf-hIHOYzuCWtxtvDDEiT75bi4gLQ_87QEyu70DRlwkhmgaD1p0dg"
+//                    )
                     .method(original.method(), original.body())
                     .build()
 

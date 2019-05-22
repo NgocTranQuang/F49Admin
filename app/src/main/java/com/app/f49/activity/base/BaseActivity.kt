@@ -140,7 +140,7 @@ open class BaseActivity : AppCompatActivity(), BaseNavigator {
 //            transaction.show(existedFragment).commitAllowingStateLoss()
 //        } else {
 //            mCurrentShowedFragment = fragment
-//            transaction.add(R.id.content_main, fragment, tag)
+//            transaction.add(R.functionKey.content_main, fragment, tag)
 //            transaction.addToBackStack(tag)
 //            transaction.commitAllowingStateLoss()
 //        }
@@ -153,7 +153,7 @@ open class BaseActivity : AppCompatActivity(), BaseNavigator {
 //    protected fun addFragmentToContent(fragment: Fragment) {
 //        val fm = supportFragmentManager
 //        val ft = fm.beginTransaction()
-//        ft.add(android.R.id.content, fragment)
+//        ft.add(android.R.functionKey.content, fragment)
 //        ft.addToBackStack(fragment.javaClass.canonicalName)
 //        ft.commitAllowingStateLoss()
 //    }

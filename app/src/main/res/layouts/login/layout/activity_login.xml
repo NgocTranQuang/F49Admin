@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.app.f49.activity.login.LoginViewModel"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
+            android:layout_height="match_parent">
+
+        <ImageView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:src="@drawable/ic_bg_login_top"
+                android:scaleType="centerCrop"
+                android:layout_width="@dimen/dp_553"
+                android:layout_height="@dimen/dp_1070"/>
+
+        <ImageView
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_bg_login_bottom"
+                android:layout_width="@dimen/dp_553"
+                android:scaleType="centerCrop"
+                android:layout_height="@dimen/dp_1070"/>
+
+        <ImageView
+                android:layout_width="@dimen/dp_360"
+                android:layout_marginTop="@dimen/dp_180"
+                android:src="@drawable/ic_logo_app"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="@dimen/dp_198"/>
+
+        <TextView
+                android:id="@+id/tvLogin"
+                android:layout_width="wrap_content"
+                android:text="@string/login"
+                android:textSize="@dimen/dp_60"
+                android:textColor="@color/colorPrimary"
+                android:textAllCaps="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/dp_630"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"/>
+
+        <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/tvLogin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="@dimen/dp_879"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/dp_220"
+                android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                    android:id="@+id/cvEmail"
+                    android:layout_width="match_parent"
+                    android:clipChildren="true"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardCornerRadius="@dimen/btn_radius"
+                    app:cardPreventCornerOverlap="false"
+                    android:layout_height="@dimen/height_btn">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_boder_green"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_margin="@dimen/dp_13"
+                            android:src="@drawable/ic_login_email"
+                            android:layout_height="wrap_content"/>
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:background="@null"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textSize="@dimen/dp_48"
+                            android:text="@={viewModel.email}"
+                            android:hint="@string/email"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/roboto"/>
+
+                    <ImageView
+                            android:src="@drawable/ic_login_email"
+                            android:layout_width="wrap_content"
+                            android:visibility="invisible"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.design.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:cardCornerRadius="@dimen/btn_radius"
+                    android:layout_marginTop="@dimen/dp_50"
+                    android:layout_height="@dimen/height_btn">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:background="@drawable/bg_boder_green"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                            android:src="@drawable/ic_login_password"
+                            android:layout_width="wrap_content"
+                            android:layout_margin="@dimen/dp_13"
+                            android:layout_height="wrap_content"/>
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:background="@null"
+                            android:gravity="center"
+                            android:textSize="@dimen/dp_48"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:layout_weight="1"
+                            android:text="@={viewModel.password}"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/roboto"/>
+
+                    <ImageView
+                            android:src="@drawable/ic_dashboard_black_24dp"
+                            android:layout_width="wrap_content"
+                            android:visibility="invisible"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </android.support.design.card.MaterialCardView>
+
+            <android.support.v7.widget.CardView
+                    android:id="@+id/cvLogin"
+                    android:layout_marginTop="@dimen/dp_50"
+                    android:layout_width="match_parent"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="@dimen/btn_radius"
+                    android:layout_height="@dimen/height_btn">
+
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:text="@string/login"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/dp_60"
+                        android:textAllCaps="true"
+                        android:gravity="center"
+                        android:background="@drawable/bg_btn_action"
+                        android:fontFamily="@font/roboto"
+                        android:layout_height="match_parent"/>
+
+            </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+                    android:layout_marginTop="@dimen/dp_95"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <CheckBox
+                        android:id="@+id/cbRemember"
+                        android:layout_width="wrap_content"
+                        android:textSize="@dimen/dp_36"
+                        android:padding="@dimen/dp_10"
+                        android:button="@drawable/custom_checkbox"
+                        android:textColor="@color/color_checkbox"
+                        android:text="@string/remember_account"
+                        android:fontFamily="@font/roboto_light"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/tvForgotPassword"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/color_forgot_password"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:textSize="@dimen/dp_36"
+                        android:fontFamily="@font/roboto_light"
+                        android:text="@string/forgot_password"
+                        android:layout_height="wrap_content"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+                android:layout_width="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="F49 EO version 1.0"
+                android:fontFamily="@font/roboto"
+                android:textSize="@dimen/dp_30"
+                android:textColor="@color/color_checkbox"
+                android:layout_marginBottom="@dimen/dp_90"
+                android:layout_height="wrap_content"/>
+    </android.support.constraint.ConstraintLayout>
+</layout>

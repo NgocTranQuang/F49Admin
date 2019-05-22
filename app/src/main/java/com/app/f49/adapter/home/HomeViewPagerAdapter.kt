@@ -6,10 +6,9 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.app.f49.fragment.dashboard.DashboardPagerItemFragment
 import com.app.f49.fragment.home.PagerItemFragment
 import com.app.f49.model.home.ItemHomeDTO
-import kotlin.math.max
 import kotlin.math.min
 
-class HomeViewPagerAdapter(var listData: MutableList<ItemHomeDTO>, var fm: FragmentManager, var type: Int) : FragmentPagerAdapter(fm) {
+class HomeViewPagerAdapter (var listData: MutableList<ItemHomeDTO>, var fm: FragmentManager, var countPage: Int, var type: Int) : FragmentPagerAdapter(fm) {
     var numberItemInPager = 6
 
     init {
@@ -24,7 +23,6 @@ class HomeViewPagerAdapter(var listData: MutableList<ItemHomeDTO>, var fm: Fragm
         var b: MutableList<ItemHomeDTO> = mutableListOf()
         b.addAll(listData.subList((p0 * numberItemInPager), min))
         if (type == TypePager.HOME.value) {
-
             return PagerItemFragment.newInstance(b)
         } else {
 
@@ -32,7 +30,7 @@ class HomeViewPagerAdapter(var listData: MutableList<ItemHomeDTO>, var fm: Fragm
         }
     }
 
-    override fun getCount(): Int = (Math.ceil((listData.size).toDouble() / numberItemInPager)).toInt()
+    override fun getCount(): Int = countPage
 }
 
 enum class TypePager(var value: Int) {

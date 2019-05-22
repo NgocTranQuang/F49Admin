@@ -42,7 +42,7 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res/layouts/customview', 'src/main/res/layouts/splash', 'src/main/res/layouts/login', 'src/main/res/layouts/home', 'src/main/res/layouts/dashboard', 'src/main/res/layouts/profile', 'src/main/res/layouts/camdo', 'src/main/res/layouts/infocamdo', 'src/main/res/layouts/managercontract', 'src/main/res/layouts/store', 'src/main/res/layouts/changepassword']
+            res.srcDirs = ['src/main/res', 'src/main/res/layouts/customview', 'src/main/res/layouts/splash', 'src/main/res/layouts/login', 'src/main/res/layouts/home', 'src/main/res/layouts/dashboard', 'src/main/res/layouts/profile', 'src/main/res/layouts/camdo', 'src/main/res/layouts/infocamdo', 'src/main/res/layouts/managercontract', 'src/main/res/layouts/store', 'src/main/res/layouts/changepassword', 'src/main/res/layouts/infocontract', 'src/main/res/layouts/notification', 'src/main/res/layouts/quanlythuchi']
         }
     }
 }
@@ -81,5 +81,8 @@ dependencies {
 
     // Indication viewpager
     implementation 'com.romandanylyk:pageindicatorview:1.0.1'
+
+    implementation 'com.facebook.shimmer:shimmer:0.3.0'
+
 
 }

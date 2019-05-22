@@ -1,18 +1,16 @@
 package com.app.f49.fragment.dashboard
 
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
 import android.view.View
-import com.app.f49.Base
 import com.app.f49.R
 import com.app.f49.adapter.dashboard.DashboardItemAdapter
-import com.app.f49.adapter.home.HomeItemAdapter
 import com.app.f49.custom.CustomGridLayoutManager
-import com.app.f49.decoration.RVTowColumnDecoration
+import com.app.f49.decoration.DecoWithoutLeftRight
 import com.app.f49.model.home.ItemHomeDTO
 import kotlinx.android.synthetic.main.fragment_item_viewpager_home.*
 import vn.com.ttc.ecommerce.fragment.base.BaseFragment
 import java.io.Serializable
+
 
 class DashboardPagerItemFragment : BaseFragment() {
     companion object {
@@ -28,7 +26,7 @@ class DashboardPagerItemFragment : BaseFragment() {
 
     var adapter: DashboardItemAdapter? = null
     override fun getLayoutResource(): Int? {
-        return R.layout.fragment_item_viewpager_home
+        return R.layout.fragment_item_viewpager_dashboard
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,12 +37,12 @@ class DashboardPagerItemFragment : BaseFragment() {
 
     private fun setupRV(list: MutableList<ItemHomeDTO>) {
         adapter = DashboardItemAdapter(list)
-        var layoutManager=CustomGridLayoutManager(activity!!, 2)
+        var layoutManager = CustomGridLayoutManager(activity!!, 2)
         layoutManager.setScrollEnabled(false)
         rvItemHome.layoutManager = layoutManager
         rvItemHome.adapter = adapter
         rvItemHome.addItemDecoration(
-            RVTowColumnDecoration(
+            DecoWithoutLeftRight(
                 context?.resources?.getDimensionPixelSize(R.dimen.height_line_size) ?: 1
             )
         )
