@@ -24,6 +24,7 @@ class MainActivity : BaseActivity() {
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+//        nav_view.disableShiftMode()
         when (item.itemId) {
             R.id.navigation_home -> {
                 showFragment(HomeFragment())
@@ -83,12 +84,16 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        configView()
         var layoutParams = container.layoutParams as FrameLayout.LayoutParams
         layoutParams.topMargin = -GeneralUtils.getStatusBarHeight(this)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         var viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.getListStore()
+        viewModel.getTopMenu()
         showFragment(HomeFragment())
+//        BottomNavigationViewHelper.removeShiftMode(nav_view);
+
     }
 }

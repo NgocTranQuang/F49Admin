@@ -31,7 +31,9 @@ class DashboardPagerItemFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var listData = arguments?.getSerializable(KEY_DATA) as MutableList<ItemHomeDTO>
+        var listData = (arguments?.getSerializable(KEY_DATA) as MutableList<ItemHomeDTO>).sortedBy {
+            it.sapXep
+        }.toMutableList()
         setupRV(listData)
     }
 

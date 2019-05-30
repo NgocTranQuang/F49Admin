@@ -1,10 +1,17 @@
 package com.app.f49.binding
 
+import android.annotation.SuppressLint
 import android.databinding.BindingAdapter
 import android.graphics.Color
+import android.support.design.internal.BottomNavigationItemView
+import android.support.design.internal.BottomNavigationMenuView
+import android.support.design.widget.BottomNavigationView
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.app.f49.R
+import com.bumptech.glide.request.RequestOptions
 import vn.com.ttc.ecommerce.extension.setCircleImageURL
 import vn.com.ttc.ecommerce.service.GlideApp
 import java.text.SimpleDateFormat
@@ -18,18 +25,27 @@ fun setCircleImageUrl(view: ImageView, url: String?) {
 @BindingAdapter("android:imageUrl")
 fun ImageView.binImageUrl(url: String?) {
     url?.let {
-//        val circularProgressDrawable = CircularProgressDrawable(context)
-//        circularProgressDrawable.strokeWidth = 5f
-//        circularProgressDrawable.centerRadius = 30f
-//        circularProgressDrawable.start()
-        GlideApp.with(this).load(url).into(this)
+        val options = RequestOptions()
+            .centerCrop()
+            .error(R.mipmap.ic_launcher)
+        GlideApp.with(this).load(url).apply(options).into(this)
+    }
+}
+
+@BindingAdapter("android:imageUrl_no_center")
+fun ImageView.binImageUrlWithouCenter(url: String?) {
+    url?.let {
+        val options = RequestOptions()
+            .error(R.mipmap.ic_launcher)
+        GlideApp.with(this).load(url).apply(options).into(this)
     }
 }
 
 @BindingAdapter("android:text_color")
 fun TextView.binColor(color: String?) {
     color?.let {
-        setTextColor(Color.parseColor(color))
+        if (!color.isNullOrBlank())
+            setTextColor(Color.parseColor(color))
     }
 }
 
@@ -44,9 +60,33 @@ fun ViewGroup.binBgColor(color: String?) {
 
 @BindingAdapter("android:date")
 fun TextView.bindDate(date: Date?) {
-    date?.let {
-        val dateFormat = SimpleDateFormat("MM/dd/yyyy")
+    if (date != null) {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
         val strDate = dateFormat.format(date)
         text = strDate
+    } else {
+        text = ""
+    }
+
+}
+
+@SuppressLint("RestrictedApi")
+fun BottomNavigationView.disableShiftMode() {
+    val menuView = getChildAt(0) as BottomNavigationMenuView
+    try {
+        val shiftingMode = menuView::class.java.getDeclaredField("mShiftingMode")
+        shiftingMode.isAccessible = true
+        shiftingMode.setBoolean(menuView, false)
+        shiftingMode.isAccessible = false
+        for (i in 0 until menuView.childCount) {
+            val item = menuView.getChildAt(i) as BottomNavigationItemView
+            item.setShifting(false)
+            // set once again checked value, so view will be updated
+            item.setChecked(item.itemData.isChecked)
+        }
+    } catch (e: NoSuchFieldException) {
+        Log.e("BottomNavigationView", "Unable to get shift mode field", e)
+    } catch (e: IllegalStateException) {
+        Log.e("BottomNavigationView", "Unable to change value of shift mode", e)
     }
 }

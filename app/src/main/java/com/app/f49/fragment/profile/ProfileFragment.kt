@@ -1,14 +1,18 @@
 package com.app.f49.fragment.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.app.f49.Base
 import com.app.f49.activity.changepassword.ChangePasswordActivity
 import com.app.f49.activity.liststore.ListStoreActivity
+import com.app.f49.activity.login.LoginActivity
 import com.app.f49.databinding.FragmentProfileBinding
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_profile.*
 import vn.com.ttc.ecommerce.base.BaseNavigator
 import vn.com.ttc.ecommerce.fragment.base.BaseMvvmFragment
+
 
 class ProfileFragment : BaseMvvmFragment<FragmentProfileBinding, ProfileViewModel, BaseNavigator>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,6 +41,13 @@ class ProfileFragment : BaseMvvmFragment<FragmentProfileBinding, ProfileViewMode
         }
         btnChangePassWord.setOnSingleClickListener {
             ChangePasswordActivity.start(activity ?: return@setOnSingleClickListener)
+        }
+        btnLogout.setOnSingleClickListener {
+            Base.listStore.value?.clear()
+            var intent = Intent(activity, LoginActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+
         }
     }
 }

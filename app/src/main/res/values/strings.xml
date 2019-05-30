@@ -2,7 +2,7 @@
     <string name="app_name">F49</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Thông báo</string>
 
     <!-- error -->
     <string name="no_data">Không có dữ liệu.</string>
@@ -74,5 +74,14 @@
     <string name="info_contract">Thông tin hợp đồng cầm đồ</string>
     <string name="quan_ly_thu_chi">Quản lý thu chi</string>
     <string name="provide_account">Xin vui lòng nhập email và password.</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="thu">Thu</string>
+    <string name="chi">Chi</string>
+    <string name="nguoi_thuc_hien">Người thực hiện</string>
+    <string name="store">Cửa hàng</string>
+    <string name="date_thuc_hien">Ngày thực hiện</string>
+    <string name="ly_do">Lý do</string>
+    <string name="ghi_chu">Ghi chú</string>
+    <string name="thong_tin_thu_chi">Thông tin thu chi</string>
 
 </resources>

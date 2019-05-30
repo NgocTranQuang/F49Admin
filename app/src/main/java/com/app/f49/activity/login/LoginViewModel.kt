@@ -22,18 +22,18 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
     val ACCOUNT_INCORRECT = "Tài khoản không tồn tại"
     val PASSWORD_INCORRECT = "Sai mật khẩu"
 
-    init {
-        email.value = "sanghv@itpsolution.net"
-        password.value = "111111"
-    }
+//    init {
+//        email.value = "sanghv@itpsolution.net"
+//        password.value = "111111"
+//    }
 
-    fun login() {
-        if (email.value.isNullOrBlank() || password.value.isNullOrBlank()) {
+    fun login(email: String, password: String) {
+        if (email.isNullOrBlank() || password.isNullOrBlank()) {
             showDialogError(mContext.getString(R.string.provide_account))
             return
         }
         showLoading()
-        mApiService?.login(GRANT_TYPE, email.value ?: "", password.value
+        mApiService?.login(GRANT_TYPE, email ?: "", password
             ?: "").materialize()?.map { noti ->
             noti.isOnError.let {
                 noti.error?.let {
@@ -58,8 +58,9 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
 
         }?.dematerialize<LoginDTO>()?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())?.subscribe({
             if (it.error == null) {
-                PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_TOKEN, it.token_type +" "+ it.access_token)
-                PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_EMAIL, email.value)
+                PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_TOKEN, it.token_type + " " + it.access_token)
+                PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_EMAIL, email)
+                PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_PASSWORD, password)
                 isLoginSuccessfully.value = true
             } else {
                 showDialogError(it.error_description ?: "")

@@ -56,6 +56,13 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNa
                 pageIndicatorView.count = countOfPager
             }
         })
+        getMainViewModel()?.topMenu?.observe(this, Observer {
+            it?.let {
+                viewBinding?.item = it
+
+            }
+        })
+
     }
 
     private fun setEventClick() {

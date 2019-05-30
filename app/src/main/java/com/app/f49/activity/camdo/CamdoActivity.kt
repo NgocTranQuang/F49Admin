@@ -47,7 +47,9 @@ class CamdoActivity : BaseMvvmActivity<ActivityCamdoBinding, CamdoViewModel, Bas
         mViewModel?.setNavigator(this)
         mViewModel?.listStatusDTO?.observe(this, Observer {
             it?.let {
-                spSelect.setList(it.map { it.value }.toMutableList(), -1)
+                spSelect.setList(it.map { it.value }.toMutableList(), it.indexOfFirst {
+                    it.id == "1"
+                })
             }
         })
         mViewModel?.listData?.observe(this, Observer {

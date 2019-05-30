@@ -37,6 +37,7 @@ object Constants {
     // For service
     const val PAGE_SIZE = 20
     val ERROR_NETWORK = "No address associated with hostname"
+    val KEY_ITEM_NULL = "item is null"
 
 
 }

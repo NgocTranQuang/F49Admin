@@ -9,14 +9,14 @@ class UserProfileDTO {
     var avatarURL: String? = null
     var taiKhoan: String? = null
     @SerializedName("hoTen")
-    var fullName: String? = null
+    var fullName: String? = "--"
     var dateOfBirth: Date? = null
-    var position: String? = null
-    var email: String? = null
-    var room: String? = null
-    var store: String? = null
+    var position: String? = "--"
+    var email: String? = "--"
+    var room: String? = "--"
+    var store: String? = "--"
     @SerializedName("phanQuyen")
-    var permission: String? = null
+    var permission: String? = "--"
     var dienThoai: String? = null
     var diaChi: String? = null
     var idCuaHangMacDinh: String? = null

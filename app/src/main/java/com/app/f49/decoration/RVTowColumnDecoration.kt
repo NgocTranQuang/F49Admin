@@ -22,8 +22,8 @@ class RVTowColumnDecoration(private val spacing: Int) : RecyclerView.ItemDecorat
         }
 
         outRect.top = if (isInTheFirstRow(position, totalSpanCount)) spacing else 0
-        outRect.left = /*if (isFirstInRow(position, totalSpanCount)) 0 else */spacing / 2
-        outRect.right = /*if (isLastInRow(position, totalSpanCount)) 0 else*/ spacing / 2
+        outRect.left = if (isFirstInRow(position, totalSpanCount)) spacing else spacing / 2
+        outRect.right = if (isLastInRow(position, totalSpanCount)) spacing else spacing / 2
         outRect.bottom = spacing // don't need
     }
 

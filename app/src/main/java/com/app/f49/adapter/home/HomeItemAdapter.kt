@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.app.f49.R
-import com.app.f49.activity.managerContract.ContractActivity
 import com.app.f49.databinding.RowItemHomeBinding
 import com.app.f49.model.home.ItemHomeDTO
 import extension.setOnSingleClickListener
@@ -41,14 +40,13 @@ class HomeItemAdapter(var items: MutableList<ItemHomeDTO>) : RecyclerView.Adapte
         fun bind(position: Int) {
             var item = items[position]
             if (item.screenId == THU_TRONG_THANG || item.screenId == CHI_TRONG_THANG) {
-                item.price = item.functionValue + " Đ"
-                item.functionValue ="0"
+                item.price = item.giaTri + " Đ"
             }
             binding.item = items[position]
             val layoutParams = itemView.layoutParams
             layoutParams.height = heightItem
             binding.root.setOnSingleClickListener {
-                ContractActivity.start(itemView.context)
+//                ContractActivity.start(itemView.context)
             }
             binding.executePendingBindings()
         }

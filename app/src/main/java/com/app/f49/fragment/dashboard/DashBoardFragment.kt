@@ -32,10 +32,16 @@ class DashBoardFragment : BaseMvvmFragment<FragmentDashboardBinding, DashBoardVi
         })
         viewModel?.listItemDashBoard?.observe(this, Observer {
             it?.let {
-                    var countOfPager = (Math.ceil((it.size).toDouble() / 8)).toInt()
-                    vpager.adapter = HomeViewPagerAdapter(it, childFragmentManager!!, countOfPager, TypePager.DASHBOARD.value)
-                    pageIndicatorView.count = countOfPager
+                var countOfPager = (Math.ceil((it.size).toDouble() / 8)).toInt()
+                vpager.adapter = HomeViewPagerAdapter(it, childFragmentManager!!, countOfPager, TypePager.DASHBOARD.value)
+                pageIndicatorView.count = countOfPager
 
+
+            }
+        })
+        getMainViewModel()?.topMenu?.observe(this, Observer {
+            it?.let {
+                viewBinding?.item = it
 
             }
         })

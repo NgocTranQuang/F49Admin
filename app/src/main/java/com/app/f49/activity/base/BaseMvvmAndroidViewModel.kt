@@ -4,9 +4,13 @@ import android.app.Application
 import android.text.TextUtils
 import com.app.f49.F49Application
 import com.app.f49.R
+import com.app.f49.model.BaseResponse
+import com.app.f49.utils.Constants
 import com.app.f49.utils.NetworkAvailability
 import com.app.f49.utils.PreferenceUtils
+import io.reactivex.Observable
 import net.orionlab.androidmvvm.MvvmAndroidViewModel
+import vn.com.ttc.ecommerce.extension.checkRequest
 import vn.com.ttc.ecommerce.service.ApiService
 import vn.com.ttc.ecommerce.service.ServiceRepository
 import java.io.IOException
@@ -132,5 +136,35 @@ abstract class BaseMvvmAndroidViewModel<N : BaseNavigator>(app: Application) : M
 //        Base?.username?.phoneNumber = null
 //        Base?.username?.avatarURL?.value = null
 //        Base?.username?.gender?.value = null
+    }
+
+    fun <T> handleRequestService(obsever: Observable<BaseResponse<MutableList<T>>>, onResult: (MutableList<T>?) -> Unit) {
+        obsever.checkRequest(mContext)?.subscribe({
+            onResult.invoke(it)
+        }, {
+            if (it.message?.contains(Constants.KEY_ITEM_NULL) == true) {
+                onResult.invoke(mutableListOf())
+                hideLoading()
+            } else {
+                showDialogError(it)
+            }
+        }, {
+            hideLoading()
+        })
+    }
+
+    fun <T> handleRequestServiceObject(obsever: Observable<BaseResponse<T>>, onResult: (T?) -> Unit) {
+        obsever.checkRequest(mContext)?.subscribe({
+            onResult.invoke(it)
+        }, {
+            if (it.message?.contains(Constants.KEY_ITEM_NULL) == true) {
+                onResult.invoke(null)
+                hideLoading()
+            } else {
+                showDialogError(it)
+            }
+        }, {
+            hideLoading()
+        })
     }
 }

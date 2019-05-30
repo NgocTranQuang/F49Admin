@@ -24,10 +24,11 @@ fun ImageView.setCircleImageURL(url: String?) {
     val options = RequestOptions()
         .centerCrop()
         .circleCrop()
-        .error(R.mipmap.ic_launcher)
+        .error(R.drawable.ic_avatar_default)
     if (url == null) {
-        GlideApp.with(this).load(R.drawable.ic_dashboard_black_24dp).apply(options).into(this)
+        GlideApp.with(this).load(R.drawable.ic_avatar_default).apply(options).into(this)
+    } else {
+        GlideApp.with(this).load(url).apply(options).into(this)
     }
-    GlideApp.with(this).load(url).apply(options).into(this)
 
 }

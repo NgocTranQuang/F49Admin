@@ -5,13 +5,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.app.f49.R
-import com.app.f49.activity.infoContract.InfoContractActivity
 import com.app.f49.databinding.RowContractBinding
 import com.app.f49.model.managercontract.ManagerContractDTO
 import extension.setOnSingleClickListener
 
 
-class ContractAdapter(var items: MutableList<ManagerContractDTO>) : RecyclerView.Adapter<ContractAdapter.ViewHolder>() {
+class ContractAdapter(var items: MutableList<ManagerContractDTO>, var clickItem: (Int) -> Unit) : RecyclerView.Adapter<ContractAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: RowContractBinding =
@@ -36,7 +35,7 @@ class ContractAdapter(var items: MutableList<ManagerContractDTO>) : RecyclerView
             items[position].stt = "${position + 1}"
             binding.item = items[position]
             binding.root.setOnSingleClickListener {
-                InfoContractActivity.start(itemView.context)
+                clickItem.invoke(position)
             }
             binding.executePendingBindings()
         }

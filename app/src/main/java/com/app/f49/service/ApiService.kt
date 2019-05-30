@@ -1,14 +1,21 @@
 package vn.com.ttc.ecommerce.service
 
 import com.app.f49.model.BaseResponse
+import com.app.f49.model.HopDongCamDoDTO
 import com.app.f49.model.dinhgia.CamdoDTO
 import com.app.f49.model.home.ItemHomeDTO
 import com.app.f49.model.login.LoginDTO
+import com.app.f49.model.nguoiQLHD.NguoiQLHDDTO
 import com.app.f49.model.profile.UserProfileDTO
+import com.app.f49.model.quanlythuchi.QuanLyThuChiDTO
+import com.app.f49.model.quanlythuchi.QuanLyThuChiDetailDTO
 import com.app.f49.model.status.StatusDTO
 import com.app.f49.model.store.StoreDTO
+import com.app.f49.model.tab.TabDTO
+import com.app.f49.model.topmenu.TopMenuDTO
 import io.reactivex.Observable
 import retrofit2.http.*
+import java.util.*
 
 
 interface ApiService {
@@ -18,6 +25,7 @@ interface ApiService {
         const val API_HOPDONGCAMDO = "api/HopDong/"
         const val API_TIENICH = "api/TienIch/"
         const val API_TOPMENU = "api/TopMenu/"
+        const val API_THUCHI = "api/ThuChi/"
         const val API_LOGIN = "token"
     }
 
@@ -87,4 +95,34 @@ interface ApiService {
 
     @GET(API_TOPMENU + "GetListDoGiaDung")
     fun getListDoGiaDung(@Query("trangThai") idStore: String): Observable<BaseResponse<MutableList<CamdoDTO>>>
+
+    @GET("api/TopMenu")
+    fun getTopMenu(): Observable<BaseResponse<TopMenuDTO>>
+
+
+    /*
+    * Hop dong cam do
+    * */
+    @GET(API_HOPDONGCAMDO + "GetTab")
+    fun getListTab(): Observable<BaseResponse<MutableList<TabDTO>>>
+
+    @GET(API_HOPDONGCAMDO + "GetTrangThaiHD")
+    fun getStatusContract(): Observable<BaseResponse<MutableList<TabDTO>>>
+
+    @GET(API_HOPDONGCAMDO + "GetNguoiQLHD")
+    fun getNguoiQLHD(@Query("idCuaHang") idCuaHang: String): Observable<BaseResponse<MutableList<NguoiQLHDDTO>>>
+
+    @GET(API_HOPDONGCAMDO + "GetHopDongCamDo")
+    fun getHDCM(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
+
+
+    /*
+    * Quan ly thu chi
+    * */
+
+    @GET(API_THUCHI + "GetData")
+    fun getDataQuanLyThuChi(@Query("idCuaHang") idCuaHang: Int?, @Query("dtTuNgay") dtTuNgay: Date?, @Query("dtDenNgay") dtDenNgay: Date?): Observable<BaseResponse<MutableList<QuanLyThuChiDTO>>>
+
+    @GET(API_THUCHI + "GetDetailByID")
+    fun getDetailQuanLyThuChi(@Query("idItem") idItem: Int?): Observable<BaseResponse<QuanLyThuChiDetailDTO>>
 }

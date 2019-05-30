@@ -15,10 +15,12 @@ class PreferenceUtils(context: Context) {
          * Login response
          */
         const val KEY_TOKEN = "vn.f49.app.prefs.KEY_TOKEN"
+        const val KEY_TOKEN_FIREBASE = "vn.f49.app.prefs.KEY_TOKEN_FIREBASE"
         const val KEY_FULL_NAME = "vn.f49.app.prefs.KEY_FULL_NAME"
         const val KEY_AVATAR = "vn.f49.app.prefs.KEY_AVATAR"
         const val KEY_GENDER = "vn.f49.app.prefs.KEY_GENDER"
         const val KEY_EMAIL = "vn.f49.app.prefs.KEY_EMAIL"
+        const val KEY_PASSWORD = "vn.f49.app.prefs.KEY_PASSWORD"
         const val KEY_REMEMBER_LOGIN = "vn.f49.app.prefs.KEY_REMEMBER_LOGIN"
         const val KEY_PHONE_NUMBER = "vn.f49.app.prefs.KEY_PHONE_NUMBER"
 

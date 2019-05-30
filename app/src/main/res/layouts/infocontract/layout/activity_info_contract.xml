@@ -104,7 +104,7 @@
 
                     <TextView
                             style="@style/TextViewRightInfoCamdo"
-                            android:date="@{item.expiredDate}"/>
+                            android:text="@{item.expiredDate}"/>
                 </LinearLayout>
 
                 <View style="@style/Line"/>
@@ -188,7 +188,7 @@
 
                     <TextView
                             style="@style/TextViewRightInfoCamdo"
-                            android:date="@{item.appointmentDate}"/>
+                            android:text="@{item.appointmentDate}"/>
                 </LinearLayout>
 
                 <View style="@style/Line"/>

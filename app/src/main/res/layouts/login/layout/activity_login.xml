@@ -57,7 +57,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvLogin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_width="@dimen/dp_879"
+                android:layout_width="match_parent"
+                android:paddingStart="@dimen/dp_180"
+                android:paddingEnd="@dimen/dp_180"
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/dp_220"
@@ -89,6 +91,7 @@
                             android:layout_width="match_parent"
                             android:background="@null"
                             android:layout_weight="1"
+                            android:id="@+id/edtEmail"
                             android:gravity="center"
                             android:textSize="@dimen/dp_48"
                             android:text="@={viewModel.email}"
@@ -126,6 +129,7 @@
                             android:layout_height="wrap_content"/>
 
                     <EditText
+                            android:id="@+id/edtPassword"
                             android:layout_width="match_parent"
                             android:background="@null"
                             android:gravity="center"
@@ -138,7 +142,7 @@
                             android:fontFamily="@font/roboto"/>
 
                     <ImageView
-                            android:src="@drawable/ic_dashboard_black_24dp"
+                            android:src="@drawable/ic_login_email"
                             android:layout_width="wrap_content"
                             android:visibility="invisible"
                             android:layout_height="wrap_content"/>
@@ -176,6 +180,7 @@
                 <CheckBox
                         android:id="@+id/cbRemember"
                         android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/card_elevation"
                         android:textSize="@dimen/dp_36"
                         android:padding="@dimen/dp_10"
                         android:button="@drawable/custom_checkbox"
@@ -190,6 +195,7 @@
                         android:textColor="@color/color_forgot_password"
                         android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
+                        android:visibility="gone"
                         android:textSize="@dimen/dp_36"
                         android:fontFamily="@font/roboto_light"
                         android:text="@string/forgot_password"
@@ -202,7 +208,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="F49 EO version 1.0"
+                android:text="F49 version 1.0"
                 android:fontFamily="@font/roboto"
                 android:textSize="@dimen/dp_30"
                 android:textColor="@color/color_checkbox"

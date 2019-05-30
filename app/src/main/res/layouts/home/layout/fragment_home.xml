@@ -2,6 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
+    <data>
+
+
+        <variable
+                name="item"
+                type="com.app.f49.model.topmenu.TopMenuDTO"/>
+    </data>
+
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:background="@color/bg_screen"
@@ -31,7 +40,7 @@
                         android:layout_width="match_parent"
                         app:layout_constraintTop_toTopOf="parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/bg_header"
+                        android:src="@drawable/bg_header_medium"
                         android:layout_height="@dimen/dp_500"/>
 
 
@@ -122,12 +131,13 @@
                                         android:layout_height="wrap_content"/>
 
                                 <TextView
+
                                         android:layout_width="wrap_content"
                                         android:textColor="@color/colorRed"
                                         android:fontFamily="@font/roboto_bold"
                                         android:layout_marginTop="@dimen/dp_25"
                                         android:textSize="@dimen/dp_48"
-                                        android:text="9"
+                                        android:text="@{item.camDo}"
                                         android:layout_height="wrap_content"/>
                             </LinearLayout>
 
@@ -183,7 +193,7 @@
                                         android:fontFamily="@font/roboto_bold"
                                         android:layout_marginTop="@dimen/dp_25"
                                         android:textSize="@dimen/dp_48"
-                                        android:text="9"
+                                        android:text="@{item.dinhGia}"
                                         android:layout_height="wrap_content"/>
                             </LinearLayout>
 
@@ -238,7 +248,7 @@
                                         android:fontFamily="@font/roboto_bold"
                                         android:layout_marginTop="@dimen/dp_25"
                                         android:textSize="@dimen/dp_48"
-                                        android:text="9"
+                                        android:text="@{item.doGiaDung}"
                                         android:layout_height="wrap_content"/>
                             </LinearLayout>
 
@@ -253,10 +263,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/rlHeader"
                 android:background="@drawable/bg_shadow_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbar_half_padding_horizontal"/>
+                android:layout_height="@dimen/card_elevation"/>
 
         <RelativeLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/card_elevation"
                 app:layout_constraintTop_toBottomOf="@+id/rlHeader"
                 app:layout_constraintBottom_toTopOf="@+id/pageIndicatorView"
                 android:layout_height="0dp">
@@ -326,6 +337,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 app:piv_animationType="scale"
+                app:piv_count="0"
                 app:piv_dynamicCount="true"
                 app:piv_interactiveAnimation="true"
                 app:piv_padding="@dimen/toolbar_half_padding_horizontal"
