@@ -21,6 +21,8 @@ object Constants {
     const val PERIOD_AUTO_SCROLL_SLIDER: Long = 5000
     const val VIEWPAGER_SCROLL_DURATION: Long = 1000
     const val FORMAT_DATE_TIME: String = "MM/dd/yyyy HH:mm:ss"
+    const val FORMAT_DATE_TIME_TO_SHOW: String = "dd/MM/yyyy"
+    const val FORMAT_DATE_TIME_ISO: String = "yyyy-MM-dd'T'HH:mm:ss"
 
     /**
      * BASE JSON KEY

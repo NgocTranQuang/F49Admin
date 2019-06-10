@@ -25,6 +25,19 @@ class ItemHomeDTO : Serializable {
     var phanQuyen: String? = null
     var mauSac: String? = null
     var sapXep: Int? = null
+    var isShowPrice: Boolean? = null
+        get() {
+            if (screenId == "ThuTrongThang" || screenId == "ChiTrongThang") {
+                return true
+            }
+            if (giaTri.isNullOrBlank()) {
+                return false
+            }
+            if ((giaTri?.toIntOrNull() ?: 0) > 0) {
+                return true
+            }
+            return false
+        }
     var isShowValue: Boolean? = null
         get() {
             return !(giaTri.isNullOrBlank() || ((giaTri?.toIntOrNull()

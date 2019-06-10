@@ -2,6 +2,7 @@ package com.app.f49.activity.quanlythuchi
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import com.app.f49.extension.toStringISO
 import com.app.f49.model.quanlythuchi.QuanLyThuChiDTO
 import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
 import vn.com.ttc.ecommerce.base.BaseNavigator
@@ -20,7 +21,19 @@ class QuanLyThuChiViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNav
 
     fun getListQuanLyThuChi(idStore: Int?) {
         showLoading()
-        handleRequestService(mApiService?.getDataQuanLyThuChi(idStore, fromDate.value, toDate.value)) {
+
+        handleRequestService(mApiService?.getDataQuanLyThuChi(idStore, fromDate?.value?.toStringISO(), toDate.value?.toStringISO())) {
+            it?.let {
+                listQuanLyThuChi?.value = it
+            }
+        }
+
+    }
+    fun getListVonDauTu(idStore: Int?) {
+
+        showLoading()
+
+        handleRequestService(mApiService?.getListVonDauTu(idStore, fromDate?.value?.toStringISO(), toDate.value?.toStringISO())) {
             it?.let {
                 listQuanLyThuChi?.value = it
             }

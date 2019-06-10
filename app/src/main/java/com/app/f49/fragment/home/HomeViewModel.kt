@@ -12,7 +12,7 @@ class HomeViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(
 //    fun getListStore() {
 //        showLoading()
 //        mApiService?.getAllStore()?.checkRequest(mContext)?.subscribe({
-//            listStore.value = it
+//            listStore.tenTrangThai = it
 //        }, {
 //            showDialogError(it)
 //        }, {

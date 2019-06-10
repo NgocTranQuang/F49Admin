@@ -66,7 +66,7 @@
                 <TextView
                         android:id="@+id/btnFilter"
                         style="@style/TextViewLeftInfoCamdo"
-                        android:drawableEnd="@android:drawable/arrow_down_float"
+                        android:drawableEnd="@drawable/ic_filter"
                         android:text="@string/list_contract"/>
             </LinearLayout>
 

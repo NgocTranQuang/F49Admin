@@ -2,16 +2,20 @@ package vn.com.ttc.ecommerce.service
 
 import android.content.Context
 import com.app.f49.BuildConfig
+import com.app.f49.service.DateTypeDeserializer
 import com.app.f49.utils.Constants
 import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
+import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
+
 
 class ServiceRepository {
     companion object {
@@ -55,12 +59,14 @@ class ServiceRepository {
                     }
                 }
 
+                val gson = GsonBuilder()
+                    .registerTypeAdapter(Date::class.java, DateTypeDeserializer())
+                    .create()
+
                 retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(
-                        GsonConverterFactory.create(
-//                            GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
-                        )
+                        GsonConverterFactory.create(gson)
                     )
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(httpClient)

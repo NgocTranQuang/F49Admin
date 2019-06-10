@@ -17,4 +17,6 @@ interface BaseNavigator {
     fun showToastNoticeMsg(msg: String)
 
     fun hideKeyboard()
+
+    fun showActionDialog(msg : String,action: () -> Unit)
 }

@@ -58,7 +58,7 @@ public class DimenFactory extends DefaultTask {
     }
 
     def createDimenFromDimenFile() {
-        println "Start convert dimen from value file to other screen size";
+        println "Start convert dimen from tenTrangThai file to other screen size";
         String path = resFolder + dimenFileName;
         Map<String, String> pairs = new HashMap<>();
         try {
@@ -317,10 +317,10 @@ task createDimen(type: DimenFactory) {}
 createDimen {
     dimens = [320, 360, 384, 411, 480, 491, 540, 720, 800, 1242];
     fromDimen = 1242
-    positiveMaxDP = 200 //change to 600 or any other value if needed
-    positiveMaxSP = 60 //change to 600 or any other value if needed
-    negativeMaxDP = 60 //change to 600 or any other value if needed
-    negativeMaxSP = 20 //change to 600 or any other value if needed
+    positiveMaxDP = 200 //change to 600 or any other tenTrangThai if needed
+    positiveMaxSP = 60 //change to 600 or any other tenTrangThai if needed
+    negativeMaxDP = 60 //change to 600 or any other tenTrangThai if needed
+    negativeMaxSP = 20 //change to 600 or any other tenTrangThai if needed
     type = DimenType.FROM_DIMEN_FILE
     dimenFileName = 'values/auto_dimens.xml' // name of file, for type = DimenType.FROM_DIMEN_FILE only
 }

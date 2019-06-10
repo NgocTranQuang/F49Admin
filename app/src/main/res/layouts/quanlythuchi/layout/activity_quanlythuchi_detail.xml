@@ -79,7 +79,7 @@
 
                     <TextView
                             style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.tenCuaHang}"/>
+                            android:text="@{item.thu}"/>
                 </LinearLayout>
 
                 <View
@@ -94,7 +94,7 @@
 
                     <TextView
                             style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.tenCuaHang}"/>
+                            android:text="@{item.chi}"/>
                 </LinearLayout>
 
                 <View
@@ -110,7 +110,7 @@
 
                     <TextView
                             style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.idNguoiThucHien}"/>
+                            android:text="@{item.nguoiThucHien}"/>
                 </LinearLayout>
 
                 <View

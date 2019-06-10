@@ -23,5 +23,6 @@
     <color name="color_btn_cancel">#f1f1f1</color>
     <color name="color_image_profile">#8dd088</color>
     <color name="bg_play_holder">#c8c8c8</color>
+    <color name="color_date_notification">#acacac</color>
 
 </resources>

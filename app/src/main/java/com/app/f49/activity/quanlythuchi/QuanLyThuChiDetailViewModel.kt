@@ -12,7 +12,9 @@ class QuanLyThuChiDetailViewModel(app: Application) : BaseMvvmAndroidViewModel<B
         showLoading()
         handleRequestServiceObject(mApiService?.getDetailQuanLyThuChi(idItem)) {
             it?.let {
-                quanLyThuChiDetailDTO.value = it
+                it.getOrNull(0)?.let {
+                    quanLyThuChiDetailDTO.value = it
+                }
             }
         }
 

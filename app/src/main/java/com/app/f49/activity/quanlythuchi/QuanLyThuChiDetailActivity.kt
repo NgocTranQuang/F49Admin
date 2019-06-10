@@ -15,7 +15,7 @@ class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBi
 
     companion object {
         val KEY_ID_ITEM = "KEY_ID_ITEM"
-        fun start(context: Context, idItem: Int) {
+        fun start(context: Context, idItem: Int?) {
             context.startActivity(Intent(context, QuanLyThuChiDetailActivity::class.java).putExtra(KEY_ID_ITEM, idItem))
         }
     }

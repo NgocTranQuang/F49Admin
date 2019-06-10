@@ -47,7 +47,9 @@
             <LinearLayout
                     android:orientation="vertical"
                     android:clipToPadding="false"
-                    android:padding="@dimen/activity_horizontal_margin"
+                    android:paddingStart="@dimen/activity_horizontal_margin"
+                    android:paddingEnd="@dimen/activity_horizontal_margin"
+                    android:paddingBottom="@dimen/activity_horizontal_margin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 

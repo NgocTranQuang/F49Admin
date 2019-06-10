@@ -18,13 +18,13 @@ object BottomNavigationViewHelper {
             for (i in 0 until menuView.childCount) {
                 val item = menuView.getChildAt(i) as BottomNavigationItemView
                 item.setShifting(false)
-                // set once again checked value, so view will be updated
+                // set once again checked tenTrangThai, so view will be updated
                 item.setChecked(item.itemData.isChecked)
             }
         } catch (e: NoSuchFieldException) {
             Log.e("ERROR NO SUCH FIELD", "Unable to get shift mode field")
         } catch (e: IllegalAccessException) {
-            Log.e("ERROR ILLEGAL ALG", "Unable to change value of shift mode")
+            Log.e("ERROR ILLEGAL ALG", "Unable to change tenTrangThai of shift mode")
         }
 
     }

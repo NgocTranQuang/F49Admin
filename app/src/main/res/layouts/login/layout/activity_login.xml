@@ -181,7 +181,7 @@
                         android:id="@+id/cbRemember"
                         android:layout_width="wrap_content"
                         android:layout_marginStart="@dimen/card_elevation"
-                        android:textSize="@dimen/dp_36"
+                        android:textSize="@dimen/dp_48"
                         android:padding="@dimen/dp_10"
                         android:button="@drawable/custom_checkbox"
                         android:textColor="@color/color_checkbox"
@@ -204,11 +204,12 @@
         </LinearLayout>
 
         <TextView
+                android:id="@+id/tvVersion"
                 android:layout_width="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="F49 version 1.0"
+                android:text="@{viewModel.version}"
                 android:fontFamily="@font/roboto"
                 android:textSize="@dimen/dp_30"
                 android:textColor="@color/color_checkbox"

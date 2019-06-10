@@ -31,7 +31,6 @@
 
         <LinearLayout
                 android:layout_width="match_parent"
-                android:padding="@dimen/activity_horizontal_margin"
                 android:orientation="vertical"
                 android:clipToPadding="false"
                 android:background="@color/color_line_divider_light"
@@ -39,6 +38,9 @@
 
             <android.support.design.card.MaterialCardView
                     android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_height="wrap_content">
 
                 <Spinner
@@ -50,6 +52,8 @@
             <android.support.design.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
                     android:layout_height="wrap_content">
 
                 <Spinner
@@ -62,13 +66,14 @@
                     android:layout_width="match_parent"
                     android:orientation="horizontal"
                     android:weightSum="2"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:clipToPadding="false"
                     android:layout_height="wrap_content">
 
                 <android.support.design.card.MaterialCardView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/toolbar_half_padding_horizontal"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:layout_height="@dimen/dp_128">
 
                     <TextView
@@ -79,14 +84,13 @@
                             android:gravity="center_vertical"
                             android:padding="@dimen/toolbar_half_padding_horizontal"
                             android:text_color='@{viewModel.clickable == true ? "#000000" : "#e8e8e8"}'
-                            android:drawableEnd="@drawable/ic_calander"
+                            android:drawableEnd="@drawable/ic_big_calender"
                             android:layout_height="match_parent"/>
                 </android.support.design.card.MaterialCardView>
 
                 <android.support.design.card.MaterialCardView
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_marginTop="@dimen/activity_horizontal_margin"
                         android:layout_height="@dimen/dp_128">
 
                     <TextView
@@ -98,10 +102,22 @@
                             android:text_color='@{viewModel.clickable == true ? "#000000" : "#e8e8e8"}'
                             android:padding="@dimen/toolbar_half_padding_horizontal"
                             tools:text="dfdf"
-                            android:drawableEnd="@drawable/ic_calander"
+                            android:drawableEnd="@drawable/ic_big_calender"
                             android:layout_height="match_parent"/>
                 </android.support.design.card.MaterialCardView>
             </LinearLayout>
+
+            <Button
+                    android:id="@+id/btnXem"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/colorWhite"
+                    android:text="Xem"
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
 
@@ -142,6 +158,13 @@
                     <include layout="@layout/row_item_playholder_camdo"/>
                 </LinearLayout>
             </com.facebook.shimmer.ShimmerFrameLayout>
+            <TextView
+                    android:id="@+id/tvNoData"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/no_data"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"/>
         </RelativeLayout>
     </LinearLayout>
 </layout>

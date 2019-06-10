@@ -13,6 +13,7 @@ import vn.com.ttc.ecommerce.custom.CustomProgressDialog
 
 open class BaseFragment : Fragment(), BaseNavigator {
 
+
     private var mProgressDialog: CustomProgressDialog? = null
     open fun getLayoutResource(): Int? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -39,6 +40,9 @@ open class BaseFragment : Fragment(), BaseNavigator {
 
     override fun showErrorDialog(message: String?) {
         (activity as BaseActivity).showErrorDialog(message)
+    }
+    override fun showActionDialog(msg: String, action: () -> Unit) {
+        (activity as BaseActivity).showActionDialog(msg,action)
     }
 
     override fun showErrorDialogWithoutRetry(message: String?) {

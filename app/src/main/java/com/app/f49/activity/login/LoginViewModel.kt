@@ -2,6 +2,7 @@ package com.app.f49.activity.login
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
 import com.app.f49.R
 import com.app.f49.model.login.LoginDTO
 import com.app.f49.utils.Constants
@@ -12,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
 import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
 import vn.com.ttc.ecommerce.base.BaseNavigator
+import vn.com.ttc.ecommerce.extension.checkRequest
 
 class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     val GRANT_TYPE = "password"
@@ -21,17 +23,15 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
     val TRY_AGAIN = ". Xin vui lòng thử lại."
     val ACCOUNT_INCORRECT = "Tài khoản không tồn tại"
     val PASSWORD_INCORRECT = "Sai mật khẩu"
+    var version : MutableLiveData<String> = MutableLiveData()
 
 //    init {
-//        email.value = "sanghv@itpsolution.net"
-//        password.value = "111111"
+//        email.tenTrangThai = "sanghv@itpsolution.net"
+//        password.tenTrangThai = "111111"
 //    }
 
     fun login(email: String, password: String) {
-        if (email.isNullOrBlank() || password.isNullOrBlank()) {
-            showDialogError(mContext.getString(R.string.provide_account))
-            return
-        }
+
         showLoading()
         mApiService?.login(GRANT_TYPE, email ?: "", password
             ?: "").materialize()?.map { noti ->
@@ -61,6 +61,7 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
                 PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_TOKEN, it.token_type + " " + it.access_token)
                 PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_EMAIL, email)
                 PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_PASSWORD, password)
+                PreferenceUtils.writeBoolean(mContext, PreferenceUtils.KEY_IS_LOGOUT, false)
                 isLoginSuccessfully.value = true
             } else {
                 showDialogError(it.error_description ?: "")
@@ -69,6 +70,22 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
             showDialogError(it)
         }, {
             hideLoading()
+        })
+    }
+
+    fun pushTokenFirebase(email: String, token: String, deviceName: String, flg: Boolean) {
+        if (email.isNullOrBlank() || token.isNullOrBlank()) {
+            showDialogError(mContext.getString(R.string.provide_account))
+            return
+        }
+        mApiService?.pushFirebaseToken(email, token, deviceName, flg).checkRequest(mContext)?.subscribe({
+            Log.d("push", "thanh cong")
+        }, {
+            Log.d("push", "thanh cong")
+
+        }, {
+            Log.d("push", "thanh cong")
+
         })
     }
 }

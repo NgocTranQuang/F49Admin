@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import com.app.f49.Base
 import com.app.f49.R
+import com.app.f49.ScreenIDEnum
 import com.app.f49.activity.infoContract.InfoContractActivity
 import com.app.f49.adapter.contract.ContractAdapter
 import com.app.f49.bottomsheet.ContractBottomSheet
@@ -27,10 +28,13 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     var adapter: ContractAdapter? = null
     var currentIdStore = ""
     var currentIdTab = ""
+    var countOfInit = 0
+    var typeHD = ""
 
     companion object {
-        fun start(context: Context) {
-            context.startActivity(Intent(context, ContractActivity::class.java))
+        val KEY_PASS_TYPE_HD = "KEY_PASS_TYPE_HD"
+        fun start(context: Context, type: String?) {
+            context.startActivity(Intent(context, ContractActivity::class.java).putExtra(KEY_PASS_TYPE_HD, type))
         }
     }
 
@@ -42,12 +46,10 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         return tb
     }
 
-    override fun getTitleToolbar(): String? {
-        return getString(R.string.manager_contact)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getDataIntent()
         getData()
         initRV()
         initSpiner()
@@ -55,8 +57,23 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         obsever()
     }
 
+    private fun getDataIntent() {
+        typeHD = intent?.getStringExtra(KEY_PASS_TYPE_HD) ?: ScreenIDEnum.HOP_DONG_CAM_DO.value
+        if (typeHD == ScreenIDEnum.CAM_DO_GIA_DUNG.value) {
+            title = getString(R.string.quan_ly_cam_do_gia_dung)
+        } else if (typeHD == ScreenIDEnum.HOP_DONG_TRA_GOP.value) {
+            title = getString(R.string.quan_ly_hop_dong_tra_gop)
+
+        } else {
+            title = getString(R.string.manager_contact)
+
+        }
+    }
+
     override fun showLoading(cancelable: Boolean) {
         shimmer.visibility = View.VISIBLE
+        tvNoData.visibility = View.GONE
+        rvContract.visibility = View.GONE
         shimmer.startShimmer()
     }
 
@@ -93,6 +110,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     private fun insertDataToRV(list: MutableList<HopDongCamDoDTO>) {
         if (list.size == 0) {
             tvNoData.visibility = View.VISIBLE
+            rvContract.visibility = View.GONE
         } else {
             tvNoData.visibility = View.GONE
             rvContract.visibility = View.VISIBLE
@@ -103,14 +121,14 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     private fun evenClickListener() {
         btnFilter.setOnSingleClickListener {
             ContractBottomSheet.show(supportFragmentManager) { keySearch, idNguoiQLDH, idStatusHD ->
-                rvContract.visibility = View.GONE
-                mViewModel?.getHDCM(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLDH?.toIntOrNull(), idStatusHD)
+                getListHopDong(keySearch, idNguoiQLHD = idNguoiQLDH?.toIntOrNull(), idTrangThaiHD = idStatusHD)
             }
         }
         tbLayout.addOnTabSelectedListener(object :
             TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 currentIdTab = tab.tag as String
+                getListHopDong()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -128,15 +146,31 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     private fun initSpiner() {
         spStore.selectedItemListener {
             currentIdStore = Base.listStore?.value?.get(it)?.id ?: ""
-            mViewModel?.getHDCM(currentIdStore.toIntOrNull(), currentIdTab, "", false, null, null)
+            getListHopDong()
             mViewModel?.getListNguoiQLHD(currentIdStore)
+        }
+    }
+
+    private fun getListHopDong(keySearch: String? = "", idNguoiQLHD: Int? = null, idTrangThaiHD: String? = null) {
+        synchronized(this) {
+            countOfInit++
+            if (countOfInit >= 2) {
+                if (typeHD == ScreenIDEnum.CAM_DO_GIA_DUNG.value) {
+                    mViewModel?.getCamDoGiaDung(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
+                } else if (typeHD == ScreenIDEnum.HOP_DONG_TRA_GOP.value) {
+                    mViewModel?.getHopDongTraGop(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
+                } else {
+                    mViewModel?.getHopDongCamDo(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
+                }
+            }
         }
     }
 
     private fun initRV() {
         rvContract.init(space = R.dimen.height_line_size)
         adapter = ContractAdapter(mutableListOf()) {
-            InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it) ?: return@ContractAdapter)
+
+            InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it) ?: return@ContractAdapter,typeHD)
 
         }
         rvContract.adapter = adapter

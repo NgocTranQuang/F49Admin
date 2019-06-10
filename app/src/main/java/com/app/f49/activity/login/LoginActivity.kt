@@ -3,8 +3,10 @@ package com.app.f49.activity.login
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.util.Log
+import com.app.f49.BuildConfig
 import com.app.f49.MainActivity
 import com.app.f49.R
+import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
@@ -15,6 +17,8 @@ import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
 import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBinding, LoginViewModel, BaseNavigator>() {
+
+    var tokenFireBase: String = ""
     override fun getLayoutId(): Int {
         return R.layout.activity_login
     }
@@ -31,14 +35,11 @@ class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBind
                     Log.w("token", "getInstanceId failed", task.exception)
                     return@OnCompleteListener
                 }
-
                 // Get new Instance ID token
                 val token = task.result?.token
+                tokenFireBase = token ?: ""
                 PreferenceUtils.writeString(this, PreferenceUtils.KEY_TOKEN_FIREBASE, token)
-                // Log and toast
-//                val msg = getString(R.string.msg_token_fmt, token)
                 Log.d("token", token)
-//                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
             })
     }
 
@@ -49,6 +50,7 @@ class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBind
             mViewModel?.email?.value = PreferenceUtils.getString(this, PreferenceUtils.KEY_EMAIL, "")
             mViewModel?.password?.value = PreferenceUtils.getString(this, PreferenceUtils.KEY_PASSWORD, "")
         }
+        mViewModel?.version?.value = "F49 version ${BuildConfig.VERSION_NAME}"
     }
 
     private fun observer() {
@@ -62,7 +64,16 @@ class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBind
 
     private fun setEventClick() {
         cvLogin.setOnSingleClickListener {
+            if (edtEmail.text.isNullOrBlank() || edtPassword.text.isNullOrBlank()) {
+                showErrorDialog(getString(R.string.provide_account))
+                return@setOnSingleClickListener
+            }
             mViewModel?.login(edtEmail.text.toString(), edtPassword.text.toString())
+            if(PreferenceUtils.getBoolean(this,PreferenceUtils.KEY_IS_LOGOUT,true)) {
+                if (!tokenFireBase.isNullOrBlank()) {
+                    mViewModel?.pushTokenFirebase(edtEmail.text.toString(), tokenFireBase, GeneralUtils.getDeviceName(), true)
+                }
+            }
         }
     }
 }

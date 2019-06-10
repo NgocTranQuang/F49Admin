@@ -48,24 +48,33 @@ class ContractViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigat
         })
     }
 
-    fun getHDCM(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
+    fun getHopDongCamDo(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
         showLoading()
-        handleRequestService(mApiService?.getHDCM(idCuaHang, idTab, tuKhoa,false , idNguoiQuanLyHD, idTrangThaiHD)) {
+        handleRequestService(mApiService?.getHopDongCamDo(idCuaHang, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
             it?.let {
                 listHDCM.value = it
             }
         }
+    }
 
 
-//        mApiService?.getHDCM(idCuaHang, trangThai, tuKhoa, timChinhXac, idNguoiQuanLyHD, thoiGian).checkRequest(mContext)?.subscribe({
-//            it?.let {
-//                listHDCM.value = it
-//            }
-//        }, {
-//            showDialogError(it)
-//        }, {
-//            hideLoading()
-//        })
+    fun getCamDoGiaDung(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
+        showLoading()
+        handleRequestService(mApiService?.getCamdoGiaDung(idCuaHang, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
+            it?.let {
+                listHDCM.value = it
+            }
+        }
+    }
+
+
+    fun getHopDongTraGop(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
+        showLoading()
+        handleRequestService(mApiService?.getHopDongTraGop(idCuaHang, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
+            it?.let {
+                listHDCM.value = it
+            }
+        }
     }
 
 

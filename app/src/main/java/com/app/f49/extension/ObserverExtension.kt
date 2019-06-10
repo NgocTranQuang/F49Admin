@@ -1,6 +1,7 @@
 package vn.com.ttc.ecommerce.extension
 
 import android.content.Context
+import android.util.Log
 import com.app.f49.R
 import com.app.f49.model.BaseResponse
 import com.app.f49.utils.Constants
@@ -19,8 +20,25 @@ fun <T, B : BaseResponse<T>> Observable<B>.checkRequest(
     return this.materialize()?.map { noti ->
         noti.isOnError.let {
             noti.error?.let {
+
+                //                if (it.message?.contains(Constants.ERROR_NETWORK) == true) {
+//                    throw Throwable(context.getString(R.string.network_not_available), it)
+//                } else {
+//                    var message = it.message
+//                    if ((it as HttpException).code() == 400) {
+//                        var messageJson = (noti.error as HttpException).response().errorBody()?.string()
+//                        message = Gson().fromJson(messageJson, LoginDTO::class.java).error_description ?: ""
+//                        if (message.contains(ACCOUNT_INCORRECT) || message.contains(PASSWORD_INCORRECT)) {
+//                            message = message + TRY_AGAIN
+//                        }
+//                    }
+//                    throw Throwable(message, it)
+//                }
+                Log.e("Retrofit_Error", it.message ?: "")
                 if (it.message?.contains(Constants.ERROR_NETWORK) == true) {
                     throw Throwable(context.getString(R.string.network_not_available), it)
+                } else if (it?.message?.contains("Exception") == true) {
+                    throw Throwable(context.getString(R.string.server_error), it)
                 } else {
                     throw Throwable(it.message, it)
                 }
@@ -46,8 +64,4 @@ fun <T, B : BaseResponse<T>> Observable<B>.checkRequest(
             }
         }
     }?.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
-
 }
-//fun <T> Observable<T>.checkRequest(context: Context, doOnNext: ((T) -> Unit)? = null):Observable<T>? {
-//   return this.subscribeOn(Schedulers.io())?.observeOn(AndroidSchedulers.mainThread())
-//}

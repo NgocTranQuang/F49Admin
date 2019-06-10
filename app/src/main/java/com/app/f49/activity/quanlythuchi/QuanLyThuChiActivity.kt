@@ -10,6 +10,7 @@ import com.app.f49.Base
 import com.app.f49.DateFilterEnum
 import com.app.f49.R
 import com.app.f49.databinding.ActivityQuanlythuchiBinding
+import com.app.f49.model.quanlythuchi.QuanLyThuChiDTO
 import extension.init
 import extension.selectedItemListener
 import extension.setList
@@ -23,10 +24,12 @@ class QuanLyThuChiActivity : BaseMvvmActivity<ActivityQuanlythuchiBinding, QuanL
     var listFiterByDate = DateFilterEnum.getListDateFilter()
     var adapter: QuanLyThuChiAdapter? = null
     var idStoreCurrent: String? = null
+    var type: String? = ""
 
     companion object {
-        fun start(context: Context) {
-            context.startActivity(Intent(context, QuanLyThuChiActivity::class.java))
+        val KEY_PASS_TYPE = "KEY_PASS_TYPE"
+        fun start(context: Context, type: String? = null) {
+            context.startActivity(Intent(context, QuanLyThuChiActivity::class.java).putExtra(KEY_PASS_TYPE, type))
         }
     }
 
@@ -44,11 +47,21 @@ class QuanLyThuChiActivity : BaseMvvmActivity<ActivityQuanlythuchiBinding, QuanL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getDataIntent()
         initRV()
         obsever()
         initSpiner()
         evenClickListener()
 
+    }
+
+    private fun getDataIntent() {
+//        type = intent?.getStringExtra(KEY_PASS_TYPE)
+//        if(type == ScreenIDEnum.RUT_VON.value){
+//            title = "Qu"
+//        }else{
+//            title = getString(R.string.quan_ly_thu_chi)
+//        }
     }
 
     private fun initRV() {
@@ -71,6 +84,9 @@ class QuanLyThuChiActivity : BaseMvvmActivity<ActivityQuanlythuchiBinding, QuanL
                 mViewModel?.toDate?.value = it
             }
         }
+        btnXem.setOnSingleClickListener {
+            getListQuanLyThuChi()
+        }
     }
 
     private fun initSpiner() {
@@ -82,7 +98,12 @@ class QuanLyThuChiActivity : BaseMvvmActivity<ActivityQuanlythuchiBinding, QuanL
             mViewModel?.fromDate?.value = DateFilterEnum.get(it)?.getStartDate()
             mViewModel?.toDate?.value = DateFilterEnum.get(it)?.getEndDate()
             mViewModel?.clickable?.value = it == DateFilterEnum.FROM_TO.value
-            getListQuanLyThuChi()
+            if (it != DateFilterEnum.FROM_TO.value) {
+                btnXem.visibility = View.GONE
+                getListQuanLyThuChi()
+            } else {
+                btnXem.visibility = View.VISIBLE
+            }
         }
         spSelectDay.setList(listFiterByDate.map { it.getNameDate() }.toMutableList(), 0)
     }
@@ -100,18 +121,31 @@ class QuanLyThuChiActivity : BaseMvvmActivity<ActivityQuanlythuchiBinding, QuanL
 
         mViewModel?.listQuanLyThuChi?.observe(this, Observer {
             it?.let {
-                adapter?.insertData(it)
+                insertData(it)
             }
         })
     }
 
+    private fun insertData(list: MutableList<QuanLyThuChiDTO>) {
+        if (list.size == 0) {
+            tvNoData.visibility = View.VISIBLE
+        } else {
+            tvNoData.visibility = View.GONE
+        }
+        adapter?.insertData(list)
+
+    }
+
     override fun showLoading(cancelable: Boolean) {
         shimmer.visibility = View.VISIBLE
+        tvNoData.visibility = View.GONE
+        rvQuanLyThuChi.visibility = View.GONE
         shimmer.startShimmer()
     }
 
     override fun hideLoading() {
         shimmer.visibility = View.GONE
+        rvQuanLyThuChi.visibility = View.VISIBLE
         shimmer.stopShimmer()
     }
 }

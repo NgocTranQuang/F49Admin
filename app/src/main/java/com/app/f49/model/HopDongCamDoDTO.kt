@@ -7,7 +7,7 @@ import java.io.Serializable
 
 
 class HopDongCamDoDTO : Serializable {
-    @SerializedName("id")
+    @SerializedName("idItem")
     @Expose
     val id: String? = null
     @SerializedName("soHopDong")
@@ -117,7 +117,7 @@ class HopDongCamDoDTO : Serializable {
     val laiQuaHan: String? = null
     @SerializedName("laiPhaiThu")
     @Expose
-    val laiPhaiThu: Int? = null
+    val laiPhaiThu: Double? = null
     @SerializedName("gocDaThu")
     @Expose
     val gocDaThu: String? = null
@@ -151,6 +151,7 @@ class HopDongCamDoDTO : Serializable {
     @SerializedName("phiPhaiThuFake")
     @Expose
     val phiPhaiThuFake: String? = null
+    var maMau: String? = null
 
     fun toContractDTO(): ManagerContractDTO {
         var managerContractDTO = ManagerContractDTO().apply {
@@ -158,6 +159,7 @@ class HopDongCamDoDTO : Serializable {
             this.upDown = soNgayQuaHan.toString()
             this.duNo = duNoHienTai.toString()
             this.total = laiPhaiThu.toString()
+            this.bgColor = maMau
         }
         return managerContractDTO
     }

@@ -1,5 +1,6 @@
 package com.app.f49.utils
 
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -55,6 +56,29 @@ class DateUtil {
 //            val outputFmt = SimpleDateFormat(Constants.FORMAT_DATE_TIME)
 //            val dateAsString = outputFmt.format(time)
             return gmtTime
+        }
+
+        fun convertStringToDate(dtStart: String): Date? {
+            val format = SimpleDateFormat(Constants.FORMAT_DATE_TIME_ISO)
+            try {
+                val date = format.parse(dtStart)
+                return date
+            } catch (e: ParseException) {
+                e.printStackTrace()
+                return null
+            }
+        }
+
+        fun convertDateToString(date: Date?): String {
+            val dateFormat = SimpleDateFormat(Constants.FORMAT_DATE_TIME_TO_SHOW)
+            try {
+                val dateTime = dateFormat.format(date)
+                return dateTime
+            } catch (e: ParseException) {
+                e.printStackTrace()
+                return ""
+            }
+
         }
     }
 }

@@ -41,6 +41,8 @@ class HomeItemAdapter(var items: MutableList<ItemHomeDTO>) : RecyclerView.Adapte
             var item = items[position]
             if (item.screenId == THU_TRONG_THANG || item.screenId == CHI_TRONG_THANG) {
                 item.price = item.giaTri + " Đ"
+            }else{
+                item.price = item.giaTri
             }
             binding.item = items[position]
             val layoutParams = itemView.layoutParams

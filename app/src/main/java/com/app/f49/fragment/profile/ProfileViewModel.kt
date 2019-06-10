@@ -2,6 +2,8 @@ package com.app.f49.fragment.profile
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import android.util.Log
+import com.app.f49.R
 import com.app.f49.model.profile.UserProfileDTO
 import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
 import vn.com.ttc.ecommerce.base.BaseNavigator
@@ -9,6 +11,7 @@ import vn.com.ttc.ecommerce.extension.checkRequest
 
 class ProfileViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var userProfileDTO: MutableLiveData<UserProfileDTO> = MutableLiveData()
+    var isLogoutSuccess: MutableLiveData<Boolean> = MutableLiveData()
     fun getProfile() {
 
         mApiService?.getProfile()?.checkRequest(mContext)?.subscribe({
@@ -21,6 +24,26 @@ class ProfileViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigato
 
         }, {
 
+        })
+    }
+
+    fun pushTokenFirebase(email: String?, token: String?, deviceName: String?, flg: Boolean) {
+        if (email.isNullOrBlank()) {
+            showDialogError(mContext.getString(R.string.provide_account))
+            return
+        }
+        showLoading()
+        mApiService?.pushFirebaseToken(email, token, deviceName, flg).checkRequest(mContext)?.subscribe({
+            Log.d("push", "thanh cong")
+            isLogoutSuccess.value = true
+        }, {
+            Log.d("push", "thanh cong")
+            showDialogError(it)
+            isLogoutSuccess.value = false
+        }, {
+            Log.d("push", "thanh cong")
+            hideLoading()
+            isLogoutSuccess.value = false
         })
     }
 }

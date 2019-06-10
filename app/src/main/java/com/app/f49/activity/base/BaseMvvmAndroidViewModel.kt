@@ -51,6 +51,15 @@ abstract class BaseMvvmAndroidViewModel<N : BaseNavigator>(app: Application) : M
         mNavigator?.showErrorDialog(message)
     }
 
+    protected fun showDialogAction(msg: String, action: () -> Unit) {
+        mNavigator?.showActionDialog(msg, action)
+    }
+
+    protected fun showToastMs(ms: String) {
+        hideLoading()
+        mNavigator?.showToastNoticeMsg(ms)
+    }
+
     protected fun handleServiceExceptionWithoutDismissDialog(t: Throwable) {
         t.printStackTrace()
         if (t is ConnectException || t is SocketTimeoutException ||
@@ -107,12 +116,12 @@ abstract class BaseMvvmAndroidViewModel<N : BaseNavigator>(app: Application) : M
 //        /*
 //        save in base
 //         */
-////        Base?.username?.fullName?.value = fullName
-////        Base?.username?.email?.value = email
+////        Base?.username?.fullName?.tenTrangThai = fullName
+////        Base?.username?.email?.tenTrangThai = email
 ////        Base?.username?.phoneNumber = phoneNumber
-////        Base?.username?.avatarURL?.value = avatar
-////        Base?.username?.gender?.value = gender
-////        Base?.username?.dateOfBirth?.value = dateOfBirth
+////        Base?.username?.avatarURL?.tenTrangThai = avatar
+////        Base?.username?.gender?.tenTrangThai = gender
+////        Base?.username?.dateOfBirth?.tenTrangThai = dateOfBirth
 //    }
 
     protected fun isNetworkAvailable(): Boolean {
@@ -131,11 +140,11 @@ abstract class BaseMvvmAndroidViewModel<N : BaseNavigator>(app: Application) : M
         PreferenceUtils.remove(mContext, PreferenceUtils.KEY_AVATAR)
         PreferenceUtils.remove(mContext, PreferenceUtils.KEY_GENDER)
 
-//        Base?.username?.fullName?.value = null
-//        Base?.username?.email?.value = null
+//        Base?.username?.fullName?.tenTrangThai = null
+//        Base?.username?.email?.tenTrangThai = null
 //        Base?.username?.phoneNumber = null
-//        Base?.username?.avatarURL?.value = null
-//        Base?.username?.gender?.value = null
+//        Base?.username?.avatarURL?.tenTrangThai = null
+//        Base?.username?.gender?.tenTrangThai = null
     }
 
     fun <T> handleRequestService(obsever: Observable<BaseResponse<MutableList<T>>>, onResult: (MutableList<T>?) -> Unit) {

@@ -51,15 +51,16 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNa
                 if (homeViewPagerAdapter == null) {
                     homeViewPagerAdapter = HomeViewPagerAdapter(it, childFragmentManager
                         ?: return@Observer, countOfPager, TypePager.HOME.value)
+                    vpager.adapter = homeViewPagerAdapter
+                } else {
+                    homeViewPagerAdapter?.insertData(it, countOfPager)
                 }
-                vpager.adapter = homeViewPagerAdapter
                 pageIndicatorView.count = countOfPager
             }
         })
         getMainViewModel()?.topMenu?.observe(this, Observer {
             it?.let {
                 viewBinding?.item = it
-
             }
         })
 

@@ -13,12 +13,16 @@ import com.app.f49.R
 import com.app.f49.utils.GeneralUtils
 import vn.com.ttc.ecommerce.base.BaseNavigator
 import vn.com.ttc.ecommerce.custom.CustomProgressDialog
+import vn.com.ttc.ecommerce.custom.DialogOption
 import vn.com.ttc.ecommerce.custom.ErrorDialog
 
 
 open class BaseActivity : AppCompatActivity(), BaseNavigator {
+
+
     private var mProgressDialog: CustomProgressDialog? = null
     private var mErrorDialog: ErrorDialog? = null
+    private var mActionDialog: DialogOption? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,8 +80,14 @@ open class BaseActivity : AppCompatActivity(), BaseNavigator {
     protected fun initBase() {
         mProgressDialog = CustomProgressDialog(this, R.style.ProgressDialogDim)
         mErrorDialog = ErrorDialog(this)
+        mActionDialog = DialogOption(this)
     }
 
+    override fun showActionDialog(msg: String, action: () -> Unit) {
+        mActionDialog?.setErrorMsg(msg)
+        mActionDialog?.setActionOk(action)
+        mActionDialog?.show()
+    }
 
     override fun showLoading(cancelable: Boolean) {
         mProgressDialog?.setCancelable(cancelable)
