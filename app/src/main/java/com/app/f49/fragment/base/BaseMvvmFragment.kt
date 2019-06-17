@@ -2,6 +2,7 @@ package vn.com.ttc.ecommerce.fragment.base
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
+import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
@@ -13,7 +14,8 @@ import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
 import vn.com.ttc.ecommerce.base.BaseNavigator
 import java.lang.reflect.ParameterizedType
 
-open class BaseMvvmFragment<A : ViewDataBinding, B : BaseMvvmAndroidViewModel<N>, N : BaseNavigator> : BaseFragment() {
+
+open abstract class BaseMvvmFragment<A : ViewDataBinding, B : BaseMvvmAndroidViewModel<N>, N : BaseNavigator> : BaseFragment() {
     var viewBinding: A? = null
     var viewModel: B? = null
 
@@ -28,6 +30,8 @@ open class BaseMvvmFragment<A : ViewDataBinding, B : BaseMvvmAndroidViewModel<N>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewBinding = getViewBindingInstance(inflater, container)
+//        val child = inflater.inflate(R.layout.fragment_dashboard, null)
+//        DataBindingUtil.getBinding<A>(child)
         return viewBinding!!.root
     }
 
@@ -54,12 +58,14 @@ open class BaseMvvmFragment<A : ViewDataBinding, B : BaseMvvmAndroidViewModel<N>
         super.onDestroy()
     }
 
-    @Suppress("UNCHECKED_CAST")
     private fun getViewBindingInstance(layoutInflater: LayoutInflater, container: ViewGroup?): A {
-        val clazz = ((this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<A>)
-        val method =
-            clazz.getDeclaredMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
-        return method.invoke(clazz, layoutInflater, container, false) as A
+      var a =  DataBindingUtil.inflate<A>(
+            layoutInflater, getLayoutResource(), container, false);
+        return a
+//        val clazz = ((this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<A>)
+//        val method =
+//            clazz.getDeclaredMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
+//        return method.invoke(clazz, layoutInflater, container, false) as A
     }
 
     private fun setViewModelToViewBinding(value: B?) {
@@ -74,7 +80,6 @@ open class BaseMvvmFragment<A : ViewDataBinding, B : BaseMvvmAndroidViewModel<N>
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     private fun getViewModelClass(): Class<B> {
         return ((this.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[1] as Class<B>)
     }

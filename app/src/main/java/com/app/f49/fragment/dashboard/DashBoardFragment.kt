@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.View
+import com.app.f49.R
 import com.app.f49.TypeHeader
 import com.app.f49.activity.camdo.CamdoActivity
 import com.app.f49.adapter.home.HomeViewPagerAdapter
@@ -25,26 +26,33 @@ class DashBoardFragment : BaseMvvmFragment<FragmentDashboardBinding, DashBoardVi
         eventClick()
     }
 
+    override fun getLayoutResource(): Int {
+        return R.layout.fragment_dashboard
+    }
     private fun observer() {
         viewModel?.setNavigator(this)
-        getMainViewModel()?.listStore?.observe(this, Observer {
-            spinner2.setList(it?.map { it.storeName }?.toMutableList(), getMainViewModel()?.currentPositionStore?.value)
+        getMainViewModel().listStore?.observe(this, Observer {
+            spStore.setList(it?.map { it.storeName }?.toMutableList(), getMainViewModel().currentPositionStore?.value)
         })
         viewModel?.listItemDashBoard?.observe(this, Observer {
             it?.let {
                 var countOfPager = (Math.ceil((it.size).toDouble() / 8)).toInt()
-                vpager.adapter = HomeViewPagerAdapter(it, childFragmentManager!!, countOfPager, TypePager.DASHBOARD.value)
+                vpager.adapter = HomeViewPagerAdapter(it, childFragmentManager, countOfPager, TypePager.DASHBOARD.value)
                 pageIndicatorView.count = countOfPager
 
 
             }
         })
-        getMainViewModel()?.topMenu?.observe(this, Observer {
+        getMainViewModel()?.topMenu.observe(this, Observer {
             it?.let {
                 viewBinding?.item = it
 
             }
         })
+    }
+
+    override fun getMyToolbar(): View? {
+        return tb
     }
 
     private fun eventClick() {
@@ -65,10 +73,10 @@ class DashBoardFragment : BaseMvvmFragment<FragmentDashboardBinding, DashBoardVi
                 pageIndicatorView.setSelected(position)
             }
         })
-        spinner2.selectedItemListener(Color.WHITE) { position ->
-            var idStoreChoose = getMainViewModel()?.listStore?.value?.get(position)
+        spStore.selectedItemListener(Color.WHITE) { position ->
+            var idStoreChoose = getMainViewModel()?.listStore.value?.get(position)
             idStoreChoose?.let {
-                getMainViewModel()?.currentPositionStore?.value = position
+                getMainViewModel()?.currentPositionStore.value = position
                 viewModel?.getListItemHome(it.id ?: return@selectedItemListener)
             }
 

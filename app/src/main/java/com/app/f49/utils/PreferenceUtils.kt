@@ -15,6 +15,7 @@ class PreferenceUtils(context: Context) {
          * Login response
          */
         const val KEY_TOKEN = "vn.f49.app.prefs.KEY_TOKEN"
+        const val KEY_ALREADY_INSTALL_APP = "vn.f49.app.prefs.KEY_ALREADY_INSTALL_APP"
         const val KEY_IS_LOGOUT = "vn.f49.app.prefs.KEY_IS_LOGOUT"
         const val KEY_TOKEN_FIREBASE = "vn.f49.app.prefs.KEY_TOKEN_FIREBASE"
         const val KEY_FULL_NAME = "vn.f49.app.prefs.KEY_FULL_NAME"

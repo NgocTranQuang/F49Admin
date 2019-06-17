@@ -64,9 +64,11 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
                 PreferenceUtils.writeBoolean(mContext, PreferenceUtils.KEY_IS_LOGOUT, false)
                 isLoginSuccessfully.value = true
             } else {
+                isLoginSuccessfully.value = false
                 showDialogError(it.error_description ?: "")
             }
         }, {
+            isLoginSuccessfully.value = false
             showDialogError(it)
         }, {
             hideLoading()

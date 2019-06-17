@@ -9,6 +9,7 @@ import com.app.f49.ScreenIDEnum
 import com.app.f49.activity.managerContract.ContractActivity
 import com.app.f49.activity.quanlythuchi.QuanLyThuChiActivity
 import com.app.f49.activity.rutlaicuahang.RutLaiCuaHangActivity
+import com.app.f49.activity.taisanthanhly.TaiSanThanhLyActivity
 import com.app.f49.databinding.RowItemDashboardBinding
 import com.app.f49.model.home.ItemHomeDTO
 import extension.setOnSingleClickListener
@@ -50,14 +51,17 @@ class DashboardItemAdapter(var items: MutableList<ItemHomeDTO>) : RecyclerView.A
                         ScreenIDEnum.BAO_CAO_TONG_HOP.value -> {
                             QuanLyThuChiActivity.start(itemView.context)
                         }
-                        ScreenIDEnum.RUT_LAI.value -> {
-                            RutLaiCuaHangActivity.start(itemView.context)
+                        ScreenIDEnum.RUT_LAI.value, ScreenIDEnum.RUT_VON.value -> {
+                            RutLaiCuaHangActivity.start(itemView.context, item.screenId ?: "")
                         }
                         ScreenIDEnum.QUAN_LY_THU_CHI.value -> {
                             QuanLyThuChiActivity.start(itemView.context)
                         }
                         ScreenIDEnum.HOP_DONG_CAM_DO.value, ScreenIDEnum.CAM_DO_GIA_DUNG.value, ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
                             ContractActivity.start(itemView.context, item.screenId)
+                        }
+                        ScreenIDEnum.TAI_SAN_THANH_LY.value -> {
+                            TaiSanThanhLyActivity.start(itemView.context)
                         }
                         else -> {
 

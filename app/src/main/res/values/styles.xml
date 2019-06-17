@@ -93,7 +93,7 @@
     <style name="TextviewPhone">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/dp_30</item>
+        <item name="android:textSize">@dimen/dp_36</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textColor">@color/phone_color</item>
     </style>
@@ -125,6 +125,18 @@
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
+    <style name="CommonLnToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:paddingStart">@dimen/toolbar_half_padding_horizontal</item>
+        <item name="android:contentInsetStart">0dp</item>
+        <item name="android:contentInsetEnd">0dp</item>
+        <item name="contentInsetStart">0dp</item>
+        <item name="contentInsetEnd">0dp</item>
+        <item name="contentInsetStartWithNavigation">0dp</item>
+    </style>
+
     <style name="LineBig" parent="Line">
         <item name="android:layout_height">1dp</item>
     </style>
@@ -149,6 +161,7 @@
 
     <style name="TextViewRightInfoCamdo" parent="TextViewRightProfile">
         <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:clickable">false</item>
         <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
         <item name="android:paddingBottom">@dimen/activity_horizontal_margin</item>
 
@@ -218,6 +231,38 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">5dp</item>
         <item name="android:background">@drawable/bg_shadow_bottom</item>
+
+    </style>
+
+    <style name="SpinnerThemeLight">
+        <item name="android:colorBackground">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorPrimaryDisableOnly">@android:color/black</item>
+    </style>
+
+    <style name="Spinner">
+        <item name="android:theme">@style/SpinnerThemeLight</item>
+        <item name="android:backgroundTint">@color/colorWhite</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_90</item>
+
+    </style>
+
+    <style name="SpinnerStore">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_128</item>
+
+    </style>
+
+    <style name="ImageSpinner">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:src">@drawable/ic_arrow_down</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+
 
     </style>
 

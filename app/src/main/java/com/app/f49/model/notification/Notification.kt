@@ -1,9 +1,12 @@
 package com.app.f49.model.notification
 
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 class NotificationDTO {
     var id: Int? = null
+    var itemId: Int? = null
+    @SerializedName("hinhAnh")
     var imageURL: String? = null
     var tieuDe: String? = null
     var ngayGui: Date? = null

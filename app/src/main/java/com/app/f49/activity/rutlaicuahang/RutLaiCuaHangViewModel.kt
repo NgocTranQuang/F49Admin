@@ -27,4 +27,14 @@ class RutLaiCuaHangViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNa
             }
         }
     }
+
+    fun getListRutVon(idCuaHang: Int?, idTab: Int? = 0) {
+        showLoading()
+        handleRequestService(mApiService?.getListRutVon(idCuaHang, idTab)) {
+            it?.let {
+                listDataHopDong?.value = it
+            }
+        }
+    }
+
 }

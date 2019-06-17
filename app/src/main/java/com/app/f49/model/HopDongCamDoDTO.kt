@@ -7,8 +7,6 @@ import java.io.Serializable
 
 
 class HopDongCamDoDTO : Serializable {
-    @SerializedName("idItem")
-    @Expose
     val id: String? = null
     @SerializedName("soHopDong")
     @Expose
@@ -117,7 +115,7 @@ class HopDongCamDoDTO : Serializable {
     val laiQuaHan: String? = null
     @SerializedName("laiPhaiThu")
     @Expose
-    val laiPhaiThu: Double? = null
+    val laiPhaiThu: String? = null
     @SerializedName("gocDaThu")
     @Expose
     val gocDaThu: String? = null

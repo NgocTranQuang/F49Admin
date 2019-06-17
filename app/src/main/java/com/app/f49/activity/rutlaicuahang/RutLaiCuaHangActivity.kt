@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import com.app.f49.Base
 import com.app.f49.R
+import com.app.f49.ScreenIDEnum
 import com.app.f49.adapter.rutlai.RutLaiAdapter
 import com.app.f49.databinding.ActivityRutlaiBinding
 import com.app.f49.model.rutlai.RutLaiDTO
@@ -27,12 +28,14 @@ class RutLaiCuaHangActivity : BaseMvvmActivity<ActivityRutlaiBinding, RutLaiCuaH
     var currentIdTab: String = ""
     var countOfInit = 0
     var adapter: RutLaiAdapter? = null
+    var typeScreen = ""
 
     companion object {
         val KEY_CHECK_RELOAD = "IS_RELOAD_DATA"
+        val KEY_TYPE_SCREEN = "KEY_TYPE_SCREEN"
         val REQUEST_CODE = 1
-        fun start(context: Context) {
-            context.startActivity(Intent(context, RutLaiCuaHangActivity::class.java))
+        fun start(context: Context, typeScreen: String) {
+            context.startActivity(Intent(context, RutLaiCuaHangActivity::class.java).putExtra(KEY_TYPE_SCREEN, typeScreen))
         }
     }
 
@@ -44,17 +47,24 @@ class RutLaiCuaHangActivity : BaseMvvmActivity<ActivityRutlaiBinding, RutLaiCuaH
         return tb
     }
 
-    override fun getTitleToolbar(): String? {
-        return getString(R.string.rut_lai_cua_hang)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel()
+        getDataIntent()
         getData()
         initView()
         obsever()
         eventClickListener()
+    }
+
+    private fun getDataIntent() {
+        typeScreen = intent?.getStringExtra(KEY_TYPE_SCREEN) ?: ""
+        if (typeScreen == ScreenIDEnum.RUT_LAI.value) {
+            title = getString(R.string.rut_lai_cua_hang)
+        } else {
+            title = getString(R.string.rut_von)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -93,7 +103,12 @@ class RutLaiCuaHangActivity : BaseMvvmActivity<ActivityRutlaiBinding, RutLaiCuaH
         synchronized(this) {
             countOfInit++
             if (countOfInit >= 2) {
-                mViewModel?.getListRutLai(curentIdStore?.toInt(), currentIdTab.toInt())
+                if (typeScreen == ScreenIDEnum.RUT_LAI.value) {
+                    mViewModel?.getListRutLai(curentIdStore?.toInt(), currentIdTab.toInt())
+                } else {
+                    mViewModel?.getListRutVon(curentIdStore?.toInt(), currentIdTab.toInt())
+
+                }
             }
         }
     }
@@ -139,7 +154,7 @@ class RutLaiCuaHangActivity : BaseMvvmActivity<ActivityRutlaiBinding, RutLaiCuaH
             getHDCM()
         }
         rvRutLai.init(space = R.dimen.height_line_size)
-        adapter = RutLaiAdapter(mutableListOf())
+        adapter = RutLaiAdapter(mutableListOf(), typeScreen)
         rvRutLai.adapter = adapter
 
     }

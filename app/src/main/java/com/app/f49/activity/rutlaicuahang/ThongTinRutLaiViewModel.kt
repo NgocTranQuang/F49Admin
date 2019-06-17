@@ -20,9 +20,33 @@ class ThongTinRutLaiViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseN
         }
     }
 
+    fun getThongTinRutVonChiTiet(id: String?) {
+        showLoading()
+        handleRequestServiceObject(mApiService?.getDetaiRutVonlById(id?.toInt())) {
+            it?.let {
+                thongTinRutLai.value = it
+            }
+        }
+    }
+
     fun duyetRutLai(yKien: String, isAccept: Boolean) {
         showLoading()
         handleRequestServiceObject(mApiService?.duyetRutLai(thongTinRutLai.value?.id, yKien, isAccept)) {
+            var msg = ""
+            if (isAccept) {
+                msg = mContext.getString(R.string.duyet_successfully)
+            } else {
+                msg = mContext.getString(R.string.tuchoi_successfully)
+            }
+            showDialogAction(msg) {
+                finished.value = true
+            }
+        }
+    }
+
+    fun duyetRutVon(yKien: String, isAccept: Boolean) {
+        showLoading()
+        handleRequestServiceObject(mApiService?.duyetRutVon(thongTinRutLai.value?.id, yKien, isAccept)) {
             var msg = ""
             if (isAccept) {
                 msg = mContext.getString(R.string.duyet_successfully)

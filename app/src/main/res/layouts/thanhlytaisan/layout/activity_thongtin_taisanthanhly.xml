@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="item"
+                type="com.app.f49.model.taisanthanhly.ThongTinTaiSanThanhLyDTO"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header"
+                android:stateListAnimator="@animator/toolbar_elevated"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    style="@style/CommonToolbar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:overScrollMode="never"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent">
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/number_of_contract"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.soHopDong}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/ten_tai_san"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.tenTaiSan}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/mo_ta"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.mota}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/trang_thai"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:textColor="@color/colorAccent"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@{item.tenTrangThai}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/ngay_vao"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:date="@{item.ngayVao}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/ngay_ra"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:date="@{item.ngayRa}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/ck_xe_kcc"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.kcc}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/co_chia_khoa"/>
+
+                    <CheckBox
+                            style="@style/TextViewRightInfoCamdo"
+                            android:button="@drawable/custom_checkbox"
+                            android:checked="@{item.coChiaKhoa}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/password"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:inputType="textPassword"
+                            android:text="@{item.matKhau}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/noi_luu"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.noiLuu}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/nagy_tl"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:date="@{item.ngayTL}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/sotien_TL"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.soTienTL}"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

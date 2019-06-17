@@ -18,7 +18,7 @@
 
         <ImageView
                 android:id="@+id/imgAvatar"
-                android:layout_width="@dimen/dp_90"
+                android:layout_width="@dimen/dp_103"
                 android:imageUrl_no_center="@{item.imageURL}"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 tools:src="@drawable/ic_big_calender"
@@ -32,6 +32,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="0dp"
                 android:is_read="@{item.daDoc}"
+                android:fontFamily="@font/roboto_medium"
                 android:text="@{item.tieuDe}"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 app:layout_constraintTop_toTopOf="@+id/imgAvatar"

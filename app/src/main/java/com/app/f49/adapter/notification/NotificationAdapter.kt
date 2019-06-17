@@ -10,7 +10,7 @@ import com.app.f49.model.notification.NotificationDTO
 import extension.setOnSingleClickListener
 
 
-class NotificationAdapter(var items: MutableList<NotificationDTO>, var onclickItem: (NotificationDTO, () -> Unit) -> Unit) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
+class NotificationAdapter(var items: MutableList<NotificationDTO>, var onclickItem: (NotificationDTO, () -> Unit) -> Unit, var onLongclickItem: (NotificationDTO, () -> Unit) -> Unit) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: RowNotificationBinding =
@@ -30,6 +30,11 @@ class NotificationAdapter(var items: MutableList<NotificationDTO>, var onclickIt
         notifyDataSetChanged()
     }
 
+    fun changeRealAll() {
+        this.items?.forEach { it.daDoc = true }
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(val binding: RowNotificationBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
             binding.item = items[position]
@@ -41,6 +46,13 @@ class NotificationAdapter(var items: MutableList<NotificationDTO>, var onclickIt
                         notifyItemChanged(position)
                     }
                 }
+            }
+            binding.root.setOnLongClickListener {
+                onLongclickItem.invoke(items[position]) {
+                    items.removeAt(position)
+                    notifyItemRemoved(position)
+                }
+                true
             }
             binding.executePendingBindings()
         }

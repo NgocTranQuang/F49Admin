@@ -89,7 +89,7 @@
                     <TextView
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_calander"
-                            android:text="@{item.ngayThucHien}"
+                            android:date="@{item.ngayThucHien}"
                             />
                 </LinearLayout>
 

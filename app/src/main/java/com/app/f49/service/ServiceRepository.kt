@@ -24,6 +24,7 @@ class ServiceRepository {
         const val HEADER_LANGUAGE_ID = "LanguageId"
         const val HEADER_TOKEN = "Authorization"
         private var BASE_URL = "http://apif49.itpsolution.net/"
+//        private var BASE_URL = "http://api.f49.vn/"
         private const val CONNECT_TIMEOUT: Long = 20000
         private const val READ_TIMEOUT: Long = 20000
         private var retrofit: Retrofit? = null

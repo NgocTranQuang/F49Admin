@@ -15,7 +15,7 @@
     <!--android:layout_height="match_parent">-->
 
     <!--<android.support.constraint.ConstraintLayout-->
-    <!--android:idItem="@+idItem/lnImage"-->
+    <!--android:itemId="@+itemId/lnImage"-->
     <!--android:layout_width="match_parent"-->
     <!--app:layout_constraintTop_toTopOf="parent"-->
     <!--app:layout_constraintBottom_toBottomOf="parent"-->
@@ -26,7 +26,7 @@
     <!--android:layout_height="match_parent">-->
 
     <!--<ImageView-->
-    <!--android:idItem="@+idItem/img_category"-->
+    <!--android:itemId="@+itemId/img_category"-->
     <!--android:layout_width="wrap_content"-->
     <!--app:layout_constraintTop_toTopOf="parent"-->
     <!--android:layout_marginTop="@dimen/activity_horizontal_margin"-->
@@ -37,10 +37,10 @@
     <!--app:layout_constraintEnd_toEndOf="parent"-->
     <!--app:layout_constraintStart_toStartOf="parent"-->
     <!--android:layout_marginBottom="@dimen/toolbar_half_padding_horizontal"-->
-    <!--app:layout_constraintBottom_toTopOf="@+idItem/tvCateName"/>-->
+    <!--app:layout_constraintBottom_toTopOf="@+itemId/tvCateName"/>-->
 
     <!--<TextView-->
-    <!--android:idItem="@+idItem/tvCateName"-->
+    <!--android:itemId="@+itemId/tvCateName"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
     <!--android:fontFamily="@font/roboto"-->
@@ -49,13 +49,13 @@
     <!--android:gravity="center"-->
     <!--tools:text="sdfdsfdsgsdfgdfgfhdfghfhdf"-->
     <!--android:textSize="@dimen/dp_30"-->
-    <!--app:layout_constraintBottom_toTopOf="@+idItem/tvPrice"-->
+    <!--app:layout_constraintBottom_toTopOf="@+itemId/tvPrice"-->
     <!--android:textColor="#555555"-->
     <!--app:layout_constraintRight_toRightOf="parent"-->
     <!--app:layout_constraintLeft_toLeftOf="parent"/>-->
 
     <!--<TextView-->
-    <!--android:idItem="@+idItem/tvPrice"-->
+    <!--android:itemId="@+itemId/tvPrice"-->
     <!--android:layout_width="match_parent"-->
     <!--android:layout_height="wrap_content"-->
     <!--android:fontFamily="@font/roboto_bold"-->
@@ -74,7 +74,7 @@
     <!--<TextView-->
     <!--android:layout_width="@dimen/dp_81"-->
     <!--app:layout_constraintEnd_toEndOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="@+idItem/lnImage"-->
+    <!--app:layout_constraintTop_toTopOf="@+itemId/lnImage"-->
     <!--android:text="@{item.notification}"-->
     <!--android:textSize="@dimen/dp_48"-->
     <!--android:elevation="@dimen/card_elevation"-->

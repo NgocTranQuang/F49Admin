@@ -15,6 +15,7 @@ import com.app.f49.model.rutlai.RutLaiDTO
 import com.app.f49.model.status.StatusDTO
 import com.app.f49.model.store.StoreDTO
 import com.app.f49.model.tab.TabDTO
+import com.app.f49.model.taisanthanhly.*
 import com.app.f49.model.topmenu.TopMenuDTO
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -29,10 +30,12 @@ interface ApiService {
         const val API_TOPMENU = "api/TopMenu/"
         const val API_THUCHI = "api/ThuChi/"
         const val API_RUT_LAI = "api/RutLai/"
+        const val API_RUT_VON = "api/RutVon/"
         const val API_RUT_VON_DAU_TU = "api/QuanLyVonDauTu/"
         const val API_NOTIFICATION = "api/Notification/"
         const val API_LOGIN = "token"
         const val API_FIREBASE = "api/ManageFireBase/"
+        const val API_QUAN_LY_TAI_SAN = "api/QuanLyTaiSan/"
     }
 
     /**
@@ -60,11 +63,7 @@ interface ApiService {
 
     @GET(USERPROFILE)
     fun getProfile(): Observable<BaseResponse<MutableList<UserProfileDTO>>>
-//
-//    @POST(API_ACCOUNT + "UpdateCustomerProfile")
-//    fun updateProfile(@Body rq: UpdateProfileRequest): Observable<BaseResponse<GetUserProfileResponseDTO>>
-//
-//
+
     /**
      * Get topmenu
      */
@@ -107,7 +106,7 @@ interface ApiService {
     fun getHopDongTraGop(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
 
     @GET(API_HOPDONGCAMDO + "GetChiTietHopDongCamDo")
-    fun getChiTietHDCD(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<InfoContractDTO>>
+    fun getChiTietHDCD(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
 
 
     /*
@@ -118,13 +117,12 @@ interface ApiService {
     fun getDataQuanLyThuChi(@Query("idCuaHang") idCuaHang: Int?, @Query("dtTuNgay") dtTuNgay: String?, @Query("dtDenNgay") dtDenNgay: String?): Observable<BaseResponse<MutableList<QuanLyThuChiDTO>>>
 
     @GET(API_THUCHI + "GetDetailThuChiByID")
-    fun getDetailQuanLyThuChi(@Query("idItem") idItem: Int?): Observable<BaseResponse<MutableList<QuanLyThuChiDetailDTO>>>
+    fun getDetailQuanLyThuChi(@Query("itemId") idItem: Int?): Observable<BaseResponse<MutableList<QuanLyThuChiDetailDTO>>>
 
 
     /*
     *Rut von dau tu
     * */
-
 
 
     @GET(API_RUT_VON_DAU_TU + "GetListVonDauTu")
@@ -150,6 +148,22 @@ interface ApiService {
     @PUT(API_RUT_LAI + "PutDuyetRutLai")
     fun duyetRutLai(@Query("id") idItem: Int?, @Query("yKien") yKien: String?, @Query("trangThai") trangThai: Boolean): Observable<BaseResponse<RutLaiDTO>>
 
+    /*
+  * Rut von cua hang
+  * */
+//
+//    @GET(API_RUT_LAI + "GetTabTrangThai")
+//    fun getTabRutLaiCuahang(): Observable<BaseResponse<MutableList<TabDTO>>>
+
+
+    @GET(API_RUT_VON + "GetListRutVon")
+    fun getListRutVon(@Query("idCuaHang") idCuaHang: Int?, @Query("idTab") idTab: Int?): Observable<BaseResponse<MutableList<RutLaiDTO>>>
+
+    @GET(API_RUT_VON + "GetDetailRutVonByID")
+    fun getDetaiRutVonlById(@Query("idItem") idItem: Int?): Observable<BaseResponse<RutLaiDTO>>
+
+    @PUT(API_RUT_VON_DAU_TU + "PutDuyetRutVon")
+    fun duyetRutVon(@Query("id") idItem: Int?, @Query("yKien") yKien: String?, @Query("trangThai") trangThai: Boolean): Observable<BaseResponse<RutLaiDTO>>
 
 
     /*
@@ -164,9 +178,37 @@ interface ApiService {
     * Notification
     * */
 
-    @GET(API_NOTIFICATION + "GetDetailNotification")
-    fun getNotificationList(@Query("idCuaHang") idCuaHang: String?, @Query("user") user: String): Observable<BaseResponse<MutableList<NotificationDTO>>>
+    @GET(API_NOTIFICATION + "GetListNotification")
+    fun getNotificationList(@Query("idCuaHang") idCuaHang: Int?): Observable<BaseResponse<MutableList<NotificationDTO>>>
 
     @PUT(API_NOTIFICATION + "PutStatusNotify")
     fun changeReadNotification(@Query("idNotify") idNotify: Int?): Observable<BaseResponse<Int>>
+
+    @PUT(API_NOTIFICATION + "PutReadAll")
+    fun putReadAll(@Query("idCuaHang") idCuaHang: Int?): Observable<BaseResponse<Int>>
+
+    @DELETE(API_NOTIFICATION + "DeleteNotify")
+    fun deleteNotification(@Query("id") id: Int?): Observable<BaseResponse<Int>>
+
+
+    /*
+    *
+    * Quan ly tai san
+    * */
+
+    @GET(API_QUAN_LY_TAI_SAN + "GetDLNhomTS")
+    fun getListNhomTaiSan(): Observable<BaseResponse<MutableList<NhomTaiSanDTO>>>
+
+    @GET(API_QUAN_LY_TAI_SAN + "GetDLTenTaiSan")
+    fun getListTenTaiSan(@Query("idNhom") idNhom: Int?): Observable<BaseResponse<MutableList<TenTaiSanDTO>>>
+
+    @GET(API_QUAN_LY_TAI_SAN + "GetTabTrangThaiTaiSan")
+    fun getListTrangThaiTaiSan(): Observable<BaseResponse<MutableList<TrangThaiTaiSanDTO>>>
+
+    @GET(API_QUAN_LY_TAI_SAN + "GetDSTaiSan")
+    fun getListTaiSan(@Query("idNhomVatCamDo") idNhomVatCamCo: Int?,@Query("idVatCamDo") idVatCamCo: Int?,@Query("trangThai") trangThai: Int?): Observable<BaseResponse<MutableList<TaiSanDTO>>>
+
+
+    @GET(API_QUAN_LY_TAI_SAN + "GetDetailTaiSan")
+    fun getTaiSanDetail(@Query("idItem") idNhom: Int?): Observable<BaseResponse<ThongTinTaiSanThanhLyDTO>>
 }

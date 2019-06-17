@@ -25,7 +25,7 @@ class DashboardPagerItemFragment : BaseFragment() {
     }
 
     var adapter: DashboardItemAdapter? = null
-    override fun getLayoutResource(): Int? {
+    override fun getLayoutResource(): Int {
         return R.layout.fragment_item_viewpager_dashboard
     }
 

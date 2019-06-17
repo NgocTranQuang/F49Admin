@@ -73,7 +73,7 @@ enum class DateFilterEnum(var value: Int) {
 
 }
 
-enum class TranThaiThongTinRutLaiEnum(var value: Int) {
+enum class TrangThaiThongTinRutLaiEnum(var value: Int) {
     DA_DUYET(3) {
         override fun getNameEnum() = "Đã duyệt"
     },
@@ -85,8 +85,10 @@ enum class TranThaiThongTinRutLaiEnum(var value: Int) {
     };
 
     companion object {
-        private val map = TranThaiThongTinRutLaiEnum.values().associateBy(TranThaiThongTinRutLaiEnum::value)
+        private val map = TrangThaiThongTinRutLaiEnum.values().associateBy(TrangThaiThongTinRutLaiEnum::value)
+        private val mapName = TrangThaiThongTinRutLaiEnum.values().associateBy(TrangThaiThongTinRutLaiEnum::getNameEnum)
         fun get(type: Int?) = map[type]
+        fun get(name: String?) = mapName[name]
 
     }
 
@@ -94,6 +96,32 @@ enum class TranThaiThongTinRutLaiEnum(var value: Int) {
 
 }
 
+enum class TaiSanThanhLyTypeEnum(var value: Int) {
+    LUU_KHO(0) {
+        override fun getNameEnum() = "Lưu kho"
+    },
+    DANG_RAO_BAN(1) {
+        override fun getNameEnum() = "Đang rao bán"
+    },
+    DA_THANH_LY(2) {
+        override fun getNameEnum() = "Đã thanh lý"
+    },
+    DA_TRA_KHACH(3) {
+        override fun getNameEnum() = "Đã trả khách"
+    },
+    DANG_THANH_LY(4) {
+        override fun getNameEnum() = "Đang thanh lý"
+    };
+
+    companion object {
+        private val map = TaiSanThanhLyTypeEnum.values().associateBy(TaiSanThanhLyTypeEnum::value)
+        fun get(type: Int?) = map[type]
+
+    }
+
+    abstract fun getNameEnum(): String
+
+}
 //enum class TypeHopDongDashBoardEnum(var value: Int) {
 //    HOP_DONG_CAM_DO(0),
 //    CAM_DO_GIA_DUNG(1),

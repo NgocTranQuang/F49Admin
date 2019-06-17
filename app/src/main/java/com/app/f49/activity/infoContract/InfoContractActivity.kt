@@ -9,9 +9,6 @@ import com.app.f49.R
 import com.app.f49.ScreenIDEnum
 import com.app.f49.activity.managerContract.ContractActivity
 import com.app.f49.databinding.ActivityInfoContractBinding
-import com.app.f49.extension.toDateDisplay
-import com.app.f49.model.HopDongCamDoDTO
-import com.app.f49.model.infocontract.InfoContractDTO
 import kotlinx.android.synthetic.main.activity_info_contract.*
 import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
 import vn.com.ttc.ecommerce.base.BaseNavigator
@@ -20,12 +17,8 @@ class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoC
     var typeHD = ""
 
     companion object {
-        val KEY_DATA = "KEY_DATA"
         val KEY_DATA_TITLE = "KEY_DATA_TITLE"
         val KEY_DATA_ID_ITEM = "KEY_DATA_ID_ITEM"
-        fun start(context: Context, hdcmDTO: HopDongCamDoDTO, title: String?) {
-            context.startActivity(Intent(context, InfoContractActivity::class.java).putExtra(KEY_DATA, hdcmDTO).putExtra(KEY_DATA_TITLE, title))
-        }
 
         fun start(context: Context, idItem: String, title: String?) {
             context.startActivity(Intent(context, InfoContractActivity::class.java).putExtra(KEY_DATA_ID_ITEM, idItem).putExtra(KEY_DATA_TITLE, title))
@@ -72,29 +65,9 @@ class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoC
 
     private fun setData() {
         mViewModel?.setNavigator(this)
-        var hdcmDTO = intent?.getSerializableExtra(KEY_DATA) as? HopDongCamDoDTO
-        if (hdcmDTO != null) {
-            hdcmDTO?.let {
-                var data = InfoContractDTO().apply {
-                    numberContract = hdcmDTO.soHopDong
-                    fullName = hdcmDTO.tenKhachHang
-                    phoneNumber = hdcmDTO.dienThoaiKhachHang
-                    duNo = hdcmDTO.duNoHienTai
-                    expiredDate = hdcmDTO.ngayDenHan?.toDateDisplay()
-                    plusMin = hdcmDTO.soNgayQuaHan
-                    interest = hdcmDTO.laiPhaiThuFake
-                    fee = hdcmDTO.phiPhaiThuFake
-                    total = hdcmDTO.laiPhaiThu?.toString()
-                    nhacNo = hdcmDTO.ngayNhacNo?.toDateDisplay()
-                    appointmentDate = hdcmDTO.ngayDenHan?.toDateDisplay()
-                    content = hdcmDTO.noiDung
-                    doDeLai = hdcmDTO.doDeLai
-                }
-                mViewBinding?.item = data
-            }
-        } else {
-            var idItem = intent?.getStringExtra(KEY_DATA_ID_ITEM)
-            mViewModel?.getChiTietHDCD(idItem ?: "")
-        }
+
+        var idItem = intent?.getStringExtra(KEY_DATA_ID_ITEM)
+        mViewModel?.getChiTietHDCD(idItem ?: "")
+
     }
 }

@@ -18,5 +18,7 @@ interface BaseNavigator {
 
     fun hideKeyboard()
 
-    fun showActionDialog(msg : String,action: () -> Unit)
+    fun showActionDialog(msg: String, action: () -> Unit)
+
+    fun showAskDialog(msg: String, actionOk: () -> Unit)
 }

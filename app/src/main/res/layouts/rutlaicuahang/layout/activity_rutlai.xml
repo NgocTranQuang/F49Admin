@@ -33,10 +33,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <Spinner
-                        android:id="@+id/spSelectStore"
+
+                <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_128"></Spinner>
+                        android:layout_height="wrap_content">
+
+                    <Spinner
+                            android:id="@+id/spSelectStore"
+                            style="@style/SpinnerStore">
+
+                    </Spinner>
+
+                    <ImageView
+                            style="@style/ImageSpinner"/>
+                </RelativeLayout>
             </android.support.design.card.MaterialCardView>
         </LinearLayout>
 

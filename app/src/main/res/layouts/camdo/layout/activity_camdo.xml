@@ -32,10 +32,19 @@
                     android:layout_margin="@dimen/activity_horizontal_margin"
                     android:layout_height="wrap_content">
 
-                <Spinner
-                        android:id="@+id/spSelect"
+                <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_128"></Spinner>
+                        android:layout_height="wrap_content">
+
+                    <Spinner
+                            android:id="@+id/spSelect"
+                            style="@style/SpinnerStore">
+
+                    </Spinner>
+
+                    <ImageView
+                           style="@style/ImageSpinner"/>
+                </RelativeLayout>
             </android.support.design.card.MaterialCardView>
         </LinearLayout>
 
@@ -43,8 +52,8 @@
                 style="@style/LineBig"/>
 
         <RelativeLayout
+                android:background="@color/colorWhite"
                 android:layout_width="match_parent"
-                android:background="@color/color_line_divider_light"
                 android:layout_height="match_parent">
 
             <TextView
@@ -58,11 +67,8 @@
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvListCamdo"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:background="@color/color_line_divider_light"
                     android:overScrollMode="never"
-                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_height="wrap_content">
 
             </android.support.v7.widget.RecyclerView>

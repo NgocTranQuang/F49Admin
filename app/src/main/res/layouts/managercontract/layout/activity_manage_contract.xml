@@ -50,17 +50,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                <Spinner
-                        android:id="@+id/spStore"
+                <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_128">
+                        android:layout_height="wrap_content">
 
-                </Spinner>
+                    <Spinner
+                            android:id="@+id/spStore"
+                            style="@style/SpinnerStore">
+
+                    </Spinner>
+
+                    <ImageView
+                            style="@style/ImageSpinner"/>
+                </RelativeLayout>
             </android.support.design.card.MaterialCardView>
 
             <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/activity_horizontal_margin"
                     android:layout_height="wrap_content">
 
                 <TextView

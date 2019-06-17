@@ -23,7 +23,7 @@ class ItemHomeDTO : Serializable {
     var hinhAnh: String? = null
     //    var screenId : String?=null
     var phanQuyen: String? = null
-    var mauSac: String? = null
+    var mauSac: String? = "#e30000"
     var sapXep: Int? = null
     var isShowPrice: Boolean? = null
         get() {

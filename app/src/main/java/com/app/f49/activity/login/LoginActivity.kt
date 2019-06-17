@@ -44,6 +44,7 @@ class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBind
     }
 
     private fun initView() {
+        mViewBinding?.viewModel = mViewModel
         var isRemember = PreferenceUtils.getBoolean(this, PreferenceUtils.KEY_REMEMBER_LOGIN, false)
         cbRemember.isChecked = isRemember
         if (isRemember) {

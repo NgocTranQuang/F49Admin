@@ -5,5 +5,5 @@ class LoginDTO {
     var token_type: String? = null
     var error: String? = null
     var error_description: String? = null
-    var expires_in: Double? = null
+    var expires_in: String? = null
 }

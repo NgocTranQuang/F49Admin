@@ -71,7 +71,7 @@
 
                         <TextView
                                 style="@style/TextViewRightQuanLyThuChi"
-                                android:text="@{item.ngayThucHien}"/>
+                                android:date="@{item.ngayThucHien}"/>
                     </LinearLayout>
 
                     <View

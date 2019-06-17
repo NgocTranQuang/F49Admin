@@ -1,14 +1,8 @@
 package com.app.f49.binding
 
-import android.annotation.SuppressLint
 import android.databinding.BindingAdapter
 import android.graphics.Color
-import android.support.design.internal.BottomNavigationItemView
-import android.support.design.internal.BottomNavigationMenuView
-import android.support.design.widget.BottomNavigationView
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.res.ResourcesCompat
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -29,7 +23,7 @@ fun ImageView.binImageUrl(url: String?) {
     url?.let {
         val options = RequestOptions()
             .centerCrop()
-            .error(R.mipmap.ic_launcher)
+            .error(R.drawable.no_image)
         GlideApp.with(this).load(url).apply(options).into(this)
     }
 }
@@ -38,7 +32,7 @@ fun ImageView.binImageUrl(url: String?) {
 fun ImageView.binImageUrlWithouCenter(url: String?) {
     url?.let {
         val options = RequestOptions()
-            .error(R.mipmap.ic_launcher)
+            .error(R.drawable.no_image)
         GlideApp.with(this).load(url).apply(options).into(this)
     }
 }
@@ -46,18 +40,21 @@ fun ImageView.binImageUrlWithouCenter(url: String?) {
 @BindingAdapter("android:text_color")
 fun TextView.binColor(color: String?) {
     color?.let {
-        if (!color.isNullOrBlank())
+        if (!color.isNullOrBlank()) {
             setTextColor(Color.parseColor(color))
+        }else{
+            setTextColor(Color.parseColor("#e30000"))
+        }
     }
 }
 
 @BindingAdapter("android:is_read")
 fun TextView.bindIsRead(isRead: Boolean?) {
     if (isRead == true) {
-        typeface = ResourcesCompat.getFont(context, R.font.roboto_medium)
+//        typeface = ResourcesCompat.getFont(context, R.font.roboto_medium)
         setTextColor(ContextCompat.getColor(context, R.color.color_date_notification))
     } else {
-        typeface = ResourcesCompat.getFont(context, R.font.roboto_bold)
+//        typeface = ResourcesCompat.getFont(context, R.font.roboto_bold)
         setTextColor(ContextCompat.getColor(context, R.color.color_text))
     }
 
@@ -80,25 +77,4 @@ fun TextView.bindDate(date: Date?) {
         text = ""
     }
 
-}
-
-@SuppressLint("RestrictedApi")
-fun BottomNavigationView.disableShiftMode() {
-    val menuView = getChildAt(0) as BottomNavigationMenuView
-    try {
-        val shiftingMode = menuView::class.java.getDeclaredField("mShiftingMode")
-        shiftingMode.isAccessible = true
-        shiftingMode.setBoolean(menuView, false)
-        shiftingMode.isAccessible = false
-        for (i in 0 until menuView.childCount) {
-            val item = menuView.getChildAt(i) as BottomNavigationItemView
-            item.setShifting(false)
-            // set once again checked tenTrangThai, so view will be updated
-            item.setChecked(item.itemData.isChecked)
-        }
-    } catch (e: NoSuchFieldException) {
-        Log.e("BottomNavigationView", "Unable to get shift mode field", e)
-    } catch (e: IllegalStateException) {
-        Log.e("BottomNavigationView", "Unable to change tenTrangThai of shift mode", e)
-    }
 }

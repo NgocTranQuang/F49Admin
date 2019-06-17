@@ -170,7 +170,8 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         rvContract.init(space = R.dimen.height_line_size)
         adapter = ContractAdapter(mutableListOf()) {
 
-            InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it) ?: return@ContractAdapter,typeHD)
+            InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it)?.id ?: "", typeHD)
+//            InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it) ?: return@ContractAdapter,typeHD)
 
         }
         rvContract.adapter = adapter

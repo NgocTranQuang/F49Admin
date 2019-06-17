@@ -10,8 +10,10 @@ class InfoContractViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNav
     var infoContract: MutableLiveData<InfoContractDTO> = MutableLiveData()
     fun getChiTietHDCD(id: String) {
         showLoading()
-        handleRequestServiceObject(mApiService.getChiTietHDCD(id?.toIntOrNull())) {
-            infoContract.value = it
+        handleRequestService(mApiService.getChiTietHDCD(id?.toIntOrNull())) {
+            it?.getOrNull(0)?.let {
+                infoContract.value = it
+            }
         }
     }
 }

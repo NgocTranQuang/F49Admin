@@ -37,11 +37,12 @@ fun <T, B : BaseResponse<T>> Observable<B>.checkRequest(
                 Log.e("Retrofit_Error", it.message ?: "")
                 if (it.message?.contains(Constants.ERROR_NETWORK) == true) {
                     throw Throwable(context.getString(R.string.network_not_available), it)
-                } else if (it?.message?.contains("Exception") == true) {
-                    throw Throwable(context.getString(R.string.server_error), it)
                 } else {
-                    throw Throwable(it.message, it)
+                    throw Throwable(context.getString(R.string.server_error), it)
                 }
+//                else {
+//                    throw Throwable(it.message, it)
+//                }
             }
         }
         noti

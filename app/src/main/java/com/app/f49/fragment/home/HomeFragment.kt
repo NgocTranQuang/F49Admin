@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.view.ViewPager.OnPageChangeListener
 import android.view.View
+import com.app.f49.R
 import com.app.f49.TypeHeader
 import com.app.f49.activity.camdo.CamdoActivity
 import com.app.f49.adapter.home.HomeViewPagerAdapter
@@ -23,14 +24,18 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNa
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel?.setNavigator(this)
+
         observer()
         setSpiner()
         setEventClick()
 
     }
 
+    override fun getLayoutResource(): Int {
+        return R.layout.fragment_home
+    }
     override fun showLoading(cancelable: Boolean) {
-        spinner2.isClickable = false
+        spStore.isClickable = false
         shimmer.startShimmer()
         shimmer.visibility = View.VISIBLE
         vpager.visibility = View.GONE
@@ -41,9 +46,12 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNa
         shimmer.stopShimmer()
         shimmer.visibility = View.GONE
         vpager.visibility = View.VISIBLE
-        spinner2.isClickable = true
+        spStore.isClickable = true
     }
 
+    override fun getMyToolbar(): View? {
+        return lnToolbar
+    }
     private fun observer() {
         viewModel?.listItemHome?.observe(this, Observer {
             it?.let {
@@ -89,9 +97,9 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNa
 
     private fun setSpiner() {
         getMainViewModel()?.listStore?.observe(this, Observer {
-            spinner2.setList((it?.map { it.storeName })?.toMutableList(), getMainViewModel()?.currentPositionStore?.value)
+            spStore.setList((it?.map { it.storeName })?.toMutableList(), getMainViewModel()?.currentPositionStore?.value)
         })
-        spinner2.selectedItemListener(Color.WHITE) { position ->
+        spStore.selectedItemListener(Color.WHITE) { position ->
             var idStoreChoose = getMainViewModel()?.listStore?.value?.get(position)
             idStoreChoose?.let {
                 getMainViewModel()?.currentPositionStore?.value = position

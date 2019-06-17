@@ -1,10 +1,11 @@
 package com.app.f49
 
-import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDexApplication
 import com.app.f49.utils.Constants
 import com.app.f49.utils.PreferenceUtils
+import com.crashlytics.android.Crashlytics
+import io.fabric.sdk.android.Fabric
 import timber.log.Timber
 import java.util.*
 
@@ -25,7 +26,21 @@ class F49Application : MultiDexApplication() {
         super.onCreate()
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
+        } else {
+//            val fabric = Fabric.Builder(this)
+//                .kits(Crashlytics())
+//                .debuggable(BuildConfig.DEBUG) // Enables Crashlytics debugger
+//                .build()
+//            Fabric.with(fabric)
+
         }
+        val fabric = Fabric.Builder(this)
+            .kits(Crashlytics())
+            .debuggable(BuildConfig.DEBUG) // Enables Crashlytics debugger
+            .build()
+        Fabric.with(fabric)
+//        Fabric.with(this, Crashlytics())
+
 //        Fresco.initialize(this);
     }
 

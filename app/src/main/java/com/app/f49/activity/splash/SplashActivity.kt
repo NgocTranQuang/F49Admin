@@ -18,6 +18,11 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         Handler().postDelayed({
+            if (!PreferenceUtils.getBoolean(this, PreferenceUtils.KEY_ALREADY_INSTALL_APP, false)) {
+                PreferenceUtils.writeBoolean(this, PreferenceUtils.KEY_ALREADY_INSTALL_APP, true)
+                startLoginActivity()
+                return@postDelayed
+            }
             if (!PreferenceUtils.getBoolean(this, PreferenceUtils.KEY_IS_LOGOUT, true)) {
                 if (PreferenceUtils.getBoolean(this, PreferenceUtils.KEY_REMEMBER_LOGIN, false)) {
                     var viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
@@ -27,14 +32,20 @@ class SplashActivity : BaseActivity() {
                     viewModel?.isLoginSuccessfully?.observe(this, Observer {
                         if (it == true) {
                             startActivity(Intent(this, MainActivity::class.java))
+                        } else {
+                            startLoginActivity()
                         }
                     })
                 } else {
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    startLoginActivity()
                 }
             } else {
-                startActivity(Intent(this, LoginActivity::class.java))
+                startLoginActivity()
             }
         }, DELAY_TIME)
+    }
+
+    fun startLoginActivity() {
+        startActivity(Intent(this, LoginActivity::class.java))
     }
 }

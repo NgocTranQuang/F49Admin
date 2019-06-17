@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-
+apply plugin: 'io.fabric'
 
 
 ext {
@@ -30,7 +30,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -48,7 +48,7 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res/layouts/customview', 'src/main/res/layouts/splash', 'src/main/res/layouts/login', 'src/main/res/layouts/home', 'src/main/res/layouts/dashboard', 'src/main/res/layouts/profile', 'src/main/res/layouts/camdo', 'src/main/res/layouts/infocamdo', 'src/main/res/layouts/managercontract', 'src/main/res/layouts/store', 'src/main/res/layouts/changepassword', 'src/main/res/layouts/infocontract', 'src/main/res/layouts/notification', 'src/main/res/layouts/quanlythuchi', 'src/main/res/layouts/rutlaicuahang']
+            res.srcDirs = ['src/main/res', 'src/main/res/layouts/customview', 'src/main/res/layouts/splash', 'src/main/res/layouts/login', 'src/main/res/layouts/home', 'src/main/res/layouts/dashboard', 'src/main/res/layouts/profile', 'src/main/res/layouts/camdo', 'src/main/res/layouts/infocamdo', 'src/main/res/layouts/managercontract', 'src/main/res/layouts/store', 'src/main/res/layouts/changepassword', 'src/main/res/layouts/infocontract', 'src/main/res/layouts/notification', 'src/main/res/layouts/quanlythuchi', 'src/main/res/layouts/rutlaicuahang', 'src/main/res/layouts/thanhlytaisan']
         }
     }
 }
@@ -92,6 +92,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:16.0.9'
     implementation 'com.google.firebase:firebase-messaging:18.0.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
 
 }

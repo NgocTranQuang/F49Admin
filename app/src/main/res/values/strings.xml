@@ -6,9 +6,9 @@
 
     <!-- error -->
     <string name="no_data">Không có dữ liệu.</string>
-    <string name="network_not_available">Không có kết nối mạng\nvui lòng kiểm tra lại.</string>
+    <string name="network_not_available">Không có kết nối mạng. Vui lòng kiểm tra lại.</string>
     <string name="cannot_connect_server">Không thể kết nối với máy chủ. Vui lòng thử lại sau.</string>
-    <string name="server_error">Có lỗi xảy ra.\nXin vui lòng thử lại.</string>
+    <string name="server_error">Có lỗi xảy ra. Xin vui lòng thử lại.</string>
 
     <!-- common -->
     <string name="try_again">Thử lại</string>
@@ -98,6 +98,22 @@
     <string name="thong_tin_hd_tra_gop">Thông tin hợp đồng trả góp</string>
     <string name="read_all">Đọc tất cả</string>
     <string name="dong_y">Đồng ý</string>
-    <string name="tuchoi_successfully">Từ chối rút lãi thành công</string>
+    <string name="tuchoi_successfully">Từ chối thành công</string>
+    <string name="rut_von">Rút vốn</string>
+    <string name="thong_tin_rut_von">Thông tin rút vốn</string>
+    <string name="ten_tai_san">Tên tài sản</string>
+    <string name="mo_ta">Mô tả</string>
+    <string name="trang_thai">Trạng thái</string>
+    <string name="ngay_vao">Ngày vào</string>
+    <string name="ngay_ra">Ngày ra</string>
+    <string name="ck_xe_kcc">Ck Xe.KCC</string>
+    <string name="co_chia_khoa">Có chìa khoá</string>
+    <string name="noi_luu">Nơi lưu</string>
+    <string name="nagy_tl">Ngày TL</string>
+    <string name="sotien_TL">Số tiền TL</string>
+    <string name="tai_san_thanh_ly">Tài sản thanh lý</string>
+    <string name="khach_hang">Khách Hàng</string>
+    <string name="ngay_thanh_ly">Ngày thanh lý</string>
+    <string name="thong_tin_thanh_ly_tai_san">Thông tin tài sản thanh lý</string>
 
 </resources>

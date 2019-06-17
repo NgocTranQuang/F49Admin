@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.app.f49.R
+import com.app.f49.ScreenIDEnum
 import com.app.f49.databinding.ActivityThongtinRutlaiBinding
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_thongtin_rutlai.*
@@ -15,11 +16,13 @@ import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class ThongTinRutLaiCuaHangActivity : BaseMvvmActivity<ActivityThongtinRutlaiBinding, ThongTinRutLaiViewModel, BaseNavigator>() {
     var idItem: String? = null
+    var typeScreen = ""
 
     companion object {
         val KEY_PASS_DATA = "KEY_PASS_DATA"
-        fun start(context: Context, id: String?) {
-            (context as Activity).startActivityForResult(Intent(context, ThongTinRutLaiCuaHangActivity::class.java).putExtra(KEY_PASS_DATA, id), RutLaiCuaHangActivity.REQUEST_CODE)
+        val KEY_SCREEN_TYPE = "KEY_SCREEN_TYPE"
+        fun start(context: Context, id: String?, screenType: String) {
+            (context as Activity).startActivityForResult(Intent(context, ThongTinRutLaiCuaHangActivity::class.java).putExtra(KEY_PASS_DATA, id).putExtra(KEY_SCREEN_TYPE, screenType), RutLaiCuaHangActivity.REQUEST_CODE)
         }
     }
 
@@ -29,10 +32,6 @@ class ThongTinRutLaiCuaHangActivity : BaseMvvmActivity<ActivityThongtinRutlaiBin
 
     override fun getMyToolbar(): Toolbar? {
         return tb
-    }
-
-    override fun getTitleToolbar(): String? {
-        return getString(R.string.thong_tin_rut_lai)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +56,11 @@ class ThongTinRutLaiCuaHangActivity : BaseMvvmActivity<ActivityThongtinRutlaiBin
         if (yKien.isNullOrBlank()) {
             showErrorDialog(getString(R.string.provide_ykien))
         } else {
-            mViewModel?.duyetRutLai(edtYKien.text.toString(), isAccept)
+            if (typeScreen.contains(ScreenIDEnum.RUT_LAI.value)) {
+                mViewModel?.duyetRutLai(edtYKien.text.toString(), isAccept)
+            } else {
+                mViewModel?.duyetRutVon(edtYKien.text.toString(), isAccept)
+            }
         }
     }
 
@@ -77,11 +80,15 @@ class ThongTinRutLaiCuaHangActivity : BaseMvvmActivity<ActivityThongtinRutlaiBin
 
     private fun getIntentData() {
         idItem = intent?.getStringExtra(KEY_PASS_DATA) ?: "1"
-        getData()
-    }
+        typeScreen = intent?.getStringExtra(KEY_SCREEN_TYPE) ?: ""
+        if (typeScreen.contains(ScreenIDEnum.RUT_LAI.value)) {
+            title = getString(R.string.thong_tin_rut_lai)
+            mViewModel?.getThongTinRutLaiChiTiet(idItem)
+        } else {
+            title = getString(R.string.thong_tin_rut_von)
+            mViewModel?.getThongTinRutVonChiTiet(idItem)
 
-    private fun getData() {
-        mViewModel?.getThongTinRutLaiChiTiet(idItem)
+        }
     }
 
     private fun initViewModel() {

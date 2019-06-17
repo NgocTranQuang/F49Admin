@@ -100,7 +100,7 @@
                             android:text="@string/nhan_hieu"
                             />
 
-                    <TextView
+                    <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_nhanhang"
                             android:text="@{item.brand}"

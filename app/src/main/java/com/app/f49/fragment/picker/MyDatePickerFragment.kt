@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.FragmentManager
-import android.widget.Toast
 import java.util.*
 
 
@@ -29,11 +28,6 @@ class MyDatePickerFragment : DialogFragment() {
     }
 
     private val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, day ->
-        Toast.makeText(
-            getActivity(), "selected date is " + view.year +
-                    " / " + (view.month + 1) +
-                    " / " + view.dayOfMonth, Toast.LENGTH_SHORT
-        ).show()
         val calendar = Calendar.getInstance()
         calendar.set(year, month, day)
         resutl?.invoke(calendar.time)
