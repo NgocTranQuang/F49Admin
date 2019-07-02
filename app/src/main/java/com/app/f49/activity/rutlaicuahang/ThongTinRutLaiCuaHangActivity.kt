@@ -8,11 +8,11 @@ import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.app.f49.R
 import com.app.f49.ScreenIDEnum
+import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityThongtinRutlaiBinding
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_thongtin_rutlai.*
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class ThongTinRutLaiCuaHangActivity : BaseMvvmActivity<ActivityThongtinRutlaiBinding, ThongTinRutLaiViewModel, BaseNavigator>() {
     var idItem: String? = null

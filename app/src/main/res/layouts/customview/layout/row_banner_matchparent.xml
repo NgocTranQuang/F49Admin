@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="item"
+            type="com.app.f49.custom.AdapterBanner.ViewHolderMatchParent" />
+    </data>
+
+    <android.support.design.card.MaterialCardView
+        android:id="@+id/cvBanner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_768"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        app:cardCornerRadius="@dimen/card_view_elevation"
+        app:cardElevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imageUrl="@{item.imageURL}"
+                android:scaleType="centerCrop"
+               />
+
+            <!--<ImageView-->
+                <!--android:layout_width="@dimen/size_img_arraw_right"-->
+                <!--android:layout_height="@dimen/size_img_arraw_right"-->
+                <!--android:visibility="@{item.isImageType() ? View.GONE : View.VISIBLE}"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:src="@android:drawable/ic_media_play" />-->
+        </RelativeLayout>
+    </android.support.design.card.MaterialCardView>
+
+</layout>

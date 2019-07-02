@@ -2,18 +2,20 @@ package com.app.f49.fragment.notification
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
+import com.app.f49.extension.checkRequest
 import com.app.f49.model.notification.NotificationDTO
 import com.app.f49.utils.Constants
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.extension.checkRequest
 
 class NotificationViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var listNotification: MutableLiveData<MutableList<NotificationDTO>> = MutableLiveData()
     var putReadAll: MutableLiveData<Boolean> = MutableLiveData()
-    fun getListNotification(idStore: String?) {
-        showLoading()
-        handleRequestService(mApiService?.getNotificationList(idStore?.toIntOrNull())) {
+    fun getListNotification(idStore: String?, pageIndex: Int?) {
+        if (pageIndex == 0) {
+            showLoading()
+        }
+        handleRequestService(mApiService?.getNotificationList(idStore?.toIntOrNull(), pageIndex,pageSize)) {
             listNotification.value = it
         }
     }
@@ -51,7 +53,7 @@ class NotificationViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNav
         })
     }
 
-    fun deleteNotification(id: Int?,finished: (Boolean) -> Unit) {
+    fun deleteNotification(id: Int?, finished: (Boolean) -> Unit) {
         handleRequestServiceObject(mApiService.deleteNotification(id)) {
             finished.invoke(true)
         }

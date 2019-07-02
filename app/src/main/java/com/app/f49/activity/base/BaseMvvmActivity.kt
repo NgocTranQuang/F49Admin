@@ -1,11 +1,11 @@
-package vn.com.ttc.ecommerce.activity.base
+package com.app.f49.activity.base
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseMvvmActivity<A : ViewDataBinding, B : BaseMvvmAndroidViewModel<N>, N : BaseNavigator> :

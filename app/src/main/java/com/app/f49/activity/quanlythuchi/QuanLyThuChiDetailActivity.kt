@@ -6,10 +6,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.app.f49.R
+import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityQuanlythuchiDetailBinding
 import kotlinx.android.synthetic.main.activity_quanlythuchi_detail.*
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBinding, QuanLyThuChiDetailViewModel, BaseNavigator>() {
 

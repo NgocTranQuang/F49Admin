@@ -2,12 +2,12 @@ package com.app.f49.activity.managerContract
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
+import com.app.f49.extension.checkRequest
 import com.app.f49.model.HopDongCamDoDTO
 import com.app.f49.model.nguoiQLHD.NguoiQLHDDTO
 import com.app.f49.model.tab.TabDTO
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.extension.checkRequest
 
 class ContractViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var listTab: MutableLiveData<MutableList<TabDTO>> = MutableLiveData()
@@ -77,5 +77,13 @@ class ContractViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigat
         }
     }
 
+    fun getHopDongDuNoGiamDan(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
+        showLoading()
+        handleRequestService(mApiService?.getHopDongDuNoGiamDan(idCuaHang, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
+            it?.let {
+                listHDCM.value = it
+            }
+        }
+    }
 
 }

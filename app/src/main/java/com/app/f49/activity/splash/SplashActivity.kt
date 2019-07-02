@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.os.Handler
 import com.app.f49.MainActivity
 import com.app.f49.R
+import com.app.f49.activity.base.BaseActivity
 import com.app.f49.activity.login.LoginActivity
 import com.app.f49.activity.login.LoginViewModel
 import com.app.f49.utils.PreferenceUtils
-import vn.com.ttc.ecommerce.activity.base.BaseActivity
 
 class SplashActivity : BaseActivity() {
     private val DELAY_TIME: Long = 1000

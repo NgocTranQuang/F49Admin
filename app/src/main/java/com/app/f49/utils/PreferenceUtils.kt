@@ -22,6 +22,7 @@ class PreferenceUtils(context: Context) {
         const val KEY_AVATAR = "vn.f49.app.prefs.KEY_AVATAR"
         const val KEY_GENDER = "vn.f49.app.prefs.KEY_GENDER"
         const val KEY_EMAIL = "vn.f49.app.prefs.KEY_EMAIL"
+        const val KEY_PAGE_SIZE = "vn.f49.app.prefs.KEY_PAGE_SIZE"
         const val KEY_PASSWORD = "vn.f49.app.prefs.KEY_PASSWORD"
         const val KEY_REMEMBER_LOGIN = "vn.f49.app.prefs.KEY_REMEMBER_LOGIN"
         const val KEY_PHONE_NUMBER = "vn.f49.app.prefs.KEY_PHONE_NUMBER"

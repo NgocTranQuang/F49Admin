@@ -2,12 +2,12 @@ package com.app.f49.activity.taisanthanhly
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
 import com.app.f49.model.taisanthanhly.NhomTaiSanDTO
 import com.app.f49.model.taisanthanhly.TaiSanDTO
 import com.app.f49.model.taisanthanhly.TenTaiSanDTO
 import com.app.f49.model.taisanthanhly.TrangThaiTaiSanDTO
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class TaiSanThanhLyViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var listNhomTaiSan: MutableLiveData<MutableList<NhomTaiSanDTO>> = MutableLiveData()

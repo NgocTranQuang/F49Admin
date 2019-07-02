@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="item"
+                type="com.app.f49.model.history.DetailBorrowDTO"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header"
+                android:stateListAnimator="@animator/toolbar_elevated"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    style="@style/CommonToolbar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:overScrollMode="never"
+                android:layout_height="match_parent">
+
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent">
+
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/ten_kh"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.tenKhachHang}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/cua_hang"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.tenCuaHang}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/so_hd"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.soHopDong}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/ngay_vay"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:date="@{item.ngayVay}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/hinh_thuc_vay"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:text="@{item.hinhThucVay}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/sotien"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:money="@{item.soTien}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/goc_da_thu"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:money="@{item.gocDaThu}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/lai_thu"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:money="@{item.laiDaThu}"/>
+                </LinearLayout>
+
+                <View style="@style/Line"/>
+
+                <LinearLayout
+                        style="@style/LnHorizontalWeightSum">
+
+                    <TextView
+                            style="@style/TextViewLeftInfoCamdo"
+                            android:text="@string/tinh_trang"/>
+
+                    <TextView
+                            style="@style/TextViewRightInfoCamdo"
+                            android:textColor="@color/colorAccent"
+                            android:text="@{item.tinhTrang}"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

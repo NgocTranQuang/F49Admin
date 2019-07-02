@@ -9,13 +9,13 @@ import com.app.f49.R
 import com.app.f49.activity.changepassword.ChangePasswordActivity
 import com.app.f49.activity.liststore.ListStoreActivity
 import com.app.f49.activity.login.LoginActivity
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.FragmentProfileBinding
+import com.app.f49.fragment.base.BaseMvvmFragment
 import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_profile.*
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.fragment.base.BaseMvvmFragment
 
 
 class ProfileFragment : BaseMvvmFragment<FragmentProfileBinding, ProfileViewModel, BaseNavigator>() {

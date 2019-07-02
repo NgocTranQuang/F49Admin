@@ -1,4 +1,4 @@
-package vn.com.ttc.ecommerce.activity.base
+package com.app.f49.activity.base
 
 import android.os.Build
 import android.os.Bundle
@@ -10,12 +10,12 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.app.f49.R
+import com.app.f49.base.BaseNavigator
+import com.app.f49.custom.CustomProgressDialog
+import com.app.f49.custom.DialogAsk
+import com.app.f49.custom.DialogOption
+import com.app.f49.custom.ErrorDialog
 import com.app.f49.utils.GeneralUtils
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.custom.CustomProgressDialog
-import vn.com.ttc.ecommerce.custom.DialogAsk
-import vn.com.ttc.ecommerce.custom.DialogOption
-import vn.com.ttc.ecommerce.custom.ErrorDialog
 
 
 open class BaseActivity : AppCompatActivity(), BaseNavigator {

@@ -38,12 +38,16 @@
 
             <android.support.v4.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_alignParentTop="true"
+                    android:layout_above="@+id/lnBottom"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content">
 
                 <LinearLayout
                         android:layout_width="match_parent"
                         android:orientation="vertical"
-                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
                         android:layout_height="match_parent">
 
 
@@ -86,7 +90,7 @@
 
                         <TextView
                                 style="@style/TextViewRightQuanLyThuChi"
-                                android:text="@{item.sotien}"/>
+                                android:money="@{item.sotien}"/>
                     </LinearLayout>
 
                     <View

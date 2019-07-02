@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.app.f49.R
+import com.app.f49.extension.setCircleImageURL
+import com.app.f49.extension.toPrice
 import com.app.f49.extension.toShow
+import com.app.f49.service.GlideApp
 import com.bumptech.glide.request.RequestOptions
-import vn.com.ttc.ecommerce.extension.setCircleImageURL
-import vn.com.ttc.ecommerce.service.GlideApp
 import java.util.*
 
 @BindingAdapter("android:circleImageUrl")
@@ -22,7 +23,6 @@ fun setCircleImageUrl(view: ImageView, url: String?) {
 fun ImageView.binImageUrl(url: String?) {
     url?.let {
         val options = RequestOptions()
-            .centerCrop()
             .error(R.drawable.no_image)
         GlideApp.with(this).load(url).apply(options).into(this)
     }
@@ -75,6 +75,24 @@ fun TextView.bindDate(date: Date?) {
         text = date.toShow()
     } else {
         text = ""
+    }
+
+}
+@BindingAdapter("android:money")
+fun TextView.bindMoney(money: Double?) {
+    if (money != null) {
+        text = money.toPrice()
+    } else {
+        text = "0"
+    }
+
+}
+@BindingAdapter("android:money")
+fun TextView.bindMoney(money: Long?) {
+    if (money != null) {
+        text = money.toPrice()
+    } else {
+        text = "0"
     }
 
 }

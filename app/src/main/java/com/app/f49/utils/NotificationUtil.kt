@@ -95,12 +95,12 @@ class NotificationUtil(private val mContext: Context) {
             val inboxStyle = NotificationCompat.InboxStyle()
 
             inboxStyle.addLine(message)
-            notification = mBuilder.setSmallIcon(R.drawable.ic_phone).setTicker(title).setWhen(0)
+            notification = mBuilder.setSmallIcon(R.drawable.ic_notification).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
                 .setContentTitle(title)
                 .setContentIntent(resultPendingIntent)
                 .setStyle(inboxStyle)
-                .setSmallIcon(R.drawable.ic_phone)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setLargeIcon(BitmapFactory.decodeResource(mContext.getResources(), icon))
                 .setContentText(message)
                 .build()
@@ -165,7 +165,7 @@ class NotificationUtil(private val mContext: Context) {
     fun playNotificationSound() {
         try {
             val alarmSound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
-                    + "://" + mContext.getPackageName() + "/raw/notification.mp3")
+                    + "://" + mContext.getPackageName() + "/"+R.raw.notification)
             val r = RingtoneManager.getRingtone(mContext, alarmSound)
             r.play()
         } catch (e: Exception) {

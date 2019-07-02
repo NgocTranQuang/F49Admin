@@ -10,13 +10,13 @@ import com.app.f49.TypeHeader
 import com.app.f49.activity.camdo.CamdoActivity
 import com.app.f49.adapter.home.HomeViewPagerAdapter
 import com.app.f49.adapter.home.TypePager
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.FragmentHomeBinding
+import com.app.f49.fragment.base.BaseMvvmFragment
 import extension.selectedItemListener
 import extension.setList
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.fragment.base.BaseMvvmFragment
 
 
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNavigator>() {

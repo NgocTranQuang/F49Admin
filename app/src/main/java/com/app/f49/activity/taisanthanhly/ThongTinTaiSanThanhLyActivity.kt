@@ -6,10 +6,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.app.f49.R
+import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityThongtinTaisanthanhlyBinding
 import kotlinx.android.synthetic.main.activity_thongtin_taisanthanhly.*
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class ThongTinTaiSanThanhLyActivity : BaseMvvmActivity<ActivityThongtinTaisanthanhlyBinding, ThongTinTaiSanThanhLyViewModel, BaseNavigator>() {
     var idItem = 0

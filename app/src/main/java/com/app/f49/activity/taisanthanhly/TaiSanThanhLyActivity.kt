@@ -7,15 +7,15 @@ import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.View
 import com.app.f49.R
+import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.adapter.taisanthanhly.TaiSanThanhLyAdapter
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityTaisanthanhlyBinding
 import com.app.f49.model.taisanthanhly.TaiSanDTO
 import extension.init
 import extension.selectedItemListener
 import extension.setList
 import kotlinx.android.synthetic.main.activity_taisanthanhly.*
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class TaiSanThanhLyActivity : BaseMvvmActivity<ActivityTaisanthanhlyBinding, TaiSanThanhLyViewModel, BaseNavigator>() {
     var countOfInit = 0

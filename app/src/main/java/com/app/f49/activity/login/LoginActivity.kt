@@ -6,6 +6,8 @@ import android.util.Log
 import com.app.f49.BuildConfig
 import com.app.f49.MainActivity
 import com.app.f49.R
+import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.base.BaseNavigator
 import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
 import com.google.android.gms.tasks.OnCompleteListener
@@ -13,8 +15,6 @@ import com.google.firebase.iid.FirebaseInstanceId
 import extension.setOnSingleClickListener
 import extension.underLine
 import kotlinx.android.synthetic.main.activity_login.*
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBinding, LoginViewModel, BaseNavigator>() {
 
@@ -57,8 +57,13 @@ class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBind
     private fun observer() {
         mViewModel?.setNavigator(this)
         mViewModel?.isLoginSuccessfully?.observe(this, Observer {
-            PreferenceUtils.writeBoolean(this, PreferenceUtils.KEY_REMEMBER_LOGIN, cbRemember.isChecked)
-            MainActivity.start(this)
+            if (it == true) {
+                    if (!tokenFireBase.isNullOrBlank()) {
+                        mViewModel?.pushTokenFirebase(edtEmail.text.toString(), tokenFireBase, GeneralUtils.getDeviceId(this) ?:"", true)
+                    }
+                PreferenceUtils.writeBoolean(this, PreferenceUtils.KEY_REMEMBER_LOGIN, cbRemember.isChecked)
+                MainActivity.start(this)
+            }
         })
     }
 
@@ -70,11 +75,7 @@ class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBind
                 return@setOnSingleClickListener
             }
             mViewModel?.login(edtEmail.text.toString(), edtPassword.text.toString())
-            if(PreferenceUtils.getBoolean(this,PreferenceUtils.KEY_IS_LOGOUT,true)) {
-                if (!tokenFireBase.isNullOrBlank()) {
-                    mViewModel?.pushTokenFirebase(edtEmail.text.toString(), tokenFireBase, GeneralUtils.getDeviceName(), true)
-                }
-            }
+
         }
     }
 }

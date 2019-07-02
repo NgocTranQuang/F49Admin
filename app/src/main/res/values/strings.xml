@@ -115,5 +115,34 @@
     <string name="khach_hang">Khách Hàng</string>
     <string name="ngay_thanh_ly">Ngày thanh lý</string>
     <string name="thong_tin_thanh_ly_tai_san">Thông tin tài sản thanh lý</string>
+    <string name="find">Tìm</string>
+    <string name="tac_vu">Tác vụ</string>
+    <string name="lich_su_giao_dich">Lịch sử giao dịch</string>
+    <string name="lich_su_vay">Lịch sử vay</string>
+    <string name="cho_vay">Cho vay</string>
+    <string name="no_goc">Nợ gốc</string>
+    <string name="nhanvien">Nhân viên</string>
+    <string name="view_more">Xem thêm</string>
+    <string name="no_data_to_loadmore">Không còn dữ liệu để tải.</string>
+    <string name="goc_da_thu">Gốc đã thu</string>
+    <string name="tinh_trang">Tình trạng</string>
+    <string name="ngay_dl">Ngày HL</string>
+    <string name="ngay_gd">Ngày GD</string>
+    <string name="thu_ve">Thu về</string>
+    <string name="thu_lai">Thu lãi</string>
+    <string name="lai_tra_lai">Lãi trả lại</string>
+    <string name="phi_khac">Phí khác</string>
+    <string name="no_lai">Nợ lãi</string>
+    <string name="chi_tiet_lich_su_giao_dich">Chi tiết lịch sử giao dịch</string>
+    <string name="lai_thu">Lãi thu</string>
+    <string name="hinh_thuc_vay">Hình thức vay</string>
+    <string name="ngay_vay">Ngày vay</string>
+    <string name="so_hd">Số HĐ</string>
+    <string name="cua_hang">Cửa hàng</string>
+    <string name="ten_kh">Tên KH</string>
+    <string name="chi_tiet_lich_su_vay">Chi tiết lịch sử vay</string>
+    <string name="ban_muon_xoa">Bạn chắc chắn muốn xoá?</string>
+    <string name="hddngd">Quản lý hợp đồng dư nợ giảm dần</string>
+    <string name="tt_hddngd">Thông tin hợp đồng dư nợ giảm dần</string>
 
 </resources>

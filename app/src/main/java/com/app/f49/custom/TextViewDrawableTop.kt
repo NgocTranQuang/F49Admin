@@ -10,25 +10,27 @@ import android.widget.TextView
 
 
 class TextViewDrawableTop : TextView {
-    constructor(context: Context) : super(context){
+    constructor(context: Context) : super(context) {
         initView()
     }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs){
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         initView()
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-       initView()
+        initView()
     }
 
-    fun initView(){
+    fun initView() {
         this.post {
+//            setBackgroundColor(Color.RED)
+//            var a = textSize - lineHeight
 //            val innerDrawable = compoundDrawables[0]
 //
-//            val gravityDrawable = GravityCompoundDrawable(innerDrawable)
+//            val gravityDrawable = GravityCompoundDrawable(innerDrawable, a)
 //// NOTE: next 2 lines are important!
-//            innerDrawable.setBounds(0, this.paddingTop, innerDrawable.intrinsicWidth, innerDrawable.intrinsicHeight)
+//            innerDrawable.setBounds(0, 0, innerDrawable.intrinsicWidth, innerDrawable.intrinsicHeight)
 //            gravityDrawable.setBounds(0, 0, innerDrawable.intrinsicWidth, innerDrawable.intrinsicHeight)
 //            setCompoundDrawables(gravityDrawable, null, null, null)
         }
@@ -38,7 +40,7 @@ class TextViewDrawableTop : TextView {
 }
 
 class GravityCompoundDrawable(// inner Drawable
-    private val mDrawable: Drawable) : Drawable() {
+    private val mDrawable: Drawable, var float: Float) : Drawable() {
     override fun setAlpha(alpha: Int) {
 
     }

@@ -1,5 +1,6 @@
 package com.app.f49
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
@@ -8,8 +9,11 @@ import android.support.design.widget.BottomNavigationView
 import android.text.TextUtils
 import android.util.Log
 import android.widget.FrameLayout
+import com.app.f49.activity.base.BaseActivity
+import com.app.f49.custom.BadgedBottomNavigationBar
 import com.app.f49.extension.handleScreenId
 import com.app.f49.firebase.MyFirebaseMessagingService
+import com.app.f49.fragment.base.BaseFragment
 import com.app.f49.fragment.dashboard.DashBoardFragment
 import com.app.f49.fragment.home.HomeFragment
 import com.app.f49.fragment.notification.NotificationFragment
@@ -18,8 +22,6 @@ import com.app.f49.model.notification.NotificationVO
 import com.app.f49.utils.GeneralUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
-import vn.com.ttc.ecommerce.activity.base.BaseActivity
-import vn.com.ttc.ecommerce.fragment.base.BaseFragment
 
 
 class MainActivity : BaseActivity() {
@@ -30,7 +32,6 @@ class MainActivity : BaseActivity() {
     }
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        //        nav_view.disableShiftMode()
         when (item.itemId) {
             R.id.navigation_home -> {
                 showFragment(HomeFragment())
@@ -70,10 +71,10 @@ class MainActivity : BaseActivity() {
         } else {
             log("intent # null")
         }
-        handleIntent()
+        handleIntent(intent)
     }
 
-    fun handleIntent() {
+    fun handleIntent(intent: Intent?) {
         var idItem = intent?.getStringExtra(MyFirebaseMessagingService.ITEMID)
         var idScreen = intent?.getStringExtra(MyFirebaseMessagingService.SCREENID)
         if (idItem == null) {
@@ -143,19 +144,41 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    var navView: BadgedBottomNavigationBar? = null
+    val ORDINAL_NOTIFICATION_ITEM = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         configView()
         var layoutParams = container.layoutParams as FrameLayout.LayoutParams
         layoutParams.topMargin = -GeneralUtils.getStatusBarHeight(this)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+        navView = findViewById(R.id.nav_view)
+
+        navView?.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         var viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.getListStore()
         viewModel.getTopMenu()
         showFragment(HomeFragment())
-        handleIntent()
+        handleIntent(intent)
+        viewModel?.currentPositionStore?.observe(this, Observer {
+            it?.let {
+                if (it > -1) {
+                    var id = viewModel?.listStore?.value?.getOrNull(it)?.id
+                    viewModel?.getCountNotificationUnread(id?.toIntOrNull())
+                }
+            }
+        })
+        viewModel?.notificationCount?.observe(this, Observer {
+            showBadger(it ?: 0)
+        })
+    }
+
+    private fun observer() {
 
     }
+
+    fun showBadger(count: Int) {
+        navView?.showBadge(ORDINAL_NOTIFICATION_ITEM, count)
+    }
+
 }

@@ -3,9 +3,9 @@ package com.app.f49.activity.rutlaicuahang
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import com.app.f49.R
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
 import com.app.f49.model.rutlai.RutLaiDTO
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class ThongTinRutLaiViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
 

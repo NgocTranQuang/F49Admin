@@ -4,6 +4,7 @@ import java.util.*
 
 class InfoContractDTO {
     var id: String? = null
+    var hinhAnh: MutableList<HinhAnh>? = mutableListOf()
     var numberContract: String? = null
     var fullName: String? = null
     var phoneNumber: String? = null
@@ -17,5 +18,11 @@ class InfoContractDTO {
     var appointmentDate: Date? = null
     var content: String? = null
     var doDeLai: String? = null
+    var countLichSuGiaodich: Int? = null
+    var countLichSuVay: Int? = null
+    var idKhachHang: String? = null
+}
 
+class HinhAnh {
+    var url: String? = ""
 }

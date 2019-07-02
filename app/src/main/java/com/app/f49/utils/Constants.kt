@@ -37,7 +37,7 @@ object Constants {
     const val YOUTUBE_VIDEO_WIDTH_RATIO = 4
 
     // For service
-    const val PAGE_SIZE = 20
+    var PAGE_SIZE_DEFAULT = 40
     val ERROR_NETWORK = "No address associated with hostname"
     val KEY_ITEM_NULL = "item is null"
 

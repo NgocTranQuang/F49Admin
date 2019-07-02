@@ -8,15 +8,15 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import com.app.f49.R
 import com.app.f49.TypeHeader
+import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.adapter.camdo.CamdoAdapter
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityCamdoBinding
 import com.app.f49.model.dinhgia.CamdoDTO
 import extension.init
 import extension.selectedItemListener
 import extension.setList
 import kotlinx.android.synthetic.main.activity_camdo.*
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class CamdoActivity : BaseMvvmActivity<ActivityCamdoBinding, CamdoViewModel, BaseNavigator>() {
     var camdoAdapter: CamdoAdapter? = null

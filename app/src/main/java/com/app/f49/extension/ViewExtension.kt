@@ -9,7 +9,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.*
 import com.app.f49.R
-import vn.com.ttc.ecommerce.custom.SingleClickListener
+import com.app.f49.custom.SingleClickListener
 
 
 fun LinearLayout.replaceFragment(fragment: Fragment) {

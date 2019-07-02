@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="badgedBottomNavigationBar">
+        <attr name="badge_layout" format="reference"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="custom_rv_with_indicator">
+        <attr name="color_selected" format="color"/>
+        <attr name="color_unSelected" format="color"/>
+        <attr name="isAuto_slide" format="boolean"/>
+        <attr name="square_cardview" format="boolean"/>
+        <attr name="time_silde" format="float"/>
+        <attr name="scale" format="float"/>
+        <attr name="stype" format="integer"/>
+        <attr name="show_image_favourite" format="boolean"/>
+    </declare-styleable>
+</resources>

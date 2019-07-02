@@ -20,3 +20,7 @@ class NotificationVO {
     var screenId: String? = null
     var message: String? = null
 }
+
+class NotificationUnread {
+    var countUnread: Int? = 0
+}

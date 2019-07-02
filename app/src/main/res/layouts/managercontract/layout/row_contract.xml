@@ -67,7 +67,7 @@
                             android:text="@string/plusMin"
                             />
 
-                    <TextView
+                    <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_tanggiam"
                             android:text="@{item.upDown}"
@@ -86,7 +86,7 @@
                             android:text="@string/du_no"
                             />
 
-                    <TextView
+                    <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_usd"
                             android:text="@{item.duNo}"
@@ -105,7 +105,7 @@
                             android:text="@string/Total"
                             />
 
-                    <TextView
+                    <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_tong"
                             android:text="@{item.total}"

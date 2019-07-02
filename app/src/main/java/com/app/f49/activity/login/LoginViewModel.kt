@@ -3,17 +3,19 @@ package com.app.f49.activity.login
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
+import com.app.f49.Base
 import com.app.f49.R
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
+import com.app.f49.extension.checkRequest
 import com.app.f49.model.login.LoginDTO
 import com.app.f49.utils.Constants
+import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
 import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.extension.checkRequest
 
 class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     val GRANT_TYPE = "password"
@@ -23,7 +25,7 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
     val TRY_AGAIN = ". Xin vui lòng thử lại."
     val ACCOUNT_INCORRECT = "Tài khoản không tồn tại"
     val PASSWORD_INCORRECT = "Sai mật khẩu"
-    var version : MutableLiveData<String> = MutableLiveData()
+    var version: MutableLiveData<String> = MutableLiveData()
 
 //    init {
 //        email.tenTrangThai = "sanghv@itpsolution.net"
@@ -60,8 +62,10 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
             if (it.error == null) {
                 PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_TOKEN, it.token_type + " " + it.access_token)
                 PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_EMAIL, email)
+                PreferenceUtils.writeInt(mContext, PreferenceUtils.KEY_PAGE_SIZE, it.pageSize?.toInt())
                 PreferenceUtils.writeString(mContext, PreferenceUtils.KEY_PASSWORD, password)
                 PreferenceUtils.writeBoolean(mContext, PreferenceUtils.KEY_IS_LOGOUT, false)
+                Base.pageSize = it.pageSize.toInt()
                 isLoginSuccessfully.value = true
             } else {
                 isLoginSuccessfully.value = false
@@ -80,7 +84,8 @@ class LoginViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>
             showDialogError(mContext.getString(R.string.provide_account))
             return
         }
-        mApiService?.pushFirebaseToken(email, token, deviceName, flg).checkRequest(mContext)?.subscribe({
+        mApiService?.pushFirebaseToken(email, token, GeneralUtils.getDeviceId(mContext)
+            ?: "", flg).checkRequest(mContext)?.subscribe({
             Log.d("push", "thanh cong")
         }, {
             Log.d("push", "thanh cong")

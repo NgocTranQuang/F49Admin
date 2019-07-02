@@ -2,11 +2,11 @@ package com.app.f49.activity.camdo
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
+import com.app.f49.extension.checkRequest
 import com.app.f49.model.dinhgia.CamdoDTO
 import com.app.f49.model.status.StatusDTO
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.extension.checkRequest
 
 class CamdoViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var listStatusDTO: MutableLiveData<MutableList<StatusDTO>> = MutableLiveData()

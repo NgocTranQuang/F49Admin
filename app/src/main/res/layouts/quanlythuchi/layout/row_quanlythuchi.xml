@@ -62,7 +62,7 @@
                             android:text="@string/thu"
                             />
 
-                    <TextView
+                    <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_usd"
                             android:text="@{item.thu}"
@@ -81,7 +81,7 @@
                             android:text="@string/chi"
                             />
 
-                    <TextView
+                    <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_usd"
                             android:text="@{item.chi}"
@@ -100,7 +100,7 @@
                             android:text="@string/nguoi_thuc_hien"
                             />
 
-                    <TextView
+                    <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_staff"
                             android:text="@{item.nguoiThucHien}"

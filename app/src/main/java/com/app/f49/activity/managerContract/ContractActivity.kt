@@ -10,8 +10,10 @@ import android.view.View
 import com.app.f49.Base
 import com.app.f49.R
 import com.app.f49.ScreenIDEnum
+import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.activity.infoContract.InfoContractActivity
 import com.app.f49.adapter.contract.ContractAdapter
+import com.app.f49.base.BaseNavigator
 import com.app.f49.bottomsheet.ContractBottomSheet
 import com.app.f49.databinding.ActivityManageContractBinding
 import com.app.f49.model.HopDongCamDoDTO
@@ -20,8 +22,6 @@ import extension.selectedItemListener
 import extension.setList
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_manage_contract.*
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 
 class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, ContractViewModel, BaseNavigator>() {
@@ -63,10 +63,10 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
             title = getString(R.string.quan_ly_cam_do_gia_dung)
         } else if (typeHD == ScreenIDEnum.HOP_DONG_TRA_GOP.value) {
             title = getString(R.string.quan_ly_hop_dong_tra_gop)
-
-        } else {
+        } else if (typeHD == ScreenIDEnum.HOP_DONG_CAM_DO.value){
             title = getString(R.string.manager_contact)
-
+        }else{
+            title = getString(R.string.hddngd)
         }
     }
 
@@ -147,7 +147,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         spStore.selectedItemListener {
             currentIdStore = Base.listStore?.value?.get(it)?.id ?: ""
             getListHopDong()
-            mViewModel?.getListNguoiQLHD(currentIdStore)
+//            mViewModel?.getListNguoiQLHD(currentIdStore)
         }
     }
 
@@ -159,8 +159,10 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
                     mViewModel?.getCamDoGiaDung(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
                 } else if (typeHD == ScreenIDEnum.HOP_DONG_TRA_GOP.value) {
                     mViewModel?.getHopDongTraGop(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
-                } else {
+                } else if (typeHD == ScreenIDEnum.HOP_DONG_CAM_DO.value){
                     mViewModel?.getHopDongCamDo(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
+                }else{
+                    mViewModel?.getHopDongDuNoGiamDan(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
                 }
             }
         }
@@ -171,7 +173,6 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         adapter = ContractAdapter(mutableListOf()) {
 
             InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it)?.id ?: "", typeHD)
-//            InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it) ?: return@ContractAdapter,typeHD)
 
         }
         rvContract.adapter = adapter

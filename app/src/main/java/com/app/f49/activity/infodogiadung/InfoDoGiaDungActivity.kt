@@ -5,12 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.app.f49.R
+import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityInfoDogiadungBinding
 import com.app.f49.model.dinhgia.CamdoDTO
 import com.app.f49.model.dinhgia.InfoDoGiaDungDTO
 import kotlinx.android.synthetic.main.activity_info_camdo.*
-import vn.com.ttc.ecommerce.activity.base.BaseMvvmActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
 
 class InfoDoGiaDungActivity : BaseMvvmActivity<ActivityInfoDogiadungBinding, InfoDoGiaDungViewModel, BaseNavigator>() {
     companion object {

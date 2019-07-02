@@ -88,7 +88,6 @@
                         android:layout_width="match_parent"
                         android:overScrollMode="never"
                         android:background="@color/color_line_divider_light"
-                        android:layout_marginTop="@dimen/toolbar_half_padding_horizontal"
                         android:layout_height="wrap_content">
 
                 </android.support.v7.widget.RecyclerView>

@@ -1,4 +1,4 @@
-package vn.com.ttc.ecommerce.custom
+package com.app.f49.custom
 
 import android.content.Context
 import android.support.v7.app.AlertDialog

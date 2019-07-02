@@ -2,10 +2,10 @@ package com.app.f49.fragment.dashboard
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
+import com.app.f49.extension.checkRequest
 import com.app.f49.model.home.ItemHomeDTO
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.extension.checkRequest
 
 class DashBoardViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
 

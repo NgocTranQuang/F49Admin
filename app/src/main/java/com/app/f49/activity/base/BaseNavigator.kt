@@ -1,4 +1,4 @@
-package vn.com.ttc.ecommerce.base
+package com.app.f49.base
 
 
 interface BaseNavigator {

@@ -1,13 +1,10 @@
-package vn.com.ttc.ecommerce.service
-
-import java.security.cert.CertificateException
-
-import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLSocketFactory
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
+package com.app.f49.service
 
 import okhttp3.OkHttpClient
+import java.security.cert.CertificateException
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
 
 object UnsafeOkHttpClient {
     // Create a trust manager that does not validate certificate chains

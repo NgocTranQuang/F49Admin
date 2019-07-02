@@ -58,6 +58,7 @@
         <item name="android:layout_weight">3</item>
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textSize">@dimen/dp_48</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:paddingTop">@dimen/toolbar_half_padding_horizontal</item>
@@ -69,6 +70,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">7</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textSize">@dimen/dp_48</item>
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:paddingTop">@dimen/toolbar_half_padding_horizontal</item>
@@ -264,6 +266,24 @@
         <item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
 
 
+    </style>
+
+    <style name="ItemBottomSheet">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:paddingTop">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_horizontal_margin</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:orientation">horizontal</item>
+
+    </style>
+
+    <style name="ImageBottomSheet">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
     </style>
 
 

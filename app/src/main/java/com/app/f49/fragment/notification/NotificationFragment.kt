@@ -6,20 +6,21 @@ import android.os.Bundle
 import android.view.View
 import com.app.f49.R
 import com.app.f49.adapter.notification.NotificationAdapter
+import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.FragmentNotificationBinding
 import com.app.f49.extension.handleScreenId
+import com.app.f49.fragment.base.BaseMvvmFragment
 import com.app.f49.model.notification.NotificationDTO
 import extension.init
 import extension.selectedItemListener
 import extension.setList
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_notification.*
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.fragment.base.BaseMvvmFragment
 
 class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, NotificationViewModel, BaseNavigator>() {
     var adapter: NotificationAdapter? = null
     var idStoreCurrent: Int? = null
+    var pageIndex = 0
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRV()
@@ -47,6 +48,7 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
         })
         viewModel?.putReadAll?.observe(this, Observer {
             adapter?.changeRealAll()
+            getUnreadNotification()
         })
 
 //        Base.listStore.observe(this, Observer {
@@ -65,7 +67,7 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
             idStoreChoose?.let {
                 getMainViewModel()?.currentPositionStore?.value = position
                 idStoreCurrent = it.id?.toIntOrNull()
-                viewModel?.getListNotification(it?.id)
+                viewModel?.getListNotification(idStoreCurrent.toString(), pageIndex)
             }
         }
         tvReadAll.setOnSingleClickListener {
@@ -103,21 +105,33 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
 
     private fun initRV() {
         rvNotificaion.init(space = R.dimen.height_line_size)
-        adapter = NotificationAdapter(mutableListOf(), { notificationDTO, finished ->
+        adapter = NotificationAdapter(mutableListOf(), rvNotificaion, { notificationDTO, finished ->
             context?.handleScreenId(notificationDTO.screenId, notificationDTO.itemId?.toString())
             if (notificationDTO.daDoc != true) {
                 viewModel?.changeStatusNotificationToRead(notificationDTO.id) {
                     finished.invoke()
+                    getUnreadNotification()
                 }
             }
         }) { notificationDTO, finished ->
-            showAskDialog("Bạn chắc chắn muốn xoá?") {
+            showAskDialog(getString(R.string.ban_muon_xoa)) {
                 viewModel?.deleteNotification(notificationDTO.id) {
                     finished.invoke()
+                    getUnreadNotification()
                 }
             }
         }
         rvNotificaion.adapter = adapter
+        adapter?.setLoadMoreListener {
+            pageIndex++
+            viewModel?.getListNotification(idStoreCurrent.toString(), pageIndex)
+        }
+    }
+
+    fun getUnreadNotification() {
+        getMainViewModel().currentPositionStore.value = getMainViewModel().listStore.value?.indexOfFirst {
+            it.id?.toIntOrNull() == idStoreCurrent
+        }
     }
 
 }

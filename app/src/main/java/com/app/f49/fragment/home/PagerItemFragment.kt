@@ -6,9 +6,9 @@ import com.app.f49.R
 import com.app.f49.adapter.home.HomeItemAdapter
 import com.app.f49.custom.CustomGridLayoutManager
 import com.app.f49.decoration.RVTowColumnDecoration
+import com.app.f49.fragment.base.BaseFragment
 import com.app.f49.model.home.ItemHomeDTO
 import kotlinx.android.synthetic.main.fragment_item_viewpager_home.*
-import vn.com.ttc.ecommerce.fragment.base.BaseFragment
 import java.io.Serializable
 
 class PagerItemFragment : BaseFragment() {

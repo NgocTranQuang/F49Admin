@@ -85,6 +85,9 @@
                   android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".activity.taisanthanhly.ThongTinTaiSanThanhLyActivity"
                   android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name=".activity.exchangeHistory.ExchangeHistoryActivity"/>
+        <activity android:name=".activity.exchangeHistory.ExchangeHistoryDetailActivity"/>
+        <activity android:name=".activity.exchangeHistory.BorrowHistoryDetailActivity"/>
 
         <meta-data
                 android:name="firebase_crashlytics_collection_enabled"

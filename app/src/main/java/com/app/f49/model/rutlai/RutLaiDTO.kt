@@ -13,7 +13,7 @@ class RutLaiDTO {
     @SerializedName(value = "ngayThucHien", alternate = ["ngayTao"])
     var ngayThucHien: Date? = null
     @SerializedName("soTien")
-    var sotien: String? = null
+    var sotien: Double? = null
     @SerializedName(value = "nguoiThucHien", alternate = ["hoTen"])
     var nguoiThucHien: String? = null
     var trangThai: Int? = null

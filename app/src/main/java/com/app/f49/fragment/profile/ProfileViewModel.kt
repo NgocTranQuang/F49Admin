@@ -4,10 +4,11 @@ import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.app.f49.R
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
+import com.app.f49.extension.checkRequest
 import com.app.f49.model.profile.UserProfileDTO
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.extension.checkRequest
+import com.app.f49.utils.GeneralUtils
 
 class ProfileViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var userProfileDTO: MutableLiveData<UserProfileDTO> = MutableLiveData()
@@ -33,7 +34,7 @@ class ProfileViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigato
             return
         }
         showLoading()
-        mApiService?.pushFirebaseToken(email, token, deviceName, flg).checkRequest(mContext)?.subscribe({
+        mApiService?.pushFirebaseToken(email, token, GeneralUtils.getDeviceId(mContext) ?:"", flg).checkRequest(mContext)?.subscribe({
             Log.d("push", "thanh cong")
             isLogoutSuccess.value = true
         }, {

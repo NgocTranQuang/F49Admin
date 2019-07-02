@@ -5,9 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.app.f49.R
+import com.app.f49.activity.base.BaseActivity
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_change_password.*
-import vn.com.ttc.ecommerce.activity.base.BaseActivity
 
 class ChangePasswordActivity : BaseActivity() {
     companion object {
@@ -24,7 +24,7 @@ class ChangePasswordActivity : BaseActivity() {
 
     private fun evenClick() {
         cvOk.setOnSingleClickListener {
-            showToastErrorMsg("Change thanh cmn cong")
+            showToastErrorMsg("Coming soon")
         }
     }
 

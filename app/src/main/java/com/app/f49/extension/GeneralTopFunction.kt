@@ -1,4 +1,4 @@
-package vn.com.ttc.ecommerce.extension
+package com.app.f49.extension
 
 import kotlin.reflect.KClass
 

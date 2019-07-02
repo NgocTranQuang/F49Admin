@@ -7,6 +7,10 @@ enum class TypeHeader(var value: Int) {
     CAM_DO(0), DINH_GIA(1), DO_GIA_DUNG(2)
 }
 
+enum class TypeLoad(var value: Int) {
+    AUTO_LOAD(0), CLICK_TO_LOAD(1)
+}
+
 enum class ScreenIDEnum(var value: String) {
     HOP_DONG_CAM_DO("HopDongCamDo"),
     HOP_DONG_CAM_DO_CHI_TIET("HopDongCamDo_ChiTiet"),
@@ -14,6 +18,8 @@ enum class ScreenIDEnum(var value: String) {
     CAM_DO_GIA_DUNG_CHI_TIET("CamDoGiaDung_ChiTiet"),
     HOP_DONG_TRA_GOP("HopDongTraGop"),
     HOP_DONG_TRA_GOP_CHI_TIET("HopDongTraGop_ChiTiet"),
+    HOP_DONG_DU_NO_GIAM_DAN("HopDongDuNoGiamDan"),
+    HOP_DONG_DU_NO_GIAM_DAN_CHI_TIET("HopDongDuNoGiamDan_ChiTiet"),
     RUT_LAI("RutLai"),
     RUT_LAI_CHI_TIET("RutLai_ChiTiet"),
     BAO_CAO_TONG_HOP("BaoCaoTongHop"),
@@ -121,6 +127,10 @@ enum class TaiSanThanhLyTypeEnum(var value: Int) {
 
     abstract fun getNameEnum(): String
 
+}
+
+enum class TypeActionChiTietHDCDEnum(var value: Int) {
+    EXCHANGE(0), BORROW(1)
 }
 //enum class TypeHopDongDashBoardEnum(var value: Int) {
 //    HOP_DONG_CAM_DO(0),

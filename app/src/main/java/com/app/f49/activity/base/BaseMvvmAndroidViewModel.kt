@@ -1,18 +1,18 @@
-package vn.com.ttc.ecommerce.base
+package com.app.f49.base
 
 import android.app.Application
 import android.text.TextUtils
 import com.app.f49.F49Application
 import com.app.f49.R
+import com.app.f49.extension.checkRequest
 import com.app.f49.model.BaseResponse
+import com.app.f49.service.ApiService
+import com.app.f49.service.ServiceRepository
 import com.app.f49.utils.Constants
 import com.app.f49.utils.NetworkAvailability
 import com.app.f49.utils.PreferenceUtils
 import io.reactivex.Observable
 import net.orionlab.androidmvvm.MvvmAndroidViewModel
-import vn.com.ttc.ecommerce.extension.checkRequest
-import vn.com.ttc.ecommerce.service.ApiService
-import vn.com.ttc.ecommerce.service.ServiceRepository
 import java.io.IOException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -22,6 +22,8 @@ abstract class BaseMvvmAndroidViewModel<N : BaseNavigator>(app: Application) : M
     protected val mContext = (app as F49Application).getConfigLocale(app.baseContext)
     protected val mApiService = ServiceRepository.createService(mContext, ApiService::class.java)
     protected var mRequestCount = 0
+    protected var pageSize = PreferenceUtils.getInt(mContext, PreferenceUtils.KEY_PAGE_SIZE, Constants.PAGE_SIZE_DEFAULT)
+
 
     var mNavigator: N? = null
 

@@ -8,7 +8,6 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:paddingTop="@dimen/activity_horizontal_margin"
             android:paddingEnd="@dimen/activity_horizontal_margin"
             android:paddingStart="@dimen/activity_horizontal_margin"
             android:layout_height="wrap_content">
@@ -28,12 +27,13 @@
                 android:padding="@dimen/toolbar_half_padding_horizontal"
                 android:background="@drawable/bg_boder_gray"
                 android:minHeight="@dimen/dp_135"
+                android:textSize="@dimen/dp_48"
                 android:hint="@string/hint_bts_contract"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_height="wrap_content"/>
 
         <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 android:background="@drawable/bg_boder_gray"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:layout_height="wrap_content">
@@ -105,7 +105,7 @@
 
             <TextView
                     android:layout_width="match_parent"
-                    android:text="@string/hoan_tat"
+                    android:text="@string/find"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/dp_48"
                     android:gravity="center"

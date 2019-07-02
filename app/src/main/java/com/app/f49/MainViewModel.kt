@@ -2,16 +2,17 @@ package com.app.f49
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
+import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.base.BaseNavigator
+import com.app.f49.extension.checkRequest
 import com.app.f49.model.store.StoreDTO
 import com.app.f49.model.topmenu.TopMenuDTO
-import vn.com.ttc.ecommerce.base.BaseMvvmAndroidViewModel
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.extension.checkRequest
 
 class MainViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var listStore: MutableLiveData<MutableList<StoreDTO>> = MutableLiveData()
     var currentPositionStore: MutableLiveData<Int> = MutableLiveData()
     var topMenu: MutableLiveData<TopMenuDTO> = MutableLiveData()
+    var notificationCount: MutableLiveData<Int> = MutableLiveData()
 
     init {
         currentPositionStore.value = -1
@@ -38,5 +39,11 @@ class MainViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(
         }, {
             hideLoading()
         })
+    }
+
+    fun getCountNotificationUnread(idCuaHang: Int?) {
+        mApiService?.getCountNotificationUnread(idCuaHang)?.checkRequest(mContext)?.subscribe {
+            notificationCount.value = it?.countUnread
+        }
     }
 }

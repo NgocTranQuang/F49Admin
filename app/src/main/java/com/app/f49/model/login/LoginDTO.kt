@@ -6,4 +6,5 @@ class LoginDTO {
     var error: String? = null
     var error_description: String? = null
     var expires_in: String? = null
+    var pageSize: String = "40"
 }

@@ -1,4 +1,4 @@
-package vn.com.ttc.ecommerce.fragment.base
+package com.app.f49.fragment.base
 
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
@@ -11,10 +11,10 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.app.f49.R
+import com.app.f49.activity.base.BaseActivity
+import com.app.f49.base.BaseNavigator
+import com.app.f49.custom.CustomProgressDialog
 import com.app.f49.utils.GeneralUtils
-import vn.com.ttc.ecommerce.activity.base.BaseActivity
-import vn.com.ttc.ecommerce.base.BaseNavigator
-import vn.com.ttc.ecommerce.custom.CustomProgressDialog
 
 open abstract class BaseFragment : Fragment(), BaseNavigator {
 
