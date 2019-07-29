@@ -1,7 +1,9 @@
 package extension
 
+import android.content.DialogInterface
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AlertDialog
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
 import android.view.View
@@ -76,4 +78,23 @@ fun Spinner.selectedItemListener(color: Int? = null, listener: (Int) -> Unit) {
         }
 
     }
+}
+fun View.showDialogAsk(message: String, okAction: () -> Unit) {
+    val builder1 = AlertDialog.Builder(context)
+    builder1.setMessage(message)
+    builder1.setCancelable(true)
+
+    builder1.setPositiveButton(
+        context.getString(R.string.yes),
+        DialogInterface.OnClickListener { dialog, id ->
+            okAction.invoke()
+            dialog.cancel()
+        })
+
+    builder1.setNegativeButton(
+        context.getString(R.string.no),
+        DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+
+    val alert11 = builder1.create()
+    alert11.show()
 }

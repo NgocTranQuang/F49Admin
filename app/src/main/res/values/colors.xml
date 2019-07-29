@@ -14,6 +14,7 @@
     <color name="color_indicator_unSelected">#dddddd</color>
     <color name="bg_screen">#efefef</color>
     <color name="color_line_divider_light">#e8e8e8</color>
+    <color name="color_bg_boder">#dddddd</color>
 
 
     <color name="toolbar_start_color">#0e5991</color>

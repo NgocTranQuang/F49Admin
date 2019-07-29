@@ -10,6 +10,7 @@ import android.view.View
 import com.app.f49.Base
 import com.app.f49.R
 import com.app.f49.ScreenIDEnum
+import com.app.f49.TypeHopDongDashBoardEnum
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.activity.infoContract.InfoContractActivity
 import com.app.f49.adapter.contract.ContractAdapter
@@ -30,6 +31,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     var currentIdTab = ""
     var countOfInit = 0
     var typeHD = ""
+    var loaiHD: Int = 0
 
     companion object {
         val KEY_PASS_TYPE_HD = "KEY_PASS_TYPE_HD"
@@ -61,11 +63,15 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         typeHD = intent?.getStringExtra(KEY_PASS_TYPE_HD) ?: ScreenIDEnum.HOP_DONG_CAM_DO.value
         if (typeHD == ScreenIDEnum.CAM_DO_GIA_DUNG.value) {
             title = getString(R.string.quan_ly_cam_do_gia_dung)
+            loaiHD = TypeHopDongDashBoardEnum.HOP_DONG_CAM_DO_GIA_DUNG.value
         } else if (typeHD == ScreenIDEnum.HOP_DONG_TRA_GOP.value) {
             title = getString(R.string.quan_ly_hop_dong_tra_gop)
-        } else if (typeHD == ScreenIDEnum.HOP_DONG_CAM_DO.value){
+            loaiHD = TypeHopDongDashBoardEnum.HOP_DONG_TRA_GOP.value
+        } else if (typeHD == ScreenIDEnum.HOP_DONG_CAM_DO.value) {
             title = getString(R.string.manager_contact)
-        }else{
+            loaiHD = TypeHopDongDashBoardEnum.HOP_DONG_CAM_DO.value
+        } else {
+            loaiHD = TypeHopDongDashBoardEnum.HOP_DONG_DU_NO_GIAM_DAN.value
             title = getString(R.string.hddngd)
         }
     }
@@ -155,15 +161,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         synchronized(this) {
             countOfInit++
             if (countOfInit >= 2) {
-                if (typeHD == ScreenIDEnum.CAM_DO_GIA_DUNG.value) {
-                    mViewModel?.getCamDoGiaDung(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
-                } else if (typeHD == ScreenIDEnum.HOP_DONG_TRA_GOP.value) {
-                    mViewModel?.getHopDongTraGop(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
-                } else if (typeHD == ScreenIDEnum.HOP_DONG_CAM_DO.value){
-                    mViewModel?.getHopDongCamDo(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
-                }else{
-                    mViewModel?.getHopDongDuNoGiamDan(currentIdStore.toIntOrNull(), currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
-                }
+                mViewModel?.getListHopDong(currentIdStore.toIntOrNull(), loaiHD, currentIdTab, keySearch, false, idNguoiQLHD, idTrangThaiHD)
             }
         }
     }

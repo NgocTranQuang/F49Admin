@@ -18,8 +18,8 @@ enum class ScreenIDEnum(var value: String) {
     CAM_DO_GIA_DUNG_CHI_TIET("CamDoGiaDung_ChiTiet"),
     HOP_DONG_TRA_GOP("HopDongTraGop"),
     HOP_DONG_TRA_GOP_CHI_TIET("HopDongTraGop_ChiTiet"),
-    HOP_DONG_DU_NO_GIAM_DAN("HopDongDuNoGiamDan"),
-    HOP_DONG_DU_NO_GIAM_DAN_CHI_TIET("HopDongDuNoGiamDan_ChiTiet"),
+    HOP_DONG_DU_NO_GIAM_DAN("HopDongxxDuNoGiamDan"),
+    HOP_DONG_DU_NO_GIAM_DAN_CHI_TIET("HopDongxxDuNoGiamDan_ChiTiet"),
     RUT_LAI("RutLai"),
     RUT_LAI_CHI_TIET("RutLai_ChiTiet"),
     BAO_CAO_TONG_HOP("BaoCaoTongHop"),
@@ -27,9 +27,7 @@ enum class ScreenIDEnum(var value: String) {
     QUAN_LY_THU_CHI_CHI_TIET("ThuChi_ChiTiet"),
     TAI_SAN_THANH_LY("TaiSanThanhLy"),
     RUT_VON("RutVon"),
-    RUT_VON_CHI_TIET("RutVon_ChiTiet"),
-
-
+    RUT_VON_CHI_TIET("RutVon_ChiTiet")
 }
 
 enum class DateFilterEnum(var value: Int) {
@@ -132,8 +130,10 @@ enum class TaiSanThanhLyTypeEnum(var value: Int) {
 enum class TypeActionChiTietHDCDEnum(var value: Int) {
     EXCHANGE(0), BORROW(1)
 }
-//enum class TypeHopDongDashBoardEnum(var value: Int) {
-//    HOP_DONG_CAM_DO(0),
-//    CAM_DO_GIA_DUNG(1),
-//    HOP_DONG_TRA_GOP(2)
-//}
+
+enum class TypeHopDongDashBoardEnum(var value: Int) {
+    HOP_DONG_CAM_DO(1),
+    HOP_DONG_CAM_DO_GIA_DUNG(3),
+    HOP_DONG_TRA_GOP(2),
+    HOP_DONG_DU_NO_GIAM_DAN(3)
+}

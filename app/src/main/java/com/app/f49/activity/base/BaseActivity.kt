@@ -3,12 +3,14 @@ package com.app.f49.activity.base
 import android.os.Build
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.app.f49.R
 import com.app.f49.base.BaseNavigator
 import com.app.f49.custom.CustomProgressDialog
@@ -25,7 +27,8 @@ open class BaseActivity : AppCompatActivity(), BaseNavigator {
     private var mErrorDialog: ErrorDialog? = null
     private var mActionDialog: DialogOption? = null
     private var mAskDialog: DialogAsk? = null
-
+    var tvMessage: TextView? = null
+    protected var mDialogWithMessage: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,9 +46,13 @@ open class BaseActivity : AppCompatActivity(), BaseNavigator {
         setSupportActionBar(getMyToolbar())
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+//        supportActionBar?.customView = getMyToolbar()
+        getMyToolbar()?.setContentInsetsAbsolute(0,0);
+
         getTitleToolbar()?.let {
             supportActionBar?.title = it
         }
+//        supportActionBar?.setIcon(R.drawable.ic_phone)
         getMyToolbar()?.setNavigationOnClickListener {
             handleBackToolbar()
         }
@@ -128,6 +135,24 @@ open class BaseActivity : AppCompatActivity(), BaseNavigator {
         showCustomToast(msg, R.color.colorAccent)
     }
 
+    protected fun showDialogWithMessage(message: String) {
+        if (this.tvMessage == null) {
+            val builder = AlertDialog.Builder(this)
+            builder.setCancelable(false) // if you want user to wait for some process to finish,
+            var view = layoutInflater.inflate(R.layout.layout_loading_dialog, null)
+            this.tvMessage = view.findViewById(R.id.tvMessage)
+            this.tvMessage?.text = message
+            builder.setView(view)
+            mDialogWithMessage = builder.create()
+            mDialogWithMessage?.show()
+        } else {
+            this.tvMessage?.text = message
+        }
+    }
+
+    protected fun hideDialogWithMesasge() {
+        mDialogWithMessage?.hide()
+    }
     @Suppress("DEPRECATION")
     private fun showCustomToast(msg: String, bgColor: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

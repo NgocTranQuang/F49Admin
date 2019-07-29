@@ -129,7 +129,9 @@ class NotificationUtil(private val mContext: Context) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(CHANNEL_ID,
                     CHANNEL_NAME,
-                    NotificationManager.IMPORTANCE_DEFAULT)
+                    NotificationManager.IMPORTANCE_DEFAULT).apply {
+                    setShowBadge(false)
+                }
                 notificationManager.createNotificationChannel(channel)
 
             }

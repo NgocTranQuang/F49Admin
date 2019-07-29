@@ -3,11 +3,52 @@
           package="com.app.f49">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
     <uses-permission android:name="android.permission.INTERNET"/>
-
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+    <!--for Samsung-->
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
+
+    <!--for htc-->
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT"/>
+
+    <!--for sony-->
+
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE"/>
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE"/>
+
+    <!--for apex-->
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT"/>
+
+    <!--for solid-->
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE"/>
+
+    <!--for huawei-->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS"/>
+
+    <!--for ZUK-->
+    <uses-permission android:name="android.permission.READ_APP_BADGE"/>
+
+    <!--for OPPO-->
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS"/>
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS"/>
+
+    <!--for EvMe-->
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
 
     <application
             android:name=".F49Application"
@@ -88,6 +129,7 @@
         <activity android:name=".activity.exchangeHistory.ExchangeHistoryActivity"/>
         <activity android:name=".activity.exchangeHistory.ExchangeHistoryDetailActivity"/>
         <activity android:name=".activity.exchangeHistory.BorrowHistoryDetailActivity"/>
+        <activity android:name=".activity.uploadimage.UploadImageActivity"/>
 
         <meta-data
                 android:name="firebase_crashlytics_collection_enabled"
@@ -100,6 +142,15 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
+        <provider
+                android:name="android.support.v4.content.FileProvider"
+                android:authorities="${applicationId}.provider"
+                android:exported="false"
+                android:grantUriPermissions="true">
+            <meta-data
+                    android:name="android.support.FILE_PROVIDER_PATHS"
+                    android:resource="@xml/file_provider_paths" />
+        </provider>
     </application>
 
 </manifest>

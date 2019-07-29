@@ -16,6 +16,10 @@ import extension.selectedItemListener
 import extension.setList
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_notification.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+
 
 class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, NotificationViewModel, BaseNavigator>() {
     var adapter: NotificationAdapter? = null
@@ -24,6 +28,7 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRV()
+        initView()
         initViewModel()
         initSpiner()
     }
@@ -33,9 +38,6 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
     }
 
     private fun initSpiner() {
-//        spStore.selectedItemListener(Color.WHITE) {
-//            viewModel?.getListNotification(Base.listStore.value?.get(it)?.id)
-//        }
         setSpiner()
     }
 
@@ -56,6 +58,23 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
 //                spStore.setList(it.map { it.storeName }.toMutableList(), 0)
 //            }
 //        })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this);
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this);
+    }
+
+    private fun initView() {
+        swipeRefreshLayout.setOnRefreshListener {
+            pageIndex = 0
+            viewModel?.getListNotification(idStoreCurrent.toString(), pageIndex)
+        }
     }
 
     private fun setSpiner() {
@@ -80,14 +99,19 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
         return tb
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: NotificationDTO) {
+        adapter?.insertOnTop(event)
+    };
+
     private fun insertData(listNotification: MutableList<NotificationDTO>) {
         if (listNotification.size == 0) {
             tvNoData.visibility = View.VISIBLE
         } else {
             tvNoData.visibility = View.GONE
         }
+        swipeRefreshLayout.isRefreshing = false
         adapter?.insertData(listNotification)
-
     }
 
     override fun showLoading(cancelable: Boolean) {

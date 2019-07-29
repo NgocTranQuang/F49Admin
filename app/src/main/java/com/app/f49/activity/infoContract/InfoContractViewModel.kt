@@ -10,34 +10,34 @@ class InfoContractViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNav
     var infoContract: MutableLiveData<InfoContractDTO> = MutableLiveData()
     fun getChiTietHDCD(id: String) {
         showLoading()
-        handleRequestService(mApiService.getChiTietHDCD(id?.toIntOrNull())) {
-            it?.getOrNull(0)?.let {
+        handleRequestServiceObject(mApiService.getChiTietHDCD(id?.toIntOrNull())) {
+            it?.let {
                 infoContract.value = it
             }
         }
     }
-    fun getChiTietHDGiaDung(id: String) {
-        showLoading()
-        handleRequestService(mApiService.getChiTietCamDoGiaDung(id?.toIntOrNull())) {
-            it?.getOrNull(0)?.let {
-                infoContract.value = it
-            }
-        }
-    }
-    fun getChiTietCamDoTraGop(id: String) {
-        showLoading()
-        handleRequestService(mApiService.getChiTietHopDongTraGop(id?.toIntOrNull())) {
-            it?.getOrNull(0)?.let {
-                infoContract.value = it
-            }
-        }
-    }
-    fun getChiTietDuNoGiamDan(id: String) {
-        showLoading()
-        handleRequestService(mApiService.getChiTietHopDongDuNoGiamDan(id?.toIntOrNull())) {
-            it?.getOrNull(0)?.let {
-                infoContract.value = it
-            }
-        }
-    }
+//    fun getChiTietHDGiaDung(id: String) {
+//        showLoading()
+//        handleRequestService(mApiService.getChiTietCamDoGiaDung(id?.toIntOrNull())) {
+//            it?.getOrNull(0)?.let {
+//                infoContract.value = it
+//            }
+//        }
+//    }
+//    fun getChiTietCamDoTraGop(id: String) {
+//        showLoading()
+//        handleRequestService(mApiService.getChiTietHopDongTraGop(id?.toIntOrNull())) {
+//            it?.getOrNull(0)?.let {
+//                infoContract.value = it
+//            }
+//        }
+//    }
+//    fun getChiTietDuNoGiamDan(id: String) {
+//        showLoading()
+//        handleRequestService(mApiService.getChiTietHopDongDuNoGiamDan(id?.toIntOrNull())) {
+//            it?.getOrNull(0)?.let {
+//                infoContract.value = it
+//            }
+//        }
+//    }
 }

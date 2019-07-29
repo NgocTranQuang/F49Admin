@@ -29,7 +29,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification()!!.getBody())
             handleNotification(remoteMessage.getNotification()!!)
         }// Check if message contains a notification payload.
-
     }
 
     override fun onNewToken(p0: String?) {

@@ -144,5 +144,15 @@
     <string name="ban_muon_xoa">Bạn chắc chắn muốn xoá?</string>
     <string name="hddngd">Quản lý hợp đồng dư nợ giảm dần</string>
     <string name="tt_hddngd">Thông tin hợp đồng dư nợ giảm dần</string>
+    <string name="dong_lai">Đóng lãi</string>
+    <string name="add_image">Thêm hình ảnh</string>
+    <string name="are_you_sure_delete_this_image">Bạn chắc chắn muốn xoá ảnh này?</string>
+    <string name="max_image">Chỉ được upload tối đa 10 ảnh.</string>
+    <string name="chon_anh">Xin vui lòng chọn ít nhất 1 ảnh.</string>
+    <string name="l_y_nh_t_b_nh">Lấy ảnh từ bộ nhớ</string>
+    <string name="ch_p_nh_t_camera">Chụp ảnh từ camera</string>
+    <string name="upload_fail">Upload ảnh lỗi. Xin vui lòng thử lại.</string>
+    <string name="upload_thanhcong">Upload ảnh thành công.</string>
+
 
 </resources>

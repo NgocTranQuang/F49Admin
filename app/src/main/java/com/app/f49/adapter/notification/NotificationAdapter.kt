@@ -11,7 +11,7 @@ import com.app.f49.model.notification.NotificationDTO
 import extension.setOnSingleClickListener
 
 
-class NotificationAdapter(var listItems: MutableList<NotificationDTO>, rv: RecyclerView, var onclickItem: (NotificationDTO, () -> Unit) -> Unit, var onLongclickItem: (NotificationDTO, () -> Unit) -> Unit) : LoadMoreAdapter<NotificationDTO>(listItems, rv) {
+class NotificationAdapter(listItems: MutableList<NotificationDTO>, rv: RecyclerView, var onclickItem: (NotificationDTO, () -> Unit) -> Unit, var onLongclickItem: (NotificationDTO, () -> Unit) -> Unit) : LoadMoreAdapter<NotificationDTO>(listItems, rv) {
 
     override fun onCreateViewHolderItem(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -27,6 +27,11 @@ class NotificationAdapter(var listItems: MutableList<NotificationDTO>, rv: Recyc
 
     fun insertData(items: MutableList<NotificationDTO>) {
         setData(items)
+    }
+
+    fun insertOnTop(item: NotificationDTO) {
+        items?.add(0, item)
+        notifyItemChanged(0)
     }
 
     fun changeRealAll() {

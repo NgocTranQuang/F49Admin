@@ -63,13 +63,13 @@
 
                     <TextView
                             style="@style/TextviewPhone"
-                            android:text="@string/cho_vay"
+                            android:text="@string/dong_lai"
                             />
 
                     <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_usd"
-                            android:money="@{item.choVay}"
+                            android:money="@{item.dongLai}"
                             />
                 </LinearLayout>
 

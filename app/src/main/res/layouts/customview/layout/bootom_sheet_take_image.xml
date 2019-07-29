@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <LinearLayout
+            android:id="@+id/vGetImage"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+        <ImageView
+                style="@style/ImageBottomSheet"
+                android:src="@android:drawable/ic_menu_gallery"/>
+
+        <TextView
+                style="@style/TextViewRightInfoCamdo"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:text="@string/l_y_nh_t_b_nh"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/vTakeCamera"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+        <ImageView
+                style="@style/ImageBottomSheet"
+                android:src="@android:drawable/ic_menu_camera"/>
+
+        <TextView
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                style="@style/TextViewRightInfoCamdo"
+                android:text="@string/ch_p_nh_t_camera"/>
+
+    </LinearLayout>
+
+    <View style="@style/LineBig"/>
+
+    <LinearLayout
+            android:id="@+id/vCancel"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+        <ImageView
+                style="@style/ImageBottomSheet"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+
+        <TextView
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                style="@style/TextViewRightInfoCamdo"
+                android:text="@android:string/cancel"/>
+
+    </LinearLayout>
+
+</LinearLayout>

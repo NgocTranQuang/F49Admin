@@ -22,6 +22,7 @@ import com.app.f49.model.store.StoreDTO
 import com.app.f49.model.tab.TabDTO
 import com.app.f49.model.taisanthanhly.*
 import com.app.f49.model.topmenu.TopMenuDTO
+import com.app.f49.model.uploadImage.UploadImageDTO
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -102,30 +103,33 @@ interface ApiService {
     @GET(API_HOPDONGCAMDO + "GetNguoiQLHD")
     fun getNguoiQLHD(@Query("idCuaHang") idCuaHang: String): Observable<BaseResponse<MutableList<NguoiQLHDDTO>>>
 
-    @GET(API_HOPDONGCAMDO + "GetHopDongCamDo")
-    fun getHopDongCamDo(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
+    @GET(API_HOPDONGCAMDO + "GetListHopDongTheoLoai")
+    fun getHopDongCamDo(@Query("idCuaHang") idCuaHang: Int?, @Query("loaiHD") loaiHD: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
 
-    @GET(API_HOPDONGCAMDO + "GetCamDoGiaDung")
-    fun getCamdoGiaDung(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
+//    @GET(API_HOPDONGCAMDO + "GetCamDoGiaDung")
+//    fun getCamdoGiaDung(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
+//
+//    @GET(API_HOPDONGCAMDO + "GetHopDongTraGop")
+//    fun getHopDongTraGop(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
+//
+//
+//    @GET(API_HOPDONGCAMDO + "GetHopDongDuNoGiamDan")
+//    fun getHopDongDuNoGiamDan(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
 
-    @GET(API_HOPDONGCAMDO + "GetHopDongTraGop")
-    fun getHopDongTraGop(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
+    @GET(API_HOPDONGCAMDO + "GetChiTietHopDong")
+    fun getChiTietHDCD(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<InfoContractDTO>>
 
+    @POST(API_HOPDONGCAMDO+"UploadImage")
+    fun uploadImage(@Body rq : UploadImageDTO): Observable<BaseResponse<Boolean>>
 
-    @GET(API_HOPDONGCAMDO + "GetHopDongDuNoGiamDan")
-    fun getHopDongDuNoGiamDan(@Query("idCuaHang") idCuaHang: Int?, @Query("trangThai") idTab: String?, @Query("tuKhoa") tuKhoa: String?, @Query("timChinhXac") timChinhXac: Boolean?, @Query("idNguoiQuanLyHD") idNguoiQuanLyHD: Int?, @Query("thoiGian") thoiGian: String?): Observable<BaseResponse<MutableList<HopDongCamDoDTO>>>
-
-    @GET(API_HOPDONGCAMDO + "GetChiTietHopDongCamDo")
-    fun getChiTietHDCD(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
-
-    @GET(API_HOPDONGCAMDO + "GetChiTietCamDoGiaDung")
-    fun getChiTietCamDoGiaDung(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
-
-    @GET(API_HOPDONGCAMDO + "GetChiTietHopDongTraGop")
-    fun getChiTietHopDongTraGop(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
-
-    @GET(API_HOPDONGCAMDO + "GetChiTietHopDongDuNoGiamDan")
-    fun getChiTietHopDongDuNoGiamDan(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
+//    @GET(API_HOPDONGCAMDO + "GetChiTietCamDoGiaDung")
+//    fun getChiTietCamDoGiaDung(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
+//
+//    @GET(API_HOPDONGCAMDO + "GetChiTietHopDongTraGop")
+//    fun getChiTietHopDongTraGop(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
+//
+//    @GET(API_HOPDONGCAMDO + "GetChiTietHopDongDuNoGiamDan")
+//    fun getChiTietHopDongDuNoGiamDan(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
 
 
     /*

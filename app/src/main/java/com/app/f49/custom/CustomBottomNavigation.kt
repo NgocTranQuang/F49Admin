@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.app.f49.R
 import kotlinx.android.synthetic.main.notification_badge.view.*
+import me.leolin.shortcutbadger.ShortcutBadger
 
 
 class BadgedBottomNavigationBar : BottomNavigationView {
@@ -43,6 +44,8 @@ class BadgedBottomNavigationBar : BottomNavigationView {
             if (view.childCount > 2) {
                 if(view.getChildAt(2) is TextView){
                     (view.getChildAt(2) as TextView).text = "${value}"
+                    ShortcutBadger.applyCount(context,value)
+//                    BadgeUtils.setBadge(context,value)
                 }
                 return
             }
@@ -52,7 +55,7 @@ class BadgedBottomNavigationBar : BottomNavigationView {
         var viewBadge = LayoutInflater.from(context).inflate(if (badgeLayoutResId != -1) badgeLayoutResId else R.layout.notification_badge, bottomNavigationItemView,
             true)
         viewBadge.notifications_badge.text = "$value"
-
+        ShortcutBadger.applyCount(context,value)
     }
 
     /**
@@ -74,6 +77,7 @@ class BadgedBottomNavigationBar : BottomNavigationView {
         val itemView = v as android.support.design.internal.BottomNavigationItemView
         // remove the last child [badge view]
         itemView.removeViewAt(itemView.childCount - 1)
+        ShortcutBadger.removeCount(context)
     }
 
 }

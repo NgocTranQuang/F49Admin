@@ -36,54 +36,14 @@ class ContractViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigat
         })
     }
 
-    fun getListNguoiQLHD(idStore: String) {
-        mApiService?.getNguoiQLHD(idStore).checkRequest(mContext)?.subscribe({
-            it?.let {
-                listNguoiQLHDDTO.value = it
-            }
-        }, {
-            //            showDialogError(it)false
-        }, {
-            hideLoading()
-        })
-    }
-
-    fun getHopDongCamDo(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
+    fun getListHopDong(idCuaHang: Int?, loaiHD: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
         showLoading()
-        handleRequestService(mApiService?.getHopDongCamDo(idCuaHang, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
+        handleRequestService(mApiService?.getHopDongCamDo(idCuaHang, loaiHD, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
             it?.let {
                 listHDCM.value = it
             }
         }
     }
 
-
-    fun getCamDoGiaDung(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
-        showLoading()
-        handleRequestService(mApiService?.getCamdoGiaDung(idCuaHang, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
-            it?.let {
-                listHDCM.value = it
-            }
-        }
-    }
-
-
-    fun getHopDongTraGop(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
-        showLoading()
-        handleRequestService(mApiService?.getHopDongTraGop(idCuaHang, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
-            it?.let {
-                listHDCM.value = it
-            }
-        }
-    }
-
-    fun getHopDongDuNoGiamDan(idCuaHang: Int?, idTab: String?, tuKhoa: String?, timChinhXac: Boolean, idNguoiQuanLyHD: Int?, idTrangThaiHD: String?) {
-        showLoading()
-        handleRequestService(mApiService?.getHopDongDuNoGiamDan(idCuaHang, idTab, tuKhoa, false, idNguoiQuanLyHD, idTrangThaiHD)) {
-            it?.let {
-                listHDCM.value = it
-            }
-        }
-    }
 
 }

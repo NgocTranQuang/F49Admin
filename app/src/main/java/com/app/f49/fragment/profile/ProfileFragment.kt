@@ -16,6 +16,7 @@ import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_profile.*
+import me.leolin.shortcutbadger.ShortcutBadger
 
 
 class ProfileFragment : BaseMvvmFragment<FragmentProfileBinding, ProfileViewModel, BaseNavigator>() {
@@ -29,6 +30,7 @@ class ProfileFragment : BaseMvvmFragment<FragmentProfileBinding, ProfileViewMode
     override fun getLayoutResource(): Int {
         return R.layout.fragment_profile
     }
+
     private fun observer() {
 //        viewBinding?.
         viewModel?.setNavigator(this)
@@ -42,6 +44,7 @@ class ProfileFragment : BaseMvvmFragment<FragmentProfileBinding, ProfileViewMode
                 Base.listStore.value?.clear()
                 PreferenceUtils.writeBoolean(activity
                     ?: return@Observer, PreferenceUtils.KEY_IS_LOGOUT, true)
+                ShortcutBadger.removeCount(activity)
                 var intent = Intent(activity, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
@@ -51,7 +54,6 @@ class ProfileFragment : BaseMvvmFragment<FragmentProfileBinding, ProfileViewMode
 
     private fun setData() {
         viewModel?.getProfile()
-
     }
 
     private fun eventClickListenr() {

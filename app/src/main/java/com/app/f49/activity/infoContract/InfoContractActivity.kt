@@ -1,5 +1,6 @@
 package com.app.f49.activity.infoContract
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
@@ -10,15 +11,17 @@ import android.view.MenuItem
 import com.app.f49.R
 import com.app.f49.ScreenIDEnum
 import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.activity.uploadimage.UploadImageActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityInfoContractBinding
 import com.stfalcon.frescoimageviewer.ImageViewer
+import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_info_contract.*
 
 class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoContractViewModel, BaseNavigator>() {
     var typeHD = ""
-    var image = "https://media.tintucvietnam.vn/uploads/medias/2018/08/14/1024x1024/gia-xe-may-honda-hom-nay-148-bb-baaacJGJSI.png?v=1534203447604"
     var idHopDong: String? = null
+    var countOfImage: Int = 0
 
     companion object {
         val KEY_DATA_TITLE = "KEY_DATA_TITLE"
@@ -41,14 +44,31 @@ class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoC
         super.onCreate(savedInstanceState)
         getDataIntent()
         obsever()
+        setOnclickListener()
+    }
+
+    private fun setOnclickListener() {
+        fbUploadImage.setOnSingleClickListener {
+            UploadImageActivity.start(this, mViewModel?.infoContract?.value?.numberContract,countOfImage )
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == UploadImageActivity.CODE_UPLOAD_IMAGE) {
+                mViewModel?.getChiTietHDCD(idHopDong ?: "")
+            }
+        }
     }
 
     private fun obsever() {
         mViewModel?.infoContract?.observe(this, Observer {
             it?.let {
                 mViewBinding?.item = it
-                var listURL = it.hinhAnh?.map { it.url ?:"" }?.toMutableList()
-                rvBanner.setListImage(it.hinhAnh?.map { it.url ?:"" }?.toMutableList(), 0)
+                var listURL = it.hinhAnh?.map { it.url ?: "" }?.toMutableList()
+                countOfImage = listURL?.size ?: 0
+                rvBanner.setListImage(listURL, 0)
                 rvBanner.setEventClickBanner { view, i ->
                     ImageViewer.Builder(this, listURL).setStartPosition(i).show()
                 }
@@ -61,37 +81,17 @@ class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoC
         idHopDong = intent?.getStringExtra(KEY_DATA_ID_ITEM)
         typeHD = intent?.getStringExtra(KEY_DATA_TITLE) ?: ScreenIDEnum.HOP_DONG_CAM_DO.value
         if (typeHD.contains(ScreenIDEnum.CAM_DO_GIA_DUNG.value)) {
-            mViewModel?.getChiTietHDGiaDung(idHopDong ?: "")
             title = getString(R.string.thong_tin_do_gia_dung)
         } else if (typeHD.contains(ScreenIDEnum.HOP_DONG_TRA_GOP.value)) {
-            mViewModel?.getChiTietCamDoTraGop(idHopDong ?: "")
             title = getString(R.string.thong_tin_hd_tra_gop)
-        } else if (typeHD.contains(ScreenIDEnum.HOP_DONG_CAM_DO.value)){
+        } else if (typeHD.contains(ScreenIDEnum.HOP_DONG_CAM_DO.value)) {
             title = getString(R.string.info_contract)
-            mViewModel?.getChiTietHDCD(idHopDong ?: "")
-        }else{
+        } else {
             title = getString(R.string.tt_hddngd)
-            mViewModel?.getChiTietDuNoGiamDan(idHopDong ?: "")
         }
-
+        mViewModel?.getChiTietHDCD(idHopDong ?: "")
     }
 
-//    private fun setData() {
-//        mViewModel?.setNavigator(this)
-//        idHopDong = intent?.getStringExtra(KEY_DATA_ID_ITEM)
-//
-//        if (typeHD.contains(ScreenIDEnum.CAM_DO_GIA_DUNG.value)) {
-//            title = getString(R.string.thong_tin_do_gia_dung)
-//        } else if (typeHD.contains(ScreenIDEnum.HOP_DONG_TRA_GOP.value)) {
-//            title = getString(R.string.thong_tin_hd_tra_gop)
-//        } else if (typeHD.contains(ScreenIDEnum.HOP_DONG_CAM_DO.value)){
-//            title = getString(R.string.info_contract)
-//        }else{
-//            title = getString(R.string.tt_hddngd)
-//        }
-//        mViewModel?.getChiTietHDCD(idHopDong ?: "")
-//
-//    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
