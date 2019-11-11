@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="item"
+                type="com.app.f49.model.timkiem.TimKiemDTO"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:background="@color/colorWhite"
+            android:paddingBottom="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                tools:text="@string/stt"
+                android:text="@{item.stt}"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:text="@{item.soHopDong}"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:text="@{item.tenKhachHang}"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:textColor="@color/colorAccent"
+                android:text="@{item.soTien}"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</layout>

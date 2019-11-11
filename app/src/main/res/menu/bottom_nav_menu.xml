@@ -14,16 +14,16 @@
             app:showAsAction="always"
             android:title="@string/dash_board"/>
 
+
+    <item
+            android:id="@+id/navigation_message"
+            app:showAsAction="always"
+            android:title=""/>
     <item
             android:id="@+id/navigation_notifications"
             android:icon="@drawable/ic_tab_notification"
             app:showAsAction="always"
             android:title="@string/title_notifications"/>
-    <item
-            android:id="@+id/navigation_message"
-            android:icon="@drawable/ic_tab_chat"
-            app:showAsAction="always"
-            android:title="@string/message"/>
     <item
             android:id="@+id/navigation_profile"
             android:icon="@drawable/ic_tab_profile"

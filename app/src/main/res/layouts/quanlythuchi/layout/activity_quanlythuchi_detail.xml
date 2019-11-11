@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         >
 
     <data>
+
+        <import type="android.view.View"/>
 
         <variable
                 name="item"
@@ -29,123 +32,281 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <LinearLayout
+            <android.support.v4.widget.NestedScrollView
+                    android:layout_above="@+id/bttom"
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
                     android:layout_height="match_parent">
 
-
                 <LinearLayout
-                        style="@style/LnHorizontalWeightSum">
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                            style="@style/TextViewLeftQuanLyThuChi"
-                            android:text="@string/store"/>
 
-                    <TextView
-                            style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.tenCuaHang}"/>
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftQuanLyThuChi"
+                                android:text="@string/store"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.tenCuaHang}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftQuanLyThuChi"
+                                android:text="@string/date_thuc_hien"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.ngayThucHien}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftQuanLyThuChi"
+                                android:text="@string/thu"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.thu}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftQuanLyThuChi"
+                                android:text="@string/chi"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.chi}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftQuanLyThuChi"
+                                android:text="@string/nguoi_thuc_hien"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.nguoiThucHien}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftQuanLyThuChi"
+                                android:text="@string/ly_do"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.lyDo}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftQuanLyThuChi"
+                                android:text="@string/ghi_chu"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.ghiChu}"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:orientation="vertical"
+                            android:visibility="@{item.isChi == true ? View.VISIBLE : View.GONE}"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftQuanLyThuChi"
+                                    android:text="@string/status"/>
+
+                            <TextView
+                                    style="@style/TextViewRightQuanLyThuChi"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="@dimen/dp_48"
+                                    android:textColor="@color/colorAccent"
+                                    tools:text="Cho duyet"
+                                    android:text="@{item.trangThaiDisplay}"/>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                android:visibility="@{item.isShowEditText() == true ? View.VISIBLE : View.GONE}"
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftQuanLyThuChi"
+                                    android:textColor="@color/colorPrimary"
+                                    android:text="@string/y_kien"/>
+
+                            <TextView
+                                    style="@style/TextViewRightQuanLyThuChi"/>
+                        </LinearLayout>
+
+                        <View
+                                android:background="@color/colorPrimary"
+                                android:visibility="@{item.isShowEditText() == true ? View.VISIBLE : View.GONE}"
+                                style="@style/Line"/>
+
+                        <EditText
+                                android:id="@+id/edtYKien"
+                                android:layout_width="match_parent"
+                                android:gravity="top"
+                                android:visibility="@{item.isShowEditText() == true ? View.VISIBLE : View.GONE}"
+                                android:fontFamily="@font/roboto_light"
+                                android:layout_marginTop="@dimen/toolbar_half_padding_horizontal"
+                                android:textSize="@dimen/dp_48"
+                                android:text="@string/accept"
+                                android:padding="@dimen/toolbar_half_padding_horizontal"
+                                android:background="@drawable/bg_boder_gray"
+                                android:minHeight="@dimen/dp_338"
+                                android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:visibility="@{item.isShowEditText() == true ? View.GONE : View.VISIBLE}"
+                                android:orientation="vertical"
+                                android:layout_height="wrap_content">
+
+                            <TextView
+                                    android:layout_width="match_parent"
+                                    android:gravity="top"
+                                    android:fontFamily="@font/roboto_bold_italic"
+                                    android:layout_marginTop="@dimen/toolbar_half_padding_horizontal"
+                                    android:textSize="@dimen/dp_48"
+                                    android:text="@{item.yKien.nameAndTime}"
+                                    android:layout_height="wrap_content"/>
+
+                            <TextView
+                                    android:layout_width="match_parent"
+                                    android:gravity="top"
+                                    android:layout_marginTop="@dimen/toolbar_half_padding_horizontal"
+                                    android:fontFamily="@font/roboto_light"
+                                    android:text="@{item.yKien.content}"
+                                    android:textSize="@dimen/dp_48"
+                                    android:layout_height="wrap_content"/>
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <LinearLayout
+                    android:id="@+id/bttom"
+                    android:visibility="@{item.isChi == true ? View.VISIBLE : View.GONE}"
+                    android:orientation="vertical"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                 <View
-                        style="@style/Line"/>
+                        android:layout_above="@+id/lnBottom"
+                        android:visibility="@{item.isShowEditText() == true ? View.VISIBLE : View.GONE}"
+                        style="@style/ShadowTop"
+                        />
 
                 <LinearLayout
-                        style="@style/LnHorizontalWeightSum">
+                        android:id="@+id/lnBottom"
+                        android:weightSum="10"
+                        android:orientation="horizontal"
+                        android:clipToPadding="false"
+                        android:visibility="@{item.isShowEditText() == true ? View.VISIBLE : View.GONE}"
+                        android:layout_width="match_parent"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                            style="@style/TextViewLeftQuanLyThuChi"
-                            android:text="@string/date_thuc_hien"/>
+                    <android.support.v7.widget.CardView
+                            android:id="@+id/btnTuChoi"
+                            android:layout_width="0dp"
+                            android:layout_weight="5"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardCornerRadius="@dimen/dp_68"
+                            android:layout_height="@dimen/dp_136">
 
-                    <TextView
-                            style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.ngayThucHien}"/>
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:text="@string/tu_choi"
+                                android:textSize="@dimen/dp_48"
+                                android:gravity="center"
+                                android:background="@drawable/bg_btn_cancel"
+                                android:fontFamily="@font/roboto_bold"
+                                android:layout_height="match_parent"/>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                            android:id="@+id/btnDone"
+                            android:layout_width="0dp"
+                            android:layout_weight="5"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardCornerRadius="@dimen/dp_68"
+                            android:layout_height="@dimen/dp_136">
+
+
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:text="@string/dong_y"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/dp_48"
+                                android:gravity="center"
+                                android:background="@drawable/bg_btn_action_small"
+                                android:fontFamily="@font/roboto_bold"
+                                android:layout_height="match_parent"/>
+
+                    </android.support.v7.widget.CardView>
                 </LinearLayout>
-
-                <View
-                        style="@style/Line"/>
-
-                <LinearLayout
-                        style="@style/LnHorizontalWeightSum">
-
-                    <TextView
-                            style="@style/TextViewLeftQuanLyThuChi"
-                            android:text="@string/thu"/>
-
-                    <TextView
-                            style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.thu}"/>
-                </LinearLayout>
-
-                <View
-                        style="@style/Line"/>
-
-                <LinearLayout
-                        style="@style/LnHorizontalWeightSum">
-
-                    <TextView
-                            style="@style/TextViewLeftQuanLyThuChi"
-                            android:text="@string/chi"/>
-
-                    <TextView
-                            style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.chi}"/>
-                </LinearLayout>
-
-                <View
-                        style="@style/Line"/>
-
-
-                <LinearLayout
-                        style="@style/LnHorizontalWeightSum">
-
-                    <TextView
-                            style="@style/TextViewLeftQuanLyThuChi"
-                            android:text="@string/nguoi_thuc_hien"/>
-
-                    <TextView
-                            style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.nguoiThucHien}"/>
-                </LinearLayout>
-
-                <View
-                        style="@style/Line"/>
-
-                <LinearLayout
-                        style="@style/LnHorizontalWeightSum">
-
-                    <TextView
-                            style="@style/TextViewLeftQuanLyThuChi"
-                            android:text="@string/ly_do"/>
-
-                    <TextView
-                            style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.lyDo}"/>
-                </LinearLayout>
-
-                <View
-                        style="@style/Line"/>
-
-                <LinearLayout
-                        style="@style/LnHorizontalWeightSum">
-
-                    <TextView
-                            style="@style/TextViewLeftQuanLyThuChi"
-                            android:text="@string/ghi_chu"/>
-
-                    <TextView
-                            style="@style/TextViewRightQuanLyThuChi"
-                            android:text="@{item.ghiChu}"/>
-                </LinearLayout>
-
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </RelativeLayout>
     </LinearLayout>
 
 </layout>

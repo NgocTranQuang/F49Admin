@@ -16,6 +16,8 @@ import me.leolin.shortcutbadger.ShortcutBadger
 class BadgedBottomNavigationBar : BottomNavigationView {
     @LayoutRes
     internal var badgeLayoutResId: Int = 0
+    val TAB_QRCODE =2
+    var TAB_NOTIFICATION =3
 
     constructor(context: Context) : super(context) {}
 
@@ -32,18 +34,18 @@ class BadgedBottomNavigationBar : BottomNavigationView {
      *
      * @param menuItemIndex
      */
-    fun showBadge(menuItemIndex: Int, value: Int) {
+    fun showBadgeNotification(menuItemIndex: Int, value: Int) {
         if (value <= 0) {
-            removeBadge(menuItemIndex)
+            removeBadge(TAB_NOTIFICATION)
             return
         }
         val bottomNavigationView = getChildAt(0) as android.support.design.internal.BottomNavigationMenuView
-        val view = bottomNavigationView.getChildAt(menuItemIndex)
+        val view = bottomNavigationView.getChildAt(TAB_NOTIFICATION)
         if (view is ViewGroup) {
             //NUMBER_OF_MENU_ITEM_VIEW_CHILDERN_WITHOUT_BADGE
             if (view.childCount > 2) {
-                if(view.getChildAt(2) is TextView){
-                    (view.getChildAt(2) as TextView).text = "${value}"
+                if(view.getChildAt(3) is TextView){
+                    (view.getChildAt(3) as TextView).text = "${value}"
                     ShortcutBadger.applyCount(context,value)
 //                    BadgeUtils.setBadge(context,value)
                 }
@@ -56,6 +58,32 @@ class BadgedBottomNavigationBar : BottomNavigationView {
             true)
         viewBadge.notifications_badge.text = "$value"
         ShortcutBadger.applyCount(context,value)
+    }
+
+    fun showBadgeQRCode(menuItemIndex: Int, value: Int) {
+        if (value <= 0) {
+            removeBadge(TAB_QRCODE)
+            return
+        }
+        val bottomNavigationView = getChildAt(0) as android.support.design.internal.BottomNavigationMenuView
+        val view = bottomNavigationView.getChildAt(TAB_QRCODE)
+        if (view is ViewGroup) {
+            //NUMBER_OF_MENU_ITEM_VIEW_CHILDERN_WITHOUT_BADGE
+            if (view.childCount > 2) {
+                if(view.getChildAt(2) is TextView){
+                    (view.getChildAt(2) as TextView).text = "${value}"
+//                    ShortcutBadger.applyCount(context,value)
+//                    BadgeUtils.setBadge(context,value)
+                }
+                return
+            }
+        }
+        val bottomNavigationItemView = view as android.support.design.internal.BottomNavigationItemView
+
+        var viewBadge = LayoutInflater.from(context).inflate(if (badgeLayoutResId != -1) badgeLayoutResId else R.layout.bottom_navigation_custom_item, bottomNavigationItemView,
+            true)
+//        viewBadge.notifications_badge.text = "$value"
+//        ShortcutBadger.applyCount(context,value)
     }
 
     /**

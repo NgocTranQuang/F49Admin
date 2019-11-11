@@ -27,7 +27,8 @@ enum class ScreenIDEnum(var value: String) {
     QUAN_LY_THU_CHI_CHI_TIET("ThuChi_ChiTiet"),
     TAI_SAN_THANH_LY("TaiSanThanhLy"),
     RUT_VON("RutVon"),
-    RUT_VON_CHI_TIET("RutVon_ChiTiet")
+    RUT_VON_CHI_TIET("RutVon_ChiTiet"),
+    TIEN_HOA_HONG("TienHoaHong"),
 }
 
 enum class DateFilterEnum(var value: Int) {
@@ -136,4 +137,34 @@ enum class TypeHopDongDashBoardEnum(var value: Int) {
     HOP_DONG_CAM_DO_GIA_DUNG(3),
     HOP_DONG_TRA_GOP(2),
     HOP_DONG_DU_NO_GIAM_DAN(3)
+}
+
+enum class TypeTrangThaiThuChiEnum(var value: Int) {
+//    CHO_DUYET(1),
+//    TU_CHOI(3),
+//    DA_DUYET(4)
+
+    DA_DUYET(4) {
+        override fun getNameEnum() = "Đã duyệt"
+    },
+    CHO_DUYET(1) {
+        override fun getNameEnum() = "Chờ duyệt"
+    },
+    TU_CHOI(3) {
+        override fun getNameEnum() = "Từ chối"
+    };
+
+    companion object {
+        private val map = TypeTrangThaiThuChiEnum.values().associateBy(TypeTrangThaiThuChiEnum::value)
+        private val mapName = TypeTrangThaiThuChiEnum.values().associateBy(TypeTrangThaiThuChiEnum::getNameEnum)
+        fun get(type: Int?) = map[type]
+        fun get(name: String?) = mapName[name]
+    }
+
+    abstract fun getNameEnum(): String
+}
+
+enum class TypeThuChiEnum(var value: String) {
+    THU("Thu"),
+    CHI("Chi")
 }

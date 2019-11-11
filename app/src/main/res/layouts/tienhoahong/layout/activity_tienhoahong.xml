@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.app.f49.activity.tienhoahong.TienHoaHongViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header"
+                android:stateListAnimator="@animator/toolbar_elevated"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    style="@style/CommonToolbar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:background="@color/color_line_divider_light"
+                android:layout_height="wrap_content">
+
+            <android.support.design.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <Spinner
+                            android:id="@+id/spNhanVien"
+                            style="@style/SpinnerStore">
+
+                    </Spinner>
+
+                    <ImageView
+                            style="@style/ImageSpinner"/>
+                </RelativeLayout>
+            </android.support.design.card.MaterialCardView>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:clipToPadding="false"
+                    android:layout_height="wrap_content">
+
+                <android.support.design.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/toolbar_half_padding_horizontal"
+                        android:layout_height="@dimen/dp_128">
+
+                    <TextView
+                            android:id="@+id/tvFromDate"
+                            android:layout_width="match_parent"
+                            android:date="@{viewModel.fromDate}"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/toolbar_half_padding_horizontal"
+                            android:drawableEnd="@drawable/ic_big_calender"
+                            android:layout_height="match_parent"/>
+                </android.support.design.card.MaterialCardView>
+
+                <android.support.design.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/dp_128">
+
+                    <TextView
+                            android:id="@+id/tvToDate"
+                            android:layout_width="match_parent"
+                            android:date="@{viewModel.toDate}"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/toolbar_half_padding_horizontal"
+                            tools:text="dfdf"
+                            android:drawableEnd="@drawable/ic_big_calender"
+                            android:layout_height="match_parent"/>
+                </android.support.design.card.MaterialCardView>
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/btnXem"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/colorWhite"
+                    android:text="Xem"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/stt"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:text="@string/so_hd"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="3.5"
+                    android:text="@string/khach_hang"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:text="@string/sotien"
+                    android:gravity="end"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <View
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                style="@style/Line"/>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:background="@color/colorWhite"
+                android:layout_height="match_parent">
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:overScrollMode="never"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvTienHoaHong"
+                            android:layout_width="match_parent"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin"
+                            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                            android:overScrollMode="never"
+                            android:background="@color/color_line_divider_light"
+                            android:layout_height="wrap_content">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                    <View
+                            android:layout_below="@+id/rvTienHoaHong"
+                            android:id="@+id/line"
+                            android:layout_marginStart="@dimen/activity_horizontal_margin"
+                            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                            style="@style/Line"/>
+
+                    <RelativeLayout
+                            android:id="@+id/rlTongTien"
+                            android:layout_below="@+id/line"
+                            android:layout_margin="@dimen/activity_horizontal_margin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/tong_tien"
+                                android:fontFamily="@font/roboto_bold"
+                                android:layout_height="wrap_content"/>
+
+                        <TextView
+                                android:id="@+id/tvTongTien"
+                                android:layout_width="wrap_content"
+                                android:layout_weight="1"
+                                android:textColor="@color/colorRed"
+                                android:layout_alignParentEnd="true"
+                                android:fontFamily="@font/roboto_bold"
+                                android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:orientation="vertical"
+                                android:layout_height="match_parent">
+
+                            <include layout="@layout/row_item_playholder_camdo"/>
+
+                            <include layout="@layout/row_item_playholder_camdo"/>
+
+                            <include layout="@layout/row_item_playholder_camdo"/>
+
+                            <include layout="@layout/row_item_playholder_camdo"/>
+
+                            <include layout="@layout/row_item_playholder_camdo"/>
+
+                            <include layout="@layout/row_item_playholder_camdo"/>
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <TextView
+                            android:id="@+id/tvNoData"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin"
+                            android:layout_width="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="@string/no_data"
+                            android:visibility="gone"
+                            android:layout_height="wrap_content"/>
+                </RelativeLayout>
+            </ScrollView>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

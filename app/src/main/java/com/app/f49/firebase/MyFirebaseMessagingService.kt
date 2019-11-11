@@ -20,6 +20,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
         super.onMessageReceived(remoteMessage)
+
         if ((remoteMessage?.getData()?.size ?: 0) > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage?.getData())
             val data = remoteMessage?.getData()

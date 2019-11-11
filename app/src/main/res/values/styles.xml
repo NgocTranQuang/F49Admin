@@ -118,7 +118,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:paddingStart">@dimen/toolbar_half_padding_horizontal</item>
         <item name="android:contentInsetStart">0dp</item>
         <item name="android:contentInsetEnd">0dp</item>
         <item name="contentInsetStart">0dp</item>
@@ -131,7 +130,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">@android:color/transparent</item>
-        <item name="android:paddingStart">@dimen/toolbar_half_padding_horizontal</item>
         <item name="android:contentInsetStart">0dp</item>
         <item name="android:contentInsetEnd">0dp</item>
         <item name="contentInsetStart">0dp</item>
@@ -153,6 +151,16 @@
 
     <style name="TextViewLeftQuanLyThuChi" parent="TextViewLeftInfoCamdo">
         <item name="android:layout_weight">3.5</item>
+
+    </style>
+
+    <style name="TextViewLeftBaoCaoTongHop" parent="TextViewLeftInfoCamdo">
+        <item name="android:layout_weight">4</item>
+
+    </style>
+
+    <style name="TextViewHeaderBaoCaoTongHop" parent="TextViewLeftQuanLyThuChi">
+        <item name="android:textColor">@color/colorPrimary</item>
 
     </style>
 

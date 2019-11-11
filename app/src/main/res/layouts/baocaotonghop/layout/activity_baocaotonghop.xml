@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        >
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.app.f49.activity.baocaotonghop.BaoCaoTongHopViewModel"/>
+
+        <variable
+                name="item"
+                type="com.app.f49.model.baocaotonghop.BaoCaoTongHopDTO"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header"
+                android:stateListAnimator="@animator/toolbar_elevated"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    style="@style/CommonToolbar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:background="@color/color_line_divider_light"
+                android:layout_height="wrap_content">
+
+            <android.support.design.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/activity_horizontal_margin"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <Spinner
+                            android:id="@+id/spSelectStore"
+                            style="@style/SpinnerStore">
+
+                    </Spinner>
+
+                    <ImageView
+                            style="@style/ImageSpinner"/>
+                </RelativeLayout>
+            </android.support.design.card.MaterialCardView>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:clipToPadding="false"
+                    android:layout_height="wrap_content">
+
+                <android.support.design.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/toolbar_half_padding_horizontal"
+                        android:layout_height="@dimen/dp_128">
+
+                    <TextView
+                            android:id="@+id/tvFromDate"
+                            android:layout_width="match_parent"
+                            android:date="@{viewModel.fromDate}"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/toolbar_half_padding_horizontal"
+                            android:drawableEnd="@drawable/ic_big_calender"
+                            android:layout_height="match_parent"/>
+                </android.support.design.card.MaterialCardView>
+
+                <android.support.design.card.MaterialCardView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="@dimen/dp_128">
+
+                    <TextView
+                            android:id="@+id/tvToDate"
+                            android:layout_width="match_parent"
+                            android:date="@{viewModel.toDate}"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/toolbar_half_padding_horizontal"
+                            android:drawableEnd="@drawable/ic_big_calender"
+                            android:layout_height="match_parent"/>
+                </android.support.design.card.MaterialCardView>
+            </LinearLayout>
+
+            <Button
+                    android:id="@+id/btnXem"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/colorWhite"
+                    android:text="Xem"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:background="@color/colorWhite"
+                android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                    android:overScrollMode="never"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            style="@style/LnItemProfile">
+
+                        <TextView
+                                style="@style/TextViewHeaderBaoCaoTongHop"
+                                android:text="@string/tien_dau_ky"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                />
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"
+                            android:background="@color/colorPrimary"
+                            />
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/tien_mat"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.tienMatDauKy}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/du_no"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.duNoDauKy}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/thanh_ly"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.thanhLyDauKy}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnItemProfile">
+
+                        <TextView
+                                style="@style/TextViewHeaderBaoCaoTongHop"
+                                android:text="@string/tien_cuoi_ky"
+                                />
+
+                        <TextView
+                                style="@style/TextViewRightProfile"
+                                />
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"
+                            android:background="@color/colorPrimary"
+                            />
+
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/tien_mat"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.tienMatCuoiKy}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/du_no"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.duNoCuoiKy}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/thanh_ly"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.thanhLyCuoiKy}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnItemProfile">
+
+                        <TextView
+                                android:layout_weight="10"
+                                style="@style/TextViewHeaderBaoCaoTongHop"
+                                android:text="@string/bien_dong_tien_mat_trong_ky"
+                                />
+
+                        <!--<TextView-->
+                        <!--style="@style/TextViewRightProfile"-->
+                        <!--/>-->
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"
+                            android:background="@color/colorPrimary"
+                            />
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/dau_tu_rut_von"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.dauTuRutVon}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/von_vay_ngoai"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.vonVayNgoai}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/von_cho_vay"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.vonChoVay}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/von_thu_ve_tu_hop_dong"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.vonThuVeTuHD}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/lai_le_phi_thu_duoc"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.laiThuDuoc}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/tang_giam_thanh_ly"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.tangGiamThanhLy}"/>
+                    </LinearLayout>
+
+                    <View
+                            style="@style/Line"/>
+
+                    <LinearLayout
+                            style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftBaoCaoTongHop"
+                                android:text="@string/can_doi_thu_chi"/>
+
+                        <TextView
+                                style="@style/TextViewRightQuanLyThuChi"
+                                android:text="@{item.canDoiThuChi}"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

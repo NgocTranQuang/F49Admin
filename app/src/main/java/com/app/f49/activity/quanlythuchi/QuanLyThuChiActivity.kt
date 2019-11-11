@@ -1,5 +1,6 @@
 package com.app.f49.activity.quanlythuchi
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.content.Context
 import android.content.Intent
@@ -10,6 +11,7 @@ import com.app.f49.Base
 import com.app.f49.DateFilterEnum
 import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.activity.rutlaicuahang.RutLaiCuaHangActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityQuanlythuchiBinding
 import com.app.f49.fragment.picker.MyDatePickerFragment
@@ -62,6 +64,18 @@ class QuanLyThuChiActivity : BaseMvvmActivity<ActivityQuanlythuchiBinding, QuanL
 //        }else{
 //            title = getString(R.string.quan_ly_thu_chi)
 //        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode === RutLaiCuaHangActivity.REQUEST_CODE) {
+            if (resultCode === Activity.RESULT_OK) {
+                val strEditText = data?.getBooleanExtra(RutLaiCuaHangActivity.KEY_CHECK_RELOAD, false)
+                if (strEditText == true) {
+                    getListQuanLyThuChi()
+                }
+            }
+        }
     }
 
     private fun initRV() {

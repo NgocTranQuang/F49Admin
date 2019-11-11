@@ -153,6 +153,26 @@
     <string name="ch_p_nh_t_camera">Chụp ảnh từ camera</string>
     <string name="upload_fail">Upload ảnh lỗi. Xin vui lòng thử lại.</string>
     <string name="upload_thanhcong">Upload ảnh thành công.</string>
+    <string name="von_cho_vay">Vốn cho vay</string>
+    <string name="von_thu_ve_tu_hop_dong">Vốn thu về từ hợp đồng</string>
+    <string name="lai_le_phi_thu_duoc">Lãi, lệ phí thu được</string>
+    <string name="tang_giam_thanh_ly">Tăng giảm thanh lý</string>
+    <string name="von_vay_ngoai">Vốn vay ngoài</string>
+    <string name="dau_tu_rut_von">Đầu tư - rút vốn</string>
+    <string name="bien_dong_tien_mat_trong_ky">Biến động tiền mặt trong kỳ</string>
+    <string name="thanh_ly">Thanh lý</string>
+    <string name="tien_mat">Tiền mặt</string>
+    <string name="tien_cuoi_ky">Tiền cuối kỳ</string>
+    <string name="tien_dau_ky">Tiền đầu kỳ</string>
+    <string name="bao_cao_tong_hop">Báo cáo tổng hợp</string>
+    <string name="can_doi_thu_chi">Cân đối thu chi</string>
+    <string name="tu_ngay">Từ ngày</string>
+    <string name="den_ngay">Đến ngày</string>
+    <string name="stt">STT</string>
+    <string name="tien_hoa_hong">Tiền hoa hồng</string>
+    <string name="tim_kiem">Tìm kiếm</string>
+    <string name="invalid_data">Xin vui lòng nhập đầy đủ thông tin</string>
+    <string name="tong_tien">Tổng tiền</string>
 
 
 </resources>

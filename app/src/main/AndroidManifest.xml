@@ -130,6 +130,9 @@
         <activity android:name=".activity.exchangeHistory.ExchangeHistoryDetailActivity"/>
         <activity android:name=".activity.exchangeHistory.BorrowHistoryDetailActivity"/>
         <activity android:name=".activity.uploadimage.UploadImageActivity"/>
+        <activity android:name=".activity.baocaotonghop.BaoCaoTongHopActivity"/>
+        <activity android:name=".activity.tienhoahong.TienHoaHongActivity"/>
+        <activity android:name=".activity.timkiem.TimKiemActivity"/>
 
         <meta-data
                 android:name="firebase_crashlytics_collection_enabled"

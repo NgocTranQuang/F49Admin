@@ -8,6 +8,7 @@ import android.view.View
 import com.app.f49.R
 import com.app.f49.TypeHeader
 import com.app.f49.activity.camdo.CamdoActivity
+import com.app.f49.activity.timkiem.TimKiemActivity
 import com.app.f49.adapter.home.HomeViewPagerAdapter
 import com.app.f49.adapter.home.TypePager
 import com.app.f49.base.BaseNavigator
@@ -29,6 +30,7 @@ class DashBoardFragment : BaseMvvmFragment<FragmentDashboardBinding, DashBoardVi
     override fun getLayoutResource(): Int {
         return R.layout.fragment_dashboard
     }
+
     private fun observer() {
         viewModel?.setNavigator(this)
         getMainViewModel().listStore?.observe(this, Observer {
@@ -80,6 +82,9 @@ class DashBoardFragment : BaseMvvmFragment<FragmentDashboardBinding, DashBoardVi
                 viewModel?.getListItemHome(it.id ?: return@selectedItemListener)
             }
 
+        }
+        imgSearch.setOnSingleClickListener {
+            TimKiemActivity.start(activity!!)
         }
     }
 

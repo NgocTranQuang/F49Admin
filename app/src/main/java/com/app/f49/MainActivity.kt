@@ -171,6 +171,7 @@ class MainActivity : BaseActivity() {
         viewModel?.notificationCount?.observe(this, Observer {
             showBadger(it ?: 0)
         })
+        navView?.showBadgeQRCode(1,1)
     }
 
     private fun observer() {
@@ -178,7 +179,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun showBadger(count: Int) {
-        navView?.showBadge(ORDINAL_NOTIFICATION_ITEM, count)
+        navView?.showBadgeNotification(ORDINAL_NOTIFICATION_ITEM, count)
     }
 
 }

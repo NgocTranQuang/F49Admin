@@ -2,6 +2,7 @@ package com.app.f49.service
 
 import com.app.f49.model.BaseResponse
 import com.app.f49.model.HopDongCamDoDTO
+import com.app.f49.model.baocaotonghop.BaoCaoTongHopDTO
 import com.app.f49.model.dinhgia.CamdoDTO
 import com.app.f49.model.history.BorrowHistoryDTO
 import com.app.f49.model.history.DetailBorrowDTO
@@ -11,6 +12,8 @@ import com.app.f49.model.home.ItemHomeDTO
 import com.app.f49.model.infocontract.InfoContractDTO
 import com.app.f49.model.login.LoginDTO
 import com.app.f49.model.nguoiQLHD.NguoiQLHDDTO
+import com.app.f49.model.nhanvien.HoaHongDTO
+import com.app.f49.model.nhanvien.NhanVienDTO
 import com.app.f49.model.notification.NotificationDTO
 import com.app.f49.model.notification.NotificationUnread
 import com.app.f49.model.profile.UserProfileDTO
@@ -21,6 +24,7 @@ import com.app.f49.model.status.StatusDTO
 import com.app.f49.model.store.StoreDTO
 import com.app.f49.model.tab.TabDTO
 import com.app.f49.model.taisanthanhly.*
+import com.app.f49.model.timkiem.TimKiemDTO
 import com.app.f49.model.topmenu.TopMenuDTO
 import com.app.f49.model.uploadImage.UploadImageDTO
 import io.reactivex.Observable
@@ -36,6 +40,7 @@ interface ApiService {
         const val API_TOPMENU = "api/TopMenu/"
         const val API_THUCHI = "api/ThuChi/"
         const val API_RUT_LAI = "api/RutLai/"
+        const val API_BAO_CAO = "api/BaoCao/"
         const val API_RUT_VON = "api/RutVon/"
         const val API_RUT_VON_DAU_TU = "api/QuanLyVonDauTu/"
         const val API_NOTIFICATION = "api/Notification/"
@@ -43,6 +48,7 @@ interface ApiService {
         const val API_FIREBASE = "api/ManageFireBase/"
         const val API_QUAN_LY_TAI_SAN = "api/QuanLyTaiSan/"
         const val API_LICHSU = "api/LichSu/"
+        const val API_TIENHOAHONG = "api/TienHoaHong/"
     }
 
     /**
@@ -119,8 +125,8 @@ interface ApiService {
     @GET(API_HOPDONGCAMDO + "GetChiTietHopDong")
     fun getChiTietHDCD(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<InfoContractDTO>>
 
-    @POST(API_HOPDONGCAMDO+"UploadImage")
-    fun uploadImage(@Body rq : UploadImageDTO): Observable<BaseResponse<Boolean>>
+    @POST(API_HOPDONGCAMDO + "UploadImage")
+    fun uploadImage(@Body rq: UploadImageDTO): Observable<BaseResponse<Boolean>>
 
 //    @GET(API_HOPDONGCAMDO + "GetChiTietCamDoGiaDung")
 //    fun getChiTietCamDoGiaDung(@Query("idHopDong") idCuaHang: Int?): Observable<BaseResponse<MutableList<InfoContractDTO>>>
@@ -142,7 +148,8 @@ interface ApiService {
     @GET(API_THUCHI + "GetDetailThuChiByID")
     fun getDetailQuanLyThuChi(@Query("idItem") idItem: Int?): Observable<BaseResponse<MutableList<QuanLyThuChiDetailDTO>>>
 
-
+    @PUT(API_THUCHI + "PutDuyetThongTinChi")
+    fun duyetChi(@Query("id") idItem: Int?, @Query("yKien") yKien: String?, @Query("trangThai") trangThai: Boolean): Observable<BaseResponse<RutLaiDTO>>
     /*
     *Rut von dau tu
     * */
@@ -254,4 +261,23 @@ interface ApiService {
 
     @GET(API_LICHSU + "GetChiTietLichSuVayNo")
     fun getChiTietLichSuVayNo(@Query("idHopDong") idHopDong: Int?): Observable<BaseResponse<DetailBorrowDTO>>
+
+
+    /*
+    * Bao cao
+    * */
+    @GET(API_BAO_CAO + "GetBaoCaoTongHop")
+    fun getBaoCaoTongHop(@Query("idCuaHang") idItem: Int?, @Query("dtTuNgay") dtTuNgay: String?, @Query("dtDenNgay") dtDenNgay: String?): Observable<BaseResponse<BaoCaoTongHopDTO>>
+
+    //
+    @GET(API_TIENHOAHONG + "GetDanhSachNhanVien")
+    fun getListNhanVien(): Observable<BaseResponse<MutableList<NhanVienDTO>>>
+
+    @GET(API_TIENHOAHONG + "GetTienHoaHong")
+    fun getTienHoaHong(@Query("idNhanVien") idNhanVien: Int?, @Query("dtTuNgay") dtTuNgay: String?, @Query("dtDenNgay") dtDenNgay: String?): Observable<BaseResponse<HoaHongDTO>>
+
+    @GET(API_TIENICH + "GetTimKiemHopDong")
+    fun timKiemHopDong(@Query("tuKhoa") tuKhoa: String?, @Query("pageIndex") pageIndex: Int?): Observable<BaseResponse<MutableList<TimKiemDTO>>>
+
+
 }

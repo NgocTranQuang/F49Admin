@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.activity.rutlaicuahang.RutLaiCuaHangActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityQuanlythuchiDetailBinding
+import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_quanlythuchi_detail.*
 
 class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBinding, QuanLyThuChiDetailViewModel, BaseNavigator>() {
@@ -29,6 +31,16 @@ class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBi
         mViewModel?.setNavigator(this)
         getExtra()
         obsever()
+        onClickListener()
+    }
+
+    private fun onClickListener() {
+        btnDone.setOnSingleClickListener {
+            mViewModel?.duyetChi(edtYKien.text.toString(),true)
+        }
+        btnTuChoi.setOnSingleClickListener {
+            mViewModel?.duyetChi(edtYKien.text.toString(),false)
+        }
     }
 
     override fun getMyToolbar(): Toolbar? {
@@ -38,10 +50,25 @@ class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBi
     override fun getTitleToolbar(): String? {
         return getString(R.string.thong_tin_thu_chi)
     }
+
     private fun obsever() {
         mViewModel?.quanLyThuChiDetailDTO?.observe(this, Observer {
             mViewBinding?.item = it
         })
+        mViewModel?.finished?.observe(this, Observer {
+            var intent = Intent()
+            intent.putExtra(RutLaiCuaHangActivity.KEY_CHECK_RELOAD, true)
+            setResult(RESULT_OK, intent);
+            finish()
+        })
+    }
+
+    private fun hidePheDuyet() {
+
+    }
+
+    private fun showPheDuyet() {
+
     }
 
     private fun getExtra() {
@@ -54,4 +81,5 @@ class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBi
     private fun getData(id: Int?) {
         mViewModel?.getDetailQuanLyThuChi(id)
     }
+
 }

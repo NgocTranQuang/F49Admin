@@ -8,6 +8,7 @@ import android.view.View
 import com.app.f49.R
 import com.app.f49.TypeHeader
 import com.app.f49.activity.camdo.CamdoActivity
+import com.app.f49.activity.timkiem.TimKiemActivity
 import com.app.f49.adapter.home.HomeViewPagerAdapter
 import com.app.f49.adapter.home.TypePager
 import com.app.f49.base.BaseNavigator
@@ -93,6 +94,9 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNa
                 pageIndicatorView.setSelected(position)
             }
         })
+        imgSearch.setOnSingleClickListener {
+            TimKiemActivity.start(activity!!)
+        }
     }
 
     private fun setSpiner() {

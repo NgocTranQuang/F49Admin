@@ -41,6 +41,7 @@ class CamdoActivity : BaseMvvmActivity<ActivityCamdoBinding, CamdoViewModel, Bas
         getData()
         observer()
 
+
     }
 
     private fun observer() {
