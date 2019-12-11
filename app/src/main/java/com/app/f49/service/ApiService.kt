@@ -24,6 +24,8 @@ import com.app.f49.model.status.StatusDTO
 import com.app.f49.model.store.StoreDTO
 import com.app.f49.model.tab.TabDTO
 import com.app.f49.model.taisanthanhly.*
+import com.app.f49.model.thulai.ThuLaiDTO
+import com.app.f49.model.thulai.ValueResponse
 import com.app.f49.model.timkiem.TimKiemDTO
 import com.app.f49.model.topmenu.TopMenuDTO
 import com.app.f49.model.uploadImage.UploadImageDTO
@@ -40,6 +42,7 @@ interface ApiService {
         const val API_TOPMENU = "api/TopMenu/"
         const val API_THUCHI = "api/ThuChi/"
         const val API_RUT_LAI = "api/RutLai/"
+        const val API_THU_LAI = "api/ThuLai/"
         const val API_BAO_CAO = "api/BaoCao/"
         const val API_RUT_VON = "api/RutVon/"
         const val API_RUT_VON_DAU_TU = "api/QuanLyVonDauTu/"
@@ -279,5 +282,18 @@ interface ApiService {
     @GET(API_TIENICH + "GetTimKiemHopDong")
     fun timKiemHopDong(@Query("tuKhoa") tuKhoa: String?, @Query("pageIndex") pageIndex: Int?): Observable<BaseResponse<MutableList<TimKiemDTO>>>
 
+
+    /*
+    * THU LAI
+    * */
+
+    @GET(API_THU_LAI + "GetLoaiGiaoDich")
+    fun getLoaiGiaoDich(): Observable<BaseResponse<MutableList<ValueResponse>>>
+
+    @GET(API_THU_LAI + "GetChiTietHopDongThuLai")
+    fun getChiTietHopDongThuLai(@Query("idHopDong") idHopDong: Int?): Observable<BaseResponse<ThuLaiDTO>>
+
+    @PUT(API_THU_LAI + "PutThucHienThuLai")
+    fun putThucHienThuLai(@Query("idHopDong") idHopDong: Int?, @Query("loaiGiaoDich") loaiGiaoDich: Int?, @Query("idCuaHangFormApp") idCuaHangFormApp: Int?, @Query("tienThuThucTe") tienThuThucTe: Double?, @Query("ngayHieuLuc") ngayHieuLuc: String?): Observable<BaseResponse<ThuLaiDTO?>>
 
 }

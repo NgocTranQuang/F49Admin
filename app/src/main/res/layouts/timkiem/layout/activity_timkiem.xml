@@ -50,7 +50,9 @@
                     <EditText
                             android:id="@+id/edtKeySearch"
                             android:paddingStart="@dimen/toolbar_half_padding_horizontal"
+                            android:imeOptions="actionSearch"
                             android:hint="Số HĐ,tên KH..."
+                            android:inputType="text"
                             style="@style/SpinnerStore">
 
                     </EditText>

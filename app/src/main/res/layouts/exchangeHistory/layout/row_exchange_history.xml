@@ -69,7 +69,7 @@
                     <com.app.f49.custom.TextViewDrawableTop
                             style="@style/TextviewValue"
                             android:drawableStart="@drawable/ic_usd"
-                            android:money="@{item.dongLai}"
+                            android:money="@{item.thuLai}"
                             />
                 </LinearLayout>
 

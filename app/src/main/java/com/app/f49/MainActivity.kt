@@ -1,11 +1,15 @@
 package com.app.f49
 
+import android.Manifest
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.ActivityCompat
+import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.util.Log
 import android.widget.FrameLayout
@@ -22,9 +26,13 @@ import com.app.f49.model.notification.NotificationVO
 import com.app.f49.utils.GeneralUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
+import yergalizhakhan.kz.qrcodescannerkotlin.presentation.activities.main.QRCodeScanActivity
 
 
 class MainActivity : BaseActivity() {
+
+    private val RECORD_REQUEST_CODE = 101
+
     companion object {
         fun start(context: Context) {
             context.startActivity(Intent(context, MainActivity::class.java))
@@ -47,6 +55,7 @@ class MainActivity : BaseActivity() {
             }
 
             R.id.navigation_message -> {
+                setupPermissions()
 //                showFragment(NotificationFragment())
                 return@OnNavigationItemSelectedListener true
             }
@@ -57,6 +66,39 @@ class MainActivity : BaseActivity() {
             }
         }
         false
+    }
+
+    fun setupPermissions() {
+        val permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+
+        if (permission != PackageManager.PERMISSION_GRANTED)
+            requestPermissions()
+        else {
+            permissionGranted()
+        }
+    }
+
+    private fun permissionGranted() {
+        startActivity(Intent(this, QRCodeScanActivity::class.java))
+    }
+
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(this,
+            arrayOf(Manifest.permission.CAMERA),
+            RECORD_REQUEST_CODE)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            RECORD_REQUEST_CODE -> {
+                if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    setupPermissions()
+                } else {
+                    permissionGranted()
+                }
+            }
+        }
     }
 
     fun showFragment(fragment: BaseFragment) {
@@ -171,7 +213,7 @@ class MainActivity : BaseActivity() {
         viewModel?.notificationCount?.observe(this, Observer {
             showBadger(it ?: 0)
         })
-        navView?.showBadgeQRCode(1,1)
+        navView?.showBadgeQRCode(1, 1)
     }
 
     private fun observer() {

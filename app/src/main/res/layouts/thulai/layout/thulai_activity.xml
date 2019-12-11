@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="item"
+                type="com.app.f49.model.thulai.ThuLaiDTO"/>
+
+        <variable
+                name="viewModel"
+                type="com.app.f49.activity.thulai.ThuLaiViewModel"/>
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_header"
+                android:stateListAnimator="@animator/toolbar_elevated"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                    android:id="@+id/tb"
+                    style="@style/CommonToolbar"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <android.support.v4.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:clipToPadding="false"
+                        android:padding="@dimen/activity_horizontal_margin"
+                        android:layout_height="match_parent">
+
+                    <LinearLayout
+                            android:id="@+id/lnData"
+                            android:layout_width="match_parent"
+                            android:clipToPadding="false"
+                            android:orientation="vertical"
+                            android:layout_height="match_parent">
+
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/so_hd"/>
+
+                            <TextView
+                                    style="@style/TextViewRightInfoCamdo"
+                                    android:text="@{item.soHD}"/>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/ten_kh"/>
+
+                            <TextView
+                                    style="@style/TextViewRightInfoCamdo"
+                                    android:text="@{item.tenKH}"/>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/cua_hang"/>
+
+                            <TextView
+                                    style="@style/TextViewRightInfoCamdo"
+                                    android:text="@{item.tenCuaHang}"/>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/so_tien_vay"/>
+
+                            <TextView
+                                    style="@style/TextViewRightInfoCamdo"
+                                    android:money="@{item.soTienVay}"/>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                android:clipToPadding="false"
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/ngay_hieu_luc"/>
+
+                            <!--<android.support.design.card.MaterialCardView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--style="@style/TextViewRightInfoCamdo"-->
+                            <!--android:padding="@dimen/toolbar_half_padding_horizontal"-->
+                            <!--android:layout_height="@dimen/dp_128">-->
+
+                            <TextView
+                                    android:layout_weight="7"
+                                    android:layout_width="0dp"
+                                    android:id="@+id/tvNgayHieuLuc"
+                                    android:layout_height="@dimen/dp_128"
+                                    android:gravity="center_vertical"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingStart="@dimen/toolbar_half_padding_horizontal"
+                                    android:paddingEnd="@dimen/toolbar_half_padding_horizontal"
+                                    android:text="asdffsdfa"
+                                    android:background="@drawable/bg_boder_gray"
+                                    android:drawableEnd="@drawable/ic_big_calender"
+                                    android:date="@{viewModel.dateHieuLuc}"
+                                    />
+                            <!--</android.support.design.card.MaterialCardView>-->
+
+                            <!--<TextView-->
+                            <!--android:id="@+id/tvFromDate"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:date="@{viewModel.fromDate}"-->
+                            <!--android:gravity="center_vertical"-->
+                            <!--android:padding="@dimen/toolbar_half_padding_horizontal"-->
+                            <!--android:drawableEnd="@drawable/ic_big_calender"-->
+                            <!--android:layout_height="match_parent"/>-->
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/giao_dich"/>
+
+                            <RelativeLayout
+                                    android:layout_height="@dimen/dp_128"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="7"
+                                    android:layout_gravity="center_vertical"
+                                    android:background="@drawable/bg_boder_gray">
+
+                                <Spinner
+                                        style="@style/SpinnerStore"
+                                        android:id="@+id/spSelect"
+                                        >
+
+                                </Spinner>
+
+                                <ImageView
+                                        style="@style/ImageSpinner"/>
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/no_goc"/>
+
+                            <TextView
+                                    style="@style/TextViewRightInfoCamdo"
+                                    android:money="@{item.noGoc}"/>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/no_lai"/>
+
+                            <TextView
+                                    android:money="@{item.noLai}"
+                                    style="@style/TextViewRightInfoCamdo"/>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/phai_thu"/>
+
+                            <TextView
+                                    android:money="@{viewModel.phaiThu}"
+                                    style="@style/TextViewRightInfoCamdo"/>
+                        </LinearLayout>
+
+                        <View
+                                style="@style/Line"/>
+
+                        <LinearLayout
+                                style="@style/LnHorizontalWeightSum">
+
+                            <TextView
+                                    style="@style/TextViewLeftInfoCamdo"
+                                    android:text="@string/thu_thuc_te"/>
+
+                            <EditText
+                                    android:id="@+id/edtPrice"
+                                    android:inputType="number"
+                                    android:layout_height="@dimen/dp_128"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="7"
+                                    android:layout_gravity="center_vertical"
+                                    android:paddingStart="@dimen/toolbar_half_padding_horizontal"
+                                    android:background="@drawable/bg_boder_gray"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <android.support.v7.widget.CardView
+                    android:id="@+id/cvThucHien"
+                    android:layout_width="@dimen/dp_700"
+                    android:clickable="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="@dimen/btn_radius"
+                    android:layout_height="@dimen/height_btn">
+
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:text="@string/thuc_hien"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/dp_60"
+                        android:textAllCaps="true"
+                        android:gravity="center"
+                        android:background="@drawable/bg_btn_action"
+                        android:fontFamily="@font/roboto"
+                        android:layout_height="match_parent"/>
+
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

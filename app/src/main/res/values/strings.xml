@@ -173,6 +173,14 @@
     <string name="tim_kiem">Tìm kiếm</string>
     <string name="invalid_data">Xin vui lòng nhập đầy đủ thông tin</string>
     <string name="tong_tien">Tổng tiền</string>
-
+    <string name="so_tien_vay">Số tiền vay</string>
+    <string name="giao_dich">Giao dịch</string>
+    <string name="phai_thu">Phải thu</string>
+    <string name="thuc_hien">Thực hiện</string>
+    <string name="thu_thuc_te">Thu thực tế</string>
+    <string name="nhap_thu_thuc_te">Vui lòng nhập số tiền thu thực tế.</string>
+    <string name="ngay_hieu_luc">Ngày hiệu lực</string>
+    <string name="flashlight_turned_on">Đã bật đèn flash</string>
+    <string name="flashlight_turned_off">Đã tắt đèn flash</string>
 
 </resources>

@@ -45,6 +45,9 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
         viewModel?.setNavigator(this)
         viewModel?.listNotification?.observe(this, Observer {
             it?.let {
+                if (pageIndex == 0) {
+                    adapter?.clear()
+                }
                 insertData(it)
             }
         })
@@ -73,6 +76,7 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
     private fun initView() {
         swipeRefreshLayout.setOnRefreshListener {
             pageIndex = 0
+
             viewModel?.getListNotification(idStoreCurrent.toString(), pageIndex)
         }
     }

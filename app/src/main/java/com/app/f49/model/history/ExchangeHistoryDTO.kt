@@ -13,6 +13,6 @@ class ExchangeHistoryDTO {
         get() {
             return "Ngày giao dịch: " + ngayGiaoDich?.toShow()
         }
-    var dongLai: Long? = null
+    var thuLai: Long? = null
     var noGoc: Long? = null
 }

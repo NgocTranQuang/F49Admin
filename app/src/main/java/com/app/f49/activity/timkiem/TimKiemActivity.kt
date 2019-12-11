@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import com.app.f49.DateFilterEnum
 import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
@@ -15,6 +16,7 @@ import com.app.f49.model.timkiem.TimKiemDTO
 import extension.init
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_timkiem.*
+
 
 class TimKiemActivity : BaseMvvmActivity<ActivityTimkiemBinding, TimKiemViewModel, BaseNavigator>() {
 
@@ -60,6 +62,7 @@ class TimKiemActivity : BaseMvvmActivity<ActivityTimkiemBinding, TimKiemViewMode
             pageIndex += 1;
             getListQuanLyThuChi()
         }
+
     }
 
     private fun evenClickListener() {
@@ -68,9 +71,20 @@ class TimKiemActivity : BaseMvvmActivity<ActivityTimkiemBinding, TimKiemViewMode
             pageIndex = 1
             getListQuanLyThuChi()
         }
+        edtKeySearch.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                pageIndex = 1
+                getListQuanLyThuChi()
+                true
+            } else {
+                false
+            }
+        }
+
     }
 
     fun getListQuanLyThuChi() {
+        hideKeyboard()
         if (edtKeySearch.text.toString().isNullOrEmpty()) {
             showErrorDialog(getString(R.string.invalid_data))
             return

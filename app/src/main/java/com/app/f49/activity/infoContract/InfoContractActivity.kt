@@ -49,7 +49,7 @@ class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoC
 
     private fun setOnclickListener() {
         fbUploadImage.setOnSingleClickListener {
-            UploadImageActivity.start(this, mViewModel?.infoContract?.value?.numberContract,countOfImage )
+            UploadImageActivity.start(this, mViewModel?.infoContract?.value?.numberContract, countOfImage)
         }
     }
 

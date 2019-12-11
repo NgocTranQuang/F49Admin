@@ -42,13 +42,17 @@
     <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ"/>
     <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-feature android:name="android.hardware.camera.flash"/>
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
             android:name=".F49Application"
@@ -122,24 +126,45 @@
         <activity
                 android:name=".activity.rutlaicuahang.ThongTinRutLaiCuaHangActivity"
                 android:configChanges="orientation|keyboardHidden"/>
-        <activity android:name=".activity.taisanthanhly.TaiSanThanhLyActivity"
-                  android:configChanges="orientation|keyboardHidden"/>
-        <activity android:name=".activity.taisanthanhly.ThongTinTaiSanThanhLyActivity"
-                  android:configChanges="orientation|keyboardHidden"/>
-        <activity android:name=".activity.exchangeHistory.ExchangeHistoryActivity"/>
-        <activity android:name=".activity.exchangeHistory.ExchangeHistoryDetailActivity"/>
-        <activity android:name=".activity.exchangeHistory.BorrowHistoryDetailActivity"/>
-        <activity android:name=".activity.uploadimage.UploadImageActivity"/>
-        <activity android:name=".activity.baocaotonghop.BaoCaoTongHopActivity"/>
-        <activity android:name=".activity.tienhoahong.TienHoaHongActivity"/>
-        <activity android:name=".activity.timkiem.TimKiemActivity"/>
+        <activity
+                android:name=".activity.taisanthanhly.TaiSanThanhLyActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.taisanthanhly.ThongTinTaiSanThanhLyActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.exchangeHistory.ExchangeHistoryActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.exchangeHistory.ExchangeHistoryDetailActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.exchangeHistory.BorrowHistoryDetailActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.uploadimage.UploadImageActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.baocaotonghop.BaoCaoTongHopActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.tienhoahong.TienHoaHongActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.timkiem.TimKiemActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity
+                android:name=".activity.thulai.ThuLaiActivity"
+                android:configChanges="orientation|keyboardHidden"/>
+        <activity android:name="yergalizhakhan.kz.qrcodescannerkotlin.presentation.activities.main.QRCodeScanActivity"/>
 
         <meta-data
                 android:name="firebase_crashlytics_collection_enabled"
-                android:value="false" />
+                android:value="false"/>
         <meta-data
                 android:name="preloaded_fonts"
                 android:resource="@array/preloaded_fonts"/>
+
         <service android:name=".firebase.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
@@ -152,7 +177,7 @@
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_provider_paths" />
+                    android:resource="@xml/file_provider_paths"/>
         </provider>
     </application>
 

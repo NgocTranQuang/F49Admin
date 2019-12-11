@@ -4,7 +4,9 @@ import android.content.DialogInterface
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AlertDialog
+import android.text.Editable
 import android.text.SpannableString
+import android.text.TextWatcher
 import android.text.style.UnderlineSpan
 import android.view.View
 import android.webkit.WebView
@@ -12,6 +14,8 @@ import android.webkit.WebViewClient
 import android.widget.*
 import com.app.f49.R
 import com.app.f49.custom.SingleClickListener
+import java.text.NumberFormat
+import java.util.*
 
 
 fun LinearLayout.replaceFragment(fragment: Fragment) {
@@ -97,4 +101,58 @@ fun View.showDialogAsk(message: String, okAction: () -> Unit) {
 
     val alert11 = builder1.create()
     alert11.show()
+}
+
+fun EditText.addCurrencyFormatter() {
+
+    // Reference: https://stackoverflow.com/questions/5107901/better-way-to-format-currency-input-edittext/29993290#29993290
+    this.addTextChangedListener(object : TextWatcher {
+
+        private var current = ""
+
+        override fun afterTextChanged(s: Editable?) {
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            if (s.toString() != current) {
+                this@addCurrencyFormatter.removeTextChangedListener(this)
+                // strip off the currency symbol
+
+                // Reference for this replace regex: https://stackoverflow.com/questions/5107901/better-way-to-format-currency-input-edittext/28005836#28005836
+                val cleanString = s.toString().replace("\\D".toRegex(), "")
+                val parsed = if (cleanString.isBlank()) 0.0 else cleanString.toDouble()
+
+                current = formatMoney(parsed)
+
+
+                this@addCurrencyFormatter.setText(current)
+                this@addCurrencyFormatter.setSelection(current.length)
+
+                this@addCurrencyFormatter.addTextChangedListener(this)
+            }
+        }
+    })
+
+}
+fun formatMoney(price: Double): String {
+    try {
+        var moneyUSD = NumberFormat.getCurrencyInstance(Locale.US).format(price)
+        moneyUSD = moneyUSD.replace("$", "")
+        if (moneyUSD.endsWith(".00")) {
+            val centsIndex = moneyUSD.lastIndexOf(".00")
+            if (centsIndex != -1) {
+                moneyUSD = moneyUSD.substring(0, centsIndex)
+            }
+        }
+        moneyUSD = moneyUSD.replace(",", ".")
+//        moneyUSD = String.format("%s đ", moneyUSD)
+        return moneyUSD
+    } catch (e: Exception) {
+        return "0"
+    }
+
 }

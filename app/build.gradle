@@ -24,7 +24,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.1.4"
+        versionName "1.2.1"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -50,7 +50,7 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res/layouts/customview', 'src/main/res/layouts/splash', 'src/main/res/layouts/login', 'src/main/res/layouts/home', 'src/main/res/layouts/dashboard', 'src/main/res/layouts/profile', 'src/main/res/layouts/camdo', 'src/main/res/layouts/infocamdo', 'src/main/res/layouts/managercontract', 'src/main/res/layouts/store', 'src/main/res/layouts/changepassword', 'src/main/res/layouts/infocontract', 'src/main/res/layouts/notification', 'src/main/res/layouts/quanlythuchi', 'src/main/res/layouts/rutlaicuahang', 'src/main/res/layouts/thanhlytaisan', 'src/main/res/layouts/exchangeHistory', 'src/main/res/layouts/baocaotonghop', 'src/main/res/layouts/tienhoahong', 'src/main/res/layouts/timkiem']
+            res.srcDirs = ['src/main/res', 'src/main/res/layouts/customview', 'src/main/res/layouts/splash', 'src/main/res/layouts/login', 'src/main/res/layouts/home', 'src/main/res/layouts/dashboard', 'src/main/res/layouts/profile', 'src/main/res/layouts/camdo', 'src/main/res/layouts/infocamdo', 'src/main/res/layouts/managercontract', 'src/main/res/layouts/store', 'src/main/res/layouts/changepassword', 'src/main/res/layouts/infocontract', 'src/main/res/layouts/notification', 'src/main/res/layouts/quanlythuchi', 'src/main/res/layouts/rutlaicuahang', 'src/main/res/layouts/thanhlytaisan', 'src/main/res/layouts/exchangeHistory', 'src/main/res/layouts/baocaotonghop', 'src/main/res/layouts/tienhoahong', 'src/main/res/layouts/timkiem', 'src/main/res/layouts/thulai', 'src/main/res/layouts/qrcode']
         }
     }
 }
@@ -115,6 +115,7 @@ dependencies {
     // For Flexbox layout
     implementation 'com.google.android:flexbox:0.3.1'
 
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
 
 }
 apply plugin: 'com.google.gms.google-services'

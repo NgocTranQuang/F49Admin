@@ -39,6 +39,10 @@ class NotificationAdapter(listItems: MutableList<NotificationDTO>, rv: RecyclerV
         notifyDataSetChanged()
     }
 
+    fun clear() {
+        items?.clear()
+    }
+
     inner class ViewHolder(val binding: RowNotificationBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
             var item = items?.getOrNull(position)

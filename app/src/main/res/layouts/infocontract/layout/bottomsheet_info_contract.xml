@@ -23,6 +23,27 @@
             style="@style/Line"/>
 
     <LinearLayout
+            android:id="@+id/vThuLai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                style="@style/ImageBottomSheet"
+                android:src="@drawable/ic_thu_lai"/>
+
+        <TextView
+                style="@style/TextViewRightInfoCamdo"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:text="@string/thu_lai"/>
+
+    </LinearLayout>
+
+    <View
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            style="@style/Line"/>
+
+    <LinearLayout
             android:id="@+id/vExchangeHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
