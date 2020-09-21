@@ -43,6 +43,15 @@ class NotificationAdapter(listItems: MutableList<NotificationDTO>, rv: RecyclerV
         items?.clear()
     }
 
+    fun updateRead(idNoti: Int?) {
+        var item = items?.firstOrNull { it.id == idNoti }
+        if (item?.daDoc == false) {
+            item?.daDoc = true
+            notifyDataSetChanged()
+
+        }
+    }
+
     inner class ViewHolder(val binding: RowNotificationBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(position: Int) {
             var item = items?.getOrNull(position)
@@ -50,9 +59,9 @@ class NotificationAdapter(listItems: MutableList<NotificationDTO>, rv: RecyclerV
             binding.root.setOnSingleClickListener {
                 items?.get(position)?.id?.let {
                     onclickItem.invoke(items?.getOrNull(position)!!) {
-                        items?.getOrNull(position)?.daDoc = true
-                        binding.item = items?.getOrNull(position)
-                        notifyItemChanged(position)
+//                        items?.getOrNull(position)?.daDoc = true
+//                        binding.item = items?.getOrNull(position)
+//                        notifyItemChanged(position)
                     }
                 }
             }

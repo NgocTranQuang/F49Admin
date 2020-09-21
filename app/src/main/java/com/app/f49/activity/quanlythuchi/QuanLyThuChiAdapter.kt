@@ -34,7 +34,7 @@ class QuanLyThuChiAdapter(var items: MutableList<QuanLyThuChiDTO>) : RecyclerVie
             items[position].stt = "${position + 1}"
             binding.item = items[position]
             binding.root.setOnSingleClickListener {
-                QuanLyThuChiDetailActivity.start(itemView.context, items[position].id ?: 10)
+                QuanLyThuChiDetailActivity.start(itemView.context, items[position].id ?: 10,null)
                 //                clickItem.invoke(position)
             }
             binding.executePendingBindings()

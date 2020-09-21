@@ -46,8 +46,7 @@ import extension.setOnSingleClickListener
 //
 //
 //}
-class TimKiemAdapter(var listItems: MutableList<TimKiemDTO>,recyclerView: RecyclerView) : LoadMoreAdapter<TimKiemDTO>(listItems,recyclerView) {
-
+class TimKiemAdapter(var listItems: MutableList<TimKiemDTO>, recyclerView: RecyclerView) : LoadMoreAdapter<TimKiemDTO>(listItems, recyclerView) {
 
 
     override fun onBindViewHolderItem(holder: RecyclerView.ViewHolder, position: Int) {
@@ -62,7 +61,7 @@ class TimKiemAdapter(var listItems: MutableList<TimKiemDTO>,recyclerView: Recycl
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = listItems?.size ?:0
+    override fun getItemCount(): Int = listItems?.size ?: 0
 
 
 //    fun insertData(items: MutableList<TimKiemDTO>) {
@@ -75,7 +74,8 @@ class TimKiemAdapter(var listItems: MutableList<TimKiemDTO>,recyclerView: Recycl
             listItems[position].stt = "${position + 1}"
             binding.item = listItems[position]
             binding.root.setOnSingleClickListener {
-                InfoContractActivity.start(itemView.context, listItems[position].id.toString() ?: "", ScreenIDEnum.HOP_DONG_CAM_DO.value)
+                InfoContractActivity.start(itemView.context, listItems[position].id.toString()
+                    ?: "", ScreenIDEnum.HOP_DONG_CAM_DO.value, null)
 
                 //                QuanLyThuChiDetailActivity.start(itemView.context, items[position].id ?: 10)
                 //                clickItem.invoke(position)

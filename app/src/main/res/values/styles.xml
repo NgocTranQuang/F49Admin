@@ -292,7 +292,11 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
     </style>
-
+    <style name="DialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
 
     <color name="color_text">#555555</color>
 </resources>

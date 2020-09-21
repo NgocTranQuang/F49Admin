@@ -3,6 +3,7 @@ package com.app.f49.custom
 
 import android.content.Context
 import android.support.annotation.LayoutRes
+import android.support.design.internal.BottomNavigationMenuView
 import android.support.design.widget.BottomNavigationView
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -39,7 +40,7 @@ class BadgedBottomNavigationBar : BottomNavigationView {
             removeBadge(TAB_NOTIFICATION)
             return
         }
-        val bottomNavigationView = getChildAt(0) as android.support.design.internal.BottomNavigationMenuView
+        val bottomNavigationView = getChildAt(0) as BottomNavigationMenuView
         val view = bottomNavigationView.getChildAt(TAB_NOTIFICATION)
         if (view is ViewGroup) {
             //NUMBER_OF_MENU_ITEM_VIEW_CHILDERN_WITHOUT_BADGE

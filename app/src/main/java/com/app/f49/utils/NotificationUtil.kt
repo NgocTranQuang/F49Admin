@@ -22,6 +22,8 @@ import java.io.IOException
 import java.net.HttpURLConnection
 
 
+
+
 class NotificationUtil(private val mContext: Context) {
     internal var activityMap: MutableMap<String, Class<*>> = HashMap()
 
@@ -53,6 +55,7 @@ class NotificationUtil(private val mContext: Context) {
             var bundle = Bundle()
             bundle.putString(MyFirebaseMessagingService.ITEMID, notificationVO.itemId)
             bundle.putString(MyFirebaseMessagingService.SCREENID, notificationVO.screenId)
+            bundle.putString(MyFirebaseMessagingService.NOTIFICATION_ID, notificationVO.id)
             resultIntent.putExtras(bundle)
 //            resultIntent.putExtra(MyFirebaseMessagingService.ITEMID, notificationVO.itemId)
 //            resultIntent.putExtra(MyFirebaseMessagingService.SCREENID, notificationVO.screenId)
@@ -165,6 +168,7 @@ class NotificationUtil(private val mContext: Context) {
      * Playing notification sound
      */
     fun playNotificationSound() {
+
         try {
             val alarmSound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
                     + "://" + mContext.getPackageName() + "/"+R.raw.notification)

@@ -97,6 +97,7 @@ class ThuLaiActivity : BaseMvvmActivity<ThulaiActivityBinding, ThuLaiViewModel, 
             MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.thulaiDTO?.value?.ngayHieuLuc?.time
                 ?: 0).setResultListener {
                 mViewModel?.dateHieuLuc?.value = it
+                mViewModel?.getThuLaiChiTiet(idHopDong)
             }
         }
     }

@@ -156,7 +156,8 @@
         <activity
                 android:name=".activity.thulai.ThuLaiActivity"
                 android:configChanges="orientation|keyboardHidden"/>
-        <activity android:name="yergalizhakhan.kz.qrcodescannerkotlin.presentation.activities.main.QRCodeScanActivity"/>
+        <activity android:name="yergalizhakhan.kz.qrcodescannerkotlin.presentation.activities.main.QRCodeScanActivity"
+                  android:configChanges="orientation|keyboardHidden"/>
 
         <meta-data
                 android:name="firebase_crashlytics_collection_enabled"

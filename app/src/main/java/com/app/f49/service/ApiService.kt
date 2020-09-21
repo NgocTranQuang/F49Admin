@@ -291,7 +291,7 @@ interface ApiService {
     fun getLoaiGiaoDich(): Observable<BaseResponse<MutableList<ValueResponse>>>
 
     @GET(API_THU_LAI + "GetChiTietHopDongThuLai")
-    fun getChiTietHopDongThuLai(@Query("idHopDong") idHopDong: Int?): Observable<BaseResponse<ThuLaiDTO>>
+    fun getChiTietHopDongThuLai(@Query("idHopDong") idHopDong: Int?, @Query("ngayHieuLuc") ngayHieuLuc: String?): Observable<BaseResponse<ThuLaiDTO>>
 
     @PUT(API_THU_LAI + "PutThucHienThuLai")
     fun putThucHienThuLai(@Query("idHopDong") idHopDong: Int?, @Query("loaiGiaoDich") loaiGiaoDich: Int?, @Query("idCuaHangFormApp") idCuaHangFormApp: Int?, @Query("tienThuThucTe") tienThuThucTe: Double?, @Query("ngayHieuLuc") ngayHieuLuc: String?): Observable<BaseResponse<ThuLaiDTO?>>

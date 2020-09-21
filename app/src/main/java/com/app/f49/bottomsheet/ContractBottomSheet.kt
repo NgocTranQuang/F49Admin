@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
+import android.support.v4.app.DialogFragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
@@ -31,6 +32,11 @@ class ContractBottomSheet : BottomSheetDialogFragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.DialogStyle)
+
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.bottomsheet_contract, container, false)
     }
@@ -56,7 +62,7 @@ class ContractBottomSheet : BottomSheetDialogFragment() {
         viewModel = ViewModelProviders.of(activity as FragmentActivity).get(ContractViewModel::class.java)
         viewModel?.listNguoiQLHDDTO?.observe(this, Observer {
             it?.let {
-                spPerson.setList(it.map { it.hoTen }.toMutableList(), 0)
+//                spPerson.setList(it.map { it.hoTen }.toMutableList(), 0)
             }
         })
         viewModel?.listStatusContract?.observe(this, Observer {
@@ -67,9 +73,9 @@ class ContractBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun initSpiner() {
-        spPerson.selectedItemListener {
-            idNguoiQLHDChoose = viewModel?.listNguoiQLHDDTO?.value?.getOrNull(it)?.id
-        }
+//        spPerson.selectedItemListener {
+//            idNguoiQLHDChoose = viewModel?.listNguoiQLHDDTO?.value?.getOrNull(it)?.id
+//        }
         spStatus.selectedItemListener {
             idStatusChoose = viewModel?.listStatusContract?.value?.getOrNull(it)?.id
         }

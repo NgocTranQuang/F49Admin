@@ -7,6 +7,7 @@ import com.app.f49.base.BaseNavigator
 import com.app.f49.extension.checkRequest
 import com.app.f49.model.store.StoreDTO
 import com.app.f49.model.topmenu.TopMenuDTO
+import com.app.f49.utils.Constants
 
 class MainViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var listStore: MutableLiveData<MutableList<StoreDTO>> = MutableLiveData()
@@ -45,5 +46,20 @@ class MainViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator>(
         mApiService?.getCountNotificationUnread(idCuaHang)?.checkRequest(mContext)?.subscribe {
             notificationCount.value = it?.countUnread
         }
+    }
+    fun changeStatusNotificationToRead(idNotification: Int?, finished: (Boolean) -> Unit) {
+        mApiService?.changeReadNotification(idNotification).checkRequest(mContext)?.subscribe({
+            finished.invoke(true)
+        }, {
+            if (it.message?.contains(Constants.KEY_ITEM_NULL) == true) {
+                finished.invoke(true)
+                hideLoading()
+            } else {
+                finished.invoke(false)
+                showDialogError(it)
+            }
+        }, {
+            hideLoading()
+        })
     }
 }

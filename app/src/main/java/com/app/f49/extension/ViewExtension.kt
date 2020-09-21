@@ -52,18 +52,19 @@ fun TextView.underLine() {
 
 }
 
-fun Spinner.setList(list: MutableList<String?>?, seleted: Int?) {
+fun Spinner.setList(list: MutableList<String?>?, selected: Int?) {
     list?.let {
-        val dataAdapter = ArrayAdapter<String>(context,
-            android.R.layout.simple_spinner_item, list)
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val dataAdapter = ArrayAdapter<String>(
+            context,
+            R.layout.row_spinner, list
+        )
+        dataAdapter.setDropDownViewResource(R.layout.row_spinner)
         adapter = dataAdapter
-        if (seleted != null && seleted != -1) {
-            setSelection(seleted)
+        if (selected != null && selected != -1) {
+            setSelection(selected)
         }
     }
 }
-
 fun Spinner.selectedItemListener(color: Int? = null, listener: (Int) -> Unit) {
     onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {

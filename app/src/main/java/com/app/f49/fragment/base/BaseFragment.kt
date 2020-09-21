@@ -21,6 +21,7 @@ open abstract class BaseFragment : Fragment(), BaseNavigator {
 
     private var mProgressDialog: CustomProgressDialog? = null
     open abstract fun getLayoutResource(): Int
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutResource(), container, false)
     }

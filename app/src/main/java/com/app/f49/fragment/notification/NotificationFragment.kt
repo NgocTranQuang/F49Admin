@@ -1,7 +1,10 @@
 package com.app.f49.fragment.notification
 
 import android.arch.lifecycle.Observer
+import android.content.ContentResolver
 import android.graphics.Color
+import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import com.app.f49.R
@@ -10,6 +13,7 @@ import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.FragmentNotificationBinding
 import com.app.f49.extension.handleScreenId
 import com.app.f49.fragment.base.BaseMvvmFragment
+import com.app.f49.model.evenbus.MessageEvent
 import com.app.f49.model.notification.NotificationDTO
 import extension.init
 import extension.selectedItemListener
@@ -63,6 +67,19 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
 //        })
     }
 
+    fun playNotificationSound() {
+
+        try {
+            val alarmSound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
+                    + "://" + context?.getPackageName() + "/" + R.raw.notification)
+            val r = RingtoneManager.getRingtone(context, alarmSound)
+            r.play()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this);
@@ -76,8 +93,8 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
     private fun initView() {
         swipeRefreshLayout.setOnRefreshListener {
             pageIndex = 0
-
             viewModel?.getListNotification(idStoreCurrent.toString(), pageIndex)
+            getUnreadNotification()
         }
     }
 
@@ -94,6 +111,8 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
             }
         }
         tvReadAll.setOnSingleClickListener {
+            //            playNotificationSound()
+
             if ((adapter?.items?.size ?: 0) > 0)
                 viewModel?.putReadAll(idStoreCurrent)
         }
@@ -104,8 +123,10 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: NotificationDTO) {
-        adapter?.insertOnTop(event)
+    fun onMessageEvent(event: MessageEvent) {
+        var idNoti = event.value as? Int
+        adapter?.updateRead(idNoti)
+        getUnreadNotification()
     };
 
     private fun insertData(listNotification: MutableList<NotificationDTO>) {
@@ -134,11 +155,11 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
     private fun initRV() {
         rvNotificaion.init(space = R.dimen.height_line_size)
         adapter = NotificationAdapter(mutableListOf(), rvNotificaion, { notificationDTO, finished ->
-            context?.handleScreenId(notificationDTO.screenId, notificationDTO.itemId?.toString())
+            context?.handleScreenId(notificationDTO.id, notificationDTO.screenId, notificationDTO.itemId?.toString())
             if (notificationDTO.daDoc != true) {
                 viewModel?.changeStatusNotificationToRead(notificationDTO.id) {
                     finished.invoke()
-                    getUnreadNotification()
+//                    getUnreadNotification()
                 }
             }
         }) { notificationDTO, finished ->
@@ -162,4 +183,23 @@ class NotificationFragment : BaseMvvmFragment<FragmentNotificationBinding, Notif
         }
     }
 
+//    //<editor-fold desc="Event bus">
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    fun onLikeEvent(event: MessageEvent) {
+//        var idNoti = event.value as? Int
+//        adapter?.updateRead(idNoti)
+//    }
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        if (!EventBus.getDefault().isRegistered(this)) {
+//            EventBus.getDefault().register(this)
+//        }
+//    }
+//
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        if (EventBus.getDefault().isRegistered(this))
+//            EventBus.getDefault().unregister(this)
+//    }
 }

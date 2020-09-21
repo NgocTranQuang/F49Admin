@@ -15,6 +15,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val TITLE = "title"
         val ITEMID = "itemId"
         val SCREENID = "screenId"
+        val NOTIFICATION_ID = "id"
         val ACTION_DESTINATION = "action_destination"
     }
 
@@ -54,11 +55,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         val title = data[TITLE]
         val itemId = data[ITEMID]
         val screenID = data[SCREENID]
+        var notificationId  = data[NOTIFICATION_ID]
         val actionDestination = data[ACTION_DESTINATION]
         val notificationVO = NotificationVO()
         notificationVO.title = title
         notificationVO.screenId = screenID
         notificationVO.itemId = itemId
+        notificationVO.id = notificationId
 
         val resultIntent = Intent(applicationContext, MainActivity::class.java)
 

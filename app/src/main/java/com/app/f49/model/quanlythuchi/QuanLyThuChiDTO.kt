@@ -7,4 +7,5 @@ class QuanLyThuChiDTO {
     var thu: String? = null
     var chi: String? = null
     var nguoiThucHien: String? = null
+    var colorBg: String?=null
 }

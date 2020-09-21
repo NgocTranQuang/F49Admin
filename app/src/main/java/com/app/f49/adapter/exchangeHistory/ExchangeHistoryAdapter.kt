@@ -8,6 +8,7 @@ import com.app.f49.databinding.RowExchangeHistoryBinding
 import com.app.f49.model.history.ExchangeHistoryDTO
 
 class ExchangeHistoryAdapter(var listItem: MutableList<ExchangeHistoryDTO>, var rec: RecyclerView) : BaseAdapter<RowExchangeHistoryBinding, ExchangeHistoryDTO>(listItem, rec) {
+
     override fun initModel(item: ExchangeHistoryDTO?, position: Int) {
         item?.stt = "${position +1}"
     }

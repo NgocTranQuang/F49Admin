@@ -32,6 +32,7 @@ import yergalizhakhan.kz.qrcodescannerkotlin.presentation.activities.main.QRCode
 class MainActivity : BaseActivity() {
 
     private val RECORD_REQUEST_CODE = 101
+    var mainViewModel: MainViewModel? = null
 
     companion object {
         fun start(context: Context) {
@@ -93,7 +94,7 @@ class MainActivity : BaseActivity() {
         when (requestCode) {
             RECORD_REQUEST_CODE -> {
                 if (grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    setupPermissions()
+//                    setupPermissions()
                 } else {
                     permissionGranted()
                 }
@@ -119,14 +120,21 @@ class MainActivity : BaseActivity() {
     fun handleIntent(intent: Intent?) {
         var idItem = intent?.getStringExtra(MyFirebaseMessagingService.ITEMID)
         var idScreen = intent?.getStringExtra(MyFirebaseMessagingService.SCREENID)
+        var idNotification = intent?.getStringExtra(MyFirebaseMessagingService.NOTIFICATION_ID)
         if (idItem == null) {
             if (intent?.extras != null) {
                 var notification = getDataFromBackgroundNotification(intent.extras)
                 idItem = notification.itemId
                 idScreen = notification.screenId
+                idNotification = notification.id
             }
         }
-        this.handleScreenId(idScreen, idItem)
+        if (!idNotification.isNullOrEmpty()) {
+            mainViewModel?.changeStatusNotificationToRead(idNotification?.toIntOrNull()) {
+
+            }
+        }
+        this.handleScreenId(idNotification?.toIntOrNull(),idScreen, idItem)
     }
 
     fun log(msg: String) {
@@ -148,6 +156,11 @@ class MainActivity : BaseActivity() {
             if (TextUtils.equals(key, MyFirebaseMessagingService.TITLE)) {
                 notitication.title = bundle.get(key)?.toString()
             }
+
+            if (TextUtils.equals(key, MyFirebaseMessagingService.NOTIFICATION_ID)) {
+                notitication.id = bundle.get(key)?.toString()
+            }
+
 //            if (TextUtils.equals(key, EOfficeFirebaseMessagingService.KEY_SITE_URL)) {
 //                action.setSiteUrl(bundle.get(key)!!.toString())
 //            }
@@ -197,20 +210,20 @@ class MainActivity : BaseActivity() {
         navView = findViewById(R.id.nav_view)
 
         navView?.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-        var viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        viewModel.getListStore()
-        viewModel.getTopMenu()
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        mainViewModel?.getListStore()
+        mainViewModel?.getTopMenu()
         showFragment(HomeFragment())
         handleIntent(intent)
-        viewModel?.currentPositionStore?.observe(this, Observer {
+        mainViewModel?.currentPositionStore?.observe(this, Observer {
             it?.let {
                 if (it > -1) {
-                    var id = viewModel?.listStore?.value?.getOrNull(it)?.id
-                    viewModel?.getCountNotificationUnread(id?.toIntOrNull())
+                    var id = mainViewModel?.listStore?.value?.getOrNull(it)?.id
+                    mainViewModel?.getCountNotificationUnread(id?.toIntOrNull())
                 }
             }
         })
-        viewModel?.notificationCount?.observe(this, Observer {
+        mainViewModel?.notificationCount?.observe(this, Observer {
             showBadger(it ?: 0)
         })
         navView?.showBadgeQRCode(1, 1)
@@ -223,5 +236,6 @@ class MainActivity : BaseActivity() {
     fun showBadger(count: Int) {
         navView?.showBadgeNotification(ORDINAL_NOTIFICATION_ITEM, count)
     }
+
 
 }

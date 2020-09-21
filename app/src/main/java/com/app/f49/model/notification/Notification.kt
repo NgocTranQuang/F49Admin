@@ -19,6 +19,7 @@ class NotificationVO {
     var itemId: String? = null
     var screenId: String? = null
     var message: String? = null
+    var id : String?=null
 }
 
 class NotificationUnread {

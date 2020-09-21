@@ -26,7 +26,7 @@ class ThuLaiViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNavigator
     }
 
     fun getThuLaiChiTiet(idHopDong: Int?) {
-        handleRequestServiceObject(mApiService.getChiTietHopDongThuLai(idHopDong)) {
+        handleRequestServiceObject(mApiService.getChiTietHopDongThuLai(idHopDong,dateHieuLuc?.value?.toStringISO())) {
             thulaiDTO.value = it ?: ThuLaiDTO()
         }
     }

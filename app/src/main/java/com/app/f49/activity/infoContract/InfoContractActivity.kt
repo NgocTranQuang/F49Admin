@@ -14,21 +14,25 @@ import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.activity.uploadimage.UploadImageActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityInfoContractBinding
+import com.app.f49.model.evenbus.MessageEvent
 import com.stfalcon.frescoimageviewer.ImageViewer
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_info_contract.*
+import org.greenrobot.eventbus.EventBus
 
 class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoContractViewModel, BaseNavigator>() {
     var typeHD = ""
     var idHopDong: String? = null
     var countOfImage: Int = 0
+    var idNoti: Int? = null
 
     companion object {
         val KEY_DATA_TITLE = "KEY_DATA_TITLE"
         val KEY_DATA_ID_ITEM = "KEY_DATA_ID_ITEM"
+        val KEY_NOTIFICATION_ID = "KEY_NOTIFICATION_ID"
 
-        fun start(context: Context, idItem: String, title: String?) {
-            context.startActivity(Intent(context, InfoContractActivity::class.java).putExtra(KEY_DATA_ID_ITEM, idItem).putExtra(KEY_DATA_TITLE, title))
+        fun start(context: Context, idItem: String, title: String?, idNoti: Int?) {
+            context.startActivity(Intent(context, InfoContractActivity::class.java).putExtra(KEY_DATA_ID_ITEM, idItem).putExtra(KEY_DATA_TITLE, title).putExtra(KEY_NOTIFICATION_ID, idNoti))
         }
     }
 
@@ -80,6 +84,7 @@ class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoC
         mViewModel?.setNavigator(this)
         idHopDong = intent?.getStringExtra(KEY_DATA_ID_ITEM)
         typeHD = intent?.getStringExtra(KEY_DATA_TITLE) ?: ScreenIDEnum.HOP_DONG_CAM_DO.value
+        idNoti = intent?.getIntExtra(KEY_NOTIFICATION_ID, 0)
         if (typeHD.contains(ScreenIDEnum.CAM_DO_GIA_DUNG.value)) {
             title = getString(R.string.thong_tin_do_gia_dung)
         } else if (typeHD.contains(ScreenIDEnum.HOP_DONG_TRA_GOP.value)) {
@@ -104,5 +109,13 @@ class InfoContractActivity : BaseMvvmActivity<ActivityInfoContractBinding, InfoC
             BottomSheetInfoContract.show(supportFragmentManager, idHopDong?.toIntOrNull(), it)
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        if (idNoti != null)
+            EventBus.getDefault().post(MessageEvent().apply {
+                value = idNoti
+            })
+        super.onDestroy()
     }
 }

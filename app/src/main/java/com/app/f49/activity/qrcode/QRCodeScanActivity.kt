@@ -131,7 +131,7 @@ class QRCodeScanActivity : BaseMvpActivity<MainActivityContract.View, MainActivi
     override fun handleResult(result: Result?) {
         var json = result?.text?.toString()
         val infoQRCodeDTO = Gson().fromJson(json, InfoQRCodeDTO::class.java)
-        InfoContractActivity.start(this, infoQRCodeDTO.Id.toString(), null)
+        InfoContractActivity.start(this, infoQRCodeDTO.Id.toString(), null,null)
         finish()
     }
 

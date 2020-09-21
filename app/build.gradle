@@ -20,11 +20,12 @@ ext {
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.app.f49"
+//        applicationId "com.app.f49"
+        applicationId "com.vn.homecbl"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
-        versionName "1.2.1"
+        versionName "1.2.4"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -37,7 +38,52 @@ android {
         debug {
             minifyEnabled false
             buildConfigField "String", "BASE_URL", '"http://apif49.itpsolution.net/"'
+//            buildConfigField "String", "BASE_URL", '"http://api.homecbl.com/"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "app", "environment"
+    productFlavors {
+
+        f49 {
+            dimension "app"
+            applicationId "com.app.f49"
+            versionCode 1
+            versionName "1.2.4"
+            vectorDrawables.useSupportLibrary = true
+            ext {
+                production = "http://api.f49.vn/"
+                development = "http://apif49.itpsolution.net/"
+            }
+
+        }
+
+        cbl {
+            dimension "app"
+            applicationId "com.vn.homecbl"
+            versionCode 1
+            versionName "1.0.1"
+            vectorDrawables.useSupportLibrary = true
+            ext {
+                production = "http://api.homecbl.com/"
+                development = "http://api.homecbl.com/"
+            }
+
+        }
+
+        development {
+            dimension "environment"
+        }
+        production {
+            dimension "environment"
+        }
+        applicationVariants.all { variant ->
+            def flavors = variant.productFlavors
+            // flavorDimensions "app" -> 0, "environment" -> 1
+            def app = flavors[0]
+            def environment = flavors[1]
+
+            variant.buildConfigField "String", "BASE_URL", "\"${app[environment.name]}\""
         }
     }
     dataBinding {

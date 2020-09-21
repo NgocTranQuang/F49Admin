@@ -11,7 +11,7 @@ import com.app.f49.model.rutlai.RutLaiDTO
 import extension.setOnSingleClickListener
 
 
-class RutLaiAdapter(var items: MutableList<RutLaiDTO>, var type : String) : RecyclerView.Adapter<RutLaiAdapter.ViewHolder>() {
+class RutLaiAdapter(var items: MutableList<RutLaiDTO>, var type: String) : RecyclerView.Adapter<RutLaiAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: RowRutlaiBinding =
@@ -36,7 +36,8 @@ class RutLaiAdapter(var items: MutableList<RutLaiDTO>, var type : String) : Recy
             items[position].stt = "${position + 1}"
             binding.item = items[position]
             binding.root.setOnSingleClickListener {
-                ThongTinRutLaiCuaHangActivity.start(itemView.context, items[position].idItem ?: "1",type)
+                ThongTinRutLaiCuaHangActivity.start(itemView.context, items[position].idItem
+                    ?: "1", type, null)
             }
             binding.executePendingBindings()
         }

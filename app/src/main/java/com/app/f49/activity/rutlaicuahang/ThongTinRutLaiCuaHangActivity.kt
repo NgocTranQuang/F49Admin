@@ -11,18 +11,25 @@ import com.app.f49.ScreenIDEnum
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityThongtinRutlaiBinding
+import com.app.f49.model.evenbus.MessageEvent
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_thongtin_rutlai.*
+import org.greenrobot.eventbus.EventBus
 
 class ThongTinRutLaiCuaHangActivity : BaseMvvmActivity<ActivityThongtinRutlaiBinding, ThongTinRutLaiViewModel, BaseNavigator>() {
     var idItem: String? = null
+    var idNoti: Int? = null
     var typeScreen = ""
 
     companion object {
         val KEY_PASS_DATA = "KEY_PASS_DATA"
+        val KEY_NOTIFICATION_ID = "KEY_NOTIFICATION_ID"
         val KEY_SCREEN_TYPE = "KEY_SCREEN_TYPE"
-        fun start(context: Context, id: String?, screenType: String) {
-            (context as Activity).startActivityForResult(Intent(context, ThongTinRutLaiCuaHangActivity::class.java).putExtra(KEY_PASS_DATA, id).putExtra(KEY_SCREEN_TYPE, screenType), RutLaiCuaHangActivity.REQUEST_CODE)
+        fun start(context: Context, id: String?, screenType: String, idNoti: Int?) {
+            (context as Activity).startActivityForResult(Intent(context, ThongTinRutLaiCuaHangActivity::class.java)
+                .putExtra(KEY_PASS_DATA, id)
+                .putExtra(KEY_SCREEN_TYPE, screenType)
+                .putExtra(KEY_NOTIFICATION_ID, idNoti), RutLaiCuaHangActivity.REQUEST_CODE)
         }
     }
 
@@ -81,6 +88,7 @@ class ThongTinRutLaiCuaHangActivity : BaseMvvmActivity<ActivityThongtinRutlaiBin
     private fun getIntentData() {
         idItem = intent?.getStringExtra(KEY_PASS_DATA) ?: "1"
         typeScreen = intent?.getStringExtra(KEY_SCREEN_TYPE) ?: ""
+        idNoti= intent?.getIntExtra(KEY_NOTIFICATION_ID,0)
         if (typeScreen.contains(ScreenIDEnum.RUT_LAI.value)) {
             title = getString(R.string.thong_tin_rut_lai)
             mViewModel?.getThongTinRutLaiChiTiet(idItem)
@@ -91,6 +99,13 @@ class ThongTinRutLaiCuaHangActivity : BaseMvvmActivity<ActivityThongtinRutlaiBin
         }
     }
 
+    override fun onDestroy() {
+        if (idNoti != null)
+        EventBus.getDefault().post(MessageEvent().apply {
+            value = idNoti
+        })
+        super.onDestroy()
+    }
     private fun initViewModel() {
         mViewModel?.setNavigator(this)
     }

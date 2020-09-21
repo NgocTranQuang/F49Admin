@@ -34,6 +34,7 @@ class ThongTinTaiSanThanhLyActivity : BaseMvvmActivity<ActivityThongtinTaisantha
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mViewModel?.setNavigator(this)
         getDataIntent()
         initViewModel()
     }

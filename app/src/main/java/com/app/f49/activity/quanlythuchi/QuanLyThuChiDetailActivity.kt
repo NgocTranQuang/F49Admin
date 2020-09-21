@@ -10,15 +10,20 @@ import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.activity.rutlaicuahang.RutLaiCuaHangActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityQuanlythuchiDetailBinding
+import com.app.f49.model.evenbus.MessageEvent
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_quanlythuchi_detail.*
+import org.greenrobot.eventbus.EventBus
 
 class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBinding, QuanLyThuChiDetailViewModel, BaseNavigator>() {
+    var idNoti: Int? = null
 
     companion object {
         val KEY_ID_ITEM = "KEY_ID_ITEM"
-        fun start(context: Context, idItem: Int?) {
-            context.startActivity(Intent(context, QuanLyThuChiDetailActivity::class.java).putExtra(KEY_ID_ITEM, idItem))
+        val KEY_NOTIFICATION_ID = "KEY_NOTIFICATION_ID"
+
+        fun start(context: Context, idItem: Int?, idNoti: Int?) {
+            context.startActivity(Intent(context, QuanLyThuChiDetailActivity::class.java).putExtra(KEY_ID_ITEM, idItem).putExtra(KEY_NOTIFICATION_ID, idNoti))
         }
     }
 
@@ -36,10 +41,10 @@ class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBi
 
     private fun onClickListener() {
         btnDone.setOnSingleClickListener {
-            mViewModel?.duyetChi(edtYKien.text.toString(),true)
+            mViewModel?.duyetChi(edtYKien.text.toString(), true)
         }
         btnTuChoi.setOnSingleClickListener {
-            mViewModel?.duyetChi(edtYKien.text.toString(),false)
+            mViewModel?.duyetChi(edtYKien.text.toString(), false)
         }
     }
 
@@ -76,10 +81,18 @@ class QuanLyThuChiDetailActivity : BaseMvvmActivity<ActivityQuanlythuchiDetailBi
         idItem?.let {
             getData(it)
         }
+        idNoti = intent?.getIntExtra(KEY_NOTIFICATION_ID, 0)
     }
 
     private fun getData(id: Int?) {
         mViewModel?.getDetailQuanLyThuChi(id)
     }
 
+    override fun onDestroy() {
+        if (idNoti != null)
+            EventBus.getDefault().post(MessageEvent().apply {
+                value = idNoti
+            })
+        super.onDestroy()
+    }
 }
