@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <stroke
+            android:width="@dimen/height_line_size"
+            android:color="@color/color_line_divider_light"/>
+
+    <solid android:color="@color/colorRed"/>
+
+    <!--<padding-->
+            <!--android:left="@dimen/height_line_size"-->
+            <!--android:right="@dimen/height_line_size"-->
+            <!--android:bottom="@dimen/height_line_size"-->
+            <!--android:top="@dimen/height_line_size"/>-->
+
+    <corners android:radius="@dimen/dp_68"/>
+</shape>

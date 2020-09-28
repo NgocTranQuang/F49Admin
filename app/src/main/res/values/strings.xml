@@ -138,6 +138,8 @@
     <string name="lai_thu">Lãi thu</string>
     <string name="hinh_thuc_vay">Hình thức vay</string>
     <string name="ngay_vay">Ngày vay</string>
+    <string name="ngay_ki">Số ngày/Kỳ</string>
+    <string name="ngay_vao_so">Ngày vào sổ</string>
     <string name="so_hd">Số HĐ</string>
     <string name="cua_hang">Cửa hàng</string>
     <string name="ten_kh">Tên KH</string>
@@ -183,5 +185,16 @@
     <string name="ngay_hieu_luc">Ngày hiệu lực</string>
     <string name="flashlight_turned_on">Đã bật đèn flash</string>
     <string name="flashlight_turned_off">Đã tắt đèn flash</string>
+    <string name="ki_dong_lai">Kì đóng lãi</string>
+    <string name="ngay_cat_lai">Ngày cắt lãi</string>
+    <string name="cat_lai">Cắt lãi</string>
+    <string name="lai_suat">Lãi suất</string>
+    <string name="phi">Phí</string>
+    <string name="khach_nhan">Khách nhận</string>
+    <string name="so_ngay_vay">Số ngày vay</string>
+    <string name="so_tien_lai">Số tiền lãi</string>
+    <string name="tien_thu_phi">Tiền thu phí</string>
+    <string name="tra_gop">Trả góp</string>
+    <string name="thu_phi_truoc">Thu phí trước</string>
 
 </resources>

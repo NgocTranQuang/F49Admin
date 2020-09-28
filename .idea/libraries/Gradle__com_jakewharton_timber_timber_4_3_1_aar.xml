@@ -1,10 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.jakewharton.timber:timber:4.3.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/277d3a7a7040754a8385d1574661c346/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/277d3a7a7040754a8385d1574661c346/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/58eb4081f6447dd03a881f41fca9e3af/timber-4.3.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/58eb4081f6447dd03a881f41fca9e3af/timber-4.3.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/58eb4081f6447dd03a881f41fca9e3af/timber-4.3.1/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jakewharton.timber/timber/4.3.1/9ec7c726794f7e1ffd74a639d7007cd306ab38c5/timber-4.3.1-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.jakewharton.timber/timber/4.3.1/34814ccb0d48cd59694ae6b6a42a12e7e5aa9fc9/timber-4.3.1-sources.jar!/" />
     </SOURCES>
