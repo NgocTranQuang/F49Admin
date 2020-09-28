@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <LinearLayout style="@style/LnHorizontalWeightSum">
+
+        <TextView
+                style="@style/TextViewLeftInfoCamdo"
+                android:text="@string/khach_hang" />
+
+        <EditText
+                android:id="@+id/edtCusomerName"
+                android:inputType="number"
+                android:layout_height="@dimen/dp_128"
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_gravity="center_vertical"
+                android:paddingStart="@dimen/toolbar_half_padding_horizontal"
+                android:background="@drawable/bg_boder_gray" />
+    </LinearLayout>
+
+    <View style="@style/Line"/>
+</android.support.v7.widget.CardView>

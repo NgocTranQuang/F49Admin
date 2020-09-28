@@ -12,6 +12,8 @@ import com.app.f49.R
 import com.app.f49.ScreenIDEnum
 import com.app.f49.TypeHopDongDashBoardEnum
 import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.activity.creatingContract.CreateContractActivity
+import com.app.f49.activity.creatingContract.CreateOtherContractActivity
 import com.app.f49.activity.infoContract.InfoContractActivity
 import com.app.f49.adapter.contract.ContractAdapter
 import com.app.f49.base.BaseNavigator
@@ -146,7 +148,17 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
             }
 
         })
+        fbAddContractImage.setOnClickListener {
+            when (typeHD) {
+                ScreenIDEnum.HOP_DONG_CAM_DO.value -> {
+                    startActivity(Intent(this, CreateContractActivity::class.java))
+                }
+                ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
+                    startActivity(Intent(this, CreateOtherContractActivity::class.java))
+                }
 
+            }
+        }
     }
 
     private fun initSpiner() {
@@ -170,7 +182,8 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         rvContract.init(space = R.dimen.height_line_size)
         adapter = ContractAdapter(mutableListOf()) {
 
-            InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it)?.id ?: "", typeHD,null)
+            InfoContractActivity.start(this, mViewModel?.listHDCM?.value?.get(it)?.id
+                ?: "", typeHD, null)
 
         }
         rvContract.adapter = adapter

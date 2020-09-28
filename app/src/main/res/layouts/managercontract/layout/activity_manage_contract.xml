@@ -22,8 +22,20 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <android.support.design.widget.TabLayout
+            <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fbAddContractImage"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_add_contract"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content"/>
+
+            <android.support.design.widget.TabLayout
                 app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
                 android:id="@+id/tbLayout"
                 android:layout_width="match_parent"
@@ -125,5 +137,6 @@
                 </com.facebook.shimmer.ShimmerFrameLayout>
             </RelativeLayout>
         </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.app.f49.activity.base
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.pm.ActivityInfo
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
