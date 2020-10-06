@@ -29,7 +29,7 @@
             <android.support.v7.widget.Toolbar
                     android:id="@+id/tbCreateOtherContract"
                     style="@style/CommonToolbar"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         </android.support.design.widget.AppBarLayout>
 
         <RelativeLayout
@@ -74,7 +74,7 @@
                                 android:text="@string/khach_hang" />
 
                         <EditText
-                                android:id="@+id/edtCusomerName"
+                                android:id="@+id/edtCusomerNameOther"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
@@ -108,7 +108,7 @@
                                 android:gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:paddingEnd="@dimen/toolbar_half_padding_horizontal"
-                                android:text="asdffsdfa" />
+                        />
                     </LinearLayout>
 
                     <View style="@style/Line" />
@@ -134,7 +134,7 @@
                                 android:gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:paddingEnd="@dimen/toolbar_half_padding_horizontal"
-                                android:text="asdffsdfa" />
+                            />
                     </LinearLayout>
 
                     <View style="@style/Line" />
@@ -340,10 +340,10 @@
                                 android:background="@color/colorPrimary" />
 
                         <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="Thông tin tài sản"
+                                android:text="@string/title_info_asset"
                                 android:layout_weight="9.8"
                                 android:textColor="@color/colorPrimary"
                                 android:textStyle="bold" />
@@ -379,7 +379,7 @@
                         android:layout_height="0dp"
                         android:background="@drawable/bg_btn_action"
                         android:gravity="center"
-                        android:text="LẬP HỢP ĐỒNG"
+                        android:text="@string/create_contract"
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1:0.23"
@@ -395,7 +395,7 @@
                         android:layout_height="0dp"
                         android:background="@drawable/bg_btn_cancel_red"
                         android:gravity="center"
-                        android:text="ĐÓNG"
+                        android:text="@string/close"
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1:0.23"

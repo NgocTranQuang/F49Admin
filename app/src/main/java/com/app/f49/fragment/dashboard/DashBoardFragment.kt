@@ -18,6 +18,7 @@ import extension.selectedItemListener
 import extension.setList
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import kotlin.math.ceil
 
 
 class DashBoardFragment : BaseMvvmFragment<FragmentDashboardBinding, DashBoardViewModel, BaseNavigator>() {
@@ -38,7 +39,7 @@ class DashBoardFragment : BaseMvvmFragment<FragmentDashboardBinding, DashBoardVi
         })
         viewModel?.listItemDashBoard?.observe(this, Observer {
             it?.let {
-                var countOfPager = (Math.ceil((it.size).toDouble() / 8)).toInt()
+                var countOfPager = (ceil((it.size).toDouble() / 8)).toInt()
                 vpager.adapter = HomeViewPagerAdapter(it, childFragmentManager, countOfPager, TypePager.DASHBOARD.value)
                 pageIndicatorView.count = countOfPager
 

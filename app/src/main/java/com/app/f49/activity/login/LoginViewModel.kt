@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.app.f49.Base
 import com.app.f49.R
-import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.activity.base.BaseMvvmAndroidViewModel
 import com.app.f49.base.BaseNavigator
 import com.app.f49.extension.checkRequest
 import com.app.f49.model.login.LoginDTO

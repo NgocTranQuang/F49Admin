@@ -2,7 +2,7 @@ package com.app.f49.activity.rutlaicuahang
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
-import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.activity.base.BaseMvvmAndroidViewModel
 import com.app.f49.base.BaseNavigator
 import com.app.f49.model.rutlai.RutLaiDTO
 import com.app.f49.model.tab.TabDTO

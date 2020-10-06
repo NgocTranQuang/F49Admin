@@ -3,7 +3,7 @@ package com.app.f49.activity.baocaotonghop
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import com.app.f49.DateFilterEnum
-import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.activity.base.BaseMvvmAndroidViewModel
 import com.app.f49.base.BaseNavigator
 import com.app.f49.extension.toStringISO
 import com.app.f49.model.baocaotonghop.BaoCaoTongHopDTO

@@ -10,7 +10,7 @@ import com.app.f49.model.home.ItemHomeDTO
 import kotlin.math.min
 
 class HomeViewPagerAdapter(var listData: MutableList<ItemHomeDTO>, var fm: FragmentManager, var countPage: Int, var type: Int) : FragmentStatePagerAdapter(fm) {
-    var numberItemInPager = 6
+        var numberItemInPager = 6
 
     init {
         if (type == TypePager.DASHBOARD.value) {

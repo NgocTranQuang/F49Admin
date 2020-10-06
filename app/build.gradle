@@ -32,13 +32,10 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            buildConfigField "String", "BASE_URL", '"http://api.f49.vn/"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled false
-            buildConfigField "String", "BASE_URL", '"http://apif49.itpsolution.net/"'
-//            buildConfigField "String", "BASE_URL", '"http://api.homecbl.com/"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -53,7 +50,7 @@ android {
             vectorDrawables.useSupportLibrary = true
             ext {
                 production = "http://api.f49.vn/"
-                development = "http://apif49.itpsolution.net/"
+                development = "http://uatapiportal.f247.com.vn/"
             }
 
         }

@@ -28,7 +28,7 @@
             <android.support.v7.widget.Toolbar
                     android:id="@+id/tbCreateContract"
                     style="@style/CommonToolbar"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         </android.support.design.widget.AppBarLayout>
 
         <RelativeLayout
@@ -72,12 +72,12 @@
                                 style="@style/TextViewLeftInfoCamdo"
                                 android:text="@string/khach_hang" />
 
-                        <EditText
+                        <TextView
                                 android:id="@+id/edtCusomerName"
-                                android:inputType="number"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
                                 android:layout_weight="7"
+                                android:gravity="start|center"
                                 android:layout_gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:background="@drawable/bg_boder_gray" />

@@ -25,6 +25,8 @@
     <string name="remember_account">Nhớ lần sau</string>
     <string name="forgot_password"><u>Quên mật khẩu</u>.</string>
     <string name="cam_do">Cầm đồ</string>
+    <string name="tao_hop_dong_cam_do">Tạo hợp đồng cầm đồ</string>
+    <string name="tao_hop_dong_gia_dung">Tạo hợp đồng gia dụng</string>
     <string name="dinh_gia">Định giá</string>
     <string name="do_gia_dung">Đồ gia dụng</string>
     <string name="dash_board">Tiện ích</string>
@@ -196,5 +198,14 @@
     <string name="tien_thu_phi">Tiền thu phí</string>
     <string name="tra_gop">Trả góp</string>
     <string name="thu_phi_truoc">Thu phí trước</string>
+    <string name="title_info_asset">Thông tin tài sản</string>
+    <string name="close">ĐÓNG</string>
+    <string name="create_contract">LẬP HỢP ĐỒNG</string>
+    <string name="save">LƯU</string>
+    <string name="area">Vị trí</string>
+    <string name="pricing">Định giá</string>
+    <string name="description">Mô tả</string>
+    <string name="cmnd">Số CMND</string>
+    <string name="que_quan">Quê quán</string>
 
 </resources>

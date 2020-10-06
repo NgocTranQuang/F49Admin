@@ -31,7 +31,7 @@ class RVTowColumnDecoration(private val spacing: Int) : RecyclerView.ItemDecorat
         return position < spanCount
     }
 
-    private fun isFirstInRow(position: Int, spanCount: Int): Boolean {
+        private fun isFirstInRow(position: Int, spanCount: Int): Boolean {
         return position % spanCount == 0
     }
 

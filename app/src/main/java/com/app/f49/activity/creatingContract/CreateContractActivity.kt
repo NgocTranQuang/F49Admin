@@ -6,7 +6,9 @@ import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityCreateContractBinding
+import com.app.f49.fragment.dialogCustom.KhachHangDialogFragment
 import com.app.f49.fragment.dialogCustom.TaiSanDialogFragment
+import com.app.f49.model.createcontract.KhachHangDTO
 import kotlinx.android.synthetic.main.activity_create_contract.*
 import kotlinx.android.synthetic.main.activity_create_contract.rltTaiSan
 import kotlinx.android.synthetic.main.activity_create_other_contract.*
@@ -17,7 +19,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
     }
 
     override fun getTitleToolbar(): String? {
-        return "Tạo hợp đồng cầm đồ"
+        return resources.getString(R.string.tao_hop_dong_cam_do)
     }
 
     override fun getMyToolbar(): Toolbar? {
@@ -33,7 +35,13 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
 
     private fun evenClickListener() {
         rltTaiSan.setOnClickListener {
-            TaiSanDialogFragment.newInstance(getString(R.string.accept), getString(R.string.accept)).show(supportFragmentManager, "String")
+            TaiSanDialogFragment.newInstance().show(supportFragmentManager, "String")
+        }
+        edtCusomerName.setOnClickListener {
+            var customer : ((KhachHangDTO?) -> Unit)? = {
+                edtCusomerName.text = it?.hoTen
+            }
+            KhachHangDialogFragment.newInstance(customer).show(supportFragmentManager, "String")
         }
     }
 }

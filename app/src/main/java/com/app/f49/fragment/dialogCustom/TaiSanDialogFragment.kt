@@ -1,5 +1,7 @@
 package com.app.f49.fragment.dialogCustom
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
@@ -7,19 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.app.f49.R
+import com.app.f49.activity.creatingContract.KhachHangViewModel
+import extension.selectedItemListener
+import extension.setList
+import kotlinx.android.synthetic.main.fragment_dialog_collateral.*
 
 class TaiSanDialogFragment: DialogFragment() {
+    private var khachHangViewModel: KhachHangViewModel? = null
     companion object {
-        const val TAG = "SimpleDialog"
-        private const val KEY_TITLE = "KEY_TITLE"
-        private const val KEY_SUBTITLE = "KEY_SUBTITLE"
-        fun newInstance(title: String, subTitle: String): TaiSanDialogFragment {
-            val args = Bundle()
-            args.putString(KEY_TITLE, title)
-            args.putString(KEY_SUBTITLE, subTitle)
-            val fragment = TaiSanDialogFragment()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(): TaiSanDialogFragment {
+            return TaiSanDialogFragment()
         }
 
     }
@@ -32,11 +31,14 @@ class TaiSanDialogFragment: DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var list: MutableList<String>? = null
         super.onViewCreated(view, savedInstanceState)
         setupView(view)
         setupClickListeners(view)
-
+        khachHangViewModel = ViewModelProviders.of(this).get(KhachHangViewModel::class.java)
+        khachHangViewModel?.layDanhSachTaiSan()
+        khachHangViewModel?.taiSan?.observe(this, Observer {
+            spSelectTaiSan.setList(it?.map { it.tenVatCamCo }?.toMutableList(),0)
+        })
     }
 
     override fun onStart() {
@@ -47,18 +49,13 @@ class TaiSanDialogFragment: DialogFragment() {
         )
     }
     private fun setupView(view: View) {
-//        view.tvTitle.text = arguments?.getString(KEY_TITLE)
-//        view.tvSubTitle.text = arguments?.getString(KEY_SUBTITLE)
+
     }
 
     private fun setupClickListeners(view: View) {
-//        view.btnPositive.setOnClickListener {
-//            // TODO: Do some task here
-//            dismiss()
-//        }
-//        view.btnNegative.setOnClickListener {
-//            // TODO: Do some task here
-//            dismiss()
-//        }
+        spSelectTaiSan.selectedItemListener {
+            var list =  khachHangViewModel?.taiSan?.value
+            list?.get(it)?.tenVatCamCo
+        }
     }
 }

@@ -18,6 +18,7 @@ import extension.selectedItemListener
 import extension.setList
 import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlin.math.ceil
 
 
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNavigator>() {
@@ -56,7 +57,7 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNa
     private fun observer() {
         viewModel?.listItemHome?.observe(this, Observer {
             it?.let {
-                var countOfPager = (Math.ceil((it.size).toDouble() / 6)).toInt()
+                var countOfPager = (ceil((it.size).toDouble() / 6)).toInt()
                 if (homeViewPagerAdapter == null) {
                     homeViewPagerAdapter = HomeViewPagerAdapter(it, childFragmentManager
                         ?: return@Observer, countOfPager, TypePager.HOME.value)

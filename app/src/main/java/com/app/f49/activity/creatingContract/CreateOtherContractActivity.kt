@@ -16,7 +16,7 @@ class CreateOtherContractActivity: BaseMvvmActivity<ActivityCreateContractBindin
         return R.layout.activity_create_other_contract
     }
     override fun getTitleToolbar(): String? {
-        return "Tạo hợp đồng gia dung"
+        return resources.getString(R.string.tao_hop_dong_gia_dung)
     }
 
     override fun getMyToolbar(): Toolbar? {

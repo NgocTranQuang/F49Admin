@@ -5,7 +5,6 @@
         android:layout_height="match_parent"
         xmlns:tools="http://schemas.android.com/tools">
 
-
     <LinearLayout
             android:id="@+id/lnTaiSan"
             android:layout_width="match_parent"
@@ -66,7 +65,7 @@
 
                 <TextView
                         style="@style/TextViewLeftInfoCamdo"
-                        android:text="Vị trí" />
+                        android:text="@string/area" />
 
                 <EditText
                         android:id="@+id/edtCusomerName"
@@ -85,7 +84,7 @@
 
                 <TextView
                         style="@style/TextViewLeftInfoCamdo"
-                        android:text="Định giá" />
+                        android:text="@string/pricing" />
 
                 <EditText
 
@@ -104,7 +103,7 @@
 
                 <TextView
                         style="@style/TextViewLeftInfoCamdo"
-                        android:text="Mô tả" />
+                        android:text="@string/description" />
 
                 <EditText
 
@@ -157,7 +156,7 @@
                 android:layout_height="0dp"
                 android:background="@drawable/bg_btn_action"
                 android:gravity="center"
-                android:text="LƯU"
+                android:text="@string/save"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:0.23"
@@ -173,7 +172,7 @@
                 android:layout_height="0dp"
                 android:background="@drawable/bg_btn_cancel_red"
                 android:gravity="center"
-                android:text="ĐÓNG"
+                android:text="@string/close"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:0.23"

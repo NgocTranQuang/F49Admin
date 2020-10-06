@@ -20,7 +20,7 @@ class BaoCaoTongHopActivity : BaseMvvmActivity<ActivityBaocaotonghopBinding, Bao
     var idCuaHang: Int? = 0
 
     companion object {
-        val KEY_DATA_ID_CUA_HANG = "KEY_DATA_ID_CUA_HANG"
+        const val KEY_DATA_ID_CUA_HANG = "KEY_DATA_ID_CUA_HANG"
         fun start(context: Context?, idCuaHang: Int?) {
             context?.startActivity(Intent(context, BaoCaoTongHopActivity::class.java).putExtra(KEY_DATA_ID_CUA_HANG, idCuaHang))
         }

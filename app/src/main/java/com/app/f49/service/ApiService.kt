@@ -3,6 +3,9 @@ package com.app.f49.service
 import com.app.f49.model.BaseResponse
 import com.app.f49.model.HopDongCamDoDTO
 import com.app.f49.model.baocaotonghop.BaoCaoTongHopDTO
+import com.app.f49.model.createcontract.KhachHangDTO
+import com.app.f49.model.createcontract.TaiSanInHDDTO
+import com.app.f49.model.createcontract.ThuocTinhTaiSanDTO
 import com.app.f49.model.dinhgia.CamdoDTO
 import com.app.f49.model.history.BorrowHistoryDTO
 import com.app.f49.model.history.DetailBorrowDTO
@@ -296,4 +299,13 @@ interface ApiService {
     @PUT(API_THU_LAI + "PutThucHienThuLai")
     fun putThucHienThuLai(@Query("idHopDong") idHopDong: Int?, @Query("loaiGiaoDich") loaiGiaoDich: Int?, @Query("idCuaHangFormApp") idCuaHangFormApp: Int?, @Query("tienThuThucTe") tienThuThucTe: Double?, @Query("ngayHieuLuc") ngayHieuLuc: String?): Observable<BaseResponse<ThuLaiDTO?>>
 
+
+    @GET("api/KhachHang/TimKiem")
+    fun timKiem(@Query("key") key: String?): Observable<BaseResponse<MutableList<KhachHangDTO>>>
+
+    @GET("api/HopDongTheChap/LayDanhSachTaiSan")
+    fun layDanhSachTaiSan() : Observable<BaseResponse<MutableList<TaiSanInHDDTO>>>
+
+    @GET("/api/HopDongTheChap/LayThuocTinhTaiSan")
+    fun layThuocTinhTaiSan(@Query("loaiTaiSan") loaiTaiSan:String?) : Observable<BaseResponse<MutableList<ThuocTinhTaiSanDTO>>>
 }
