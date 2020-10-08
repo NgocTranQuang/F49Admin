@@ -7,6 +7,7 @@ import com.app.f49.BuildConfig
 import com.app.f49.utils.Constants
 import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
+import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.Response

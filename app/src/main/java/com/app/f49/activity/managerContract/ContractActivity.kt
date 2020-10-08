@@ -36,7 +36,8 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     var loaiHD: Int = 0
 
     companion object {
-        val KEY_PASS_TYPE_HD = "KEY_PASS_TYPE_HD"
+        const val KEY_PASS_TYPE_HD = "KEY_PASS_TYPE_HD"
+        const val ID_STORE = "ID_STORE"
         fun start(context: Context, type: String?) {
             context.startActivity(Intent(context, ContractActivity::class.java).putExtra(KEY_PASS_TYPE_HD, type))
         }
@@ -151,7 +152,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         fbAddContractImage.setOnClickListener {
             when (typeHD) {
                 ScreenIDEnum.HOP_DONG_CAM_DO.value -> {
-                    startActivity(Intent(this, CreateContractActivity::class.java))
+                    startActivity(Intent(this, CreateContractActivity::class.java).putExtra(ID_STORE, currentIdStore))
                 }
                 ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
                     startActivity(Intent(this, CreateOtherContractActivity::class.java))
@@ -165,6 +166,11 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         spStore.selectedItemListener {
             currentIdStore = Base.listStore?.value?.get(it)?.id ?: ""
             getListHopDong()
+            if (currentIdStore == "0"){
+                fbAddContractImage.visibility = View.GONE
+            }else{
+                fbAddContractImage.visibility = View.VISIBLE
+            }
 //            mViewModel?.getListNguoiQLHD(currentIdStore)
         }
     }

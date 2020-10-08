@@ -98,7 +98,7 @@
                         <TextView
                                 android:layout_weight="7"
                                 android:layout_width="0dp"
-                                android:id="@+id/tvNgayHieuLuc"
+                                android:id="@+id/tvNgayVay"
                                 android:layout_height="@dimen/dp_128"
                                 android:gravity="center_vertical"
                                 android:layout_gravity="center_vertical"
@@ -115,6 +115,7 @@
                             style="@style/Line"/>
 
                     <LinearLayout
+                            android:id="@+id/lnNgayVaoSo"
                             android:clipToPadding="false"
                             style="@style/LnHorizontalWeightSum">
 
@@ -140,6 +141,7 @@
                     </LinearLayout>
 
                     <View
+                            android:id="@+id/lineUnderNgayVaoSo"
                             style="@style/Line"/>
 
                     <LinearLayout
@@ -194,11 +196,12 @@
                                 android:text="@string/so_tien_vay"/>
 
                         <EditText
-                                android:id="@+id/edtMoney"
+                                android:id="@+id/edtTienVay"
                                 android:inputType="number"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
                                 android:layout_weight="7"
+                                android:focusable="true"
                                 android:layout_gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:background="@drawable/bg_boder_gray" />
@@ -213,11 +216,12 @@
                                 android:text="@string/lai_suat"/>
 
                         <EditText
-                                android:id="@+id/edtRate"
-                                android:inputType="number"
+                                android:id="@+id/edtLaiSuat"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
                                 android:layout_weight="7"
+                                android:inputType="number"
+                                android:gravity="center_vertical"
                                 android:layout_gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:background="@drawable/bg_boder_gray" />
@@ -232,11 +236,12 @@
                                 android:text="@string/ki_dong_lai"/>
 
                         <EditText
-                                android:id="@+id/edtKiDonLai"
-                                android:inputType="number"
+                                android:id="@+id/edtKiDongLai"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
+                                android:inputType="number"
                                 android:layout_weight="7"
+                                android:gravity="center_vertical"
                                 android:layout_gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:background="@drawable/bg_boder_gray" />
@@ -284,9 +289,8 @@
                                 android:background="@drawable/bg_boder_gray">
 
                             <Spinner
-                                    style="@style/SpinnerStore"
                                     android:id="@+id/spSelectCatLai"
-                                    >
+                                    style="@style/SpinnerStore">
 
                             </Spinner>
 
@@ -305,10 +309,11 @@
 
                         <EditText
                                 android:id="@+id/edtLai"
-                                android:inputType="number"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
                                 android:layout_weight="7"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:layout_gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:background="@drawable/bg_boder_gray" />
@@ -343,10 +348,11 @@
 
                         <EditText
                                 android:id="@+id/edtKhachNhan"
-                                android:inputType="number"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
                                 android:layout_weight="7"
+                                android:focusable="false"
+                                android:enabled="false"
                                 android:layout_gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:background="@drawable/bg_boder_gray" />
@@ -362,7 +368,7 @@
 
                         <EditText
                                 android:id="@+id/edtNoiDung"
-                                android:inputType="number"
+                                android:inputType="textMultiLine"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
                                 android:layout_weight="7"
@@ -387,7 +393,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/tvLapHopDong"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="@drawable/bg_btn_action"
@@ -396,14 +402,14 @@
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1:0.23"
-                        app:layout_constraintEnd_toStartOf="@+id/textView"
+                        app:layout_constraintEnd_toStartOf="@+id/tvDong"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.45" />
 
                 <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/tvDong"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="@drawable/bg_btn_cancel_red"
@@ -414,7 +420,7 @@
                         app:layout_constraintDimensionRatio="1:0.23"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textView2"
+                        app:layout_constraintStart_toEndOf="@+id/tvLapHopDong"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.45" />
             </android.support.constraint.ConstraintLayout>

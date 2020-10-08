@@ -159,7 +159,7 @@
         <activity android:name="yergalizhakhan.kz.qrcodescannerkotlin.presentation.activities.main.QRCodeScanActivity"
                   android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".activity.creatingContract.CreateContractActivity"
-                android:configChanges="orientation|keyboardHidden"/>
+                android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity android:name=".activity.creatingContract.CreateOtherContractActivity"
                 android:configChanges="orientation|keyboardHidden"/>
         <meta-data
