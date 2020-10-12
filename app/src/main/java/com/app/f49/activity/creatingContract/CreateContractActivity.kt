@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
-import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.Toolbar
 import android.view.View
 import com.app.f49.R
@@ -21,7 +20,6 @@ import com.app.f49.fragment.dialogCustom.TaiSanDialogFragment
 import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.createcontract.*
 import kotlinx.android.synthetic.main.activity_create_contract.*
-import kotlinx.android.synthetic.main.fragment_dialog_other_collateral.view.*
 import org.greenrobot.eventbus.EventBus
 
 class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, CreateContractViewModel, BaseNavigator>() {
