@@ -7,12 +7,13 @@
 
         <variable
                 name="item"
-                type="com.app.f49.model.thulai.ThuLaiDTO"/>
+                type="com.app.f49.model.thulai.ThuLaiDTO" />
 
         <variable
                 name="viewModel"
-                type="com.app.f49.activity.creatingContract.CreateContractViewModel"/>
+                type="com.app.f49.activity.creatingContract.CreateContractViewModel" />
     </data>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,14 +38,14 @@
 
             <android.support.v4.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:overScrollMode="never"
+                    android:layout_height="match_parent"
                     android:layout_above="@+id/menuBot"
-                    android:layout_height="match_parent">
+                    android:overScrollMode="never">
 
                 <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:orientation="vertical"
                         android:padding="@dimen/activity_horizontal_margin">
 
                     <LinearLayout style="@style/LnHorizontalWeightSum">
@@ -59,12 +60,12 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
+                                android:text="Lập hợp đồng cầm đồ"
                                 android:textColor="@color/colorPrimary"
-                                android:textStyle="bold"
-                                android:text="Lập hợp đồng cầm đồ"/>
+                                android:textStyle="bold" />
                     </LinearLayout>
 
-                    <View style="@style/TitleLine"/>
+                    <View style="@style/TitleLine" />
 
                     <LinearLayout style="@style/LnHorizontalWeightSum">
 
@@ -74,218 +75,220 @@
 
                         <TextView
                                 android:id="@+id/edtCusomerName"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
-                                android:gravity="start|center"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
-                                android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:gravity="start|center"
+                                android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
                     </LinearLayout>
 
-                    <View style="@style/Line"/>
+                    <View style="@style/Line" />
 
 
                     <LinearLayout
-                            android:clipToPadding="false"
-                            style="@style/LnHorizontalWeightSum">
+                            style="@style/LnHorizontalWeightSum"
+                            android:clipToPadding="false">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/ngay_vay"/>
+                                android:text="@string/ngay_vay" />
 
 
                         <TextView
-                                android:layout_weight="7"
-                                android:layout_width="0dp"
                                 android:id="@+id/tvNgayVay"
+                                android:layout_width="0dp"
                                 android:layout_height="@dimen/dp_128"
-                                android:gravity="center_vertical"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:date="@{viewModel.dateVay}"
+                                android:drawableEnd="@drawable/ic_big_calender"
+                                android:gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:paddingEnd="@dimen/toolbar_half_padding_horizontal"
                                 android:text="asdffsdfa"
-                                android:background="@drawable/bg_boder_gray"
-                                android:drawableEnd="@drawable/ic_big_calender"
-                                android:date="@{viewModel.dateVay}"
-                                />
+                                android:textSize="14sp" />
                     </LinearLayout>
 
-                    <View
-                            style="@style/Line"/>
+                    <View style="@style/Line" />
 
                     <LinearLayout
                             android:id="@+id/lnNgayVaoSo"
-                            android:clipToPadding="false"
-                            style="@style/LnHorizontalWeightSum">
+                            style="@style/LnHorizontalWeightSum"
+                            android:clipToPadding="false">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/ngay_vao_so"/>
+                                android:text="@string/ngay_vao_so" />
 
 
                         <TextView
-                                android:layout_weight="7"
-                                android:layout_width="0dp"
                                 android:id="@+id/tvNgayVaoSo"
+                                android:layout_width="0dp"
                                 android:layout_height="@dimen/dp_128"
-                                android:gravity="center_vertical"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:date="@{viewModel.dateVay}"
+                                android:drawableEnd="@drawable/ic_big_calender"
+                                android:gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:paddingEnd="@dimen/toolbar_half_padding_horizontal"
-                                android:text="asdffsdfa"
-                                android:background="@drawable/bg_boder_gray"
-                                android:drawableEnd="@drawable/ic_big_calender"
-                                android:date="@{viewModel.dateVay}"
-                                />
+                                android:text="asdffsdfa" />
                     </LinearLayout>
 
                     <View
                             android:id="@+id/lineUnderNgayVaoSo"
-                            style="@style/Line"/>
+                            style="@style/Line" />
 
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/tai_san"/>
+                                android:text="@string/tai_san" />
 
                         <RelativeLayout
                                 android:id="@+id/rltTaiSan"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
                                 android:background="@drawable/bg_boder_gray">
 
-                            <EditText
-                                    android:id="@+id/edtTaiSan"
-                                    android:inputType="number"
+                            <TextView
+                                    android:id="@+id/tvTaiSan"
+                                    android:layout_width="match_parent"
                                     android:layout_height="@dimen/dp_128"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="7"
                                     android:layout_gravity="center_vertical"
-                                    android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                    android:background="@drawable/bg_boder_gray" />
+                                    android:layout_weight="7"
+                                    android:background="@drawable/bg_boder_gray"
+                                    android:gravity="center_vertical"
+                                    android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
 
-                            <ImageView
-                                    style="@style/ImageSpinner"/>
+                            <ImageView style="@style/ImageSpinner" />
                         </RelativeLayout>
                     </LinearLayout>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
+
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/hinh_anh"/>
+                                android:text="@string/hinh_anh" />
                     </LinearLayout>
+
                     <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rvImageCollateral"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             tools:itemCount="1"
-                            tools:listitem="@layout/row_image"/>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+                            tools:listitem="@layout/row_image" />
+
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/so_tien_vay"/>
+                                android:text="@string/so_tien_vay" />
 
                         <EditText
                                 android:id="@+id/edtTienVay"
-                                android:inputType="number"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
-                                android:focusable="true"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:focusable="true"
+                                android:inputType="number"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
+                                android:textSize="14sp" />
                     </LinearLayout>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/lai_suat"/>
+                                android:text="@string/lai_suat" />
 
                         <EditText
                                 android:id="@+id/edtLaiSuat"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
-                                android:inputType="number"
-                                android:gravity="center_vertical"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:gravity="center_vertical"
+                                android:inputType="number"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
+                                android:textSize="14sp" />
                     </LinearLayout>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/ki_dong_lai"/>
+                                android:text="@string/ki_dong_lai" />
 
                         <EditText
                                 android:id="@+id/edtKiDongLai"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:inputType="number"
-                                android:layout_weight="7"
-                                android:gravity="center_vertical"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:gravity="center_vertical"
+                                android:inputType="number"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
+                                android:textSize="12sp" />
                     </LinearLayout>
-                    <View
-                            style="@style/Line"/>
+
+                    <View style="@style/Line" />
+
                     <LinearLayout
-                            android:clipToPadding="false"
-                            style="@style/LnHorizontalWeightSum">
+                            style="@style/LnHorizontalWeightSum"
+                            android:clipToPadding="false">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/ngay_cat_lai"/>
+                                android:text="@string/ngay_cat_lai" />
 
 
                         <TextView
-                                android:layout_weight="7"
-                                android:layout_width="0dp"
                                 android:id="@+id/tvNgayCatLai"
+                                android:layout_width="0dp"
                                 android:layout_height="@dimen/dp_128"
-                                android:gravity="center_vertical"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:date="@{viewModel.dateVay}"
+                                android:drawableEnd="@drawable/ic_big_calender"
+                                android:gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:paddingEnd="@dimen/toolbar_half_padding_horizontal"
-                                android:text="asdffsdfa"
-                                android:background="@drawable/bg_boder_gray"
-                                android:drawableEnd="@drawable/ic_big_calender"
-                                android:date="@{viewModel.dateVay}"
-                                />
+                                android:text="asdffsdfa" />
                     </LinearLayout>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/cat_lai"/>
+                                android:text="@string/cat_lai" />
 
                         <RelativeLayout
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
                                 android:background="@drawable/bg_boder_gray">
 
                             <Spinner
@@ -294,90 +297,94 @@
 
                             </Spinner>
 
-                            <ImageView
-                                    style="@style/ImageSpinner"/>
+                            <ImageView style="@style/ImageSpinner" />
                         </RelativeLayout>
                     </LinearLayout>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                        style="@style/LnHorizontalWeightSum">
 
-                    <TextView
-                            style="@style/TextViewLeftInfoCamdo"
-                            android:text="@string/lai"/>
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
+
+                        <TextView
+                                style="@style/TextViewLeftInfoCamdo"
+                                android:text="@string/lai" />
 
                         <EditText
                                 android:id="@+id/edtLai"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
-                                android:focusable="false"
-                                android:enabled="false"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:enabled="false"
+                                android:focusable="false"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
-                </LinearLayout>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+                                android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/phi"/>
+                                android:text="@string/phi" />
 
                         <EditText
                                 android:id="@+id/edtPhi"
-                                android:inputType="number"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:inputType="number"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
+                                android:textSize="14sp" />
                     </LinearLayout>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/khach_nhan"/>
+                                android:text="@string/khach_nhan" />
 
                         <EditText
                                 android:id="@+id/edtKhachNhan"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
-                                android:focusable="false"
-                                android:enabled="false"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:enabled="false"
+                                android:focusable="false"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
+                                android:textSize="14sp" />
                     </LinearLayout>
-                    <View
-                            style="@style/Line"/>
-                    <LinearLayout
-                            style="@style/LnHorizontalWeightSum">
+
+                    <View style="@style/Line" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
-                                android:text="@string/content"/>
+                                android:text="@string/content" />
 
                         <EditText
                                 android:id="@+id/edtNoiDung"
-                                android:inputType="textMultiLine"
-                                android:layout_height="@dimen/dp_128"
                                 android:layout_width="0dp"
-                                android:layout_weight="7"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:background="@drawable/bg_boder_gray"
+                                android:inputType="textMultiLine"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
+                                android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
+
             <android.support.constraint.ConstraintLayout
                     android:id="@+id/menuBot"
                     android:layout_width="match_parent"

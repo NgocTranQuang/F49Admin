@@ -5,7 +5,7 @@ import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import java.lang.reflect.ParameterizedType
 
 open class BaseAdapter<A : ViewDataBinding, T>(list: MutableList<T>, var rv: RecyclerView) : LoadMoreAdapter<T>(list, rv) {

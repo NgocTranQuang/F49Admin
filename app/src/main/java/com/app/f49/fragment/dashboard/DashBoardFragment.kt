@@ -14,9 +14,9 @@ import com.app.f49.adapter.home.TypePager
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.FragmentDashboardBinding
 import com.app.f49.fragment.base.BaseMvvmFragment
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import kotlin.math.ceil
 

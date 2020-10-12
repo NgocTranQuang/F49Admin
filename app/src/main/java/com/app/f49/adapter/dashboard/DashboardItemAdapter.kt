@@ -14,7 +14,7 @@ import com.app.f49.activity.taisanthanhly.TaiSanThanhLyActivity
 import com.app.f49.activity.tienhoahong.TienHoaHongActivity
 import com.app.f49.databinding.RowItemDashboardBinding
 import com.app.f49.model.home.ItemHomeDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 class DashboardItemAdapter(var items: MutableList<ItemHomeDTO>, var idCuaHang: Int?) : RecyclerView.Adapter<DashboardItemAdapter.ViewHolder>() {
     var heightItem = 1

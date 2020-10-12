@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.model.store.StoreDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.row_store.view.*
 
 

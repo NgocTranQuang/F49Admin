@@ -126,9 +126,11 @@
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvImageCollateralOther"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:itemCount="1"
+                    android:overScrollMode="never"
                     tools:listitem="@layout/row_image" />
         </LinearLayout>
     </LinearLayout>

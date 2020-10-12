@@ -10,7 +10,7 @@ import com.app.f49.activity.infoContract.InfoContractActivity
 import com.app.f49.adapter.LoadMoreAdapter
 import com.app.f49.databinding.RowTimkiemBinding
 import com.app.f49.model.timkiem.TimKiemDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 //class TimKiemAdapter(var items: MutableList<TimKiemDTO>) : RecyclerView.Adapter<TimKiemAdapter.ViewHolder>() {
 //    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

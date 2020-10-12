@@ -19,12 +19,15 @@ import com.app.f49.adapter.contract.ContractAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.bottomsheet.ContractBottomSheet
 import com.app.f49.databinding.ActivityManageContractBinding
+import com.app.f49.extension.init
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import com.app.f49.extension.setOnSingleClickListener
 import com.app.f49.model.HopDongCamDoDTO
-import extension.init
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_manage_contract.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, ContractViewModel, BaseNavigator>() {
@@ -60,6 +63,22 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         initSpiner()
         evenClickListener()
         obsever()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun reloadData(rq:String?){
+        val id = rq
+        getListHopDong()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun getDataIntent() {
@@ -166,9 +185,9 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         spStore.selectedItemListener {
             currentIdStore = Base.listStore?.value?.get(it)?.id ?: ""
             getListHopDong()
-            if (currentIdStore == "0"){
+            if (currentIdStore == "0") {
                 fbAddContractImage.visibility = View.GONE
-            }else{
+            } else {
                 fbAddContractImage.visibility = View.VISIBLE
             }
 //            mViewModel?.getListNguoiQLHD(currentIdStore)

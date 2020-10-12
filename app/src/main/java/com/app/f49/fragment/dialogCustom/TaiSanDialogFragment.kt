@@ -13,22 +13,21 @@ import com.app.f49.R
 import com.app.f49.activity.creatingContract.KhachHangViewModel
 import com.app.f49.adapter.contract.PropertiesCollateralAdapter
 import com.app.f49.model.createcontract.*
-import extension.selectedItemListener
-import extension.setList
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
 import kotlinx.android.synthetic.main.fragment_dialog_collateral.*
 
 class TaiSanDialogFragment : DialogFragment() {
     private var propertiesCollateralAdapter: PropertiesCollateralAdapter? = null
     private var khachHangViewModel: KhachHangViewModel? = null
-    var propertiesVehicleDTO: PropertiesVehicleDTO? = null
-    var propertiesLaptopDTO: PropertiesLaptopDTO? = null
-    var propertiesOtherDTO: PropertiesOtherDTO? = null
     var itemName: String? = null
     var itemId: Int? = null
     var collateralProperties: ((BasePropertiesDTO) -> Unit)? = null
     companion object {
-        fun newInstance(): TaiSanDialogFragment {
-            return TaiSanDialogFragment()
+        fun newInstance(collateralProperties: ((BasePropertiesDTO) -> Unit)?): TaiSanDialogFragment {
+            var fm = TaiSanDialogFragment()
+            fm.collateralProperties = collateralProperties
+            return fm
         }
 
     }
@@ -89,7 +88,7 @@ class TaiSanDialogFragment : DialogFragment() {
         tvClose.setOnClickListener { dismiss() }
         tvSave.setOnClickListener {
             when (itemName) {
-                "O tô", "Xe máy" -> {
+                "Ô tô", "Xe máy" -> {
                     val vehicleDTO = getObject(PropertiesVehicleDTO())
                     collateralProperties?.invoke(vehicleDTO)
                 }
@@ -102,7 +101,7 @@ class TaiSanDialogFragment : DialogFragment() {
                     collateralProperties?.invoke(otherDTO)
                 }
             }
-
+        dismiss()
         }
     }
 

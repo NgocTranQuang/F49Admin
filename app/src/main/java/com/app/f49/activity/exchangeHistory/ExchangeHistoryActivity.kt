@@ -15,7 +15,7 @@ import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityExchangehistoryBinding
 import com.app.f49.model.history.BorrowHistoryDTO
 import com.app.f49.model.history.ExchangeHistoryDTO
-import extension.init
+import com.app.f49.extension.init
 import kotlinx.android.synthetic.main.activity_exchangehistory.*
 
 class ExchangeHistoryActivity : BaseMvvmActivity<ActivityExchangehistoryBinding, ExchangeHistoryViewModel, BaseNavigator>() {

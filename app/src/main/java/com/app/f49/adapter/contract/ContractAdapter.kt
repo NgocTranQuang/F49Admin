@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.databinding.RowContractBinding
 import com.app.f49.model.managercontract.ManagerContractDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 
 class ContractAdapter(var items: MutableList<ManagerContractDTO>, var clickItem: (Int) -> Unit) : RecyclerView.Adapter<ContractAdapter.ViewHolder>() {

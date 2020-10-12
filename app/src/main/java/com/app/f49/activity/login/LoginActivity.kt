@@ -12,8 +12,8 @@ import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
-import extension.setOnSingleClickListener
-import extension.underLine
+import com.app.f49.extension.setOnSingleClickListener
+import com.app.f49.extension.underLine
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseMvvmActivity<com.app.f49.databinding.ActivityLoginBinding, LoginViewModel, BaseNavigator>() {

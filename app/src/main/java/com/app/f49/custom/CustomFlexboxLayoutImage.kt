@@ -9,7 +9,7 @@ import com.app.f49.R
 import com.app.f49.activity.base.BaseActivity
 import com.app.f49.extension.setImageURL
 import com.google.android.flexbox.FlexboxLayout
-import extension.showDialogAsk
+import com.app.f49.extension.showDialogAsk
 
 
 class CustomFlexboxLayoutImage : FlexboxLayout {

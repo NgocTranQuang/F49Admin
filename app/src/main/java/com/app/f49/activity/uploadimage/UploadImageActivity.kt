@@ -15,7 +15,7 @@ import com.app.f49.custom.CustomGridLayoutManager
 import com.app.f49.databinding.ActivityUploadImageBinding
 import com.app.f49.decoration.CategoryDecoration
 import com.app.f49.model.uploadImage.UploadImageDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_upload_image.*
 
 class UploadImageActivity : BaseMvvmActivity<ActivityUploadImageBinding, UploadImageViewModel, BaseNavigator>() {

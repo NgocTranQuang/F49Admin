@@ -12,7 +12,7 @@ class KhachHangViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNaviga
     var thuocTinh: MutableLiveData<MutableList<ThuocTinhTaiSanDTO>> = MutableLiveData()
     var item: MutableLiveData<LoadTaoMoiDTO> = MutableLiveData()
     var output:MutableLiveData<OutputTinhTienKhachNhanDTO> = MutableLiveData()
-
+    var result:MutableLiveData<ResultContractDTO> = MutableLiveData()
     fun timKiem(key: String?) {
         handleRequestServiceObject(mApiService.timKiem(key)) {
             khachHang.value = it
@@ -41,5 +41,11 @@ class KhachHangViewModel(app: Application) : BaseMvvmAndroidViewModel<BaseNaviga
         handleRequestServiceObject(mApiService.tinhSoTienKhachNhan(rq)) {
             output.value = it
         }
+    }
+    fun luuHopDong(rq:RequestContractToServer){
+        handleRequestServiceObject(mApiService.luuHopDong(rq)){
+            result.value = it
+        }
+
     }
 }

@@ -23,7 +23,7 @@ class KhachHangDialogFragment : DialogFragment() {
 
     companion object {
         fun newInstance( customer: ((KhachHangDTO?) -> Unit)? ): KhachHangDialogFragment {
-            var fm = KhachHangDialogFragment();
+            var fm = KhachHangDialogFragment()
             fm.customer = customer
             return fm
         }

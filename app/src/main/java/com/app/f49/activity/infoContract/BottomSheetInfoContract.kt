@@ -12,7 +12,7 @@ import com.app.f49.R
 import com.app.f49.TypeActionChiTietHDCDEnum
 import com.app.f49.activity.exchangeHistory.ExchangeHistoryActivity
 import com.app.f49.activity.thulai.ThuLaiActivity
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.bottomsheet_info_contract.*
 
 class BottomSheetInfoContract : BottomSheetDialogFragment() {

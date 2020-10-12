@@ -313,4 +313,6 @@ interface ApiService {
 
     @POST(API_HOP_DONG_THE_CHAP + "TinhSoTienKhachNhan")
     fun tinhSoTienKhachNhan(@Body rq : InputTinhTienKhachNhanDTO) : Observable<BaseResponse<OutputTinhTienKhachNhanDTO>>
+    @POST(API_HOP_DONG_THE_CHAP + "LuuHopDong")
+    fun luuHopDong(@Body rq: RequestContractToServer) : Observable<BaseResponse<ResultContractDTO>>
 }

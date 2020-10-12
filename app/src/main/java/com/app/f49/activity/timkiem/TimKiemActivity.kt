@@ -12,9 +12,9 @@ import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityTimkiemBinding
+import com.app.f49.extension.init
 import com.app.f49.model.timkiem.TimKiemDTO
-import extension.init
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_timkiem.*
 
 

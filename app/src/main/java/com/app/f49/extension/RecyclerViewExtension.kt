@@ -1,4 +1,4 @@
-package extension
+package com.app.f49.extension
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView

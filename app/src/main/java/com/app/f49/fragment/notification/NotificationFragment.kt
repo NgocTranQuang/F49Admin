@@ -11,14 +11,10 @@ import com.app.f49.R
 import com.app.f49.adapter.notification.NotificationAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.FragmentNotificationBinding
-import com.app.f49.extension.handleScreenId
+import com.app.f49.extension.*
 import com.app.f49.fragment.base.BaseMvvmFragment
 import com.app.f49.model.evenbus.MessageEvent
 import com.app.f49.model.notification.NotificationDTO
-import extension.init
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_notification.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

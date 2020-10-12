@@ -10,10 +10,10 @@ import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ThulaiActivityBinding
 import com.app.f49.fragment.picker.MyDatePickerFragment
-import extension.addCurrencyFormatter
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
+import com.app.f49.extension.addCurrencyFormatter
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.thulai_activity.*
 
 class ThuLaiActivity : BaseMvvmActivity<ThulaiActivityBinding, ThuLaiViewModel, BaseNavigator>() {

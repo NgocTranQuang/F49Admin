@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/imgTaisan"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:layout_constraintStart_toStartOf="parent"
+    <android.support.constraint.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@android:color/darker_gray"/>
-    <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/ic_add_contract"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/ic_btn_x"
-            app:layout_constraintEnd_toEndOf="@id/imgTaisan"
-            app:layout_constraintTop_toTopOf="@+id/imgTaisan"/>
-</android.support.constraint.ConstraintLayout>
+            android:layout_centerInParent="true"
+            android:background="@color/colorRed"
+            app:layout_constraintDimensionRatio="1:1">
+
+        <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivTaisan"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+                android:id="@+id/ivAdd"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_add_contract"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.8" />
+
+        <ImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_btn_x"
+                app:layout_constraintEnd_toEndOf="@id/ivTaisan"
+                app:layout_constraintTop_toTopOf="@+id/ivTaisan" />
+    </android.support.constraint.ConstraintLayout>

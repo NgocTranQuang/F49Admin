@@ -13,9 +13,9 @@ import com.app.f49.adapter.camdo.CamdoAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityCamdoBinding
 import com.app.f49.model.dinhgia.CamdoDTO
-import extension.init
-import extension.selectedItemListener
-import extension.setList
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import com.app.f49.extension.init
 import kotlinx.android.synthetic.main.activity_camdo.*
 
 class CamdoActivity : BaseMvvmActivity<ActivityCamdoBinding, CamdoViewModel, BaseNavigator>() {

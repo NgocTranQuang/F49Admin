@@ -4,7 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 class PropertiesLaptopDTO :BasePropertiesDTO() {
 
-
+    @SerializedName("HangSanXuat")
+    var hangSanXuat:String? = null
+    @SerializedName("DongSanPham")
+    var dongSanPham:String? = null
     @SerializedName("CPU")
     var cPU:String? = null
     @SerializedName("RAM")

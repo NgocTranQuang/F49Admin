@@ -12,7 +12,7 @@ import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityThongtinRutlaiBinding
 import com.app.f49.model.evenbus.MessageEvent
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_thongtin_rutlai.*
 import org.greenrobot.eventbus.EventBus
 

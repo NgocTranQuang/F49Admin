@@ -1,4 +1,4 @@
-package extension
+package com.app.f49.extension
 
 import android.content.DialogInterface
 import android.support.v4.app.Fragment
@@ -163,4 +163,14 @@ fun formatMoney(price: Double): String {
 fun Date.toSimpleString() : String {
     val format = SimpleDateFormat("dd/MM/yyy")
     return format.format(this)
+}
+fun String.toDate(): String? {
+    val parser =  SimpleDateFormat("dd/MM/yyy")
+    val format = SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH)
+    return format.format(parser.parse(this))
+}
+fun String.toDateWithTime(): String? {
+    val parser =  SimpleDateFormat("dd/MM/yyy")
+    val format = SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+    return format.format(parser.parse(this))
 }

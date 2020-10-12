@@ -7,8 +7,8 @@ import android.support.v7.widget.Toolbar
 import com.app.f49.R
 import com.app.f49.activity.base.BaseActivity
 import com.app.f49.adapter.store.ListStoreAdapter
+import com.app.f49.extension.init
 import com.app.f49.model.store.StoreDTO
-import extension.init
 import kotlinx.android.synthetic.main.activity_list_store.*
 
 class ListStoreActivity : BaseActivity() {
