@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.databinding.RowTienhoahongBinding
 import com.app.f49.model.nhanvien.HoaHongDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 class TienHoaHongAdapter(var items: MutableList<HoaHongDTO.HoaHongItem>) : RecyclerView.Adapter<TienHoaHongAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

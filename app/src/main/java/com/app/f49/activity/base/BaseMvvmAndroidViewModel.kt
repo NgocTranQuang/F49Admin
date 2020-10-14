@@ -1,9 +1,10 @@
-package com.app.f49.base
+package com.app.f49.activity.base
 
 import android.app.Application
 import android.text.TextUtils
 import com.app.f49.F49Application
 import com.app.f49.R
+import com.app.f49.base.BaseNavigator
 import com.app.f49.extension.checkRequest
 import com.app.f49.model.BaseResponse
 import com.app.f49.service.ApiService

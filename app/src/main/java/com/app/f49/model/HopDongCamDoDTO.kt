@@ -153,7 +153,7 @@ class HopDongCamDoDTO : Serializable {
 
     fun toContractDTO(): ManagerContractDTO {
         var managerContractDTO = ManagerContractDTO().apply {
-            this.name = soHopDong + " - " + tenKhachHang
+            this.name = "$soHopDong - $tenKhachHang"
             this.upDown = soNgayQuaHan.toString()
             this.duNo = duNoHienTai.toString()
             this.total = laiPhaiThu.toString()

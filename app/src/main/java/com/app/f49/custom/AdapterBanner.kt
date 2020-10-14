@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.databinding.ItemBannerBinding
 import com.app.f49.databinding.RowBannerMatchparentBinding
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 class AdapterBanner(
     var items: MutableList<String>,

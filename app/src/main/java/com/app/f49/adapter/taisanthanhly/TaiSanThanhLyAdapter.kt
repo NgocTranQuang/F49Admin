@@ -8,7 +8,7 @@ import com.app.f49.R
 import com.app.f49.activity.taisanthanhly.ThongTinTaiSanThanhLyActivity
 import com.app.f49.databinding.RowTaisanthanhlyBinding
 import com.app.f49.model.taisanthanhly.TaiSanDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 
 class TaiSanThanhLyAdapter(var items: MutableList<TaiSanDTO>) : RecyclerView.Adapter<TaiSanThanhLyAdapter.ViewHolder>() {

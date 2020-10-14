@@ -15,10 +15,10 @@ import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.adapter.rutlai.RutLaiAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityRutlaiBinding
+import com.app.f49.extension.init
 import com.app.f49.model.rutlai.RutLaiDTO
-import extension.init
-import extension.selectedItemListener
-import extension.setList
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
 import kotlinx.android.synthetic.main.activity_rutlai.*
 
 

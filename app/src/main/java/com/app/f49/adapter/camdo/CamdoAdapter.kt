@@ -14,7 +14,7 @@ import com.app.f49.databinding.RowCamdoBinding
 import com.app.f49.databinding.RowDinhgiaBinding
 import com.app.f49.databinding.RowDogiadungBinding
 import com.app.f49.model.dinhgia.CamdoDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 
 class CamdoAdapter(var items: MutableList<CamdoDTO>, var typeHeader: Int) : RecyclerView.Adapter<CamdoAdapter.BaseHeader>() {

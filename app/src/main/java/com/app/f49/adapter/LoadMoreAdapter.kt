@@ -9,7 +9,7 @@ import com.app.f49.R
 import com.app.f49.TypeLoad
 import com.app.f49.utils.Constants
 import com.app.f49.utils.PreferenceUtils
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.row_loadmore.view.*
 
 

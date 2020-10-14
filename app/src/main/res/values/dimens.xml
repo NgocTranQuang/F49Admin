@@ -23,4 +23,7 @@
     <dimen name="height_btn">@dimen/dp_158</dimen>
     <dimen name="design_bottom_navigation_text_size" tools:override="true">@dimen/dp_35</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">@dimen/dp_35</dimen>
+    <dimen name="activity_horizontal_margin_small">4dp</dimen>
+    <dimen name="activity_vertical_margin_small">4dp</dimen>
+    <dimen name="img_12">4dp</dimen>
 </resources>

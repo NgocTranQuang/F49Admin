@@ -11,16 +11,16 @@ import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityBaocaotonghopBinding
 import com.app.f49.fragment.picker.MyDatePickerFragment
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_baocaotonghop.*
 
 class BaoCaoTongHopActivity : BaseMvvmActivity<ActivityBaocaotonghopBinding, BaoCaoTongHopViewModel, BaseNavigator>() {
     var idCuaHang: Int? = 0
 
     companion object {
-        val KEY_DATA_ID_CUA_HANG = "KEY_DATA_ID_CUA_HANG"
+        const val KEY_DATA_ID_CUA_HANG = "KEY_DATA_ID_CUA_HANG"
         fun start(context: Context?, idCuaHang: Int?) {
             context?.startActivity(Intent(context, BaoCaoTongHopActivity::class.java).putExtra(KEY_DATA_ID_CUA_HANG, idCuaHang))
         }

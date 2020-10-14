@@ -12,9 +12,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.activity.managerContract.ContractViewModel
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.bottomsheet_contract.*
 
 class ContractBottomSheet : BottomSheetDialogFragment() {

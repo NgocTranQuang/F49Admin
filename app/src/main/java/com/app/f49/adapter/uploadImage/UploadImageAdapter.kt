@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.databinding.RowUploadImageBinding
 import com.app.f49.model.uploadImage.UploadImageDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 class UploadImageAdapter(var items: MutableList<UploadImageDTO>) : RecyclerView.Adapter<UploadImageAdapter.ViewHolder>() {
     var heightItem = 1

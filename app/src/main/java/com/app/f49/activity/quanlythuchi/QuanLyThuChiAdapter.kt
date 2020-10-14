@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.databinding.RowQuanlythuchiBinding
 import com.app.f49.model.quanlythuchi.QuanLyThuChiDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 class QuanLyThuChiAdapter(var items: MutableList<QuanLyThuChiDTO>) : RecyclerView.Adapter<QuanLyThuChiAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

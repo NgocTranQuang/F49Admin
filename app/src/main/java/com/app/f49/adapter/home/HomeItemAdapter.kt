@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.app.f49.R
 import com.app.f49.databinding.RowItemHomeBinding
 import com.app.f49.model.home.ItemHomeDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 class HomeItemAdapter(var items: MutableList<ItemHomeDTO>) : RecyclerView.Adapter<HomeItemAdapter.ViewHolder>() {
     var heightItem = 1

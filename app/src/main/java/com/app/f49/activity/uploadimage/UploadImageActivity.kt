@@ -15,7 +15,7 @@ import com.app.f49.custom.CustomGridLayoutManager
 import com.app.f49.databinding.ActivityUploadImageBinding
 import com.app.f49.decoration.CategoryDecoration
 import com.app.f49.model.uploadImage.UploadImageDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_upload_image.*
 
 class UploadImageActivity : BaseMvvmActivity<ActivityUploadImageBinding, UploadImageViewModel, BaseNavigator>() {
@@ -24,8 +24,8 @@ class UploadImageActivity : BaseMvvmActivity<ActivityUploadImageBinding, UploadI
     var countOfImage: Int = 0
 
     companion object {
-        val KEY_PASS_DATA = "KEY_PASS_DATA"
-        val KEY_COUNT_IMAGE = "KEY_COUNT_IMAGE"
+        const val KEY_PASS_DATA = "KEY_PASS_DATA"
+        const val KEY_COUNT_IMAGE = "KEY_COUNT_IMAGE"
         var CODE_UPLOAD_IMAGE = 10231
         fun start(context: Context?, soHopDong: String?, countOfImage: Int?) {
             (context as Activity)?.startActivityForResult(Intent(context, UploadImageActivity::class.java).putExtra(KEY_PASS_DATA, soHopDong).putExtra(KEY_COUNT_IMAGE, countOfImage), CODE_UPLOAD_IMAGE)

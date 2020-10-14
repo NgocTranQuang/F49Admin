@@ -19,12 +19,15 @@ import com.app.f49.adapter.contract.ContractAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.bottomsheet.ContractBottomSheet
 import com.app.f49.databinding.ActivityManageContractBinding
+import com.app.f49.extension.init
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import com.app.f49.extension.setOnSingleClickListener
 import com.app.f49.model.HopDongCamDoDTO
-import extension.init
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_manage_contract.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, ContractViewModel, BaseNavigator>() {
@@ -36,7 +39,8 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     var loaiHD: Int = 0
 
     companion object {
-        val KEY_PASS_TYPE_HD = "KEY_PASS_TYPE_HD"
+        const val KEY_PASS_TYPE_HD = "KEY_PASS_TYPE_HD"
+        const val ID_STORE = "ID_STORE"
         fun start(context: Context, type: String?) {
             context.startActivity(Intent(context, ContractActivity::class.java).putExtra(KEY_PASS_TYPE_HD, type))
         }
@@ -59,6 +63,22 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         initSpiner()
         evenClickListener()
         obsever()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun reloadData(rq:String?){
+        val id = rq
+        getListHopDong()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun getDataIntent() {
@@ -151,7 +171,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         fbAddContractImage.setOnClickListener {
             when (typeHD) {
                 ScreenIDEnum.HOP_DONG_CAM_DO.value -> {
-                    startActivity(Intent(this, CreateContractActivity::class.java))
+                    startActivity(Intent(this, CreateContractActivity::class.java).putExtra(ID_STORE, currentIdStore))
                 }
                 ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
                     startActivity(Intent(this, CreateOtherContractActivity::class.java))
@@ -165,6 +185,11 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
         spStore.selectedItemListener {
             currentIdStore = Base.listStore?.value?.get(it)?.id ?: ""
             getListHopDong()
+            if (currentIdStore == "0") {
+                fbAddContractImage.visibility = View.GONE
+            } else {
+                fbAddContractImage.visibility = View.VISIBLE
+            }
 //            mViewModel?.getListNguoiQLHD(currentIdStore)
         }
     }

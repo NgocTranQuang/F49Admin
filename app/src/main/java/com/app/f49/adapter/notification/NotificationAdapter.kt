@@ -8,7 +8,7 @@ import com.app.f49.R
 import com.app.f49.adapter.LoadMoreAdapter
 import com.app.f49.databinding.RowNotificationBinding
 import com.app.f49.model.notification.NotificationDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 
 class NotificationAdapter(listItems: MutableList<NotificationDTO>, rv: RecyclerView, var onclickItem: (NotificationDTO, () -> Unit) -> Unit, var onLongclickItem: (NotificationDTO, () -> Unit) -> Unit) : LoadMoreAdapter<NotificationDTO>(listItems, rv) {

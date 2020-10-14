@@ -11,13 +11,9 @@ import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityTienhoahongBinding
-import com.app.f49.extension.toPrice
+import com.app.f49.extension.*
 import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.nhanvien.HoaHongDTO
-import extension.init
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_tienhoahong.*
 
 class TienHoaHongActivity : BaseMvvmActivity<ActivityTienhoahongBinding, TienHoaHongViewModel, BaseNavigator>() {

@@ -14,10 +14,11 @@ import com.app.f49.adapter.home.TypePager
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.FragmentHomeBinding
 import com.app.f49.fragment.base.BaseMvvmFragment
-import extension.selectedItemListener
-import extension.setList
-import extension.setOnSingleClickListener
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlin.math.ceil
 
 
 class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNavigator>() {
@@ -56,7 +57,7 @@ class HomeFragment : BaseMvvmFragment<FragmentHomeBinding, HomeViewModel, BaseNa
     private fun observer() {
         viewModel?.listItemHome?.observe(this, Observer {
             it?.let {
-                var countOfPager = (Math.ceil((it.size).toDouble() / 6)).toInt()
+                var countOfPager = (ceil((it.size).toDouble() / 6)).toInt()
                 if (homeViewPagerAdapter == null) {
                     homeViewPagerAdapter = HomeViewPagerAdapter(it, childFragmentManager
                         ?: return@Observer, countOfPager, TypePager.HOME.value)

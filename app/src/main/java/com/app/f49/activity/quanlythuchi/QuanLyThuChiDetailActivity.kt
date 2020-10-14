@@ -11,7 +11,7 @@ import com.app.f49.activity.rutlaicuahang.RutLaiCuaHangActivity
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityQuanlythuchiDetailBinding
 import com.app.f49.model.evenbus.MessageEvent
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.activity_quanlythuchi_detail.*
 import org.greenrobot.eventbus.EventBus
 

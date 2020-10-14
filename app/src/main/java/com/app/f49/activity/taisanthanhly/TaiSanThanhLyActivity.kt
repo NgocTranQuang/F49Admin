@@ -11,10 +11,10 @@ import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.adapter.taisanthanhly.TaiSanThanhLyAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityTaisanthanhlyBinding
+import com.app.f49.extension.init
 import com.app.f49.model.taisanthanhly.TaiSanDTO
-import extension.init
-import extension.selectedItemListener
-import extension.setList
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
 import kotlinx.android.synthetic.main.activity_taisanthanhly.*
 
 class TaiSanThanhLyActivity : BaseMvvmActivity<ActivityTaisanthanhlyBinding, TaiSanThanhLyViewModel, BaseNavigator>() {

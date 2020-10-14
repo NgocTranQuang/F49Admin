@@ -1,86 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
-
-    <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/layoutTop"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/menuBot">
-
-        <android.support.design.widget.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white">
-
-            <android.support.design.widget.CollapsingToolbarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fitsSystemWindows="true"
-                    app:layout_scrollFlags="scroll|enterAlways">
-
-                <LinearLayout
-                        android:layout_marginStart="@dimen/activity_horizontal_margin"
-                        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        style="@style/LnHorizontalWeightSum">
-
-                    <TextView
-                            style="@style/TextViewLeftInfoCamdo"
-                            android:text="@string/tai_san" />
-
-                    <RelativeLayout
-                            android:id="@+id/rltTaiSan"
-                            android:layout_height="@dimen/dp_128"
-                            android:layout_width="0dp"
-                            android:layout_weight="7"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/bg_boder_gray">
-
-                        <EditText
-                                android:id="@+id/edtTaiSan"
-                                android:inputType="number"
-                                android:layout_height="@dimen/dp_128"
-                                android:layout_width="0dp"
-                                android:layout_weight="7"
-                                android:layout_gravity="center_vertical"
-                                android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:background="@drawable/bg_boder_gray" />
-
-                        <ImageView
-                                style="@style/ImageSpinner"/>
-                    </RelativeLayout>
-                </LinearLayout>
-                <View
-                        style="@style/Line"/>
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
+    <android.support.v7.widget.CardView
+            android:id="@+id/rltKhachHang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:cardElevation="6dp">
 
-        <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvPro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:overScrollMode="never"
-                app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
-                tools:listitem="@layout/row_properties"/>
-    </android.support.design.widget.CoordinatorLayout>
+        <LinearLayout
+                style="@style/LnHorizontalWeightSum"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin">
+
+            <TextView
+                    style="@style/TextViewLeftInfoCamdo"
+                    android:text="@string/tai_san" />
+
+            <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_128"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="7"
+                    android:background="@drawable/bg_boder_gray">
+
+                <Spinner
+                        android:id="@+id/spSelectTaiSan"
+                        style="@style/SpinnerStore">
+
+                </Spinner>
+
+                <ImageView style="@style/ImageSpinner" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvProperties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rltKhachHang"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:overScrollMode="never"
+            android:layout_above="@id/menuBot"
+            tools:listitem="@layout/row_properties" />
+
     <android.support.constraint.ConstraintLayout
             android:id="@+id/menuBot"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_alignParentBottom="true">
 
         <View
                 android:layout_width="0dp"
@@ -91,35 +66,35 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvSave"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/bg_btn_action"
                 android:gravity="center"
-                android:text="LƯU"
+                android:text="@string/save"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:0.23"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintEnd_toStartOf="@+id/tvClose"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.45" />
 
         <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvClose"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/bg_btn_cancel_red"
                 android:gravity="center"
-                android:text="ĐÓNG"
+                android:text="@string/close"
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:0.23"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintStart_toEndOf="@+id/tvSave"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.45" />
     </android.support.constraint.ConstraintLayout>
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

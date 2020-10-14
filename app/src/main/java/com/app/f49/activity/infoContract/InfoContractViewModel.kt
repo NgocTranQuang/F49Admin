@@ -2,7 +2,7 @@ package com.app.f49.activity.infoContract
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData
-import com.app.f49.base.BaseMvvmAndroidViewModel
+import com.app.f49.activity.base.BaseMvvmAndroidViewModel
 import com.app.f49.base.BaseNavigator
 import com.app.f49.model.infocontract.InfoContractDTO
 

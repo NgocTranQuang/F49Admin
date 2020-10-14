@@ -8,7 +8,7 @@ import com.app.f49.R
 import com.app.f49.activity.rutlaicuahang.ThongTinRutLaiCuaHangActivity
 import com.app.f49.databinding.RowRutlaiBinding
 import com.app.f49.model.rutlai.RutLaiDTO
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 
 
 class RutLaiAdapter(var items: MutableList<RutLaiDTO>, var type: String) : RecyclerView.Adapter<RutLaiAdapter.ViewHolder>() {

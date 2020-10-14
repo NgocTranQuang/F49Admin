@@ -1,4 +1,4 @@
-package extension
+package com.app.f49.extension
 
 import android.content.DialogInterface
 import android.support.v4.app.Fragment
@@ -15,6 +15,7 @@ import android.widget.*
 import com.app.f49.R
 import com.app.f49.custom.SingleClickListener
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -104,7 +105,7 @@ fun View.showDialogAsk(message: String, okAction: () -> Unit) {
     alert11.show()
 }
 
-fun EditText.addCurrencyFormatter() {
+fun EditText.addCurrencyFormatter(textChange: (() -> Unit)? = null) {
 
     // Reference: https://stackoverflow.com/questions/5107901/better-way-to-format-currency-input-edittext/29993290#29993290
     this.addTextChangedListener(object : TextWatcher {
@@ -112,6 +113,7 @@ fun EditText.addCurrencyFormatter() {
         private var current = ""
 
         override fun afterTextChanged(s: Editable?) {
+            textChange?.invoke()
         }
 
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -156,4 +158,19 @@ fun formatMoney(price: Double): String {
         return "0"
     }
 
+}
+
+fun Date.toSimpleString() : String {
+    val format = SimpleDateFormat("dd/MM/yyy")
+    return format.format(this)
+}
+fun String.toDate(): String? {
+    val parser =  SimpleDateFormat("dd/MM/yyy")
+    val format = SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH)
+    return format.format(parser.parse(this))
+}
+fun String.toDateWithTime(): String? {
+    val parser =  SimpleDateFormat("dd/MM/yyy")
+    val format = SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+    return format.format(parser.parse(this))
 }

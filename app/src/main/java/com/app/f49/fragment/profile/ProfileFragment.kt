@@ -14,7 +14,7 @@ import com.app.f49.databinding.FragmentProfileBinding
 import com.app.f49.fragment.base.BaseMvvmFragment
 import com.app.f49.utils.GeneralUtils
 import com.app.f49.utils.PreferenceUtils
-import extension.setOnSingleClickListener
+import com.app.f49.extension.setOnSingleClickListener
 import kotlinx.android.synthetic.main.fragment_profile.*
 import me.leolin.shortcutbadger.ShortcutBadger
 

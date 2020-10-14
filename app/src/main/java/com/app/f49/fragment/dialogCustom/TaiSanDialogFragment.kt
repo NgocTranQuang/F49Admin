@@ -1,28 +1,37 @@
 package com.app.f49.fragment.dialogCustom
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
+import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.app.f49.R
+import com.app.f49.activity.creatingContract.KhachHangViewModel
+import com.app.f49.adapter.contract.PropertiesCollateralAdapter
+import com.app.f49.model.createcontract.*
+import com.app.f49.extension.selectedItemListener
+import com.app.f49.extension.setList
+import kotlinx.android.synthetic.main.fragment_dialog_collateral.*
 
-class TaiSanDialogFragment: DialogFragment() {
+class TaiSanDialogFragment : DialogFragment() {
+    private var propertiesCollateralAdapter: PropertiesCollateralAdapter? = null
+    private var khachHangViewModel: KhachHangViewModel? = null
+    var itemName: String? = null
+    var itemId: Int? = null
+    var collateralProperties: ((BasePropertiesDTO) -> Unit)? = null
     companion object {
-        const val TAG = "SimpleDialog"
-        private const val KEY_TITLE = "KEY_TITLE"
-        private const val KEY_SUBTITLE = "KEY_SUBTITLE"
-        fun newInstance(title: String, subTitle: String): TaiSanDialogFragment {
-            val args = Bundle()
-            args.putString(KEY_TITLE, title)
-            args.putString(KEY_SUBTITLE, subTitle)
-            val fragment = TaiSanDialogFragment()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(collateralProperties: ((BasePropertiesDTO) -> Unit)?): TaiSanDialogFragment {
+            var fm = TaiSanDialogFragment()
+            fm.collateralProperties = collateralProperties
+            return fm
         }
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,11 +41,29 @@ class TaiSanDialogFragment: DialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var list: MutableList<String>? = null
         super.onViewCreated(view, savedInstanceState)
-        setupView(view)
+        khachHangViewModel = ViewModelProviders.of(this).get(KhachHangViewModel::class.java)
         setupClickListeners(view)
+        khachHangViewModel?.layDanhSachTaiSan()
+        createRecyclerView()
+        obsever()
 
+    }
+
+    private fun createRecyclerView() {
+        propertiesCollateralAdapter = PropertiesCollateralAdapter(mutableListOf())
+        rvProperties.layoutManager = GridLayoutManager(activity, 1)
+        rvProperties.setHasFixedSize(true)
+        rvProperties.adapter = propertiesCollateralAdapter
+    }
+
+    private fun obsever() {
+        khachHangViewModel?.taiSan?.observe(this, Observer {
+            spSelectTaiSan.setList(it?.map { it.tenVatCamCo }?.toMutableList(), 0)
+        })
+        khachHangViewModel?.thuocTinh?.observe(this, Observer {
+            propertiesCollateralAdapter?.insertData(it ?: mutableListOf())
+        })
     }
 
     override fun onStart() {
@@ -46,19 +73,50 @@ class TaiSanDialogFragment: DialogFragment() {
             WindowManager.LayoutParams.MATCH_PARENT
         )
     }
-    private fun setupView(view: View) {
-//        view.tvTitle.text = arguments?.getString(KEY_TITLE)
-//        view.tvSubTitle.text = arguments?.getString(KEY_SUBTITLE)
-    }
+
 
     private fun setupClickListeners(view: View) {
-//        view.btnPositive.setOnClickListener {
-//            // TODO: Do some task here
-//            dismiss()
-//        }
-//        view.btnNegative.setOnClickListener {
-//            // TODO: Do some task here
-//            dismiss()
-//        }
+
+        spSelectTaiSan.selectedItemListener {
+
+            val list = khachHangViewModel?.taiSan?.value
+            itemName = list?.get(it)?.tenVatCamCo
+            itemId = list?.get(it)?.id
+            list?.get(it)?.loai?.let { it1 -> khachHangViewModel?.layThuocTinhTaiSan(it1) }
+
+        }
+        tvClose.setOnClickListener { dismiss() }
+        tvSave.setOnClickListener {
+            when (itemName) {
+                "Ô tô", "Xe máy" -> {
+                    val vehicleDTO = getObject(PropertiesVehicleDTO())
+                    collateralProperties?.invoke(vehicleDTO)
+                }
+                "Laptop" -> {
+                    val laptopDTO = getObject(PropertiesLaptopDTO())
+                    collateralProperties?.invoke(laptopDTO)
+                }
+                else -> {
+                    val otherDTO = getObject(PropertiesOtherDTO())
+                    collateralProperties?.invoke(otherDTO)
+                }
+            }
+        dismiss()
+        }
+    }
+
+    private fun getObject(propertiesDTO: BasePropertiesDTO): BasePropertiesDTO {
+        val listProperties = propertiesCollateralAdapter?.properties
+        listProperties?.forEach {
+            val keyPro = it.key?.decapitalize()
+            val field = propertiesDTO.javaClass.getDeclaredField(keyPro)
+            if (field != null) {
+                field.isAccessible = true
+                field.set(propertiesDTO, it.value)
+            }
+        }
+        propertiesDTO.iDVatCamCo = itemId.toString()
+        propertiesDTO.tenVatCamCo = itemName
+        return propertiesDTO
     }
 }
