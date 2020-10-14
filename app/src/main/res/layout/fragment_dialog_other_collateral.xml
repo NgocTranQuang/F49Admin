@@ -29,23 +29,17 @@
                     android:text="@string/tai_san" />
 
             <RelativeLayout
-                    android:id="@+id/rltTaiSan"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_128"
-
                     android:layout_gravity="center_vertical"
                     android:layout_weight="7"
                     android:background="@drawable/bg_boder_gray">
 
-                <EditText
-                        android:id="@+id/edtTaiSan"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dp_128"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="7"
-                        android:background="@drawable/bg_boder_gray"
-                        android:inputType="number"
-                        android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
+                <Spinner
+                        android:id="@+id/spSelectTaiSanOther"
+                        style="@style/SpinnerStore">
+
+                </Spinner>
 
                 <ImageView style="@style/ImageSpinner" />
             </RelativeLayout>
@@ -127,6 +121,7 @@
 
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvImageCollateralOther"
+                    app:spanCount="4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:itemCount="1"
@@ -139,6 +134,7 @@
     <android.support.constraint.ConstraintLayout
             android:id="@+id/menuBot"
             android:layout_width="match_parent"
+            android:background="@color/colorWhite"
             android:layout_height="?actionBarSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

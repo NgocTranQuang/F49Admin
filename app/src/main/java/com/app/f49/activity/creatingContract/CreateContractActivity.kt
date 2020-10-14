@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.Toolbar
 import android.view.View
+import android.widget.Toast
 import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.adapter.contract.UploadImageCollateralAdapter
@@ -238,6 +239,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
             }
             khachHangViewModel?.luuHopDong(requestToServer ?: RequestContractToServer())
             khachHangViewModel?.result?.observe(this, Observer {
+                Toast.makeText(applicationContext,getString(R.string.create_success),Toast.LENGTH_SHORT).show()
                 finish()
             })
         }

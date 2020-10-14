@@ -233,22 +233,22 @@
     <orderEntry type="module-library">
       <library name="Gradle: kaptGeneratedClasses">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebugAndroidTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionDebugAndroidTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebugUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentRelease" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebug" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionDebugUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentReleaseUnitTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebugUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentDebugUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentRelease" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentDebug" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebugUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionReleaseUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionRelease" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebugAndroidTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionReleaseUnitTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebugAndroidTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebugUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentReleaseUnitTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionDebugAndroidTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebugAndroidTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionRelease" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionDebug" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentDebugAndroidTest" />
