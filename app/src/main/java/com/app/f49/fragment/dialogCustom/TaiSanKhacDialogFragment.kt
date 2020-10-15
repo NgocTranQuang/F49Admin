@@ -10,14 +10,19 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.app.f49.R
 import com.app.f49.ScreenIDEnum
-import com.app.f49.activity.creatingContract.CreateContractViewModel
-import com.app.f49.activity.creatingContract.CreateOtherContractActivity
+import com.app.f49.activity.createOtherContract.CreateContractViewModel
+import com.app.f49.activity.createOtherContract.CreateOtherContractActivity
 import com.app.f49.adapter.contract.UploadImageCollateralAdapter
 import com.app.f49.bottomsheet.imageaction.BottomSheetGetImageFragment
 import com.app.f49.custom.CustomGridLayoutManager
 import com.app.f49.decoration.CategoryDecoration
+import com.app.f49.extension.addCurrencyFormatter
+import com.app.f49.extension.selectedItemListener
 import com.app.f49.extension.setList
+import com.app.f49.model.createcontract.BasePropertiesDTO
 import com.app.f49.model.createcontract.PropertiesImageDTO
+import com.app.f49.model.createcontractother.PropertiesCollateralDTO
+import com.app.f49.model.createcontractother.RequestOtherContractToServer
 import kotlinx.android.synthetic.main.fragment_dialog_other_collateral.*
 import kotlinx.android.synthetic.main.fragment_dialog_other_collateral.view.*
 
@@ -26,6 +31,10 @@ class TaiSanKhacDialogFragment : DialogFragment() {
     var listInfoImage: MutableList<PropertiesImageDTO> = mutableListOf()
     var createContractViewModel: CreateContractViewModel? = null
     var typeHD:String?  = null
+    var itemName: String? = null
+    var itemId: Int? = null
+    var taiSan: PropertiesCollateralDTO? = null
+    var collateralProperties: ((PropertiesCollateralDTO) -> Unit)? = null
 
     companion object {
         fun newInstance(): TaiSanKhacDialogFragment {
@@ -50,6 +59,7 @@ class TaiSanKhacDialogFragment : DialogFragment() {
             this.dataAsURL = null
             this.dataAsURLs = null
         })
+
         setupView(view)
         when (typeHD) {
             ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
@@ -67,10 +77,7 @@ class TaiSanKhacDialogFragment : DialogFragment() {
         recyclerViewImage(view)
     }
 
-    override fun onDestroy() {
 
-        super.onDestroy()
-    }
     private fun recyclerViewImage(view: View) {
         view.apply {
             uploadImageCollateralAdapter = UploadImageCollateralAdapter(listInfoImage)
@@ -104,8 +111,6 @@ class TaiSanKhacDialogFragment : DialogFragment() {
                 }
             }
         }
-
-
     }
 
     override fun onStart() {
@@ -117,11 +122,38 @@ class TaiSanKhacDialogFragment : DialogFragment() {
     }
 
     private fun setupView(view: View) {
-
+        edtDinhGia.addCurrencyFormatter()
     }
 
 
     private fun setupClickListeners(view: View) {
+        spSelectTaiSanOther.selectedItemListener {
 
+            val list = createContractViewModel?.taiSan?.value
+            itemName = list?.get(it)?.tenVatCamCo
+            itemId = list?.get(it)?.id
+
+        }
+        tvCloseOther.setOnClickListener {
+            dismiss()
+        }
+        tvSaveOther.setOnClickListener {
+            taiSan = PropertiesCollateralDTO().apply {
+                tenVatCamCo = itemName
+                iDVatCamCo = itemId.toString()
+                moTa = edtMota.text.toString()
+                dinhGia = edtDinhGia.text.toString().replace(".", "")
+                viTriDeDo = edtViTri.text.toString()
+                hinhAnh = uploadImageCollateralAdapter?.listImage
+            }
+            uploadImageCollateralAdapter?.listImage?.apply {
+                val size = uploadImageCollateralAdapter?.listImage?.size
+                if (size != null && size > 0) {
+                    removeAt(size - 1)
+                }
+            }
+            collateralProperties?.invoke(taiSan ?: PropertiesCollateralDTO())
+            dismiss()
+        }
     }
 }

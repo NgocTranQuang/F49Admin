@@ -58,8 +58,8 @@ interface ApiService {
         const val API_LICHSU = "api/LichSu/"
         const val API_TIENHOAHONG = "api/TienHoaHong/"
         const val API_HOP_DONG_THE_CHAP = "api/HopDongTheChap/"
-        const val API_HOP_DONG_DNGD = "api/HopDongDNGD/"
-        const val API_HOP_DONG_TG = "api/HopDongGDTG/"
+        const val API_HOP_DONG_GDTG = "api/HopDongGDTG/"
+        const val API_HOP_DONG_TG = "api/HopDongTraGop/"
     }
 
     /**
@@ -331,19 +331,19 @@ interface ApiService {
   * DU NO GIA DUNG
   * */
 
-    @GET(API_HOP_DONG_DNGD + "LayDanhSachTaiSan")
+    @GET(API_HOP_DONG_GDTG + "LayDanhSachTaiSan")
     fun layDanhSachTaiSanDNGD(): Observable<BaseResponse<MutableList<TaiSanInHDDTO>>>
 
-    @POST(API_HOP_DONG_DNGD + "LoadTaoMoi")
+    @POST(API_HOP_DONG_GDTG + "LoadTaoMoi")
     fun loadTaoMoiDNGD(@Body rq: IDCuaHangDTO): Observable<BaseResponse<LoadTaoMoiOtherDTO>>
 
-    @POST(API_HOP_DONG_DNGD + "TinhTienLai")
+    @POST(API_HOP_DONG_GDTG + "TinhTienLai")
     fun tinhTienLaiDNGD(@Body rq: InputTinhLaiPhi): Observable<BaseResponse<OutputTinhLaiPhi>>
 
-    @POST(API_HOP_DONG_DNGD + "TinhTienPhi")
+    @POST(API_HOP_DONG_GDTG + "TinhTienPhi")
     fun tinhTienPhiDNGD(@Body rq: InputTinhLaiPhi): Observable<BaseResponse<OutputTinhLaiPhi>>
 
-    @POST(API_HOP_DONG_DNGD + "TinhSoTienKhachNhan")
+    @POST(API_HOP_DONG_GDTG + "TinhSoTienKhachNhan")
     fun tinhSoTienKhachNhanDNGD(@Body rq: InputTinhTienKhachNhanOtherDTO): Observable<BaseResponse<OutputTinhTienKhachNhanDTO>>
     /*
   * HD TRA GOP

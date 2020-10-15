@@ -1,17 +1,22 @@
-package com.app.f49.activity.creatingContract
+package com.app.f49.activity.createOtherContract
 
+import android.app.Activity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.CompoundButton
+import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import com.app.f49.R
 import com.app.f49.ScreenIDEnum
 import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.adapter.contract.CollateralOtherContractAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityCreateContractBinding
 import com.app.f49.extension.*
@@ -20,29 +25,33 @@ import com.app.f49.fragment.dialogCustom.TaiSanKhacDialogFragment
 import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.createcontract.IDCuaHangDTO
 import com.app.f49.model.createcontract.KhachHangDTO
-import com.app.f49.model.createcontractother.InputTinhLaiPhi
-import com.app.f49.model.createcontractother.InputTinhTienKhachNhanOtherDTO
-import com.app.f49.model.createcontractother.LoadTaoMoiOtherDTO
+import com.app.f49.model.createcontractother.*
 import kotlinx.android.synthetic.main.activity_create_other_contract.*
+
 
 class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, CreateContractViewModel, BaseNavigator>() {
     private val BEFORE = "Trước"
     private val AFTER = "Sau"
     private val handler = Handler()
     private var traGop: MutableList<String?>? = null
-    var tinhLai: InputTinhLaiPhi? = null
-    var tinhPhi: InputTinhLaiPhi? = null
+    private var tinhLai: InputTinhLaiPhi? = null
+    private var tinhPhi: InputTinhLaiPhi? = null
     private var inputKhachNhan: InputTinhTienKhachNhanOtherDTO? = null
-    var taiSanKhacDialogFragment: TaiSanKhacDialogFragment = TaiSanKhacDialogFragment()
-    var createContractViewModel: CreateContractViewModel? = null
-    var typeHD = ""
-    var currentIDStore = ""
-    var isCheck = false
-    var isGopTruoc = false
+    private var taiSanKhacDialogFragment: TaiSanKhacDialogFragment = TaiSanKhacDialogFragment()
+    private var collateralOtherContractAdapter: CollateralOtherContractAdapter? = null
+    private var createContractViewModel: CreateContractViewModel? = null
+    private var typeHD = ""
+    private var currentIDStore = ""
+    private var isCheck = false
+    private var isGopTruoc = false
+    private var listCollateral: MutableList<PropertiesCollateralDTO>? = null
+    private var requestToServer: RequestOtherContractToServer? = null
+
     companion object {
         const val ID_STORE = "ID_STORE"
         const val TYPE_HD = "TYPE_HD"
     }
+
 
     override fun getLayoutId(): Int {
         return R.layout.activity_create_other_contract
@@ -64,6 +73,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         currentIDStore = intent?.getStringExtra("ID_STORE").toString()
         val idStore = IDCuaHangDTO()
         idStore.iDCuaHang = currentIDStore.toInt()
+        requestToServer = RequestOtherContractToServer()
         traGop = mutableListOf()
         traGop?.add(BEFORE)
         traGop?.add(AFTER)
@@ -78,7 +88,10 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         }
         observer()
         evenClickListener()
+        createRecyclerView()
+        setupUI(llRootItem)
     }
+
 
     private fun setViewFormat() {
         edtTienVayOther.setText("0")
@@ -140,12 +153,12 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         })
         cbThuPhi.setOnCheckedChangeListener { p0, isChecked ->
 
-                if (isChecked) {
-                    isCheck = !isCheck
-                    requestKhachNhan(isGopTruoc, isCheck)
-                }else if (!isChecked){
-                    isCheck = !isCheck
-                    requestKhachNhan(isGopTruoc, isCheck)
+            if (isChecked) {
+                isCheck = !isCheck
+                requestKhachNhan(isGopTruoc, isCheck)
+            } else if (!isChecked) {
+                isCheck = !isCheck
+                requestKhachNhan(isGopTruoc, isCheck)
 
             }
         }
@@ -154,7 +167,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             when (it) {
                 0 -> {
                     isGopTruoc = true
-                    requestKhachNhan(isGopTruoc,isCheck)
+                    requestKhachNhan(isGopTruoc, isCheck)
                 }
                 1 -> {
                     isGopTruoc = false
@@ -283,7 +296,13 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
 
     private fun evenClickListener() {
         ivAddTaiSan.setOnClickListener {
+            taiSanKhacDialogFragment = TaiSanKhacDialogFragment()
             taiSanKhacDialogFragment.typeHD = typeHD
+            taiSanKhacDialogFragment.collateralProperties = {
+                listCollateral?.add(it)
+                requestToServer?.dSTaiSanTheChap = listCollateral
+                collateralOtherContractAdapter?.insertData(it)
+            }
             taiSanKhacDialogFragment.show(supportFragmentManager, "String")
         }
         edtCustomerNameOther.setOnClickListener {
@@ -302,5 +321,37 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                 ?: 0L)
         }
 
+    }
+
+    //hide keyboard when click other
+    fun hideSoftKeyboard(activity: Activity) {
+        val inputMethodManager: InputMethodManager = activity.getSystemService(
+            INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+            activity.currentFocus.windowToken, 0)
+    }
+
+    fun setupUI(view: View) {
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (view !is EditText) {
+            view.setOnTouchListener { v, event ->
+                hideSoftKeyboard(this@CreateOtherContractActivity)
+                false
+            }
+        }
+        //If a layout container, iterate over children and seed recursion.
+        if (view is ViewGroup) {
+            for (i in 0 until view.childCount) {
+                val innerView = view.getChildAt(i)
+                setupUI(innerView)
+            }
+        }
+    }
+
+    private fun createRecyclerView() {
+        collateralOtherContractAdapter = CollateralOtherContractAdapter(mutableListOf())
+        rvCollateral.layoutManager = LinearLayoutManager(this)
+        rvCollateral.setHasFixedSize(true)
+        rvCollateral.adapter = collateralOtherContractAdapter
     }
 }

@@ -11,7 +11,7 @@
 
         <variable
                 name="viewModel"
-                type="com.app.f49.activity.creatingContract.CreateContractViewModel" />
+                type="com.app.f49.activity.createOtherContract.CreateContractViewModel" />
     </data>
 
     <LinearLayout

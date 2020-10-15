@@ -11,10 +11,11 @@
 
         <variable
                 name="viewModel"
-                type="com.app.f49.activity.creatingContract.CreateContractViewModel" />
+                type="com.app.f49.activity.createOtherContract.CreateContractViewModel" />
     </data>
 
     <LinearLayout
+            android:id="@+id/llRootItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -373,8 +374,8 @@
 
                         <ImageView
                                 android:id="@+id/ivAddTaiSan"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_marginBottom="4dp"
                                 android:src="@drawable/ic_add_green" />
                     </LinearLayout>
@@ -383,25 +384,15 @@
 
                     <LinearLayout style="@style/LnHorizontalWeightSum">
 
-                        <TextView
-                                style="@style/TextViewLeftInfoCamdo"
-                                android:layout_gravity="top"
-                                android:text="@string/tai_san" />
 
-                        <android.support.v7.widget.CardView
-                                android:layout_width="0dp"
-                                app:cardBackgroundColor="@color/color_line_divider_light"
-                                app:cardElevation="0dp"
-                                app:cardCornerRadius="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="7">
+
 
                             <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/rvCollateral"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:overScrollMode="never"
                                     tools:listitem="@layout/row_collateral_other"/>
-                        </android.support.v7.widget.CardView>
 
                     </LinearLayout>
                 </LinearLayout>

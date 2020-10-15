@@ -1,4 +1,4 @@
-package com.app.f49.activity.creatingContract
+package com.app.f49.activity.createOtherContract
 
 import android.app.Application
 import android.arch.lifecycle.MutableLiveData

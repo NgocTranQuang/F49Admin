@@ -104,9 +104,10 @@ class TaiSanDialogFragment : DialogFragment() {
         dismiss()
         }
     }
-
+    //
     private fun getObject(propertiesDTO: BasePropertiesDTO): BasePropertiesDTO {
         val listProperties = propertiesCollateralAdapter?.properties
+        ///gán value name
         listProperties?.forEach {
             val keyPro = it.key?.decapitalize()
             val field = propertiesDTO.javaClass.getDeclaredField(keyPro)

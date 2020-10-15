@@ -160,7 +160,7 @@
                   android:configChanges="orientation|keyboardHidden"/>
         <activity android:name=".activity.creatingContract.CreateContractActivity"
                 android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name=".activity.creatingContract.CreateOtherContractActivity"
+        <activity android:name=".activity.createOtherContract.CreateOtherContractActivity"
                 android:windowSoftInputMode="stateHidden|adjustPan"/>
         <meta-data
                 android:name="firebase_crashlytics_collection_enabled"

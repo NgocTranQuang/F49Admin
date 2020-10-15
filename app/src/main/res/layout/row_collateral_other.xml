@@ -2,7 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
 
     <TextView
             android:id="@+id/tvSTTOther"
@@ -16,10 +18,12 @@
             app:layout_constraintWidth_percent=".1" />
 
     <TextView
+            android:id="@+id/tvNameCollateral"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="Điện thoại"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ivBtnDelete"
             app:layout_constraintStart_toEndOf="@+id/tvSTTOther"
@@ -32,15 +36,17 @@
             android:layout_margin="@dimen/dp_4"
             android:background="@drawable/ic_btn_x"
             android:padding="6dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent=".07" />
-
+            app:layout_constraintWidth_percent=".08" />
     <View
             style="@style/Line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivBtnDelete" />
 </android.support.constraint.ConstraintLayout>

@@ -13,7 +13,7 @@ import com.app.f49.ScreenIDEnum
 import com.app.f49.TypeHopDongDashBoardEnum
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.activity.creatingContract.CreateContractActivity
-import com.app.f49.activity.creatingContract.CreateOtherContractActivity
+import com.app.f49.activity.createOtherContract.CreateOtherContractActivity
 import com.app.f49.activity.infoContract.InfoContractActivity
 import com.app.f49.adapter.contract.ContractAdapter
 import com.app.f49.base.BaseNavigator

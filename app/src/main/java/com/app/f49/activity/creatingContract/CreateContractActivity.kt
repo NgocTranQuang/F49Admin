@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.activity.createOtherContract.CreateContractViewModel
 import com.app.f49.adapter.contract.UploadImageCollateralAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.bottomsheet.imageaction.BottomSheetGetImageFragment
