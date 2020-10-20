@@ -4,14 +4,8 @@ import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import com.app.f49.activity.base.BaseMvvmAndroidViewModel
 import com.app.f49.base.BaseNavigator
-import com.app.f49.model.createcontract.IDCuaHangDTO
-import com.app.f49.model.createcontract.LoadTaoMoiDTO
-import com.app.f49.model.createcontract.OutputTinhTienKhachNhanDTO
-import com.app.f49.model.createcontract.TaiSanInHDDTO
-import com.app.f49.model.createcontractother.InputTinhLaiPhi
-import com.app.f49.model.createcontractother.InputTinhTienKhachNhanOtherDTO
-import com.app.f49.model.createcontractother.LoadTaoMoiOtherDTO
-import com.app.f49.model.createcontractother.OutputTinhLaiPhi
+import com.app.f49.model.createcontract.*
+import com.app.f49.model.createcontractother.*
 import java.util.*
 
 class CreateContractViewModel(app:Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
@@ -21,6 +15,7 @@ class CreateContractViewModel(app:Application) : BaseMvvmAndroidViewModel<BaseNa
     var outputLai:MutableLiveData<OutputTinhLaiPhi> = MutableLiveData()
     var outputPhi:MutableLiveData<OutputTinhLaiPhi> = MutableLiveData()
     var tienNhan:MutableLiveData<OutputTinhTienKhachNhanDTO> = MutableLiveData()
+    var soHD:MutableLiveData<ResultContractDTO> = MutableLiveData()
     init {
         dateVay.value = Date()
     }
@@ -75,5 +70,18 @@ class CreateContractViewModel(app:Application) : BaseMvvmAndroidViewModel<BaseNa
         handleRequestServiceObject(mApiService.tinhSoTienKhachNhanTG(rq)){
             tienNhan.value = it
         }
+    }
+
+    fun luuHopDongGDTG(rq: RequestOtherContractToServer){
+        handleRequestServiceObject(mApiService.luuHopDongGDTG(rq)){
+            soHD.value = it
+        }
+
+    }
+    fun luuHopDongTG(rq:RequestOtherContractToServer){
+        handleRequestServiceObject(mApiService.luuHopDongTG(rq)){
+            soHD.value = it
+        }
+
     }
 }

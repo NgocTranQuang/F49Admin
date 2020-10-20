@@ -19,10 +19,8 @@ import com.app.f49.decoration.CategoryDecoration
 import com.app.f49.extension.addCurrencyFormatter
 import com.app.f49.extension.selectedItemListener
 import com.app.f49.extension.setList
-import com.app.f49.model.createcontract.BasePropertiesDTO
 import com.app.f49.model.createcontract.PropertiesImageDTO
 import com.app.f49.model.createcontractother.PropertiesCollateralDTO
-import com.app.f49.model.createcontractother.RequestOtherContractToServer
 import kotlinx.android.synthetic.main.fragment_dialog_other_collateral.*
 import kotlinx.android.synthetic.main.fragment_dialog_other_collateral.view.*
 
@@ -30,11 +28,12 @@ class TaiSanKhacDialogFragment : DialogFragment() {
     private var uploadImageCollateralAdapter: UploadImageCollateralAdapter? = null
     var listInfoImage: MutableList<PropertiesImageDTO> = mutableListOf()
     var createContractViewModel: CreateContractViewModel? = null
-    var typeHD:String?  = null
+    var typeHD: String? = null
     var itemName: String? = null
     var itemId: Int? = null
     var taiSan: PropertiesCollateralDTO? = null
     var collateralProperties: ((PropertiesCollateralDTO) -> Unit)? = null
+    var collatertalOnClick: PropertiesCollateralDTO = PropertiesCollateralDTO()
 
     companion object {
         fun newInstance(): TaiSanKhacDialogFragment {
@@ -75,6 +74,17 @@ class TaiSanKhacDialogFragment : DialogFragment() {
 
         setupClickListeners(view)
         recyclerViewImage(view)
+        collatertalOnClick?.apply {
+
+            if(collatertalOnClick.tenVatCamCo != null){
+                spSelectTaiSanOther.setList(mutableListOf(collatertalOnClick.tenVatCamCo), 0)
+            }
+
+            edtViTri.setText(viTriDeDo)
+            edtDinhGia.setText(dinhGia)
+            edtMota.setText(moTa)
+            collatertalOnClick.hinhAnh?.let { uploadImageCollateralAdapter?.insertData(it) }
+        }
     }
 
 
@@ -123,6 +133,7 @@ class TaiSanKhacDialogFragment : DialogFragment() {
 
     private fun setupView(view: View) {
         edtDinhGia.addCurrencyFormatter()
+
     }
 
 

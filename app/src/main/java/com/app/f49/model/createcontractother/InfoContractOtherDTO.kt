@@ -25,9 +25,9 @@ class InfoContractOtherDTO {
 
     @SerializedName("SoKyVay")
     var soKyVay: String? = null
-
-    @SerializedName("NgayCatLai")
-    var ngayCatLai: String? = null
+//
+//    @SerializedName("NgayCatLai")
+//    var ngayCatLai: String? = null
 
     @SerializedName("CatLaiTruoc")
     var catLaiTruoc: Boolean? = null

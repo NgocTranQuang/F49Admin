@@ -60,11 +60,11 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kapt/f49DevelopmentDebug" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/f49DevelopmentDebug/out" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/aidl_source_output_dir/f49DevelopmentDebug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/f49Development/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/renderscript_source_output_dir/f49DevelopmentDebug/out" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/aidl_source_output_dir/f49DevelopmentDebug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kaptKotlin/f49DevelopmentDebug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/f49DevelopmentDebug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/fabric/res/f49Development/debug" type="java-resource" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/google-services/f49Development/debug" type="java-resource" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/f49Development/debug" type="java-resource" generated="true" />
@@ -83,11 +83,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src/f49Development/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/f49Development/shaders" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kapt/f49DevelopmentDebugAndroidTest" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/aidl_source_output_dir/f49DevelopmentDebugAndroidTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/f49DevelopmentDebugAndroidTest/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/aidl_source_output_dir/f49DevelopmentDebugAndroidTest/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/f49Development/debug" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/renderscript_source_output_dir/f49DevelopmentDebugAndroidTest/out" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kaptKotlin/f49DevelopmentDebugAndroidTest" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/buildConfig/androidTest/f49Development/debug" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/androidTest/f49Development/debug" type="java-test-resource" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestF49DevelopmentDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestF49DevelopmentDebug/resources" type="java-test-resource" />
@@ -103,9 +103,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestF49Development/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestF49Development/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestF49Development/shaders" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kaptKotlin/f49DevelopmentDebugUnitTest" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kapt/f49DevelopmentDebugUnitTest" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/f49DevelopmentDebugUnitTest/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kaptKotlin/f49DevelopmentDebugUnitTest" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testF49DevelopmentDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testF49DevelopmentDebug/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testF49DevelopmentDebug/assets" type="java-test-resource" />
@@ -233,26 +233,26 @@
     <orderEntry type="module-library">
       <library name="Gradle: kaptGeneratedClasses">
         <CLASSES>
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebugUnitTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentReleaseUnitTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentRelease" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebug" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionDebugUnitTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebugUnitTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentDebugUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentDebugAndroidTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentRelease" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentDebug" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionReleaseUnitTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionRelease" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebugAndroidTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionReleaseUnitTest" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentReleaseUnitTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentDebugUnitTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentRelease" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblDevelopmentReleaseUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionDebugAndroidTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionDebug" />
-          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebugAndroidTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionDebugUnitTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionRelease" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/cblProductionReleaseUnitTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebugAndroidTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebug" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentDebugUnitTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentRelease" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49DevelopmentReleaseUnitTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebugAndroidTest" />
           <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebug" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionDebugUnitTest" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionRelease" />
+          <root url="file://$MODULE_DIR$/build/tmp/kapt3/classes/f49ProductionReleaseUnitTest" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

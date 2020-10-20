@@ -4,10 +4,7 @@ import com.app.f49.model.BaseResponse
 import com.app.f49.model.HopDongCamDoDTO
 import com.app.f49.model.baocaotonghop.BaoCaoTongHopDTO
 import com.app.f49.model.createcontract.*
-import com.app.f49.model.createcontractother.InputTinhLaiPhi
-import com.app.f49.model.createcontractother.InputTinhTienKhachNhanOtherDTO
-import com.app.f49.model.createcontractother.LoadTaoMoiOtherDTO
-import com.app.f49.model.createcontractother.OutputTinhLaiPhi
+import com.app.f49.model.createcontractother.*
 import com.app.f49.model.dinhgia.CamdoDTO
 import com.app.f49.model.history.BorrowHistoryDTO
 import com.app.f49.model.history.DetailBorrowDTO
@@ -345,6 +342,9 @@ interface ApiService {
 
     @POST(API_HOP_DONG_GDTG + "TinhSoTienKhachNhan")
     fun tinhSoTienKhachNhanDNGD(@Body rq: InputTinhTienKhachNhanOtherDTO): Observable<BaseResponse<OutputTinhTienKhachNhanDTO>>
+
+    @POST(API_HOP_DONG_GDTG + "LuuHopDong")
+    fun luuHopDongGDTG(@Body rq: RequestOtherContractToServer): Observable<BaseResponse<ResultContractDTO>>
     /*
   * HD TRA GOP
   * */
@@ -364,4 +364,7 @@ interface ApiService {
 
     @POST(API_HOP_DONG_TG + "TinhSoTienKhachNhan")
     fun tinhSoTienKhachNhanTG(@Body rq: InputTinhTienKhachNhanOtherDTO): Observable<BaseResponse<OutputTinhTienKhachNhanDTO>>
+
+    @POST(API_HOP_DONG_TG + "LuuHopDong")
+    fun luuHopDongTG(@Body rq: RequestOtherContractToServer): Observable<BaseResponse<ResultContractDTO>>
 }

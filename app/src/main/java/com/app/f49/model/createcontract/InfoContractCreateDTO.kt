@@ -30,4 +30,5 @@ class InfoContractCreateDTO {
     var soTienKhachNhan: String? = null
     @SerializedName("GhiChu")
     var ghiChu: String? = null
+
 }

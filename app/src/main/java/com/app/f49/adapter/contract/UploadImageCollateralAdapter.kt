@@ -22,7 +22,6 @@ class UploadImageCollateralAdapter(var listImage: MutableList<PropertiesImageDTO
         this.listImage.addAll(listImage.size-1,image)
         notifyDataSetChanged()
     }
-
    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): RecyclerView.ViewHolder {
         return if (p1 == TYPE_IMAGE_EMPTY) {
             val itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_image, parent, false)
