@@ -36,6 +36,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
     private val AFTER = "Sau"
     private var requestToServer: RequestContractToServer? = null
     private var listInfoImage: MutableList<PropertiesImageDTO> = mutableListOf()
+    private var isCatLaiTruoc:Boolean = true
 
     override fun getLayoutId(): Int {
         return R.layout.activity_create_contract
@@ -125,7 +126,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
 
     }
 
-    private fun requestServer(stt: Boolean = true) {
+    private fun requestServer() {
         val mRunnable = Runnable {
 
             run {
@@ -133,7 +134,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
                 input?.soTienVay = edtTienVay.text.toString().replace(".", "")
                 input?.laiXuat = edtLaiSuat.text.toString().replace(".", "")
                 input?.soNgayVay = edtKiDongLai.text.toString()
-                input?.catLaiTruoc = stt
+                input?.catLaiTruoc = isCatLaiTruoc
                 input?.tienThuPhi = edtPhi.text.toString().replace(".", "")
                 input?.let {
                     khachHangViewModel?.tinhSoTienKhachNhan(it)
@@ -213,10 +214,12 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
         spSelectCatLai.selectedItemListener {
             when (it) {
                 0 -> {
+                    isCatLaiTruoc = true
                     requestServer()
                 }
                 1 -> {
-                    requestServer(false)
+                    isCatLaiTruoc = false
+                    requestServer()
                 }
             }
         }
