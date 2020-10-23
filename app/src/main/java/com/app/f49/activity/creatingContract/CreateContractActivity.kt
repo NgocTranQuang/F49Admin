@@ -34,8 +34,8 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
     private var input: InputTinhTienKhachNhanDTO? = null
     private val BEFORE = "Trước"
     private val AFTER = "Sau"
-    var requestToServer: RequestContractToServer? = null
-    var listInfoImage: MutableList<PropertiesImageDTO> = mutableListOf()
+    private var requestToServer: RequestContractToServer? = null
+    private var listInfoImage: MutableList<PropertiesImageDTO> = mutableListOf()
 
     override fun getLayoutId(): Int {
         return R.layout.activity_create_contract
@@ -112,7 +112,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
                 listImage.forEachIndexed { index, s ->
                     listImageShow.add(PropertiesImageDTO().apply {
                         this.name = "Tài sản thế chấp"
-                        this.dataAsURL = listBase64.get(index)
+                        this.dataAsURL = listBase64[index]
                         this.dataAsURLs = s
                     })
                 }
@@ -127,7 +127,9 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
 
     private fun requestServer(stt: Boolean = true) {
         val mRunnable = Runnable {
+
             run {
+                input?.ngayVay = tvNgayVay.text.toString().toDate()
                 input?.soTienVay = edtTienVay.text.toString().replace(".", "")
                 input?.laiXuat = edtLaiSuat.text.toString().replace(".", "")
                 input?.soNgayVay = edtKiDongLai.text.toString()
@@ -196,11 +198,15 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
         tvNgayVay.setOnSingleClickListener {
             MyDatePickerFragment.showPicker(supportFragmentManager, khachHangViewModel?.item?.value?.ngayVay?.time
                 ?: 0L).setResultListener {
+                tvNgayVay.text = it.toSimpleString()
+                requestServer()
             }
         }
         tvNgayVaoSo.setOnSingleClickListener {
             MyDatePickerFragment.showPicker(supportFragmentManager, khachHangViewModel?.item?.value?.ngayVaoSo?.time
-                ?: 0L)
+                ?: 0L).setResultListener {
+                tvNgayVaoSo.text = it.toSimpleString()
+            }
         }
 
         spSelectCatLai.setList(catLai, 0)

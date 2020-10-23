@@ -32,11 +32,11 @@ import org.greenrobot.eventbus.ThreadMode
 
 class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, ContractViewModel, BaseNavigator>() {
     var adapter: ContractAdapter? = null
-    var currentIdStore = ""
-    var currentIdTab = ""
-    var countOfInit = 0
-    var typeHD = ""
-    var loaiHD: Int = 0
+    private var currentIdStore = ""
+    private var currentIdTab = ""
+    private var countOfInit = 0
+    private var typeHD = ""
+    private var loaiHD: Int = 0
 
     companion object {
         const val KEY_PASS_TYPE_HD = "KEY_PASS_TYPE_HD"

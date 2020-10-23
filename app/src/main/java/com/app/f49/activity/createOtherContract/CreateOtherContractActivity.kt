@@ -27,6 +27,7 @@ import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.createcontract.IDCuaHangDTO
 import com.app.f49.model.createcontract.KhachHangDTO
 import com.app.f49.model.createcontractother.*
+import kotlinx.android.synthetic.main.activity_create_contract.*
 import kotlinx.android.synthetic.main.activity_create_other_contract.*
 
 
@@ -54,7 +55,6 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         const val ID_STORE = "ID_STORE"
         const val TYPE_HD = "TYPE_HD"
     }
-
 
     override fun getLayoutId(): Int {
         return R.layout.activity_create_other_contract
@@ -97,7 +97,6 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         setupUI(llRootItem)
     }
 
-
     private fun setViewFormat() {
         edtTienVayOther.setText("0")
         edtTienPhi.setText("0")
@@ -110,72 +109,56 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         edtRateLai.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun afterTextChanged(p0: Editable?) {
                 if (edtRateLai.text.toString().toFloat() > 100f) {
                     showToast(getString(R.string.min_Lai))
                 } else {
                     tinhLai()
                 }
-
             }
-
         })
 
         edtSoNgayVay.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun afterTextChanged(p0: Editable?) {
                 tinhLai()
                 requestKhachNhan()
             }
-
         })
         edtNgayKi.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun afterTextChanged(p0: Editable?) {
                 requestKhachNhan()
             }
-
         })
         edtRatePhi.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun afterTextChanged(p0: Editable?) {
                 if (edtRateLai.text.toString().toFloat() > 100f) {
                     showToast(getString(R.string.min_phi))
                 } else {
                     tinhPhi()
                 }
-
             }
-
         })
         cbThuPhi.setOnCheckedChangeListener { _, isChecked ->
-
             if (isChecked) {
                 isCheck = !isCheck
                 requestKhachNhan(isGopTruoc, isCheck)
             } else if (!isChecked) {
                 isCheck = !isCheck
                 requestKhachNhan(isGopTruoc, isCheck)
-
             }
         }
         spSelectTraGop.setList(traGop, 1)
@@ -192,12 +175,14 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             }
         }
     }
+
     fun showToast(message: String){
         val toast =  Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
         val view:View = toast.view
         view.setBackgroundColor(resources.getColor(R.color.colorPrimary))
         toast.show()
     }
+
     private fun observer() {
         createContractViewModel?.item?.observe(this, Observer {
             setView(it)
@@ -224,7 +209,6 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
     private fun tinhLai() {
         val mRunnable = Runnable {
             run {
-
                 tinhLai = InputTinhLaiPhi().apply {
                     soTienVay = edtTienVayOther.text.toString().replace(".", "")
                     phanTramLai = edtRateLai.text.toString()
@@ -237,7 +221,6 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                     ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
                         createContractViewModel?.tinhTienLaiTG(tinhLai ?: InputTinhLaiPhi())
                     }
-
                     else -> {
                     }
                 }
@@ -262,7 +245,6 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                     ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
                         createContractViewModel?.tinhTienPhiTG(tinhPhi ?: InputTinhLaiPhi())
                     }
-
                     else -> {
                     }
                 }
@@ -293,7 +275,6 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                         createContractViewModel?.tinhSoTienKhachNhanTG(inputKhachNhan
                             ?: InputTinhTienKhachNhanOtherDTO())
                     }
-
                     else -> {
                     }
                 }
@@ -342,11 +323,14 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         tvNgayVayOther.setOnSingleClickListener {
             MyDatePickerFragment.showPicker(supportFragmentManager, createContractViewModel?.item?.value?.ngayVay?.time
                 ?: 0L).setResultListener {
+                tvNgayVayOther.text = it.toSimpleString()
             }
         }
         tvNgayVaoSoOther.setOnSingleClickListener {
             MyDatePickerFragment.showPicker(supportFragmentManager, createContractViewModel?.item?.value?.ngayVaoSo?.time
-                ?: 0L)
+                ?: 0L).setResultListener {
+                tvNgayVaoSoOther.text = it.toSimpleString()
+            }
         }
         tvLapHopDongOther.setOnClickListener {
             requestToServer?.thongTinHopDong = InfoContractOtherDTO().apply {
