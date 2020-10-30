@@ -4,9 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 open class BasePropertiesDTO {
     @SerializedName("TenVatCamCo")
-    var tenVatCamCo :String? = null
+    var tenVatCamCo: String? = null
+
     @SerializedName("IDVatCamCo")
-    var iDVatCamCo :String? = null
+    var iDVatCamCo: String? = null
+
     @SerializedName("HinhAnh")
-    var hinhAnh:MutableList<PropertiesImageDTO>? = null
+    var hinhAnh: MutableList<PropertiesImageDTO>? = null
+
+
 }

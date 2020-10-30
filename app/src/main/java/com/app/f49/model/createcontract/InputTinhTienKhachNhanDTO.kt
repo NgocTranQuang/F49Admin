@@ -3,10 +3,8 @@ package com.app.f49.model.createcontract
 import com.google.gson.annotations.SerializedName
 
 class InputTinhTienKhachNhanDTO {
-    @SerializedName("TenVatCamCo")
-    var tenVatCamCo :String? = null
-    @SerializedName("IDVatCamCo")
-    var iDVatCamCo :String? = null
+    @SerializedName("NgayVay")
+    var ngayVay: String? = null
     @SerializedName("SoTienVay")
     var soTienVay :String? = null
     @SerializedName("LaiXuat")

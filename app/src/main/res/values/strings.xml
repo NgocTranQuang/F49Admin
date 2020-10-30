@@ -207,5 +207,10 @@
     <string name="description">Mô tả</string>
     <string name="cmnd">Số CMND</string>
     <string name="que_quan">Quê quán</string>
+    <string name="create_success"> Tạo hợp đồng thành công !! </string>
+    <string name="hd_giadung">Hợp đồng gia dụng</string>
+    <string name="hd_tragop">Hợp đồng trả góp</string>
+    <string name="min_Lai">Giá trị lãi không được lớn hơn 100</string>
+    <string name="min_phi">Giá trị phí không được lớn hơn 100</string>
 
 </resources>

@@ -11,10 +11,11 @@
 
         <variable
                 name="viewModel"
-                type="com.app.f49.activity.creatingContract.CreateContractViewModel" />
+                type="com.app.f49.activity.createOtherContract.CreateContractViewModel" />
     </data>
 
     <LinearLayout
+            android:id="@+id/llRootItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -57,6 +58,7 @@
                                 android:background="@color/colorPrimary" />
 
                         <TextView
+                                android:id="@+id/tvTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
@@ -79,8 +81,8 @@
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="7"
-                                android:gravity="start|center"
                                 android:background="@drawable/bg_boder_gray"
+                                android:gravity="start|center"
                                 android:inputType="number"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
                     </LinearLayout>
@@ -109,12 +111,14 @@
                                 android:gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:paddingEnd="@dimen/toolbar_half_padding_horizontal"
-                        />
+                                android:text="asdffsdfa"
+                                android:textSize="14sp" />
                     </LinearLayout>
 
                     <View style="@style/Line" />
 
                     <LinearLayout
+                            android:id="@+id/lnNgayVaoSoOther"
                             style="@style/LnHorizontalWeightSum"
                             android:clipToPadding="false">
 
@@ -135,10 +139,13 @@
                                 android:gravity="center_vertical"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
                                 android:paddingEnd="@dimen/toolbar_half_padding_horizontal"
-                            />
+                                android:text="asdffsdfa"
+                                android:textSize="14sp" />
                     </LinearLayout>
 
-                    <View style="@style/Line" />
+                    <View
+                            android:id="@+id/lineUnderNgayVaoSoOther"
+                            style="@style/Line" />
 
                     <LinearLayout style="@style/LnHorizontalWeightSum">
 
@@ -170,22 +177,25 @@
                         <EditText
                                 android:id="@+id/edtSoNgayVay"
                                 android:layout_width="0dp"
-                                android:layout_height="38dp"
+                                android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="4"
                                 android:background="@drawable/bg_boder_gray"
                                 android:inputType="number"
+                                android:textSize="12sp"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
 
                         <EditText
                                 android:id="@+id/edtSoNgayKi"
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/dp_128"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="3"
-                                android:background="@drawable/bg_boder_gray"
-                                android:inputType="number"
+                                android:layout_gravity="center"
+                                android:gravity="center|start"
                                 android:layout_marginStart="8dp"
+                                android:focusable="false"
+                                android:layout_weight="3"
+                                android:textSize="12sp"
+                                android:background="@drawable/bg_boder_gray"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
                     </LinearLayout>
 
@@ -224,8 +234,9 @@
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="2"
+                                android:textSize="12sp"
                                 android:background="@drawable/bg_boder_gray"
-                                android:inputType="number"
+                                android:inputType="numberDecimal"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
 
                         <EditText
@@ -233,8 +244,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="5"
                                 android:layout_marginStart="8dp"
+                                android:layout_weight="5"
+                                android:focusable="false"
+                                android:textSize="12sp"
                                 android:background="@drawable/bg_boder_gray"
                                 android:inputType="number"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
@@ -254,8 +267,9 @@
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="2"
+                                android:textSize="12sp"
                                 android:background="@drawable/bg_boder_gray"
-                                android:inputType="number"
+                                android:inputType="numberDecimal"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
 
                         <EditText
@@ -263,8 +277,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="@dimen/dp_128"
                                 android:layout_gravity="center_vertical"
-                                android:layout_weight="5"
                                 android:layout_marginStart="8dp"
+                                android:layout_weight="5"
+                                android:focusable="false"
+                                android:textSize="12sp"
                                 android:background="@drawable/bg_boder_gray"
                                 android:inputType="number"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
@@ -273,18 +289,23 @@
                     <View style="@style/Line" />
 
                     <LinearLayout style="@style/LnHorizontalWeightSum">
+
                         <TextView
                                 style="@style/TextViewLeftInfoCamdo"
                                 android:text="@string/thu_phi_truoc" />
-                    <android.support.v7.widget.AppCompatCheckBox
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/dp_128"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="7"
-                            android:buttonTint="@color/colorPrimary"
-                            android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
+
+                        <CheckBox
+                                android:id="@+id/cbThuPhi"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/dp_128"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="7"
+                                android:buttonTint="@color/colorPrimary"
+                                android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
                     </LinearLayout>
+
                     <View style="@style/Line" />
+
                     <LinearLayout style="@style/LnHorizontalWeightSum">
 
                         <TextView
@@ -327,13 +348,14 @@
                                 android:enabled="false"
                                 android:focusable="false"
                                 android:paddingStart="@dimen/toolbar_half_padding_horizontal"
-                                android:textSize="14sp"/>
+                                android:textSize="14sp" />
                     </LinearLayout>
 
                     <View style="@style/Line" />
+
                     <LinearLayout
-                            android:layout_marginTop="@dimen/activity_horizontal_margin"
-                            style="@style/LnHorizontalWeightSum">
+                            style="@style/LnHorizontalWeightSum"
+                            android:layout_marginTop="@dimen/activity_horizontal_margin">
 
                         <ImageView
                                 android:layout_width="20dp"
@@ -345,20 +367,35 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
-                                android:text="@string/title_info_asset"
                                 android:layout_weight="9.8"
                                 android:gravity="bottom"
+                                android:text="@string/title_info_asset"
                                 android:textColor="@color/colorPrimary"
                                 android:textStyle="bold" />
+
                         <ImageView
                                 android:id="@+id/ivAddTaiSan"
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
                                 android:layout_marginBottom="4dp"
-                                android:src="@drawable/ic_add_green"/>
+                                android:src="@drawable/ic_add_green" />
                     </LinearLayout>
 
                     <View style="@style/TitleLine" />
+
+                    <LinearLayout style="@style/LnHorizontalWeightSum">
+
+
+
+
+                            <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/rvCollateral"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:overScrollMode="never"
+                                    tools:listitem="@layout/row_collateral_other"/>
+
+                    </LinearLayout>
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
 
@@ -377,7 +414,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/tvLapHopDongOther"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="@drawable/bg_btn_action"
@@ -386,14 +423,14 @@
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1:0.23"
-                        app:layout_constraintEnd_toStartOf="@+id/textView"
+                        app:layout_constraintEnd_toStartOf="@+id/tvDongOther"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.45" />
 
                 <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/tvDongOther"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:background="@drawable/bg_btn_cancel_red"
@@ -404,7 +441,7 @@
                         app:layout_constraintDimensionRatio="1:0.23"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/textView2"
+                        app:layout_constraintStart_toEndOf="@+id/tvLapHopDongOther"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_percent="0.45" />
             </android.support.constraint.ConstraintLayout>

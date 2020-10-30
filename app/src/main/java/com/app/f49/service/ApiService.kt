@@ -4,6 +4,7 @@ import com.app.f49.model.BaseResponse
 import com.app.f49.model.HopDongCamDoDTO
 import com.app.f49.model.baocaotonghop.BaoCaoTongHopDTO
 import com.app.f49.model.createcontract.*
+import com.app.f49.model.createcontractother.*
 import com.app.f49.model.dinhgia.CamdoDTO
 import com.app.f49.model.history.BorrowHistoryDTO
 import com.app.f49.model.history.DetailBorrowDTO
@@ -54,6 +55,8 @@ interface ApiService {
         const val API_LICHSU = "api/LichSu/"
         const val API_TIENHOAHONG = "api/TienHoaHong/"
         const val API_HOP_DONG_THE_CHAP = "api/HopDongTheChap/"
+        const val API_HOP_DONG_GDTG = "api/HopDongGDTG/"
+        const val API_HOP_DONG_TG = "api/HopDongTraGop/"
     }
 
     /**
@@ -302,6 +305,10 @@ interface ApiService {
     @GET("api/KhachHang/TimKiem")
     fun timKiem(@Query("key") key: String?): Observable<BaseResponse<MutableList<KhachHangDTO>>>
 
+    /*
+  * HOP DONG THE CHAP
+  * */
+
     @GET(API_HOP_DONG_THE_CHAP + "LayDanhSachTaiSan")
     fun layDanhSachTaiSan(): Observable<BaseResponse<MutableList<TaiSanInHDDTO>>>
 
@@ -309,10 +316,55 @@ interface ApiService {
     fun layThuocTinhTaiSan(@Query("loaiTaiSan") loaiTaiSan: String?): Observable<BaseResponse<MutableList<ThuocTinhTaiSanDTO>>>
 
     @POST(API_HOP_DONG_THE_CHAP + "LoadTaoMoi")
-    fun  loadTaoMoi(@Body rq : IDCuaHangDTO): Observable<BaseResponse<LoadTaoMoiDTO>>
+    fun loadTaoMoi(@Body rq: IDCuaHangDTO): Observable<BaseResponse<LoadTaoMoiDTO>>
 
     @POST(API_HOP_DONG_THE_CHAP + "TinhSoTienKhachNhan")
-    fun tinhSoTienKhachNhan(@Body rq : InputTinhTienKhachNhanDTO) : Observable<BaseResponse<OutputTinhTienKhachNhanDTO>>
+    fun tinhSoTienKhachNhan(@Body rq: InputTinhTienKhachNhanDTO): Observable<BaseResponse<OutputTinhTienKhachNhanDTO>>
+
     @POST(API_HOP_DONG_THE_CHAP + "LuuHopDong")
-    fun luuHopDong(@Body rq: RequestContractToServer) : Observable<BaseResponse<ResultContractDTO>>
+    fun luuHopDong(@Body rq: RequestContractToServer): Observable<BaseResponse<ResultContractDTO>>
+
+    /*
+  * DU NO GIA DUNG
+  * */
+
+    @GET(API_HOP_DONG_GDTG + "LayDanhSachTaiSan")
+    fun layDanhSachTaiSanDNGD(): Observable<BaseResponse<MutableList<TaiSanInHDDTO>>>
+
+    @POST(API_HOP_DONG_GDTG + "LoadTaoMoi")
+    fun loadTaoMoiDNGD(@Body rq: IDCuaHangDTO): Observable<BaseResponse<LoadTaoMoiOtherDTO>>
+
+    @POST(API_HOP_DONG_GDTG + "TinhTienLai")
+    fun tinhTienLaiDNGD(@Body rq: InputTinhLaiPhi): Observable<BaseResponse<OutputTinhLaiPhi>>
+
+    @POST(API_HOP_DONG_GDTG + "TinhTienPhi")
+    fun tinhTienPhiDNGD(@Body rq: InputTinhLaiPhi): Observable<BaseResponse<OutputTinhLaiPhi>>
+
+    @POST(API_HOP_DONG_GDTG + "TinhSoTienKhachNhan")
+    fun tinhSoTienKhachNhanDNGD(@Body rq: InputTinhTienKhachNhanOtherDTO): Observable<BaseResponse<OutputTinhTienKhachNhanDTO>>
+
+    @POST(API_HOP_DONG_GDTG + "LuuHopDong")
+    fun luuHopDongGDTG(@Body rq: RequestOtherContractToServer): Observable<BaseResponse<ResultContractDTO>>
+    /*
+  * HD TRA GOP
+  * */
+
+    @GET(API_HOP_DONG_TG + "LayDanhSachTaiSan")
+    fun layDanhSachTaiSanTG(): Observable<BaseResponse<MutableList<TaiSanInHDDTO>>>
+
+
+    @POST(API_HOP_DONG_TG + "LoadTaoMoi")
+    fun loadTaoMoiTG(@Body rq: IDCuaHangDTO): Observable<BaseResponse<LoadTaoMoiOtherDTO>>
+
+    @POST(API_HOP_DONG_TG + "TinhTienLai")
+    fun tinhTienLaiTG(@Body rq: InputTinhLaiPhi): Observable<BaseResponse<OutputTinhLaiPhi>>
+
+    @POST(API_HOP_DONG_TG + "TinhTienPhi")
+    fun tinhTienPhiTG(@Body rq: InputTinhLaiPhi): Observable<BaseResponse<OutputTinhLaiPhi>>
+
+    @POST(API_HOP_DONG_TG + "TinhSoTienKhachNhan")
+    fun tinhSoTienKhachNhanTG(@Body rq: InputTinhTienKhachNhanOtherDTO): Observable<BaseResponse<OutputTinhTienKhachNhanDTO>>
+
+    @POST(API_HOP_DONG_TG + "LuuHopDong")
+    fun luuHopDongTG(@Body rq: RequestOtherContractToServer): Observable<BaseResponse<ResultContractDTO>>
 }

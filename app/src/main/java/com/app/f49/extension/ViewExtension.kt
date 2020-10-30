@@ -1,6 +1,5 @@
 package com.app.f49.extension
 
-import android.content.DialogInterface
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AlertDialog
@@ -91,15 +90,15 @@ fun View.showDialogAsk(message: String, okAction: () -> Unit) {
     builder1.setCancelable(true)
 
     builder1.setPositiveButton(
-        context.getString(R.string.yes),
-        DialogInterface.OnClickListener { dialog, id ->
-            okAction.invoke()
-            dialog.cancel()
-        })
+        context.getString(R.string.yes)
+    ) { dialog, id ->
+        okAction.invoke()
+        dialog.cancel()
+    }
 
     builder1.setNegativeButton(
-        context.getString(R.string.no),
-        DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+        context.getString(R.string.no)
+    ) { dialog, id -> dialog.cancel() }
 
     val alert11 = builder1.create()
     alert11.show()
@@ -164,6 +163,7 @@ fun Date.toSimpleString() : String {
     val format = SimpleDateFormat("dd/MM/yyy")
     return format.format(this)
 }
+
 fun String.toDate(): String? {
     val parser =  SimpleDateFormat("dd/MM/yyy")
     val format = SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH)
@@ -171,6 +171,7 @@ fun String.toDate(): String? {
 }
 fun String.toDateWithTime(): String? {
     val parser =  SimpleDateFormat("dd/MM/yyy")
-    val format = SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.ENGLISH)
+
+    val format = SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.ROOT)
     return format.format(parser.parse(this))
 }

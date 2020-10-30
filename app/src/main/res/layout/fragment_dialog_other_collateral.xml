@@ -29,23 +29,17 @@
                     android:text="@string/tai_san" />
 
             <RelativeLayout
-                    android:id="@+id/rltTaiSan"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp_128"
-
                     android:layout_gravity="center_vertical"
                     android:layout_weight="7"
                     android:background="@drawable/bg_boder_gray">
 
-                <EditText
-                        android:id="@+id/edtTaiSan"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/dp_128"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="7"
-                        android:background="@drawable/bg_boder_gray"
-                        android:inputType="number"
-                        android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
+                <Spinner
+                        android:id="@+id/spSelectTaiSanOther"
+                        style="@style/SpinnerStore">
+
+                </Spinner>
 
                 <ImageView style="@style/ImageSpinner" />
             </RelativeLayout>
@@ -68,7 +62,7 @@
                         android:text="@string/area" />
 
                 <EditText
-                        android:id="@+id/edtCusomerName"
+                        android:id="@+id/edtViTri"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/dp_128"
                         android:layout_gravity="center_vertical"
@@ -87,7 +81,7 @@
                         android:text="@string/pricing" />
 
                 <EditText
-
+                        android:id="@+id/edtDinhGia"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/dp_128"
                         android:layout_gravity="center_vertical"
@@ -106,13 +100,13 @@
                         android:text="@string/description" />
 
                 <EditText
-
+                        android:id="@+id/edtMota"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/dp_128"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="7"
                         android:background="@drawable/bg_boder_gray"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:paddingStart="@dimen/toolbar_half_padding_horizontal" />
             </LinearLayout>
 
@@ -127,6 +121,7 @@
 
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/rvImageCollateralOther"
+                    app:spanCount="4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:itemCount="1"
@@ -139,6 +134,7 @@
     <android.support.constraint.ConstraintLayout
             android:id="@+id/menuBot"
             android:layout_width="match_parent"
+            android:background="@color/colorWhite"
             android:layout_height="?actionBarSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +149,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvSaveOther"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/bg_btn_action"
@@ -162,14 +158,14 @@
                 android:textColor="@android:color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:0.23"
-                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintEnd_toStartOf="@+id/tvCloseOther"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.45" />
 
         <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvCloseOther"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/bg_btn_cancel_red"
@@ -180,7 +176,7 @@
                 app:layout_constraintDimensionRatio="1:0.23"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
+                app:layout_constraintStart_toEndOf="@+id/tvSaveOther"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintWidth_percent="0.45" />
     </android.support.constraint.ConstraintLayout>

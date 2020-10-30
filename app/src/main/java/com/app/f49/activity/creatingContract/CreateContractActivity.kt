@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.Toolbar
 import android.view.View
+import android.widget.Toast
 import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.activity.createOtherContract.CreateContractViewModel
 import com.app.f49.adapter.contract.UploadImageCollateralAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.bottomsheet.imageaction.BottomSheetGetImageFragment
@@ -32,8 +34,9 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
     private var input: InputTinhTienKhachNhanDTO? = null
     private val BEFORE = "Trước"
     private val AFTER = "Sau"
-    var requestToServer: RequestContractToServer? = null
-    var listInfoImage: MutableList<PropertiesImageDTO> = mutableListOf()
+    private var requestToServer: RequestContractToServer? = null
+    private var listInfoImage: MutableList<PropertiesImageDTO> = mutableListOf()
+    private var isCatLaiTruoc:Boolean = true
 
     override fun getLayoutId(): Int {
         return R.layout.activity_create_contract
@@ -110,7 +113,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
                 listImage.forEachIndexed { index, s ->
                     listImageShow.add(PropertiesImageDTO().apply {
                         this.name = "Tài sản thế chấp"
-                        this.dataAsURL = listBase64.get(index)
+                        this.dataAsURL = listBase64[index]
                         this.dataAsURLs = s
                     })
                 }
@@ -123,13 +126,15 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
 
     }
 
-    private fun requestServer(stt: Boolean = true) {
+    private fun requestServer() {
         val mRunnable = Runnable {
+
             run {
+                input?.ngayVay = tvNgayVay.text.toString().toDate()
                 input?.soTienVay = edtTienVay.text.toString().replace(".", "")
                 input?.laiXuat = edtLaiSuat.text.toString().replace(".", "")
                 input?.soNgayVay = edtKiDongLai.text.toString()
-                input?.catLaiTruoc = stt
+                input?.catLaiTruoc = isCatLaiTruoc
                 input?.tienThuPhi = edtPhi.text.toString().replace(".", "")
                 input?.let {
                     khachHangViewModel?.tinhSoTienKhachNhan(it)
@@ -194,21 +199,27 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
         tvNgayVay.setOnSingleClickListener {
             MyDatePickerFragment.showPicker(supportFragmentManager, khachHangViewModel?.item?.value?.ngayVay?.time
                 ?: 0L).setResultListener {
+                tvNgayVay.text = it.toSimpleString()
+                requestServer()
             }
         }
         tvNgayVaoSo.setOnSingleClickListener {
             MyDatePickerFragment.showPicker(supportFragmentManager, khachHangViewModel?.item?.value?.ngayVaoSo?.time
-                ?: 0L)
+                ?: 0L).setResultListener {
+                tvNgayVaoSo.text = it.toSimpleString()
+            }
         }
 
         spSelectCatLai.setList(catLai, 0)
         spSelectCatLai.selectedItemListener {
             when (it) {
                 0 -> {
+                    isCatLaiTruoc = true
                     requestServer()
                 }
                 1 -> {
-                    requestServer(false)
+                    isCatLaiTruoc = false
+                    requestServer()
                 }
             }
         }
@@ -238,6 +249,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
             }
             khachHangViewModel?.luuHopDong(requestToServer ?: RequestContractToServer())
             khachHangViewModel?.result?.observe(this, Observer {
+                Toast.makeText(applicationContext,getString(R.string.create_success),Toast.LENGTH_SHORT).show()
                 finish()
             })
         }

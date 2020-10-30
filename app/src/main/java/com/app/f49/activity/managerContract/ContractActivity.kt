@@ -13,7 +13,7 @@ import com.app.f49.ScreenIDEnum
 import com.app.f49.TypeHopDongDashBoardEnum
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.activity.creatingContract.CreateContractActivity
-import com.app.f49.activity.creatingContract.CreateOtherContractActivity
+import com.app.f49.activity.createOtherContract.CreateOtherContractActivity
 import com.app.f49.activity.infoContract.InfoContractActivity
 import com.app.f49.adapter.contract.ContractAdapter
 import com.app.f49.base.BaseNavigator
@@ -32,15 +32,16 @@ import org.greenrobot.eventbus.ThreadMode
 
 class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, ContractViewModel, BaseNavigator>() {
     var adapter: ContractAdapter? = null
-    var currentIdStore = ""
-    var currentIdTab = ""
-    var countOfInit = 0
-    var typeHD = ""
-    var loaiHD: Int = 0
+    private var currentIdStore = ""
+    private var currentIdTab = ""
+    private var countOfInit = 0
+    private var typeHD = ""
+    private var loaiHD: Int = 0
 
     companion object {
         const val KEY_PASS_TYPE_HD = "KEY_PASS_TYPE_HD"
         const val ID_STORE = "ID_STORE"
+        const val TYPE_HD = "TYPE_HD"
         fun start(context: Context, type: String?) {
             context.startActivity(Intent(context, ContractActivity::class.java).putExtra(KEY_PASS_TYPE_HD, type))
         }
@@ -71,7 +72,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun reloadData(rq:String?){
+    fun reloadData(rq: String?) {
         val id = rq
         getListHopDong()
     }
@@ -116,7 +117,7 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
             it?.let {
                 currentIdTab = it?.get(0).id ?: ""
                 it.forEach {
-                    var tab = tbLayout.newTab()
+                    val tab = tbLayout.newTab()
                     tab.tag = it.id
                     tab.text = it.value
                     tbLayout.addTab(tab)
@@ -173,8 +174,8 @@ class ContractActivity : BaseMvvmActivity<ActivityManageContractBinding, Contrac
                 ScreenIDEnum.HOP_DONG_CAM_DO.value -> {
                     startActivity(Intent(this, CreateContractActivity::class.java).putExtra(ID_STORE, currentIdStore))
                 }
-                ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
-                    startActivity(Intent(this, CreateOtherContractActivity::class.java))
+                ScreenIDEnum.CAM_DO_GIA_DUNG.value, ScreenIDEnum.HOP_DONG_TRA_GOP.value-> {
+                    startActivity(Intent(this, CreateOtherContractActivity::class.java).putExtra(ID_STORE, currentIdStore).putExtra(TYPE_HD, typeHD))
                 }
 
             }
