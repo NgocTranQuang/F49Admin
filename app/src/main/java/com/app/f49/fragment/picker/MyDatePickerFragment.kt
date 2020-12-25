@@ -43,6 +43,6 @@ class MyDatePickerFragment : DialogFragment() {
         val month = c.get(Calendar.MONTH)
         val day = c.get(Calendar.DAY_OF_MONTH)
 
-        return DatePickerDialog(getActivity(), dateSetListener, year, month, day)
+        return DatePickerDialog(activity, dateSetListener, year, month, day)
     }
 }
