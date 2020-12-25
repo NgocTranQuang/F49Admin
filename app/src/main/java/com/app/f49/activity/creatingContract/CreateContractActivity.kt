@@ -1,7 +1,6 @@
 package com.app.f49.activity.creatingContract
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.Toolbar
@@ -9,7 +8,6 @@ import android.view.View
 import android.widget.Toast
 import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
-import com.app.f49.activity.createOtherContract.CreateContractViewModel
 import com.app.f49.adapter.contract.UploadImageCollateralAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.bottomsheet.imageaction.BottomSheetGetImageFragment
@@ -24,19 +22,18 @@ import com.app.f49.model.createcontract.*
 import kotlinx.android.synthetic.main.activity_create_contract.*
 import org.greenrobot.eventbus.EventBus
 
-class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, CreateContractViewModel, BaseNavigator>() {
+class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, KhachHangViewModel, BaseNavigator>() {
     private var uploadImageCollateralAdapter: UploadImageCollateralAdapter? = null
     private val handler = Handler()
     private var catLai: MutableList<String?>? = null
     private var currentIDStore = ""
     private var idCustomer = ""
-    private var khachHangViewModel: KhachHangViewModel? = null
     private var input: InputTinhTienKhachNhanDTO? = null
     private val BEFORE = "Trước"
     private val AFTER = "Sau"
     private var requestToServer: RequestContractToServer? = null
     private var listInfoImage: MutableList<PropertiesImageDTO> = mutableListOf()
-    private var isCatLaiTruoc:Boolean = true
+    private var isCatLaiTruoc: Boolean = true
 
     override fun getLayoutId(): Int {
         return R.layout.activity_create_contract
@@ -52,6 +49,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mViewModel?.setNavigator(this)
         listInfoImage.add(PropertiesImageDTO().apply {
             this.name = null
             this.dataAsURL = null
@@ -65,8 +63,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
         currentIDStore = intent?.getStringExtra("ID_STORE").toString()
         val idStore = IDCuaHangDTO()
         idStore.iDCuaHang = currentIDStore.toInt()
-        khachHangViewModel = ViewModelProviders.of(this).get(KhachHangViewModel::class.java)
-        khachHangViewModel?.loadTaoMoi(idStore)
+        mViewModel?.loadTaoMoi(idStore)
         input = InputTinhTienKhachNhanDTO()
         observer()
         evenClickListener()
@@ -137,7 +134,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
                 input?.catLaiTruoc = isCatLaiTruoc
                 input?.tienThuPhi = edtPhi.text.toString().replace(".", "")
                 input?.let {
-                    khachHangViewModel?.tinhSoTienKhachNhan(it)
+                    mViewModel?.tinhSoTienKhachNhan(it)
                 }
             }
         }
@@ -146,14 +143,19 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
     }
 
     private fun observer() {
-        khachHangViewModel?.item?.observe(this, Observer {
+        mViewModel?.item?.observe(this, Observer {
             setView(it)
         })
-        khachHangViewModel?.output?.observe(this, Observer {
+        mViewModel?.output?.observe(this, Observer {
             edtKhachNhan.setText(it?.soTienKhachNhan?.toDouble()?.let { it1 -> formatMoney(it1) })
             edtLai.setText(it?.soTienCatLaiTruoc?.toDouble()?.let { it1 -> formatMoney(it1) })
             tvNgayCatLai.text = it?.ngayDongLai?.toSimpleString()
             tvNgayCatLai.isEnabled = false
+        })
+        mViewModel?.result?.observe(this, Observer {
+            Toast.makeText(this, getString(R.string.create_success), Toast.LENGTH_SHORT).show()
+            hideLoading()
+            finish()
         })
     }
 
@@ -163,6 +165,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
         item?.apply {
             edtKiDongLai.setText(kyDongLai.toString())
             edtLaiSuat.setText(laiXuat.toString())
+//            tvNgayVay.text = ngayVay.toString()
             if (canChangeNgayVay) {
                 tvNgayVay.isEnabled = true
                 lnNgayVaoSo.visibility = View.VISIBLE
@@ -180,6 +183,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
         EventBus.getDefault().post("")
         super.onDestroy()
     }
+
     private fun evenClickListener() {
         rltTaiSan.setOnClickListener {
             val collateralProperties: ((BasePropertiesDTO) -> Unit)? = {
@@ -197,14 +201,14 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
             KhachHangDialogFragment.newInstance(customer).show(supportFragmentManager, "String")
         }
         tvNgayVay.setOnSingleClickListener {
-            MyDatePickerFragment.showPicker(supportFragmentManager, khachHangViewModel?.item?.value?.ngayVay?.time
+            MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item?.value?.ngayVay?.time
                 ?: 0L).setResultListener {
                 tvNgayVay.text = it.toSimpleString()
                 requestServer()
             }
         }
         tvNgayVaoSo.setOnSingleClickListener {
-            MyDatePickerFragment.showPicker(supportFragmentManager, khachHangViewModel?.item?.value?.ngayVaoSo?.time
+            MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item?.value?.ngayVaoSo?.time
                 ?: 0L).setResultListener {
                 tvNgayVaoSo.text = it.toSimpleString()
             }
@@ -224,34 +228,37 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, C
             }
         }
         tvLapHopDong.setOnClickListener {
-            requestToServer?.thongTinHopDong = InfoContractCreateDTO().apply {
-                iDCuaHang = currentIDStore
-                iDKhachHang = idCustomer
-                ngayVay = tvNgayVay.text.toString().toDate()
-                ngayVaoSo = tvNgayVaoSo.text.toString().toDateWithTime()
-                soTienVay = edtTienVay.text.toString().replace(".", "")
-                laiXuat = edtLaiSuat.text.toString().replace(".", "")
-                soNgayVay = edtKiDongLai.text.toString()
-                ngayCatLai = tvNgayCatLai.text.toString().toDate()
-                val itemSelected = spSelectCatLai.selectedItem.toString()
-                catLaiTruoc = (itemSelected == BEFORE)
-                soTienCatLaiTruoc = edtLai.text.toString().replace(".", "")
-                soTienThuPhi = edtPhi.text.toString().replace(".", "")
-                soTienKhachNhan = edtKhachNhan.text.toString().replace(".", "")
-                ghiChu = edtNoiDung.text.toString()
-            }
 
-            uploadImageCollateralAdapter?.listImage?.apply {
-                val size = uploadImageCollateralAdapter?.listImage?.size
-                if (size != null && size > 0) {
-                    removeAt(size - 1)
-                }
-            }
-            khachHangViewModel?.luuHopDong(requestToServer ?: RequestContractToServer())
-            khachHangViewModel?.result?.observe(this, Observer {
-                Toast.makeText(applicationContext,getString(R.string.create_success),Toast.LENGTH_SHORT).show()
-                finish()
-            })
+            saveContract()
+
         }
+    }
+
+    private fun saveContract() {
+        requestToServer?.thongTinHopDong = InfoContractCreateDTO().apply {
+            iDCuaHang = currentIDStore
+            iDKhachHang = idCustomer
+            ngayVay = tvNgayVay.text.toString().toDate()
+            ngayVaoSo = tvNgayVaoSo.text.toString().toDateWithTime()
+            soTienVay = edtTienVay.text.toString().replace(".", "")
+            laiXuat = edtLaiSuat.text.toString().replace(".", "")
+            soNgayVay = edtKiDongLai.text.toString()
+            ngayCatLai = tvNgayCatLai.text.toString().toDate()
+            val itemSelected = spSelectCatLai.selectedItem.toString()
+            catLaiTruoc = (itemSelected == BEFORE)
+            soTienCatLaiTruoc = edtLai.text.toString().replace(".", "")
+            soTienThuPhi = edtPhi.text.toString().replace(".", "")
+            soTienKhachNhan = edtKhachNhan.text.toString().replace(".", "")
+            ghiChu = edtNoiDung.text.toString()
+        }
+
+        uploadImageCollateralAdapter?.listImage?.apply {
+            val size = uploadImageCollateralAdapter?.listImage?.size
+            if (size != null && size > 0) {
+                removeAt(size - 1)
+            }
+        }
+        showLoading(true)
+        mViewModel?.luuHopDong(requestToServer ?: RequestContractToServer())
     }
 }

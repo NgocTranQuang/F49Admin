@@ -19,6 +19,7 @@ class CreateContractViewModel(app:Application) : BaseMvvmAndroidViewModel<BaseNa
     init {
         dateVay.value = Date()
     }
+
     fun layDanhSachTaiSanDNGD() {
         handleRequestServiceObject(mApiService.layDanhSachTaiSanDNGD()) {
             taiSan.value = it

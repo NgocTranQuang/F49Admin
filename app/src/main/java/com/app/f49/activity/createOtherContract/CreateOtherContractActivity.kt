@@ -2,7 +2,6 @@ package com.app.f49.activity.createOtherContract
 
 import android.app.Activity
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
@@ -27,7 +26,6 @@ import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.createcontract.IDCuaHangDTO
 import com.app.f49.model.createcontract.KhachHangDTO
 import com.app.f49.model.createcontractother.*
-import kotlinx.android.synthetic.main.activity_create_contract.*
 import kotlinx.android.synthetic.main.activity_create_other_contract.*
 
 
@@ -41,7 +39,6 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
     private var inputKhachNhan: InputTinhTienKhachNhanOtherDTO? = null
     private var taiSanKhacDialogFragment: TaiSanKhacDialogFragment = TaiSanKhacDialogFragment()
     private var collateralOtherContractAdapter: CollateralOtherContractAdapter? = null
-    private var createContractViewModel: CreateContractViewModel? = null
     private var typeHD = ""
     private var idCustomer = ""
     private var currentIDStore = ""
@@ -49,7 +46,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
     private var isGopTruoc = false
     private var listCollateral: MutableList<PropertiesCollateralDTO>? = null
     private var requestToServer: RequestOtherContractToServer? = null
-    var soKi:Double = 0.0
+    var soKi: Double = 0.0
 
     companion object {
         const val ID_STORE = "ID_STORE"
@@ -70,7 +67,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        createContractViewModel = ViewModelProviders.of(this).get(CreateContractViewModel::class.java)
+        mViewModel?.setNavigator(this)
         currentIDStore = intent?.getStringExtra(ID_STORE).toString()
         typeHD = intent?.getStringExtra(TYPE_HD).toString()
         currentIDStore = intent?.getStringExtra("ID_STORE").toString()
@@ -84,13 +81,14 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         when (typeHD) {
             ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
                 tvTitle.text = getString(R.string.hd_giadung)
-                createContractViewModel?.loadTaoMoiDNGD(idStore)
+                mViewModel?.loadTaoMoiDNGD(idStore)
             }
             ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
                 tvTitle.text = getString(R.string.hd_tragop)
-                createContractViewModel?.loadTaoMoiTG(idStore)
+                mViewModel?.loadTaoMoiTG(idStore)
             }
         }
+
         observer()
         evenClickListener()
         createRecyclerView()
@@ -109,22 +107,50 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         edtRateLai.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
+
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
+
             override fun afterTextChanged(p0: Editable?) {
-                if (edtRateLai.text.toString().toFloat() > 100f) {
-                    showToast(getString(R.string.min_Lai))
-                } else {
-                    tinhLai()
+                if (p0?.length != 0) {
+
+                    if (edtRateLai.text.toString().toFloat() > 100f) {
+                        showToast(getString(R.string.min_Lai))
+                    } else {
+                        tinhLai()
+
+                    }
                 }
+
             }
         })
+        edtRatePhi.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
 
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                if (p0?.length != 0) {
+                    if (edtRatePhi.text.toString().toFloat() > 100f) {
+                        showToast(getString(R.string.min_phi))
+                    } else {
+                        tinhPhi()
+
+
+                    }
+                }
+
+            }
+        })
         edtSoNgayVay.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
+
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
+
             override fun afterTextChanged(p0: Editable?) {
                 tinhLai()
                 requestKhachNhan()
@@ -133,25 +159,15 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         edtNgayKi.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
+
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
+
             override fun afterTextChanged(p0: Editable?) {
                 requestKhachNhan()
             }
         })
-        edtRatePhi.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-            override fun afterTextChanged(p0: Editable?) {
-                if (edtRateLai.text.toString().toFloat() > 100f) {
-                    showToast(getString(R.string.min_phi))
-                } else {
-                    tinhPhi()
-                }
-            }
-        })
+
         cbThuPhi.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 isCheck = !isCheck
@@ -176,31 +192,31 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         }
     }
 
-    fun showToast(message: String){
-        val toast =  Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
-        val view:View = toast.view
+    fun showToast(message: String) {
+        val toast = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
+        val view: View = toast.view
         view.setBackgroundColor(resources.getColor(R.color.colorPrimary))
         toast.show()
     }
 
     private fun observer() {
-        createContractViewModel?.item?.observe(this, Observer {
+        mViewModel?.item?.observe(this, Observer {
             setView(it)
         })
 
-        createContractViewModel?.outputLai?.observe(this, Observer {
+        mViewModel?.outputLai?.observe(this, Observer {
             edtTienLai.setText((it?.soTien ?: 0).toString())
         })
-        createContractViewModel?.outputPhi?.observe(this, Observer {
+        mViewModel?.outputPhi?.observe(this, Observer {
             edtTienPhi.setText((it?.soTien ?: 0).toString())
         })
 
-        createContractViewModel?.tienNhan?.observe(this, Observer {
+        mViewModel?.tienNhan?.observe(this, Observer {
             edtKhachNhanOther.setText(it?.soTienKhachNhan?.toDouble()?.let { it1 -> formatMoney(it1) })
         })
 
-        createContractViewModel?.soHD?.observe(this, Observer {
-            Toast.makeText(applicationContext, getString(R.string.create_success), Toast.LENGTH_SHORT).show()
+        mViewModel?.soHD?.observe(this, Observer {
+            Toast.makeText(this, getString(R.string.create_success), Toast.LENGTH_SHORT).show()
             finish()
         })
     }
@@ -216,10 +232,10 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                 }
                 when (typeHD) {
                     ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
-                        createContractViewModel?.tinhTienLaiDNGD(tinhLai ?: InputTinhLaiPhi())
+                        mViewModel?.tinhTienLaiDNGD(tinhLai ?: InputTinhLaiPhi())
                     }
                     ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
-                        createContractViewModel?.tinhTienLaiTG(tinhLai ?: InputTinhLaiPhi())
+                        mViewModel?.tinhTienLaiTG(tinhLai ?: InputTinhLaiPhi())
                     }
                     else -> {
                     }
@@ -240,10 +256,10 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                 }
                 when (typeHD) {
                     ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
-                        createContractViewModel?.tinhTienPhiDNGD(tinhPhi ?: InputTinhLaiPhi())
+                        mViewModel?.tinhTienPhiDNGD(tinhPhi ?: InputTinhLaiPhi())
                     }
                     ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
-                        createContractViewModel?.tinhTienPhiTG(tinhPhi ?: InputTinhLaiPhi())
+                        mViewModel?.tinhTienPhiTG(tinhPhi ?: InputTinhLaiPhi())
                     }
                     else -> {
                     }
@@ -268,11 +284,11 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                 }
                 when (typeHD) {
                     ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
-                        createContractViewModel?.tinhSoTienKhachNhanDNGD(inputKhachNhan
+                        mViewModel?.tinhSoTienKhachNhanDNGD(inputKhachNhan
                             ?: InputTinhTienKhachNhanOtherDTO())
                     }
                     ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
-                        createContractViewModel?.tinhSoTienKhachNhanTG(inputKhachNhan
+                        mViewModel?.tinhSoTienKhachNhanTG(inputKhachNhan
                             ?: InputTinhTienKhachNhanOtherDTO())
                     }
                     else -> {
@@ -321,47 +337,50 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             KhachHangDialogFragment.newInstance(customer).show(supportFragmentManager, "String")
         }
         tvNgayVayOther.setOnSingleClickListener {
-            MyDatePickerFragment.showPicker(supportFragmentManager, createContractViewModel?.item?.value?.ngayVay?.time
+            MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item?.value?.ngayVay?.time
                 ?: 0L).setResultListener {
                 tvNgayVayOther.text = it.toSimpleString()
             }
         }
         tvNgayVaoSoOther.setOnSingleClickListener {
-            MyDatePickerFragment.showPicker(supportFragmentManager, createContractViewModel?.item?.value?.ngayVaoSo?.time
+            MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item?.value?.ngayVaoSo?.time
                 ?: 0L).setResultListener {
                 tvNgayVaoSoOther.text = it.toSimpleString()
             }
         }
         tvLapHopDongOther.setOnClickListener {
-            requestToServer?.thongTinHopDong = InfoContractOtherDTO().apply {
-                iDCuaHang = currentIDStore
-                iDKhachHang = idCustomer
-                ngayVay = tvNgayVayOther.text.toString().toDate()
-                ngayVaoSo = tvNgayVaoSoOther.text.toString().toDateWithTime()
-                soTienVay = edtTienVayOther.text.toString().replace(".", "")
-                soNgayVay = edtSoNgayVay.text.toString()
-                soNgayTrongKy = edtNgayKi.text.toString()
-                soKyVay = soKi.toString()
-//                ngayCatLai = tvNgayCatLai.text.toString().toDate()
-                val itemSelected = spSelectTraGop.selectedItem.toString()
-                catLaiTruoc = (itemSelected == BEFORE)
-                soTienCatLaiTruoc = edtTienLai.text.toString().replace(".", "")
-                thuPhiTruoc = isCheck
-                soTienThuPhi = edtTienPhi.text.toString().replace(".", "")
-                soTienKhachNhan = edtKhachNhanOther.text.toString().replace(".", "")
-            }
-
-            when (typeHD) {
-                ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
-                    requestToServer?.let { it1 -> createContractViewModel?.luuHopDongGDTG(it1) }
-                }
-                ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
-                    requestToServer?.let { it1 -> createContractViewModel?.luuHopDongTG(it1) }
-                }
-            }
+            saveContract()
         }
     }
 
+    private fun saveContract(){
+        requestToServer?.thongTinHopDong = InfoContractOtherDTO().apply {
+            iDCuaHang = currentIDStore
+            iDKhachHang = idCustomer
+            ngayVay = tvNgayVayOther.text.toString().toDate()
+            ngayVaoSo = tvNgayVaoSoOther.text.toString().toDateWithTime()
+            soTienVay = edtTienVayOther.text.toString().replace(".", "")
+            soNgayVay = edtSoNgayVay.text.toString()
+            soNgayTrongKy = edtNgayKi.text.toString()
+            soKyVay = soKi.toString()
+//                ngayCatLai = tvNgayCatLai.text.toString().toDate()
+            val itemSelected = spSelectTraGop.selectedItem.toString()
+            catLaiTruoc = (itemSelected == BEFORE)
+            soTienCatLaiTruoc = edtTienLai.text.toString().replace(".", "")
+            thuPhiTruoc = isCheck
+            soTienThuPhi = edtTienPhi.text.toString().replace(".", "")
+            soTienKhachNhan = edtKhachNhanOther.text.toString().replace(".", "")
+        }
+
+        when (typeHD) {
+            ScreenIDEnum.CAM_DO_GIA_DUNG.value -> {
+                requestToServer?.let { it1 -> mViewModel?.luuHopDongGDTG(it1) }
+            }
+            ScreenIDEnum.HOP_DONG_TRA_GOP.value -> {
+                requestToServer?.let { it1 -> mViewModel?.luuHopDongTG(it1) }
+            }
+        }
+    }
     //hide keyboard when click other
     private fun hideSoftKeyboard(activity: Activity) {
         val inputMethodManager: InputMethodManager = activity.getSystemService(

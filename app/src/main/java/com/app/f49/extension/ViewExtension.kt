@@ -160,18 +160,29 @@ fun formatMoney(price: Double): String {
 }
 
 fun Date.toSimpleString() : String {
+
     val format = SimpleDateFormat("dd/MM/yyy")
     return format.format(this)
 }
 
 fun String.toDate(): String? {
-    val parser =  SimpleDateFormat("dd/MM/yyy")
-    val format = SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH)
-    return format.format(parser.parse(this))
+    return try {
+        val parser = SimpleDateFormat("dd/MM/yyy")
+        val format = SimpleDateFormat("yyy-MM-dd", Locale.ENGLISH)
+        format.format(parser.parse(this))
+    }catch (e : Exception){
+        ""
+    }
 }
 fun String.toDateWithTime(): String? {
-    val parser =  SimpleDateFormat("dd/MM/yyy")
 
-    val format = SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.ROOT)
-    return format.format(parser.parse(this))
+    try {
+        val parser =  SimpleDateFormat("dd/MM/yyy")
+
+        val format = SimpleDateFormat("yyy-MM-dd HH:mm:ss", Locale.ROOT)
+        return format.format(parser.parse(this))
+    }catch (e:Exception){
+        return ""
+    }
+
 }
