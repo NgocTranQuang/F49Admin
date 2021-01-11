@@ -74,6 +74,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
     }
 
     private fun setViewFormat() {
+        tvTaiSan.text = "Ô tô"
         edtPhi.setText("0")
         edtTienVay.setText("0")
 
@@ -141,7 +142,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
             }
         }
         handler.removeCallbacks(mRunnable)
-        handler.postDelayed(mRunnable, 2500)
+        handler.postDelayed(mRunnable, 2000)
     }
 
     private fun observer() {
@@ -155,7 +156,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
             tvNgayCatLai.isEnabled = false
         })
         mViewModel?.result?.observe(this, Observer {
-            Toast.makeText(this, getString(R.string.create_success), Toast.LENGTH_SHORT).show()
+            showToast(getString(R.string.create_success))
             hideLoading()
             finish()
         })
@@ -168,6 +169,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
             edtKiDongLai.setText(kyDongLai.toString())
             edtLaiSuat.setText(laiXuat.toString())
             tvNgayVay.text = ngayVay?.toSimpleString()
+            tvNgayVaoSo.text = ngayVaoSo?.toSimpleString()
             if (canChangeNgayVay) {
                 tvNgayVay.isEnabled = true
                 lnNgayVaoSo.visibility = View.VISIBLE
@@ -232,8 +234,11 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
             }
         }
         tvLapHopDong.setOnClickListener {
-
-            saveContract()
+            if(tvTaiSan.text.isEmpty()){
+                showErrorDialog(getString(R.string.not_empty_assets))
+            }else{
+                saveContract()
+            }
 
         }
     }

@@ -14,6 +14,8 @@ class PropertiesOtherDTO:BasePropertiesDTO() {
     var mauSac:String? = null
     @SerializedName("VGA")
     var vGA:String? = null
+    @SerializedName("TinhTrang")
+    var tinhTrang:String? = null
     @SerializedName("DinhGia")
     var dinhGia:String? = null
     @SerializedName("MatKhau")

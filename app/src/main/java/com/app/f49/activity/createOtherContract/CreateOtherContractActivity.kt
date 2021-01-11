@@ -165,6 +165,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
 
             override fun afterTextChanged(p0: Editable?) {
                 requestKhachNhan()
+
             }
         })
 
@@ -192,12 +193,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         }
     }
 
-    fun showToast(message: String) {
-        val toast = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
-        val view: View = toast.view
-        view.setBackgroundColor(resources.getColor(R.color.colorPrimary))
-        toast.show()
-    }
+
 
     private fun observer() {
         mViewModel?.item?.observe(this, Observer {
@@ -216,7 +212,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         })
 
         mViewModel?.soHD?.observe(this, Observer {
-            Toast.makeText(this, getString(R.string.create_success), Toast.LENGTH_SHORT).show()
+            showToast(getString(R.string.create_success))
             finish()
         })
     }
@@ -297,7 +293,13 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             }
         }
         handler.removeCallbacks(mRunnable)
-        handler.postDelayed(mRunnable, 2500)
+        handler.postDelayed(mRunnable, 2000)
+    }
+    fun getKy(){
+        var soNgay:Int = edtSoNgayKi.text.toString().toInt()
+        var soNgayVay:Int = edtSoNgayVay.text.toString().toInt()
+        var soKi = Math.ceil((soNgayVay / soNgay).toDouble())
+        edtSoNgayKi.setText("${soKi.toInt()} Kỳ")
     }
 
     private fun setView(item: LoadTaoMoiOtherDTO?) {
@@ -349,7 +351,12 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             }
         }
         tvLapHopDongOther.setOnClickListener {
-            saveContract()
+            if (requestToServer?.dSTaiSanTheChap == null){
+                showErrorDialog(getString(R.string.not_empty_assets))
+            }else{
+                saveContract()
+            }
+
         }
     }
 
@@ -362,7 +369,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             soTienVay = edtTienVayOther.text.toString().replace(".", "")
             soNgayVay = edtSoNgayVay.text.toString()
             soNgayTrongKy = edtNgayKi.text.toString()
-            soKyVay = soKi.toString()
+            soKyVay = soKi.toInt().toString()
 //                ngayCatLai = tvNgayCatLai.text.toString().toDate()
             val itemSelected = spSelectTraGop.selectedItem.toString()
             catLaiTruoc = (itemSelected == BEFORE)

@@ -8,10 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import com.app.f49.R
 import com.app.f49.base.BaseNavigator
 import com.app.f49.custom.CustomProgressDialog
@@ -168,7 +165,12 @@ open class BaseActivity : AppCompatActivity(), BaseNavigator {
     override fun hideKeyboard() {
         GeneralUtils.hideKeyboard(this, window.decorView.findViewById(android.R.id.content))
     }
-
+    fun showToast(message: String) {
+        val toast = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
+        val view: View = toast.view
+        view.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+        toast.show()
+    }
 //    protected fun addFragment(fragment: Fragment?, tag: String?) {
 //        if (fragment == null) {
 //            return
