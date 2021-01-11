@@ -14,7 +14,7 @@ fun ImageView.setImageURL(url: String?) {
 //    circularProgressDrawable.start()
     val options = RequestOptions()
         .centerCrop()
-        .error(R.mipmap.ic_launcher)
+        .error(R.mipmap.icon_launcher)
 //        .placeholder(circularProgressDrawable)
     GlideApp.with(this).load(url).apply(options).into(this)
 //    }

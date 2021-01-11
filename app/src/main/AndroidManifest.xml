@@ -57,9 +57,9 @@
     <application
             android:name=".F49Application"
             android:allowBackup="false"
-            android:icon="@mipmap/icon_luncher"
+            android:icon="@mipmap/icon_launcher"
             android:label="@string/app_name"
-            android:roundIcon="@mipmap/icon_luncher"
+            android:roundIcon="@mipmap/icon_launcher"
             android:usesCleartextTraffic="true"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">

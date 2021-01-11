@@ -68,6 +68,19 @@ android {
 
         }
 
+        f247 {
+            dimension "app"
+            applicationId "com.vn.f247"
+            versionCode 1
+            versionName "1.0.1"
+            vectorDrawables.useSupportLibrary = true
+            ext {
+                production = "http://apiportal.f247.com.vn/"
+                development = "http://apiportal.f247.com.vn/"
+            }
+
+        }
+
         development {
             dimension "environment"
         }

@@ -18,7 +18,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_margin="@dimen/dp_10"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/icon_launcher"
                 android:layout_width="@dimen/dp_147"
                 android:layout_height="@dimen/dp_147"/>
 

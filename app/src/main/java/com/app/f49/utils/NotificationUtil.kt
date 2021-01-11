@@ -51,7 +51,7 @@ class NotificationUtil(private val mContext: Context) {
 //            if (iconUrl != null) {
 //                iconBitMap = getBitmapFromURL(iconUrl)
 //            }
-            val icon = R.mipmap.icon_luncher
+            val icon = R.mipmap.icon_launcher
             var bundle = Bundle()
             bundle.putString(MyFirebaseMessagingService.ITEMID, notificationVO.itemId)
             bundle.putString(MyFirebaseMessagingService.SCREENID, notificationVO.screenId)
