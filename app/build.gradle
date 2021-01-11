@@ -76,7 +76,7 @@ android {
             vectorDrawables.useSupportLibrary = true
             ext {
                 production = "http://apiportal.f247.com.vn/"
-                development = "http://apiportal.f247.com.vn/"
+                development = "http://uatapiportal.f247.com.vn/"
             }
 
         }

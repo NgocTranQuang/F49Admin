@@ -20,6 +20,7 @@ import com.app.f49.fragment.dialogCustom.TaiSanDialogFragment
 import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.createcontract.*
 import kotlinx.android.synthetic.main.activity_create_contract.*
+import kotlinx.android.synthetic.main.activity_create_other_contract.*
 import org.greenrobot.eventbus.EventBus
 
 class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, KhachHangViewModel, BaseNavigator>() {
@@ -75,6 +76,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
     private fun setViewFormat() {
         edtPhi.setText("0")
         edtTienVay.setText("0")
+
         edtTienVay.addCurrencyFormatter(textChange = {
             requestServer()
         })
@@ -165,7 +167,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
         item?.apply {
             edtKiDongLai.setText(kyDongLai.toString())
             edtLaiSuat.setText(laiXuat.toString())
-//            tvNgayVay.text = ngayVay.toString()
+            tvNgayVay.text = ngayVay?.toSimpleString()
             if (canChangeNgayVay) {
                 tvNgayVay.isEnabled = true
                 lnNgayVaoSo.visibility = View.VISIBLE
@@ -175,7 +177,9 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
                 lnNgayVaoSo.visibility = View.GONE
                 lineUnderNgayVaoSo.visibility = View.GONE
             }
+
         }
+
 
     }
 
