@@ -11,7 +11,7 @@ import java.util.*
 class CreateContractViewModel(app:Application) : BaseMvvmAndroidViewModel<BaseNavigator>(app) {
     var dateVay: MutableLiveData<Date> = MutableLiveData()
     var taiSan: MutableLiveData<MutableList<TaiSanInHDDTO>> = MutableLiveData()
-    var item: MutableLiveData<LoadTaoMoiOtherDTO> = MutableLiveData()
+    var item2: MutableLiveData<LoadTaoMoiOtherDTO> = MutableLiveData()
     var outputLai:MutableLiveData<OutputTinhLaiPhi> = MutableLiveData()
     var outputPhi:MutableLiveData<OutputTinhLaiPhi> = MutableLiveData()
     var tienNhan:MutableLiveData<OutputTinhTienKhachNhanDTO> = MutableLiveData()
@@ -32,12 +32,12 @@ class CreateContractViewModel(app:Application) : BaseMvvmAndroidViewModel<BaseNa
     }
     fun loadTaoMoiDNGD(iDCuaHang: IDCuaHangDTO) {
         handleRequestServiceObject(mApiService.loadTaoMoiDNGD(iDCuaHang)) {
-            item.value = it
+            item2.value = it
         }
     }
     fun loadTaoMoiTG(iDCuaHang: IDCuaHangDTO) {
         handleRequestServiceObject(mApiService.loadTaoMoiTG(iDCuaHang)) {
-            item.value = it
+            item2.value = it
         }
     }
     fun tinhTienLaiDNGD(rq: InputTinhLaiPhi){

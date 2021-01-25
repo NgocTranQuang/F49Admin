@@ -12,10 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.Toast
 import com.app.f49.R
 import com.app.f49.ScreenIDEnum
 import com.app.f49.activity.base.BaseMvvmActivity
+import com.app.f49.activity.creatingContract.KhachHangViewModel
 import com.app.f49.adapter.contract.CollateralOtherContractAdapter
 import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityCreateContractBinding
@@ -31,7 +31,7 @@ import kotlinx.android.synthetic.main.activity_create_contract.*
 import kotlinx.android.synthetic.main.activity_create_other_contract.*
 
 
-class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, CreateContractViewModel, BaseNavigator>() {
+class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, KhachHangViewModel, BaseNavigator>() {
     private val BEFORE = "Trước"
     private val AFTER = "Sau"
     private val handler = Handler()
@@ -78,6 +78,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         val idStore = IDCuaHangDTO()
         idStore.iDCuaHang = currentIDStore.toInt()
         khachHangDialogFragment = KhachHangDialogFragment()
+        newKhachHangDialogFragment = NewKhachHangDialogFragment()
         requestToServer = RequestOtherContractToServer()
         traGop = mutableListOf()
         traGop?.add(BEFORE)
@@ -201,7 +202,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
 
 
     private fun observer() {
-        mViewModel?.item?.observe(this, Observer {
+        mViewModel?.item2?.observe(this, Observer {
             setView(it)
         })
 
@@ -219,6 +220,12 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         mViewModel?.soHD?.observe(this, Observer {
             showToast(getString(R.string.create_success))
             finish()
+        })
+
+        mViewModel?.newKhachHang?.observe(this, Observer {
+            newKhachHangDialogFragment?.dismiss()
+            edtCustomerNameOther.text = it?.hoTen
+            idCustomer = it?.id.toString()
         })
     }
 
@@ -311,6 +318,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         item?.apply {
             edtNgayKi.setText(soNgayTrongKy.toString())
             edtSoNgayVay.setText(soNgayVay.toString())
+            tvNgayVayOther.text = ngayVay?.toSimpleString()
             soKi = Math.ceil((soNgayVay!! / soNgayTrongKy!!).toDouble())
             edtSoNgayKi.setText("${soKi.toInt()} Kỳ")
             if (canChangeNgayVay) {
@@ -332,12 +340,14 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                 edtCustomerNameOther.text = it?.hoTen
                 idCustomer = it?.id.toString()
             }
-            newKhachHangDialogFragment = NewKhachHangDialogFragment()
-            newKhachHangDialogFragment?.customer = customer
+
+
             newKhachHangDialogFragment?.show(supportFragmentManager,"String")
 
         }
-
+        newKhachHangDialogFragment?.customer = {
+            mViewModel?.luuKhachHang(it ?: KhachHangDTO())
+        }
         ivAddTaiSan.setOnClickListener {
             taiSanKhacDialogFragment = TaiSanKhacDialogFragment()
             taiSanKhacDialogFragment.typeHD = typeHD
@@ -355,16 +365,16 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             }
             khachHangDialogFragment?.customer =customer
             khachHangDialogFragment?.show(supportFragmentManager,"String")
-//            KhachHangDialogFragment.newInstance(customer).show(supportFragmentManager, "String")
+
         }
         tvNgayVayOther.setOnSingleClickListener {
-            MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item?.value?.ngayVay?.time
+            MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item2?.value?.ngayVay?.time
                 ?: 0L).setResultListener {
                 tvNgayVayOther.text = it.toSimpleString()
             }
         }
         tvNgayVaoSoOther.setOnSingleClickListener {
-            MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item?.value?.ngayVaoSo?.time
+            MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item2?.value?.ngayVaoSo?.time
                 ?: 0L).setResultListener {
                 tvNgayVaoSoOther.text = it.toSimpleString()
             }

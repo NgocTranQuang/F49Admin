@@ -305,6 +305,8 @@ interface ApiService {
     @GET("api/KhachHang/TimKiem")
     fun timKiem(@Query("key") key: String?): Observable<BaseResponse<MutableList<KhachHangDTO>>>
 
+    @POST("/api/KhachHang/Luu")
+    fun luuKhachHang(@Body rq:KhachHangDTO) : Observable<BaseResponse<KhachHangDTO>>
     /*
   * HOP DONG THE CHAP
   * */

@@ -103,9 +103,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestF247Development/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestF247Development/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/androidTestF247Development/shaders" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kaptKotlin/f247DevelopmentDebugUnitTest" isTestSource="true" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kapt/f247DevelopmentDebugUnitTest" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/ap_generated_sources/f247DevelopmentDebugUnitTest/out" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kapt/f247DevelopmentDebugUnitTest" isTestSource="true" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/source/kaptKotlin/f247DevelopmentDebugUnitTest" isTestSource="true" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/testF247DevelopmentDebug/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testF247DevelopmentDebug/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/testF247DevelopmentDebug/assets" type="java-test-resource" />

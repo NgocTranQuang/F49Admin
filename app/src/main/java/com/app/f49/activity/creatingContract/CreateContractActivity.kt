@@ -58,7 +58,8 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
             this.dataAsURLs = null
         })
         requestToServer = RequestContractToServer()
-
+        khachHangDialogFragment = KhachHangDialogFragment()
+        newKhachHangDialogFragment = NewKhachHangDialogFragment()
         catLai = mutableListOf()
         catLai?.add(BEFORE)
         catLai?.add(AFTER)
@@ -66,6 +67,8 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
         val idStore = IDCuaHangDTO()
         idStore.iDCuaHang = currentIDStore.toInt()
         mViewModel?.loadTaoMoi(idStore)
+
+
         input = InputTinhTienKhachNhanDTO()
         observer()
         evenClickListener()
@@ -75,7 +78,7 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
     }
 
     private fun setViewFormat() {
-        tvTaiSan.text = "Ô tô"
+       
         edtPhi.setText("0")
         edtTienVay.setText("0")
 
@@ -150,16 +153,21 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
         mViewModel?.item?.observe(this, Observer {
             setView(it)
         })
-        mViewModel?.output?.observe(this, Observer {
+        mViewModel?.tienNhan?.observe(this, Observer {
             edtKhachNhan.setText(it?.soTienKhachNhan?.toDouble()?.let { it1 -> formatMoney(it1) })
             edtLai.setText(it?.soTienCatLaiTruoc?.toDouble()?.let { it1 -> formatMoney(it1) })
             tvNgayCatLai.text = it?.ngayDongLai?.toSimpleString()
             tvNgayCatLai.isEnabled = false
         })
-        mViewModel?.result?.observe(this, Observer {
+        mViewModel?.soHD?.observe(this, Observer {
             showToast(getString(R.string.create_success))
             hideLoading()
             finish()
+        })
+        mViewModel?.newKhachHang?.observe(this, Observer {
+            newKhachHangDialogFragment?.dismiss()
+            tvCustomerName.text = it?.hoTen
+            idCustomer = it?.id.toString()
         })
     }
 
@@ -193,20 +201,22 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
 
     private fun evenClickListener() {
 
-        khachHangDialogFragment = KhachHangDialogFragment()
+
         khachHangDialogFragment?.signOpenFragment = {
 
                 val customer: ((KhachHangDTO?) -> Unit)? = {
                     tvCustomerName.text = it?.hoTen
                     idCustomer = it?.id.toString()
                 }
-                newKhachHangDialogFragment = NewKhachHangDialogFragment()
-                newKhachHangDialogFragment?.customer = customer
+
+
                 newKhachHangDialogFragment?.show(supportFragmentManager,"String")
 
-
-
         }
+        newKhachHangDialogFragment?.customer = {
+            mViewModel?.luuKhachHang(it ?: KhachHangDTO())
+        }
+
         rltTaiSan.setOnClickListener {
             val collateralProperties: ((BasePropertiesDTO) -> Unit)? = {
                 tvTaiSan.text = it.tenVatCamCo

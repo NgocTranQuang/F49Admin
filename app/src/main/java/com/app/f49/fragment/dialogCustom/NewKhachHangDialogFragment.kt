@@ -1,5 +1,6 @@
 package com.app.f49.fragment.dialogCustom
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -18,7 +19,7 @@ class NewKhachHangDialogFragment : DialogFragment() {
     private var khachHangViewModel: KhachHangViewModel? = null
     private var customerAdapter: CustomerAdapter? = null
     var customer: ((KhachHangDTO?) -> Unit)? = null
-
+    var newCustomer : KhachHangDTO? =null
 //    companion object {
 //        fun newInstance( customer: ((KhachHangDTO?) -> Unit)? ): NewKhachHangDialogFragment {
 //            var fm = NewKhachHangDialogFragment()
@@ -48,6 +49,7 @@ class NewKhachHangDialogFragment : DialogFragment() {
 
     private fun observe() {
 
+
     }
 
     override fun onStart() {
@@ -65,15 +67,18 @@ class NewKhachHangDialogFragment : DialogFragment() {
 
     private fun setupClickListeners(view: View) {
         view.tvSaveCustomer.setOnClickListener {
-            if (view.edtCustomerName.text.isEmpty() || view.edtPhoneNumber.text.isEmpty()){
+            if (view.edtCustomerName.text.isEmpty() || view.edtPhoneNumber.text.isEmpty()) {
                 (activity as CreateContractActivity).showErrorDialog(getString(R.string.not_empty_name))
-            }else{
-                var customerDTO = KhachHangDTO().apply {
-                    hoTen = view.edtCustomerName.text.toString()
-                    dienThoai = view.edtPhoneNumber.text.toString()
-                }
-                customer?.invoke(customerDTO)
-                dismiss()
+            } else {
+
+                 newCustomer = KhachHangDTO().apply {
+                     hoTen = view.edtCustomerName.text.toString()
+                     dienThoai = view.edtPhoneNumber.text.toString()
+                     soCMND = view.edtCMND.text.toString()
+                     queQuan = view.edtQueQuan.text.toString()
+                 }
+                customer?.invoke(newCustomer)
+
             }
 
         }
