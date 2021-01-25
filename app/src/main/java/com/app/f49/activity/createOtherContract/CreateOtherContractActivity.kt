@@ -27,7 +27,6 @@ import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.createcontract.IDCuaHangDTO
 import com.app.f49.model.createcontract.KhachHangDTO
 import com.app.f49.model.createcontractother.*
-import kotlinx.android.synthetic.main.activity_create_contract.*
 import kotlinx.android.synthetic.main.activity_create_other_contract.*
 
 
@@ -39,8 +38,8 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
     private var tinhLai: InputTinhLaiPhi? = null
     private var tinhPhi: InputTinhLaiPhi? = null
     private var inputKhachNhan: InputTinhTienKhachNhanOtherDTO? = null
-    private var khachHangDialogFragment:KhachHangDialogFragment? = null
-    private var newKhachHangDialogFragment:NewKhachHangDialogFragment? =null
+    private var khachHangDialogFragment: KhachHangDialogFragment? = null
+    private var newKhachHangDialogFragment: NewKhachHangDialogFragment? = null
     private var taiSanKhacDialogFragment: TaiSanKhacDialogFragment = TaiSanKhacDialogFragment()
     private var collateralOtherContractAdapter: CollateralOtherContractAdapter? = null
     private var typeHD = ""
@@ -130,6 +129,30 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
 
             }
         })
+        edtSoNgayVay.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                getKy()
+
+            }
+        })
+        edtNgayKi.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                getKy()
+
+            }
+        })
         edtRatePhi.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -198,7 +221,6 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             }
         }
     }
-
 
 
     private fun observer() {
@@ -307,10 +329,12 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         handler.removeCallbacks(mRunnable)
         handler.postDelayed(mRunnable, 2000)
     }
-    fun getKy(){
-        var soNgay:Int = edtSoNgayKi.text.toString().toInt()
-        var soNgayVay:Int = edtSoNgayVay.text.toString().toInt()
-        var soKi = Math.ceil((soNgayVay / soNgay).toDouble())
+
+    fun getKy() {
+        if(edtNgayKi.text.isNotEmpty() && edtSoNgayVay.text.isNotEmpty()){
+            soKi = Math.ceil((edtSoNgayVay.text.toString().toInt() / edtNgayKi.text.toString().toInt()).toDouble())
+        }
+
         edtSoNgayKi.setText("${soKi.toInt()} Kỳ")
     }
 
@@ -319,7 +343,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             edtNgayKi.setText(soNgayTrongKy.toString())
             edtSoNgayVay.setText(soNgayVay.toString())
             tvNgayVayOther.text = ngayVay?.toSimpleString()
-            soKi = Math.ceil((soNgayVay!! / soNgayTrongKy!!).toDouble())
+           soKi = Math.ceil((soNgayVay!! / soNgayTrongKy!!).toDouble())
             edtSoNgayKi.setText("${soKi.toInt()} Kỳ")
             if (canChangeNgayVay) {
                 tvNgayVayOther.isEnabled = true
@@ -342,7 +366,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             }
 
 
-            newKhachHangDialogFragment?.show(supportFragmentManager,"String")
+            newKhachHangDialogFragment?.show(supportFragmentManager, "String")
 
         }
         newKhachHangDialogFragment?.customer = {
@@ -363,8 +387,8 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                 edtCustomerNameOther.text = it?.hoTen
                 idCustomer = it?.id.toString()
             }
-            khachHangDialogFragment?.customer =customer
-            khachHangDialogFragment?.show(supportFragmentManager,"String")
+            khachHangDialogFragment?.customer = customer
+            khachHangDialogFragment?.show(supportFragmentManager, "String")
 
         }
         tvNgayVayOther.setOnSingleClickListener {
@@ -380,16 +404,16 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             }
         }
         tvLapHopDongOther.setOnClickListener {
-            if (requestToServer?.dSTaiSanTheChap == null){
+            if (requestToServer?.dSTaiSanTheChap == null) {
                 showErrorDialog(getString(R.string.not_empty_assets))
-            }else{
+            } else {
                 saveContract()
             }
 
         }
     }
 
-    private fun saveContract(){
+    private fun saveContract() {
         requestToServer?.thongTinHopDong = InfoContractOtherDTO().apply {
             iDCuaHang = currentIDStore
             iDKhachHang = idCustomer
@@ -417,6 +441,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
             }
         }
     }
+
     //hide keyboard when click other
     private fun hideSoftKeyboard(activity: Activity) {
         val inputMethodManager: InputMethodManager = activity.getSystemService(
