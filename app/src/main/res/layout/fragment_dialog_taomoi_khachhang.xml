@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+
+        <LinearLayout style="@style/LnHorizontalWeightSum">
+
+            <ImageView
+                    android:layout_width="@dimen/dp_60"
+                    android:layout_height="@dimen/dp_60"
+                    android:layout_marginBottom="@dimen/dp_12"
+                    android:background="@color/colorPrimary" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/activity_horizontal_margin"
+                    android:text="Thêm khách hàng mới:"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+        </LinearLayout>
+        <View style="@style/TitleLine" />
+        <LinearLayout style="@style/LnHorizontalWeightSum">
+
+            <TextView
+                    style="@style/TextViewLeftInfoCamdo"
+                    android:text="@string/ho_ten" />
+
+            <EditText
+                    android:id="@+id/edtCustomerName"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_128"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="7"
+                    android:background="@drawable/bg_boder_gray"
+                    android:focusable="true"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/toolbar_half_padding_horizontal"
+                    android:textSize="14sp" />
+        </LinearLayout>
+
+        <View style="@style/Line" />
+
+        <LinearLayout style="@style/LnHorizontalWeightSum">
+
+            <TextView
+                    style="@style/TextViewLeftInfoCamdo"
+                    android:text="@string/phone" />
+
+            <EditText
+                    android:id="@+id/edtPhoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_128"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="7"
+                    android:background="@drawable/bg_boder_gray"
+                    android:focusable="true"
+                    android:inputType="phone"
+                    android:paddingStart="@dimen/toolbar_half_padding_horizontal"
+                    android:textSize="14sp" />
+        </LinearLayout>
+
+        <View style="@style/Line" />
+
+        <LinearLayout style="@style/LnHorizontalWeightSum">
+
+            <TextView
+                    style="@style/TextViewLeftInfoCamdo"
+                    android:text="@string/cmnd" />
+
+            <EditText
+                    android:id="@+id/edtCMND"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_128"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="7"
+                    android:background="@drawable/bg_boder_gray"
+                    android:focusable="true"
+                    android:inputType="number"
+                    android:paddingStart="@dimen/toolbar_half_padding_horizontal"
+                    android:textSize="14sp" />
+        </LinearLayout>
+
+        <View style="@style/Line" />
+
+        <LinearLayout style="@style/LnHorizontalWeightSum">
+
+            <TextView
+                    style="@style/TextViewLeftInfoCamdo"
+                    android:text="@string/que_quan" />
+
+            <EditText
+                    android:id="@+id/edtQueQuan"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp_128"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="7"
+                    android:background="@drawable/bg_boder_gray"
+                    android:focusable="true"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/toolbar_half_padding_horizontal"
+                    android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/menuBot"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            >
+
+        <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/tvSaveCustomer"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_btn_action"
+                android:gravity="center"
+                android:text="Lưu"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.23"
+                app:layout_constraintEnd_toStartOf="@+id/tvDong"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.45" />
+
+        <TextView
+                android:id="@+id/tvDong"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_btn_cancel_red"
+                android:gravity="center"
+                android:text="ĐÓNG"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:0.23"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvSaveCustomer"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.45" />
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

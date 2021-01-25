@@ -21,11 +21,13 @@ import com.app.f49.base.BaseNavigator
 import com.app.f49.databinding.ActivityCreateContractBinding
 import com.app.f49.extension.*
 import com.app.f49.fragment.dialogCustom.KhachHangDialogFragment
+import com.app.f49.fragment.dialogCustom.NewKhachHangDialogFragment
 import com.app.f49.fragment.dialogCustom.TaiSanKhacDialogFragment
 import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.createcontract.IDCuaHangDTO
 import com.app.f49.model.createcontract.KhachHangDTO
 import com.app.f49.model.createcontractother.*
+import kotlinx.android.synthetic.main.activity_create_contract.*
 import kotlinx.android.synthetic.main.activity_create_other_contract.*
 
 
@@ -37,6 +39,8 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
     private var tinhLai: InputTinhLaiPhi? = null
     private var tinhPhi: InputTinhLaiPhi? = null
     private var inputKhachNhan: InputTinhTienKhachNhanOtherDTO? = null
+    private var khachHangDialogFragment:KhachHangDialogFragment? = null
+    private var newKhachHangDialogFragment:NewKhachHangDialogFragment? =null
     private var taiSanKhacDialogFragment: TaiSanKhacDialogFragment = TaiSanKhacDialogFragment()
     private var collateralOtherContractAdapter: CollateralOtherContractAdapter? = null
     private var typeHD = ""
@@ -73,6 +77,7 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
         currentIDStore = intent?.getStringExtra("ID_STORE").toString()
         val idStore = IDCuaHangDTO()
         idStore.iDCuaHang = currentIDStore.toInt()
+        khachHangDialogFragment = KhachHangDialogFragment()
         requestToServer = RequestOtherContractToServer()
         traGop = mutableListOf()
         traGop?.add(BEFORE)
@@ -321,6 +326,18 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
     }
 
     private fun evenClickListener() {
+        khachHangDialogFragment?.signOpenFragment = {
+
+            val customer: ((KhachHangDTO?) -> Unit)? = {
+                edtCustomerNameOther.text = it?.hoTen
+                idCustomer = it?.id.toString()
+            }
+            newKhachHangDialogFragment = NewKhachHangDialogFragment()
+            newKhachHangDialogFragment?.customer = customer
+            newKhachHangDialogFragment?.show(supportFragmentManager,"String")
+
+        }
+
         ivAddTaiSan.setOnClickListener {
             taiSanKhacDialogFragment = TaiSanKhacDialogFragment()
             taiSanKhacDialogFragment.typeHD = typeHD
@@ -336,7 +353,9 @@ class CreateOtherContractActivity : BaseMvvmActivity<ActivityCreateContractBindi
                 edtCustomerNameOther.text = it?.hoTen
                 idCustomer = it?.id.toString()
             }
-            KhachHangDialogFragment.newInstance(customer).show(supportFragmentManager, "String")
+            khachHangDialogFragment?.customer =customer
+            khachHangDialogFragment?.show(supportFragmentManager,"String")
+//            KhachHangDialogFragment.newInstance(customer).show(supportFragmentManager, "String")
         }
         tvNgayVayOther.setOnSingleClickListener {
             MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item?.value?.ngayVay?.time

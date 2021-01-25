@@ -1,30 +1,27 @@
 package com.app.f49.fragment.dialogCustom
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
-import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.app.f49.R
+import com.app.f49.activity.creatingContract.CreateContractActivity
 import com.app.f49.activity.creatingContract.KhachHangViewModel
 import com.app.f49.adapter.contract.CustomerAdapter
 import com.app.f49.model.createcontract.KhachHangDTO
-import kotlinx.android.synthetic.main.activity_create_contract.*
-import kotlinx.android.synthetic.main.fragment_dialog_timkiem_khachhang.*
-import kotlinx.android.synthetic.main.fragment_dialog_timkiem_khachhang.view.*
+import kotlinx.android.synthetic.main.fragment_dialog_taomoi_khachhang.view.*
 
-class KhachHangDialogFragment : DialogFragment() {
+class NewKhachHangDialogFragment : DialogFragment() {
     private var khachHangViewModel: KhachHangViewModel? = null
     private var customerAdapter: CustomerAdapter? = null
     var customer: ((KhachHangDTO?) -> Unit)? = null
-    var signOpenFragment : ((String) -> Unit)? = null
+
 //    companion object {
-//        fun newInstance( customer: ((KhachHangDTO?) -> Unit)? ): KhachHangDialogFragment {
-//            var fm = KhachHangDialogFragment()
+//        fun newInstance( customer: ((KhachHangDTO?) -> Unit)? ): NewKhachHangDialogFragment {
+//            var fm = NewKhachHangDialogFragment()
 //            fm.customer = customer
 //            return fm
 //        }
@@ -36,7 +33,7 @@ class KhachHangDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_dialog_timkiem_khachhang, container, false)
+        return inflater.inflate(R.layout.fragment_dialog_taomoi_khachhang, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,26 +41,20 @@ class KhachHangDialogFragment : DialogFragment() {
         setupView(view)
 
         khachHangViewModel = ViewModelProviders.of(this).get(KhachHangViewModel::class.java)
-        khachHangViewModel?.timKiem("")
         observe()
-        customerAdapter = CustomerAdapter(mutableListOf())
-        rvInfoCustomer.layoutManager = GridLayoutManager(activity, 1)
-        rvInfoCustomer.setHasFixedSize(true)
-        rvInfoCustomer.adapter = customerAdapter
+
         setupClickListeners(view)
     }
 
     private fun observe() {
-        khachHangViewModel?.khachHang?.observe(this, Observer {
-            customerAdapter?.insertData(it ?: mutableListOf())
-        })
+
     }
 
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT
+            WindowManager.LayoutParams.WRAP_CONTENT
         )
     }
 
@@ -73,15 +64,20 @@ class KhachHangDialogFragment : DialogFragment() {
     }
 
     private fun setupClickListeners(view: View) {
-        view.imgSearchDialog.setOnClickListener {
-            khachHangViewModel?.timKiem(view.edtCustomerNameChoose.text.toString())
+        view.tvSaveCustomer.setOnClickListener {
+            if (view.edtCustomerName.text.isEmpty() || view.edtPhoneNumber.text.isEmpty()){
+                (activity as CreateContractActivity).showErrorDialog(getString(R.string.not_empty_name))
+            }else{
+                var customerDTO = KhachHangDTO().apply {
+                    hoTen = view.edtCustomerName.text.toString()
+                    dienThoai = view.edtPhoneNumber.text.toString()
+                }
+                customer?.invoke(customerDTO)
+                dismiss()
+            }
+
         }
-        view.fbNewCustomer.setOnClickListener {
-            signOpenFragment?.invoke("it")
-            this.dismiss()
-        }
-        customerAdapter?.onClick = {
-            customer?.invoke(it)
+        view.tvDong.setOnClickListener {
             dismiss()
         }
     }

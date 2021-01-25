@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.Toolbar
 import android.view.View
-import android.widget.Toast
 import com.app.f49.R
 import com.app.f49.activity.base.BaseMvvmActivity
 import com.app.f49.adapter.contract.UploadImageCollateralAdapter
@@ -16,11 +15,11 @@ import com.app.f49.databinding.ActivityCreateContractBinding
 import com.app.f49.decoration.CategoryDecoration
 import com.app.f49.extension.*
 import com.app.f49.fragment.dialogCustom.KhachHangDialogFragment
+import com.app.f49.fragment.dialogCustom.NewKhachHangDialogFragment
 import com.app.f49.fragment.dialogCustom.TaiSanDialogFragment
 import com.app.f49.fragment.picker.MyDatePickerFragment
 import com.app.f49.model.createcontract.*
 import kotlinx.android.synthetic.main.activity_create_contract.*
-import kotlinx.android.synthetic.main.activity_create_other_contract.*
 import org.greenrobot.eventbus.EventBus
 
 class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, KhachHangViewModel, BaseNavigator>() {
@@ -30,6 +29,8 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
     private var currentIDStore = ""
     private var idCustomer = ""
     private var input: InputTinhTienKhachNhanDTO? = null
+    private var khachHangDialogFragment:KhachHangDialogFragment? =null
+    private var newKhachHangDialogFragment:NewKhachHangDialogFragment? =null
     private val BEFORE = "Trước"
     private val AFTER = "Sau"
     private var requestToServer: RequestContractToServer? = null
@@ -191,6 +192,21 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
     }
 
     private fun evenClickListener() {
+
+        khachHangDialogFragment = KhachHangDialogFragment()
+        khachHangDialogFragment?.signOpenFragment = {
+
+                val customer: ((KhachHangDTO?) -> Unit)? = {
+                    tvCustomerName.text = it?.hoTen
+                    idCustomer = it?.id.toString()
+                }
+                newKhachHangDialogFragment = NewKhachHangDialogFragment()
+                newKhachHangDialogFragment?.customer = customer
+                newKhachHangDialogFragment?.show(supportFragmentManager,"String")
+
+
+
+        }
         rltTaiSan.setOnClickListener {
             val collateralProperties: ((BasePropertiesDTO) -> Unit)? = {
                 tvTaiSan.text = it.tenVatCamCo
@@ -199,13 +215,16 @@ class CreateContractActivity : BaseMvvmActivity<ActivityCreateContractBinding, K
             }
             TaiSanDialogFragment.newInstance(collateralProperties).show(supportFragmentManager, "String")
         }
-        edtCusomerName.setOnClickListener {
+        tvCustomerName.setOnClickListener {
             val customer: ((KhachHangDTO?) -> Unit)? = {
-                edtCusomerName.text = it?.hoTen
+                tvCustomerName.text = it?.hoTen
                 idCustomer = it?.id.toString()
             }
-            KhachHangDialogFragment.newInstance(customer).show(supportFragmentManager, "String")
+            khachHangDialogFragment?.customer =customer
+            khachHangDialogFragment?.show(supportFragmentManager,"String")
+//            KhachHangDialogFragment.newInstance(customer).show(supportFragmentManager, "String")
         }
+
         tvNgayVay.setOnSingleClickListener {
             MyDatePickerFragment.showPicker(supportFragmentManager, mViewModel?.item?.value?.ngayVay?.time
                 ?: 0L).setResultListener {

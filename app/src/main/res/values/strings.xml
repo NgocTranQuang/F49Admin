@@ -213,5 +213,6 @@
     <string name="min_Lai">Giá trị lãi không được lớn hơn 100</string>
     <string name="min_phi">Giá trị phí không được lớn hơn 100</string>
     <string name="not_empty_assets">Tài sản không được để trống !!</string>
+    <string name="not_empty_name">Tên khách hàng và SDT là bắt buộc !!!</string>
 
 </resources>

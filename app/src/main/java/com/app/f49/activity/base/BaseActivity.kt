@@ -165,10 +165,10 @@ open class BaseActivity : AppCompatActivity(), BaseNavigator {
     override fun hideKeyboard() {
         GeneralUtils.hideKeyboard(this, window.decorView.findViewById(android.R.id.content))
     }
-    fun showToast(message: String) {
+    fun showToast(message: String,color:Int = R.color.colorPrimary) {
         val toast = Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT)
         val view: View = toast.view
-        view.setBackgroundColor(resources.getColor(R.color.colorPrimary))
+        view.setBackgroundColor(resources.getColor(color))
         toast.show()
     }
 //    protected fun addFragment(fragment: Fragment?, tag: String?) {
